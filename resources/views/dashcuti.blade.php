@@ -176,27 +176,6 @@
           <div class="col-md-6">
             <!-- LINE CHART -->
           
-      <!-- 
-            
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart"><canvas id="bar-chart-grouped" width="800" height="450"></canvas>
-                </div>
-              </div>
-            
-     </div> -->
             <!-- /.card -->
             <div class="card card-warning">
               <div class="card-header">
@@ -217,15 +196,17 @@
               $datenow = date("Y-m-d",strtotime("-$s->cuti day"));
               ?>
              @endforeach
-              <h5>Jumlah layanan cuti yang belum diproses lebih dari {{$s->cuti}} hari</h5>
-              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
-              </div><div class="chartjs-size-monitor-shrink"><div class="">
-              </div>
-              @foreach($cut as $c)
+             @foreach($cut as $c)
               <?php
               $cis= $c->created_at;
               ?>
               @endforeach
+              @if($cut->count()>0)
+              <h5>Jumlah layanan cuti yang belum diproses lebih dari {{$s->cuti}} hari</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              </div><div class="chartjs-size-monitor-shrink"><div class="">
+              </div>
+           
               </div></div> <center><div id="some_element"></div></center>
               @if($datenow>$cis)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
@@ -235,6 +216,14 @@
               @endif
               @if($datenow<$cis  && $hit<=1)
               <center><h3 style="color:#6384FF">Bagus</h3></center>
+              @endif
+              @else
+              <h5>Jumlah Permohonan Cuti Kosong</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              </div><div class="chartjs-size-monitor-shrink"><div class="">
+              </div>
+              </div></div> <center><div id="some_element"></div></center>
+              <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
               </div>
               </div>
@@ -270,6 +259,7 @@
       // Set properties.
       knob.setProperty('angleStart', -0.75 * Math.PI);
       knob.setProperty('angleEnd', 0.75 * Math.PI);
+      @if($cut->count()>0)
       @if($datenow>$cis)
       knob.setProperty('colorFG', '#CD113B');
       @endif
@@ -277,6 +267,9 @@
       knob.setProperty('colorFG', '#FF7600');
       @endif
       @if($datenow<$cis && $hit<=1)
+      knob.setProperty('colorFG', '#6384FF');
+      @endif
+      @else
       knob.setProperty('colorFG', '#6384FF');
       @endif
       knob.setProperty('trackWidth', 0.4);

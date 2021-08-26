@@ -191,15 +191,16 @@
               $datenow = date("Y-m-d",strtotime("-$s->dispensasi day"));
               ?>
              @endforeach
-              <h5>Jumlah layanan yang belum diproses lebih dari {{$s->dispensasi}} hari</h5>
-              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
-              </div><div class="chartjs-size-monitor-shrink"><div class="">
-              </div>
-              @foreach($dis as $d)
+             @foreach($dis as $d)
               <?php
               $dip= $d->created_at;
               ?>
               @endforeach
+              @if($dis->count()>0)
+              <h5>Jumlah layanan yang belum diproses lebih dari {{$s->dispensasi}} hari</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              </div><div class="chartjs-size-monitor-shrink"><div class="">
+              </div>
               </div></div> <center><div id="some_element"></div></center>
               @if($datenow>$dip)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
@@ -210,6 +211,15 @@
               @if($datenow<$dip  && $hit<=1)
               <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
+              @else
+              <h5>Jumlah Permohonan Dispensasi Kosong</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              </div><div class="chartjs-size-monitor-shrink"><div class="">
+              </div>
+              </div></div> <center><div id="some_element"></div></center>
+              <center><h3 style="color:#6384FF">Baik</h3></center>
+              @endif
+              
               </div>
               </div>
           </div>
@@ -244,6 +254,7 @@
       // Set properties.
       knob.setProperty('angleStart', -0.75 * Math.PI);
       knob.setProperty('angleEnd', 0.75 * Math.PI);
+      @if($dis->count()>0)
       @if($datenow>$dip)
       knob.setProperty('colorFG', '#CD113B');
       @endif
@@ -253,6 +264,10 @@
       @if($datenow<$dip && $hit<=1)
       knob.setProperty('colorFG', '#6384FF');
       @endif
+      @else
+      knob.setProperty('colorFG', '#6384FF');
+      @endif
+      
       knob.setProperty('trackWidth', 0.4);
       knob.setProperty('valMin', 0);
       knob.setProperty('valMax', 1);

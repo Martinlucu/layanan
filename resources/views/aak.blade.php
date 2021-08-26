@@ -74,15 +74,7 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container">
-      Keterangan: 1.Kurang 2.Cukup 3.Baik
-        <div class="row">
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            @foreach($set as $s)
+    @foreach($set as $s)
             <?php
              $datedis = date("Y-m-d",strtotime("-$s->dispensasi day"));
              $datebst = date("Y-m-d",strtotime("-$s->bst day"));
@@ -100,6 +92,25 @@
               $dip= $d->created_at;
               ?>
               @endforeach
+              @foreach($cutindi as $c)
+              <?php
+              $cis= $c->created_at;
+              ?>
+              @endforeach
+              @foreach($bstindi as $bss)
+              <?php
+              $bt= $bss->created_at;
+              ?>
+              @endforeach
+            
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+      Keterangan: 1.Kurang 2.Cukup 3.Baik
+        <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+              @if($disindi->count()>0)
             <div class="small-box">
               <div class="inner">
               @if($datedis>$dip)
@@ -111,6 +122,7 @@
               @if($datedis<$dip  && $hit4<=1)
              <h3 style="color:#6384FF">3</h3>
               @endif
+             
                 <p>Dispensasi</p>
               </div>
               <div class="icon">
@@ -123,6 +135,16 @@
               @if($datedis<$dip)
               <i style="color:#6384FF" class="far fa-smile"></i>
               @endif
+              @else
+              <div class="small-box">
+              <div class="inner">
+              <h3 style="color:#6384FF">3</h3>
+              <p>Dispensasi</p>
+              </div>
+              <div class="icon">
+              <i style="color:#6384FF" class="far fa-smile"></i>
+              @endif
+              
               </div>
               <a href="{{url('/dashdispen')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -160,11 +182,8 @@
             <!-- small box -->
             <div class="small-box">
               <div class="inner">
-              @foreach($cutindi as $c)
-              <?php
-              $cis= $c->created_at;
-              ?>
-              @endforeach
+             
+              @if($cutindi->count()>0)
               @if($datecuti>$cis)
               <h3 style="color:#CD113B">1</h3>
               @endif
@@ -186,6 +205,15 @@
               @if($datecuti<$cis)
               <i style="color:#6384FF" class="far fa-smile"></i>
               @endif
+              @else
+              <div class="inner">
+              <h3 style="color:#6384FF">3</h3>
+              <p>Cuti</p>
+              </div>
+              <div class="icon">
+              <i style="color:#6384FF" class="far fa-smile"></i>
+              </div>
+              @endif
               </div>
               <a href="{{url('/dashcuti')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -194,12 +222,7 @@
             <!-- small box -->
             <div class="small-box ">
               <div class="inner">
-              @foreach($bstindi as $bss)
-              <?php
-              $bt= $bss->created_at;
-              ?>
-              @endforeach
-            
+              @if($bstindi->count()>0)
               @if($datebst>$bt)
               <h3 style="color:#CD113B">1</h3>
               @endif
@@ -221,7 +244,17 @@
               @if($datebst<$bt)
               <i style="color:#6384FF" class="far fa-smile"></i>
               @endif
+              @else
+              <div class="inner">
+              <h3 style="color:#6384FF">3</h3>
+              <p>BST</p>
               </div>
+              <div class="icon">
+              <i style="color:#6384FF" class="far fa-smile"></i>
+              </div>
+              @endif
+              </div>
+
               <a href="{{url('/dashbst')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>

@@ -88,23 +88,24 @@ class DashboardController extends Controller
         $to2 = date('2021-05-30');
         $from3 = date('2021-07-01');
         $to3 = date('2021-07-30');
+        $to4 = date('2021-08-30');
     	$juni = DB::table('dokumen')->whereBetween('created_at',[$from,$to])->where('jenis','BST')->where('status','selesai')->count();
     	$april = DB::table('dokumen')->whereBetween('created_at',[$from1,$to1])->where('jenis','BST')->where('status','selesai')->count();
     	$mei = DB::table('dokumen')->whereBetween('created_at',[$from2,$to2])->where('jenis','BST')->where('status','selesai')->count();
     	$juli = DB::table('dokumen')->whereBetween('created_at',[$from3,$to3])->where('jenis','BST')->where('status','selesai')->count();
 
-        $si = DB::table('dokumen')->where('jurusan','S1 Sistem Informasi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
-    	$sk = DB::table('dokumen')->where('jurusan','S1 Sistem Komputer')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
-    	$d3 = DB::table('dokumen')->where('jurusan','D3 Sistem Informasi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
-    	$sa = DB::table('dokumen')->where('jurusan','S1 Akutansi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
-    	$dkv = DB::table('dokumen')->where('jurusan','S1 Desain Komunikasi Visual')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
-    	$dp = DB::table('dokumen')->where('jurusan','S1 Desain Produk')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
-    	$pft = DB::table('dokumen')->where('jurusan','S1 Produksi Film Dan Telivisi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->count();
+        $si = DB::table('dokumen')->where('jurusan','S1 Sistem Informasi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
+    	$sk = DB::table('dokumen')->where('jurusan','S1 Sistem Komputer')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
+    	$d3 = DB::table('dokumen')->where('jurusan','D3 Sistem Informasi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
+    	$sa = DB::table('dokumen')->where('jurusan','S1 Akutansi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
+    	$dkv = DB::table('dokumen')->where('jurusan','S1 Desain Komunikasi Visual')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
+    	$dp = DB::table('dokumen')->where('jurusan','S1 Desain Produk')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
+    	$pft = DB::table('dokumen')->where('jurusan','S1 Produksi Film Dan Telivisi')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->count();
 
         $set = DB::table('setting')->where('id_set','1')->get();
         foreach($set as $s)
         $date = date("Y-m-d",strtotime("-$s->bst day"));
-        $bstmaha = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at',[$from1,$to3])->where('status','selesai')->get();
+        $bstmaha = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at',[$from1,$to4])->where('status','selesai')->get();
         $hit = DB::table('dokumen')->wheredate('created_at','<=',$date)->where('jenis','BST')->where('status','proses')->count();
         $bst = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->get();
         return view('dashbst',compact('bst','hit','set','si','sk','d3','sa','dkv',

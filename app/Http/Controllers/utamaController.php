@@ -46,7 +46,10 @@ class utamaController extends Controller
         $bstindi = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->get();
         $cutindi = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
         $disindi = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
-        return view('aak',compact('disindi','cutindi','bstindi','sts','ydm','set','hit1','hit3','hit4','jumlahthnlalu','cuti','yudi','bst','dis','april','mei','juni','juli','laya','jumlahthnini'));
+
+        return view('aak',compact('disindi','cutindi','bstindi','sts','ydm','set',
+        'hit1','hit3','hit4','jumlahthnlalu','cuti','yudi','bst','dis','april',
+        'mei','juni','juli','laya','jumlahthnini'));
     	
     }
 }

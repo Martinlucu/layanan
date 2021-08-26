@@ -217,15 +217,17 @@
               $datenow = date("Y-m-d",strtotime("-$s->bst day"));
               ?>
              @endforeach
-              <h5>Jumlah layanan cuti yang belum diproses lebih dari {{$s->bst}} hari</h5>
-              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
-              </div><div class="chartjs-size-monitor-shrink"><div class="">
-              </div>
-              @foreach($bst as $bss)
+             @foreach($bst as $bss)
               <?php
               $bt= $bss->created_at;
               ?>
               @endforeach
+             @if($bst->count()>0)
+              <h5>Jumlah layanan cuti yang belum diproses lebih dari {{$s->bst}} hari</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              </div><div class="chartjs-size-monitor-shrink"><div class="">
+              </div>
+            
               </div></div> <center><div id="some_element"></div></center>
               @if($datenow>$bt)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
@@ -235,6 +237,14 @@
               @endif
               @if($datenow<$bt  && $hit<=1)
               <center><h3 style="color:#6384FF">Bagus</h3></center>
+              @endif
+              @else
+              <h5>Jumlah Permohonan BST Kosong</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              </div><div class="chartjs-size-monitor-shrink"><div class="">
+              </div>
+              </div></div> <center><div id="some_element"></div></center>
+              <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
               </div>
               </div>
@@ -270,6 +280,7 @@
 				// Set properties.
 				knob.setProperty('angleStart', -0.75 * Math.PI);
 				knob.setProperty('angleEnd', 0.75 * Math.PI);
+        @if($bst->count()>0)
         @if($datenow>$bt)
       knob.setProperty('colorFG', '#CD113B');
       @endif
@@ -277,6 +288,9 @@
       knob.setProperty('colorFG', '#FF7600');
       @endif
       @if($datenow<$bt && $hit<=1)
+      knob.setProperty('colorFG', '#6384FF');
+      @endif
+      @else
       knob.setProperty('colorFG', '#6384FF');
       @endif
 				knob.setProperty('trackWidth', 0.4);

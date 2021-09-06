@@ -26,11 +26,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Layanan Dispensasi</h1>
+            <h1 class="m-0 text-dark">Dispensasi</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Dispensasi</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -40,12 +40,64 @@
 
     <!-- Main content -->
     <div class="content">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          
-           
+        <div class="col-md-6">
+        <div class="card card-primary">
+
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form">
+                <div class="card-body">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col">
+                          <label for="exampleInputEmail1">NIM</label>
+                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
+                        </div>
+                        <div class="col">
+                          <label for="exampleInputPassword1">Nama</label>
+                          <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Jurusan</label>
+                      <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->jurusan }} " disabled>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Fakultas</label>
+                      <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->fakultas }} " disabled>
+                    </div>
+                    <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                          <label for="exampleInputPassword1">Tanggal Absen</label>  
+                          <input type="date" class="form-control" id="birthday" name="birthday">
+                        </div>
+                        <div class="col">
+                          <label for="exampleInputPassword1">Tanggal Masuk</label>
+                          <input type="date" class="form-control" id="birthday" name="birthday">
+                        </div>
+                      </div>
+                      </div>
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                        <div class="custom-file" style="margin-bottom:10px;">
+                          <input type="file" class="custom-file-input" id="customFile">
+                          <label class="custom-file-label" for="customFile">Surat sakit / Surat keterangan dari wali</label>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                
+              </form>
+            </div>
           </div>
-         
         </div>
         <!-- /.row -->
       </div>

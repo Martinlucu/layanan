@@ -26,11 +26,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Layanan Cuti</h1>
+            <h1 class="m-0 text-dark">Cuti(BSS)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Cuti(BSS)</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -44,38 +44,39 @@
         <div class="row">
         <div class="col-md-6">
         <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
-              </div>
+
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">NIM</label>
-                    <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Nama</label>
-                    <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="file">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    <div class="row">
+                      <div class="col">
+                          <label for="exampleInputEmail1">NIM</label>
+                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
                       </div>
-                     
-                    </div>
+                      <div class="col">
+                        <label for="exampleInputPassword1">Nama</label>
+                        <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">No. Telp</label>
+                    <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->no_telp }} " disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
                   </div>
                 
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                
               </form>
             </div>
           </div>

@@ -83,7 +83,7 @@
 			              <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>{{ $yd->file }}</td>
-		              	<td> <<a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$yd->id)}}">Setuju
+		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$yd->id)}}">Setuju
                     <a class="btn btn-danger" href="{{url('/detdispen/tlkdis/'.$yd->id) }}">Tolak
                   </td>
                     </tr>

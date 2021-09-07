@@ -29,4 +29,8 @@ class mahasiswaController extends Controller
     {
     	return view('mhsyudi');
     }
+
+    public function createbss(){
+
+    }
 }

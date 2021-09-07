@@ -47,7 +47,8 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" method="POST" action="/uploadbss">
+              @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <div class="row">

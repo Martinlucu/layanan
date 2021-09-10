@@ -64,11 +64,11 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">No. Telp</label>
-                    <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->no_telp }} " disabled>
+                    <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="alasan" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                   </div>
                 

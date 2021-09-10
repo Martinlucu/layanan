@@ -46,7 +46,8 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" method="POST" action="/uploadbst">
+              @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <div class="row">
@@ -66,7 +67,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="alasan" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                   </div>
                 

@@ -68,6 +68,11 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     Route::get('/mhsdispen', 'mahasiswaController@mhsdispen');
     Route::get('/mhsyudi', 'mahasiswaController@mhsyudi');
     Route::get('/mhsbst', 'mahasiswaController@mhsbst');
+
+    // Route upload
+    Route::post('/uploadbss', 'mahasiswaController@createbss');
+    Route::post('/uploadbst', 'mahasiswaController@createbst');
+    Route::post('/uploadyudisium', 'mahasiswaController@createyudi');
+    Route::post('/uploaddispensasi', 'mahasiswaController@createdispenasasi');
     });
 
-Route::post('/uploadbss', 'mahasiswaController@createbss');

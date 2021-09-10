@@ -61,10 +61,18 @@ Route::group(['middleware' => 'auth:aak'], function () {
     Route::get('/dokcuti', 'dokumenController@dokcuti');
     Route::get('/dokcuti/export_cuti', 'dokumenController@export_cuti');
     });
-    Route::group(['middleware' => 'auth:mhs'], function () {
+
+Route::group(['middleware' => 'auth:mhs'], function () {
     Route::view('/mhs', 'mhs');
     Route::get('/mhscuti', 'mahasiswaController@mhscuti');
     Route::get('/mhsdispen', 'mahasiswaController@mhsdispen');
     Route::get('/mhsyudi', 'mahasiswaController@mhsyudi');
     Route::get('/mhsbst', 'mahasiswaController@mhsbst');
+
+    // Route upload
+    Route::post('/uploadbss', 'mahasiswaController@createbss');
+    Route::post('/uploadbst', 'mahasiswaController@createbst');
+    Route::post('/uploadyudisium', 'mahasiswaController@createyudi');
+    Route::post('/uploaddispensasi', 'mahasiswaController@createdispenasasi');
     });
+

@@ -25,11 +25,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Layanan Berhenti Studi Tetap</h1>
+            <h1 class="m-0 text-dark">Berhenti Studi Tetap(BST)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Berhenti Studi Tetap(BST)</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -39,12 +39,47 @@
 
     <!-- Main content -->
     <div class="content">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          
-           
+        <div class="col-md-6">
+        <div class="card card-primary">
+
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="POST" action="/uploadbst">
+              @csrf
+                <div class="card-body">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col">
+                          <label for="exampleInputEmail1">NIM</label>
+                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
+                      </div>
+                      <div class="col">
+                        <label for="exampleInputPassword1">Nama</label>
+                        <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">No. Telp</label>
+                    <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->no_telp }} " disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
+                    <textarea class="form-control" name="alasan" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                  </div>
+                
+                </div>
+                <!-- /.card-body -->
+
+                
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                
+              </form>
+            </div>
           </div>
-         
         </div>
         <!-- /.row -->
       </div>

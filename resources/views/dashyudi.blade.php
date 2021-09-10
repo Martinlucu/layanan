@@ -23,7 +23,7 @@
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Yudisium</h4>
+				<h4 class="modal-title">Detail Yudisium</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 		
@@ -35,6 +35,8 @@
                       <th>Nama</th>
                       <th>E-mail</th>
                       <th>Jurusan</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Keluar</th>
                     
                     </tr>
                   </thead>
@@ -45,6 +47,8 @@
 		              	<td>{{ $yd->nama_mhs }}</td>
 			              <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
+                    <td>{{ $yd->created_at }}</td>
+                    <td>{{ $yd->updated_at }}</td>
                     </tr>
                     @endforeach
                   </tbody>

@@ -23,7 +23,7 @@
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Dispensasi</h4>
+				<h4 class="modal-title">Detail Dispensasi</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 		
@@ -35,6 +35,8 @@
                       <th>Nama</th>
                       <th>E-mail</th>
                       <th>Jurusan</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Keluar</th>
                     
                     </tr>
                   </thead>
@@ -45,6 +47,8 @@
 		              	<td>{{ $di->nama_mhs }}</td>
 			              <td>{{ $di->email_mhs }}</td>
 		              	<td>{{ $di->jurusan }}</td>
+                    <td>{{ $di->created_at }}</td>
+                    <td>{{ $di->updated_at }}</td>
                     </tr>
                     @endforeach
                   </tbody>

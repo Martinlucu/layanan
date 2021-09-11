@@ -54,8 +54,9 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" action="/uploadyudisium" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
+                  @csrf
                     <div class="form-group">
                       <div class="row">
                         <div class="col">
@@ -71,7 +72,7 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col">
-                          <label for="exampleInputEmail1">Tempat</label>
+                          <label for="exampleInputEmail1">Tempat Lahir</label>
                           <input type="tempat_lahir" class="form-control" name="tempat_lahir" value=" {{ Auth::user()->tempat_lahir }} " disabled>
                         </div>
                         <div class="col">
@@ -82,7 +83,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" name="no_ktp" >
+                      <input type="number" class="form-control" name="no_ktp" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>
@@ -97,35 +98,34 @@
                       <input type="nama" class="form-control" name="email" value=" {{ Auth::user()->email }} " disabled>
                     </div>
                     <div class="form-group">
-                    <label for="exampleInputPassword1">Upload Berkas Yudisium</label>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Foto ukuran 3x4</label>
-                      </div>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Sertifikat TOEFL/TOEIC</label>
-                      </div>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Scan berwarna Ijazah SMA</label>
-                      </div>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Scan berwarna Akta Lahir</label>
-                      </div>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Scan berwarna Kartu Keluarga</label>
-                      </div>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Scan berwarna Kartu Tanda Mahasiswa</label>
-                      </div>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Scan berwarna Kartu Tanda Penduduk</label>
-                      </div>
+                      <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+                          </div>
                     </div>
                     
                   </div>

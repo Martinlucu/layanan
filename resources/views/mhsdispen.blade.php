@@ -47,8 +47,9 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" action="/uploaddispensasi" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
+                  @csrf
                     <div class="form-group">
                       <div class="row">
                         <div class="col">
@@ -63,29 +64,28 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Jurusan</label>
-                      <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->jurusan }} " disabled>
+                      <input type="nama" class="form-control" name="jurusan" value=" {{ Auth::user()->jurusan }} " disabled>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Fakultas</label>
-                      <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->fakultas }} " disabled>
+                      <input type="nama" class="form-control" name="fakultas" value=" {{ Auth::user()->fakultas }} " disabled>
                     </div>
                     <div class="form-group">
                     <div class="row">
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Absen</label>  
-                          <input type="date" class="form-control" id="birthday" name="birthday">
+                          <input type="date" name="absen" class="form-control" id="birthday" name="birthday" required>
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Masuk</label>
-                          <input type="date" class="form-control" id="birthday" name="birthday">
+                          <input type="date" name="masuk" class="form-control" id="birthday" name="birthday" required>
                         </div>
                       </div>
                       </div>
                     <div class="form-group">
                     <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
                         <div class="custom-file" style="margin-bottom:10px;">
-                          <input type="file" class="custom-file-input" id="customFile">
-                          <label class="custom-file-label" for="customFile">Surat sakit / Surat keterangan dari wali</label>
+                          <input type="file" name="berkas_ketidakhadiran" class="form-control-file" id="exampleformcontrolfile1" required>
                         </div>
                     </div>
                   </div>

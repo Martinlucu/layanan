@@ -67,7 +67,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="alasan" id="exampleFormControlTextarea1" rows="3" required></textarea>
                   </div>
                   </div>
                 

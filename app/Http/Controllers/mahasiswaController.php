@@ -31,23 +31,32 @@ class mahasiswaController extends Controller
     }
 
     public function createbss(Request $request){
-        DB::table('dokumen')->insert([
-            'nim'               => Auth::user()->nim,
-            'nama_mhs'          => Auth::user()->nama,
-            'tempat_lahir'      => Auth::user()->tempat_lahir,
-            'tanggal_lahir'     => Auth::user()->tanggal_lahir,
-            'no_telp'           => Auth::user()->no_telp,
-            'email_mhs'         => Auth::user()->email,
-            'semester'          => Auth::user()->semester,
-            'angkatan'          => Auth::user()->angkatan,
-            'jurusan'           => Auth::user()->jurusan,
-            'fakultas'          => Auth::user()->fakultas,
-            'alasan_pengajuan'  => $request->alasan,
-            'jenis'             => 'Cuti',
-            'status'            => 'Proses'
-        ]);
+        
+                DB::table('dokumen')->insert([
+                'nim'               => Auth::user()->nim,
+                'nama_mhs'          => Auth::user()->nama,
+                'tempat_lahir'      => Auth::user()->tempat_lahir,
+                'tanggal_lahir'     => Auth::user()->tanggal_lahir,
+                'no_telp'           => Auth::user()->no_telp,
+                'email_mhs'         => Auth::user()->email,
+                'semester'          => Auth::user()->semester,
+                'angkatan'          => Auth::user()->angkatan,
+                'jurusan'           => Auth::user()->jurusan,
+                'fakultas'          => Auth::user()->fakultas,
+                'alasan_pengajuan'  => $request->alasan,
+                'jenis'             => 'BST',
+                'status'            => 'Proses']);
 
-        return redirect('/mhs');
+            DB::table('mhs')->where('nim', '=', Auth::user()->nim)
+                    ->update([
+                        'jml_pengajuan_cuti' =>  1 + Auth::user()->jml_pengajuan_cuti
+                ]);
+
+                return redirect('/mhs');
+            
+
+            
+        
     }
 
     public function createyudi(Request $request){

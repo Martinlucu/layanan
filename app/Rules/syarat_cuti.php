@@ -25,7 +25,7 @@ class syarat_cuti implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        
     }
 
     /**

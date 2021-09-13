@@ -31,7 +31,8 @@ class mahasiswaController extends Controller
     }
 
     public function createbss(Request $request){
-        
+            if(Auth::user()->semester >=3 & Auth::user()->jml_pengajuan_cuti <=2){
+                
                 DB::table('dokumen')->insert([
                 'nim'               => Auth::user()->nim,
                 'nama_mhs'          => Auth::user()->nama,
@@ -52,8 +53,18 @@ class mahasiswaController extends Controller
                         'jml_pengajuan_cuti' =>  1 + Auth::user()->jml_pengajuan_cuti
                 ]);
 
-                return redirect('/mhs');
-            
+                return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda berhasil! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+            }elseif(Auth::user()->semester >= 3 && Auth::user()->jml_pengajuan_cuti > 2)
+                {
+                    return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah Pengajuan cuti anda melalui batas! (Anda sudah mengajukan cuti sebanyak <span style="color:red;">'.Auth::user()->jml_pengajuan_cuti.'x</span>');
+            }elseif(Auth::user()->semester < 3 && Auth::user()->jml_pengajuan_cuti <= 2)
+                {
+                    
+                    return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Anda sekarang semester <span style="color:red;">'.Auth::user()->semester.'</span>');
+            }else
+                {
+                return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah pengajuan cuti anda melebihi batas!');
+                }
 
             
         

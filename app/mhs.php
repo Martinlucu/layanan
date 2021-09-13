@@ -16,7 +16,7 @@ class mhs extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nim', 'nama','email','semester', 'angkatan', 'jurusan', 'password',
+        'nim', 'nama','email','semester', 'jurusan', 'password',
     ];
 
     /**

@@ -63,7 +63,7 @@ class mahasiswaController extends Controller
                     return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Anda sekarang semester <span style="color:red;">'.Auth::user()->semester.'</span>');
             }else
                 {
-                return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah pengajuan cuti anda melebihi batas!');
+                    return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah pengajuan cuti anda melebihi batas!');
                 }
 
             

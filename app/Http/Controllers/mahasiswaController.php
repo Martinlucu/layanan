@@ -50,7 +50,16 @@ class mahasiswaController extends Controller
             DB::table('mhs')->where('nim', '=', Auth::user()->nim)
                     ->update([
                         'jml_pengajuan_cuti' =>  1 + Auth::user()->jml_pengajuan_cuti
+<<<<<<< HEAD
                 ]);            
+=======
+                ]);
+
+                return redirect('/mhs');
+            
+
+            
+>>>>>>> parent of 4181c41 (DAY 7 - Implementasi notifikasi berhasil berdasarkan 2 faktor dari 4)
         
     }
 

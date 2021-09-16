@@ -31,8 +31,10 @@ class mahasiswaController extends Controller
     }
 
     public function createbss(Request $request){
+        $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
         
-                DB::table('dokumen')->insert([
+        if(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2){
+            DB::table('dokumen')->insert([
                 'nim'               => Auth::user()->nim,
                 'nama_mhs'          => Auth::user()->nama,
                 'tempat_lahir'      => Auth::user()->tempat_lahir,
@@ -49,18 +51,18 @@ class mahasiswaController extends Controller
 
             DB::table('mhs')->where('nim', '=', Auth::user()->nim)
                     ->update([
-                        'jml_pengajuan_cuti' =>  1 + Auth::user()->jml_pengajuan_cuti
-<<<<<<< HEAD
-                ]);            
-=======
+                        'jml_pengajuan_cuti' =>  Auth::user()->jml_pengajuan_cuti + 1
                 ]);
 
-                return redirect('/mhs');
+                return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda berhasil! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+        }elseif(Auth::user()->semester < 3 & Auth::user()->jml_pengajuan_cuti <= 2){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Anda sekarang semester'.Auth::user()->semester);
+        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti > 2){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah Pengajuan cuti anda melalui batas! (Anda sudah mengajukan cuti sebanyak'.Auth::user()->jml_pengajuan_cuti.'x');
+        }else{
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda masih memiliki tanggungan keuangan sebesar Rp. '.$tanggungan);
+        }
             
-
-            
->>>>>>> parent of 4181c41 (DAY 7 - Implementasi notifikasi berhasil berdasarkan 2 faktor dari 4)
-        
     }
 
     public function createyudi(Request $request){

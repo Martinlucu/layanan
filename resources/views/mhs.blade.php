@@ -21,6 +21,11 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
+      @if (session('alert'))
+            <div class="alert alert-success">
+                {{ session('alert') }}
+            </div>
+        @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Home</h1>
@@ -39,7 +44,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          
+        
            
           </div>
          

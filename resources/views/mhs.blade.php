@@ -1,10 +1,5 @@
 @extends('layouts.topmhs')
 @section('content')
-@if (session('alert'))
-    <div class="alert alert-success">
-        {{ session('alert') }}
-    </div>
-@endif
 <html lang="en">
 <head>
   <meta charset="utf-8">

@@ -42,7 +42,7 @@
                                 @enderror
                             </div>
                         </div>
-                       
+                        @if($url=='aak')
                         <div class="form-group row">
                             <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
                             <div class="col-md-6">
@@ -54,7 +54,8 @@
                                     @enderror
                             </div>
                         </div>
-                        @isset($mhs)
+                        @endif
+                        @if($url=='mhs')
                         <div class="form-group row">
                             <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
 
@@ -118,7 +119,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @endisset
+                        @endif
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

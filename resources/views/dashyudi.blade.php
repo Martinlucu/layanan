@@ -108,6 +108,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard Yudisium</h1>
+           
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -289,24 +290,19 @@ var speedCanvas = document.getElementById("speedChart");
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
-var dataFirst = {
-    label: "Car A - Speed (mph)",
-    data: [0, 59, 75, 20, 20, 55, 40],
-    lineTension: 0,
-    fill: false,
-    borderColor: 'red'
-  };
+var tgl = <?php echo json_encode($tanggal) ?>;
+var isi = <?php echo json_encode($tes) ?>;
 
 var dataSecond = {
     label: "Jumlah per bulan",
-    data: [{{$april}}, {{$mei}}, {{$juni}}, {{$juli}},],
+    data: isi,
     
     fill: false,
   borderColor: 'blue'
   };
 
 var speedData = {
-  labels: ["April", "Mei", "Juni", "Juli", "Agustus"],
+  labels: tgl,
   datasets: [ dataSecond]
 };
 
@@ -326,25 +322,20 @@ var lineChart = new Chart(speedCanvas, {
   data: speedData,
   options: chartOptions
 });
-
+</script>
+<script>
 var oilCanvas = document.getElementById("oilChart");
 
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
+var  diagram= <?php echo json_encode($dia) ?>;
+var  isid= <?php echo json_encode($isid) ?>;
 var oilData = {
-    labels: [
-        "S1 Sistem Informasi",
-        "S1 Sistem Komputer",
-        "D3 Sistem Informasi",
-        "S1 Akutansi",
-        "S1 Desain Komunikasi Visual",
-        "S1 Desain Produk",
-        "S1 Produksi Film Dan Telivisi",
-    ],
+    labels:  diagram,
     datasets: [
         {
-            data: [{{$si}},{{$sk}},{{$d3}},{{$sa}},{{$dkv}},{{$dp}},{{$pft}}],
+            data: isid,
             backgroundColor: [
                 "#FF6384",
                 "#63FF84",

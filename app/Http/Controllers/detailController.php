@@ -11,16 +11,16 @@ class detailController extends Controller
     {
         $from = date('2021-04-01');
         $to = date('2021-07-30');
-        $ydm = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at',[$from,$to])->where('status','proses')->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at',[$from,$to])->where('status','proses')->get();
+        $ydm = DB::table('dokumen')->where('status','proses')->count();
+        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
         return view('detyudi',compact('ydm','ydmaha'));
 }
 
     public function detcuti()
     { $from = date('2021-04-01');
         $to = date('2021-07-30');
-        $ct = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at',[$from,$to])->where('status','proses')->count();
-        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at',[$from,$to])->where('status','proses')->get();
+        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
+        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
         return view('detcuti',compact('ct','ctmaha'));
 }
 

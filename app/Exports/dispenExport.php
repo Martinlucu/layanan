@@ -12,7 +12,8 @@ class dispenExport implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        $dispen = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')->where('jenis','Dispensasi')->wherein('status',['selesai','ditolak'])->get();
+        $dispen = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')
+        ->where('jenis','Dispensasi')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
        // return dokumendispen::where('jenis','Dispensasi')->where('status','selesai')->get();
         return $dispen;
     }

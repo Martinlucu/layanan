@@ -12,7 +12,8 @@ class bstExport implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        $bst = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')->where('jenis','BST')->wherein('status',['selesai','ditolak'])->get();
+        $bst = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')
+        ->where('jenis','BST')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
         return $bst;
     }
     public function headings(): array

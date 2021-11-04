@@ -502,14 +502,16 @@ $(function () {
       }
     }
   })
+  var tgl = <?php echo json_encode($tanggal) ?>;
+  var isi = <?php echo json_encode($isidata) ?>;
 
   var $visitorsChart = $('#visitors-chart')
   var visitorsChart  = new Chart($visitorsChart, {
     data   : {
-      labels  : ['April', 'Mei', 'Juni', 'Juli'],
+      labels  : tgl,
       datasets: [{
         type                : 'line',
-        data                : [{{$april}}, {{$mei}}, {{$juni}}, {{$juli}}],
+        data                : isi,
         backgroundColor     : 'transparent',
         borderColor         : '#007bff',
         pointBorderColor    : '#007bff',

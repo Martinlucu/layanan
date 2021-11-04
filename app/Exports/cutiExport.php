@@ -12,7 +12,8 @@ class cutiExport implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        $cuti = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')->where('jenis','Cuti')->wherein('status',['selesai','ditolak'])->get();
+        $cuti = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')
+        ->where('jenis','Cuti')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
         return $cuti;
     }
     public function headings(): array

@@ -15,25 +15,25 @@ class dokumenController extends Controller
 {
     public function dokdispen()
     {
-        $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['selesai','ditolak'])->get();
+        $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
         
         return view('dokdispen',compact('lapdis'));
 }
 public function dokcuti()
 {
-    $lapdis = DB::table('dokumen')->where('jenis','Cuti')->wherein('status',['selesai','ditolak'])->get();
+    $lapdis = DB::table('dokumen')->where('jenis','Cuti')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
     
     return view('dokcuti',compact('lapdis'));
 }
 public function dokbst()
 {
-    $lapdis = DB::table('dokumen')->where('jenis','BST')->wherein('status',['selesai','ditolak'])->get();
+    $lapdis = DB::table('dokumen')->where('jenis','BST')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
     
     return view('dokbst',compact('lapdis'));
 }
 public function dokyudi()
 {
-    $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['selesai','ditolak'])->get();
+    $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
     
     return view('dokyudi',compact('lapdis'));
 }

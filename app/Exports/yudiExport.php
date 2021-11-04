@@ -12,7 +12,8 @@ class yudiExport implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        $yudi = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')->where('jenis','Yudisium')->wherein('status',['selesai','ditolak'])->get();
+        $yudi = DB::table('dokumen')->select('nim','nama_mhs','email_mhs','jurusan','jenis','status','created_at','updated_at')
+        ->where('jenis','Yudisium')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
         return $yudi;
     }
     public function headings(): array

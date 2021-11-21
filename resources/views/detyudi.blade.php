@@ -69,6 +69,7 @@
                       <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>File</th>
+                      <th>Tanggal Masuk</th>
                       <th>Aksi</th>
                     
                     </tr>
@@ -83,6 +84,7 @@
 			              <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>{{ $yd->file }}</td>
+		              	<td>{{ $yd->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$yd->id)}}">Setuju
                     <a class="btn btn-danger" href="{{url('/detdispen/tlkdis/'.$yd->id) }}">Tolak
                   </td>

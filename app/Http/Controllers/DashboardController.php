@@ -45,7 +45,8 @@ class DashboardController extends Controller
         
         $hit = DB::table('dokumen')->wheredate('created_at','<=',$date)->where('jenis','Cuti')->where('status','proses')->count();
         $cut = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->orderBy('jurusan','asc')->get();
-        return view('dashcuti',compact('tanggal','tes','dia','isid','cut','hit','set','cutimaha'));
+        $datecut = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->orderBy('created_at','desc')->get();
+        return view('dashcuti',compact('datecut','tanggal','tes','dia','isid','cut','hit','set','cutimaha'));
     	
     }
     public function dashdispen()
@@ -85,8 +86,9 @@ class DashboardController extends Controller
 
         $dispmaha = DB::table('dokumen')->whereyear('created_at',2021)->where('jenis','Dispensasi')->where('status','selesai')->orderBy('jurusan','asc')->get();
         $dis = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->orderBy('jurusan','asc')->get();
+        $datedis = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->orderBy('created_at','desc')->get();
         
-        return view('dashdispen',compact('dis','hit','set','disp','dispmaha','tanggal','tes','dia','isid'));
+        return view('dashdispen',compact('datedis','dis','hit','set','disp','dispmaha','tanggal','tes','dia','isid'));
     }
     public function dashbst()
     {
@@ -123,7 +125,8 @@ class DashboardController extends Controller
         $bstmaha = DB::table('dokumen')->where('jenis','BST')->whereyear('created_at',2021)->where('status','selesai')->orderBy('jurusan','asc')->get();
         $hit = DB::table('dokumen')->wheredate('created_at','<=',$date)->where('jenis','BST')->where('status','proses')->count();
         $bst = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->whereyear('created_at',2021)->orderBy('jurusan','asc')->get();
-        return view('dashbst',compact('tanggal','tes','dia','isid','bst','hit','set','bstmaha'));
+        $datebst = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->whereyear('created_at',2021)->orderBy('created_at','desc')->get();
+        return view('dashbst',compact('datebst','tanggal','tes','dia','isid','bst','hit','set','bstmaha'));
     }
     public function dashyudi()
     {

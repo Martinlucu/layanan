@@ -196,12 +196,13 @@
               $datenow = date("Y-m-d",strtotime("-$s->dispensasi day"));
               ?>
              @endforeach
-             @foreach($dis as $d)
+             @foreach($datedis as $d)
               <?php
               $dip= $d->created_at;
               ?>
               @endforeach
               @if($dis->count()>0)
+              
               <h5>Jumlah layanan yang belum diproses lebih dari {{$s->dispensasi}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
@@ -210,11 +211,11 @@
               @if($datenow>$dip)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
               @endif
-              @if($datenow==$dip && $hit<1 or $datenow==$dip && $hit>1)
+              @if($datenow==$dip)
               <center><h3 style="color:#FF7600">Cukup</h3></center>
               @endif
-              @if($datenow<$dip  && $hit<=1)
-              <center><h3 style="color:#6384FF">Baik</h3></center>
+              @if($datenow<$dip)
+              <center><h3 style="color:#6384FF">BaiK</h3></center>
               @endif
               @else
               <h5>Jumlah Permohonan Dispensasi Kosong</h5>

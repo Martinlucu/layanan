@@ -200,7 +200,7 @@
               $datenow = date("Y-m-d",strtotime("-$s->cuti day"));
               ?>
              @endforeach
-             @foreach($cut as $c)
+             @foreach($datecut as $c)
               <?php
               $cis= $c->created_at;
               ?>
@@ -215,11 +215,11 @@
               @if($datenow>$cis)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
               @endif
-              @if($datenow==$cis && $hit<1 or $datenow==$cis && $hit>1)
+              @if($datenow==$cis)
               <center><h3 style="color:#FF7600">Cukup</h3></center>
               @endif
-              @if($datenow<$cis  && $hit<=1)
-              <center><h3 style="color:#6384FF">Bagus</h3></center>
+              @if($datenow<$cis)
+              <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
               @else
               <h5>Jumlah Permohonan Cuti Kosong</h5>
@@ -267,10 +267,10 @@
       @if($datenow>$cis)
       knob.setProperty('colorFG', '#CD113B');
       @endif
-      @if($datenow==$cis && $hit<=1  or $datenow==$cis && $hit>1)
+      @if($datenow==$cis)
       knob.setProperty('colorFG', '#FF7600');
       @endif
-      @if($datenow<$cis && $hit<=1)
+      @if($datenow<$cis )
       knob.setProperty('colorFG', '#6384FF');
       @endif
       @else

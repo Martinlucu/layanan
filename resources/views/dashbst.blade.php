@@ -172,35 +172,10 @@
               </div>
               <!-- /.card-body -->
             </div>
-            <!-- /.card -->
 
-            
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6">
-            <!-- LINE CHART -->
-          
-<!--
-            
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart"><canvas id="bar-chart-grouped" width="800" height="450"></canvas>
-                </div>
-              </div>
-
-            </div> -->
             <!-- /.card -->
             <div class="card card-warning">
               <div class="card-header">
@@ -221,7 +196,7 @@
               $datenow = date("Y-m-d",strtotime("-$s->bst day"));
               ?>
              @endforeach
-             @foreach($bst as $bss)
+             @foreach($datebst as $bss)
               <?php
               $bt= $bss->created_at;
               ?>
@@ -239,7 +214,7 @@
               @if($datenow==$bt)
               <center><h3 style="color:#FF7600">Cukup</h3></center>
               @endif
-              @if($datenow<$bt  && $hit<=1)
+              @if($datenow<$bt)
               <center><h3 style="color:#6384FF">Bagus</h3></center>
               @endif
               @else
@@ -288,10 +263,10 @@
         @if($datenow>$bt)
       knob.setProperty('colorFG', '#CD113B');
       @endif
-      @if($datenow==$bt && $hit<=1  or $datenow==$bt && $hit>1)
+      @if($datenow==$bt)
       knob.setProperty('colorFG', '#FF7600');
       @endif
-      @if($datenow<$bt && $hit<=1)
+      @if($datenow<$bt)
       knob.setProperty('colorFG', '#6384FF');
       @endif
       @else

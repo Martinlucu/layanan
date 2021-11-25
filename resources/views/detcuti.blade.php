@@ -83,7 +83,7 @@
 		              	<td>{{ $c->nama_mhs }}</td>
 			              <td>{{ $c->email_mhs }}</td>
 		              	<td>{{ $c->jurusan }}</td>
-		              	<td>{{ $c->file }}</td>
+		              	<td>{{ $c->berkas }}</td>
 		              	<td>{{ $c->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detcuti/stjcuti/'.$c->id)}}">Setuju
                     <a class="btn btn-danger" href="{{url('/detcuti/tlkcuti/'.$c->id) }}">Tolak

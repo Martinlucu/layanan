@@ -85,8 +85,8 @@
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>{{ $yd->file }}</td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$yd->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/detdispen/tlkdis/'.$yd->id) }}">Tolak
+		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju
+                    <a class="btn btn-danger" href="{{url('/detyudi/tlkyudi/'.$yd->id) }}">Tolak
                   </td>
                     </tr>
                     @endforeach

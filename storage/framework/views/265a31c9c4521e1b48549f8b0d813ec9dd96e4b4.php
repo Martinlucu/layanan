@@ -1,5 +1,5 @@
-@extends('layouts.top')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <html lang="en">
 <head>
 
@@ -8,22 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Dahboard BST</title>
+  <title>Dahboard Yudisium</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')); ?>">
+  <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition layout-top-nav">
-<div class="modal fade" id="bst">
+<div class="modal fade" id="yudi">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Detail BST</h4>
+				<h4 class="modal-title">Detail Yudisium</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 		
@@ -33,7 +33,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                     
+                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                       <th>Tanggal Keluar</th>
@@ -42,15 +42,15 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bstmaha as $bs)
-                    <td>{{ $bs->nim }}</td>
-		              	<td>{{ $bs->nama_mhs }}</td>
-			             
-		              	<td>{{ $bs->jurusan }}</td>
-                    <td>{{ $bs->created_at }}</td>
-                    <td>{{ $bs->updated_at }}</td>
+                    <?php $__currentLoopData = $ydmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $yd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($yd->nim); ?></td>
+		              	<td><?php echo e($yd->nama_mhs); ?></td>
+			              <td><?php echo e($yd->email_mhs); ?></td>
+		              	<td><?php echo e($yd->jurusan); ?></td>
+                    <td><?php echo e($yd->created_at); ?></td>
+                    <td><?php echo e($yd->updated_at); ?></td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -65,7 +65,7 @@
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Layanan BST Proses</h4>
+				<h4 class="modal-title">Layanan Yudisium Proses</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
         <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -74,7 +74,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      
+                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                     
@@ -82,14 +82,14 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bst as $bi)
-                    <td>{{ $bi->nim }}</td>
-		              	<td>{{ $bi->nama_mhs }}</td>
-			           
-		              	<td>{{ $bi->jurusan }}</td>
-		              	<td>{{ $bi->created_at }}</td>
+                    <?php $__currentLoopData = $yudi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $yu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($yu->nim); ?></td>
+		              	<td><?php echo e($yu->nama_mhs); ?></td>
+			              <td><?php echo e($yu->email_mhs); ?></td>
+		              	<td><?php echo e($yu->jurusan); ?></td>
+		              	<td><?php echo e($yu->created_at); ?></td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -100,9 +100,6 @@
 	</div>
 </div>
 <div class="wrapper">
-
-  <!-- /.navbar -->
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -110,7 +107,8 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard BST</h1>
+            <h1 class="m-0 text-dark">Dashboard Yudisium</h1>
+           
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -130,7 +128,8 @@
             <!-- AREA CHART -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Layanan Jumlah BST</h3>
+                <h3 class="card-title">Jumlah Layanan Yudisium</h3>
+
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -144,6 +143,7 @@
               <div class="card-body">
                <div>
                <canvas id="speedChart" width="600" height="400"></canvas>
+
                 </div>
               </div>
               <!-- /.card-body -->
@@ -155,7 +155,7 @@
               <div class="card-header">
                 <h3 class="card-title">Jurusan</h3>
                 <div class="card-tools">
-                <a  id="bst" name="bst" data-toggle="modal" data-target="#bst"  class="btn btn-danger" style="text-decoration: underline">Detail</a>
+                <a  id="yud" name="yudi" data-toggle="modal" data-target="#yudi"  class="btn btn-danger" style="text-decoration: underline">Detail</a>
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
@@ -172,11 +172,13 @@
               </div>
               <!-- /.card-body -->
             </div>
+            <!-- /.card -->
 
+            
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6">
-            <!-- /.card -->
+          
             <div class="card card-warning">
               <div class="card-header">
                 <h3 class="card-title">Indikator</h3>
@@ -190,44 +192,32 @@
                   </button>
                 </div>
               </div>
+              <?php $__currentLoopData = $set; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="card-body">
-              @foreach($set as $s)
+              <?php if(is_numeric($s->yudisium)): ?>
               <?php
-              $datenow = date("Y-m-d",strtotime("-$s->bst weekday"));
+              $number = $s->yudisium/100*$sts;
+              $num=ceil($number)
               ?>
-             @endforeach
-             @foreach($datebst as $bss)
-              <?php
-              $bt= $bss->created_at;
-              ?>
-              @endforeach
-             @if($bst->count()>0)
-              <h5>Jumlah layanan yang belum diproses, batas proses {{$s->bst}} hari</h5>
-              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
-              </div><div class="chartjs-size-monitor-shrink"><div class="">
-              </div>
-            
-              </div></div> <center><div id="some_element"></div></center>
-              @if($datenow>$bt)
-              <center><h3 style="color:#CD113B">Kurang</h3></center>
-              @endif
-              @if($datenow==$bt)
-              <center><h3 style="color:#FF7600">Cukup</h3></center>
-              @endif
-              @if($datenow<$bt)
-              <center><h3 style="color:#6384FF">Baik</h3></center>
-              @endif
-              @else
-              <h5>Jumlah Permohonan BST Kosong</h5>
+              <?php endif; ?>
+              <h5>Jumlah layanan yang telah selesai</h5><h5>dengan target <?php echo e($s->yudisium); ?>% dari <?php echo e($sts); ?> mahasiswa yang siap yudisium</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
               </div></div> <center><div id="some_element"></div></center>
+              <?php if($ydm<$num): ?>
+              <center><h3  style="color:#CD113B">Kurang</h3></center>
+              <?php endif; ?>
+              <?php if($ydm==$num): ?>
+              <center><h3  style="color:#FF7600">Cukup</h3></center>
+              <?php endif; ?> 
+              <?php if($ydm>$num): ?>
               <center><h3 style="color:#6384FF">Baik</h3></center>
-              @endif
+              <?php endif; ?>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </div>
               </div>
-          </div>
+            </div>
           <!-- /.col (RIGHT) -->
         </div>
         <!-- /.row -->
@@ -235,21 +225,17 @@
     </section>
     <!-- /.content -->
   </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
-
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{asset('dist/js/demo.js')}}"></script>
-<script src="{{asset('dist/js/pages/dashboard3.js')}}"></script>
-<script src="{{asset('js/pureknob.js')}}" type="text/javascript"></script>
+<script src="<?php echo e(asset('dist/js/adminlte.min.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/pages/dashboard3.js')); ?>"></script>
+<script src="<?php echo e(asset('js/pureknob.js')); ?>" type="text/javascript"></script>
 		<script type="text/javascript">
 		
 			function demoKnob() {
@@ -259,28 +245,23 @@
 				// Set properties.
 				knob.setProperty('angleStart', -0.75 * Math.PI);
 				knob.setProperty('angleEnd', 0.75 * Math.PI);
-        @if($bst->count()>0)
-        @if($datenow>$bt)
-      knob.setProperty('colorFG', '#CD113B');
-      @endif
-      @if($datenow==$bt)
-      knob.setProperty('colorFG', '#FF7600');
-      @endif
-      @if($datenow<$bt)
-      knob.setProperty('colorFG', '#6384FF');
-      @endif
-      @else
-      knob.setProperty('colorFG', '#6384FF');
-      @endif
+        <?php if($ydm<$num): ?>
+				knob.setProperty('CD113B', '#CD113B');
+        <?php endif; ?>
+        <?php if($ydm==$num): ?>
+				knob.setProperty('colorFG', '#FF7600');
+        <?php endif; ?>
+        <?php if($ydm>$num): ?>
+        knob.setProperty('colorFG', '#6384FF');
+        <?php endif; ?>
 				knob.setProperty('trackWidth', 0.4);
 				knob.setProperty('valMin', 0);
-				knob.setProperty('valMax', 100);
-      knob.setProperty('readonly', true);
-
+				knob.setProperty('valMax', 200);
+        knob.setProperty('readonly', true);
 				// Set initial value.
         
 
-				knob.setValue({{$hit}});
+				knob.setValue(<?php echo e($ydm); ?>);
        
 				const listener = function(knob, value) {
 					console.log(value);
@@ -313,14 +294,14 @@ var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
     label: "Jumlah Semester Genap",
-    data: {{$hslgenap}},
+    data: <?php echo e($hslgenap); ?>,
     fill: false,
   borderColor: '#007bff'
   };
 
 var dataFirst = {
     label: "Jumlah Semester Ganjil",
-    data: {{$hslganjil}},
+    data: <?php echo e($hslganjil); ?>,
     fill: false,
   borderColor: '#ced4da'
   };
@@ -346,7 +327,6 @@ var lineChart = new Chart(speedCanvas, {
   data: speedData,
   options: chartOptions
 });
-
 </script>
 <script>
 var oilCanvas = document.getElementById("oilChart");
@@ -357,7 +337,7 @@ Chart.defaults.global.defaultFontSize = 18;
 var  diagram= <?php echo json_encode($dia) ?>;
 var  isid= <?php echo json_encode($isid) ?>;
 var oilData = {
-    labels: diagram,
+    labels:  diagram,
     datasets: [
         {
             data: isid,
@@ -417,7 +397,9 @@ new Chart(document.getElementById("bar-chart-grouped"), {
       }
     }
 });
+
 </script>
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/dashyudi.blade.php ENDPATH**/ ?>

@@ -1,5 +1,5 @@
-@extends('layouts.top')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <html lang="en">
 <head>
 
@@ -11,10 +11,10 @@
   <title>Dahboard BST</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')); ?>">
+  <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -33,7 +33,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                     
+                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                       <th>Tanggal Keluar</th>
@@ -42,15 +42,15 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bstmaha as $bs)
-                    <td>{{ $bs->nim }}</td>
-		              	<td>{{ $bs->nama_mhs }}</td>
-			             
-		              	<td>{{ $bs->jurusan }}</td>
-                    <td>{{ $bs->created_at }}</td>
-                    <td>{{ $bs->updated_at }}</td>
+                    <?php $__currentLoopData = $bstmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($bs->nim); ?></td>
+		              	<td><?php echo e($bs->nama_mhs); ?></td>
+			              <td><?php echo e($bs->email_mhs); ?></td>
+		              	<td><?php echo e($bs->jurusan); ?></td>
+                    <td><?php echo e($bs->created_at); ?></td>
+                    <td><?php echo e($bs->updated_at); ?></td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -74,7 +74,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      
+                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                     
@@ -82,14 +82,14 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bst as $bi)
-                    <td>{{ $bi->nim }}</td>
-		              	<td>{{ $bi->nama_mhs }}</td>
-			           
-		              	<td>{{ $bi->jurusan }}</td>
-		              	<td>{{ $bi->created_at }}</td>
+                    <?php $__currentLoopData = $bst; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($bi->nim); ?></td>
+		              	<td><?php echo e($bi->nama_mhs); ?></td>
+			              <td><?php echo e($bi->email_mhs); ?></td>
+		              	<td><?php echo e($bi->jurusan); ?></td>
+		              	<td><?php echo e($bi->created_at); ?></td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -191,40 +191,40 @@
                 </div>
               </div>
               <div class="card-body">
-              @foreach($set as $s)
+              <?php $__currentLoopData = $set; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php
               $datenow = date("Y-m-d",strtotime("-$s->bst weekday"));
               ?>
-             @endforeach
-             @foreach($datebst as $bss)
+             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+             <?php $__currentLoopData = $datebst; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bss): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php
               $bt= $bss->created_at;
               ?>
-              @endforeach
-             @if($bst->count()>0)
-              <h5>Jumlah layanan yang belum diproses, batas proses {{$s->bst}} hari</h5>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+             <?php if($bst->count()>0): ?>
+              <h5>Jumlah layanan yang belum diproses, batas proses <?php echo e($s->bst); ?> hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
             
               </div></div> <center><div id="some_element"></div></center>
-              @if($datenow>$bt)
+              <?php if($datenow>$bt): ?>
               <center><h3 style="color:#CD113B">Kurang</h3></center>
-              @endif
-              @if($datenow==$bt)
+              <?php endif; ?>
+              <?php if($datenow==$bt): ?>
               <center><h3 style="color:#FF7600">Cukup</h3></center>
-              @endif
-              @if($datenow<$bt)
+              <?php endif; ?>
+              <?php if($datenow<$bt): ?>
               <center><h3 style="color:#6384FF">Baik</h3></center>
-              @endif
-              @else
+              <?php endif; ?>
+              <?php else: ?>
               <h5>Jumlah Permohonan BST Kosong</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
               </div></div> <center><div id="some_element"></div></center>
               <center><h3 style="color:#6384FF">Baik</h3></center>
-              @endif
+              <?php endif; ?>
               </div>
               </div>
           </div>
@@ -240,16 +240,16 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/adminlte.min.js')); ?>"></script>
 
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{asset('dist/js/demo.js')}}"></script>
-<script src="{{asset('dist/js/pages/dashboard3.js')}}"></script>
-<script src="{{asset('js/pureknob.js')}}" type="text/javascript"></script>
+<script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/pages/dashboard3.js')); ?>"></script>
+<script src="<?php echo e(asset('js/pureknob.js')); ?>" type="text/javascript"></script>
 		<script type="text/javascript">
 		
 			function demoKnob() {
@@ -259,19 +259,19 @@
 				// Set properties.
 				knob.setProperty('angleStart', -0.75 * Math.PI);
 				knob.setProperty('angleEnd', 0.75 * Math.PI);
-        @if($bst->count()>0)
-        @if($datenow>$bt)
+        <?php if($bst->count()>0): ?>
+        <?php if($datenow>$bt): ?>
       knob.setProperty('colorFG', '#CD113B');
-      @endif
-      @if($datenow==$bt)
+      <?php endif; ?>
+      <?php if($datenow==$bt): ?>
       knob.setProperty('colorFG', '#FF7600');
-      @endif
-      @if($datenow<$bt)
+      <?php endif; ?>
+      <?php if($datenow<$bt): ?>
       knob.setProperty('colorFG', '#6384FF');
-      @endif
-      @else
+      <?php endif; ?>
+      <?php else: ?>
       knob.setProperty('colorFG', '#6384FF');
-      @endif
+      <?php endif; ?>
 				knob.setProperty('trackWidth', 0.4);
 				knob.setProperty('valMin', 0);
 				knob.setProperty('valMax', 100);
@@ -280,7 +280,7 @@
 				// Set initial value.
         
 
-				knob.setValue({{$hit}});
+				knob.setValue(<?php echo e($hit); ?>);
        
 				const listener = function(knob, value) {
 					console.log(value);
@@ -313,14 +313,14 @@ var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
     label: "Jumlah Semester Genap",
-    data: {{$hslgenap}},
+    data: <?php echo e($hslgenap); ?>,
     fill: false,
   borderColor: '#007bff'
   };
 
 var dataFirst = {
     label: "Jumlah Semester Ganjil",
-    data: {{$hslganjil}},
+    data: <?php echo e($hslganjil); ?>,
     fill: false,
   borderColor: '#ced4da'
   };
@@ -420,4 +420,5 @@ new Chart(document.getElementById("bar-chart-grouped"), {
 </script>
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/dashbst.blade.php ENDPATH**/ ?>

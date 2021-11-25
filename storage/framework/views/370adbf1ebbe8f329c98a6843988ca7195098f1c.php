@@ -1,5 +1,5 @@
-@extends('layouts.top')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,10 +9,10 @@
   <title>Dahboard AAK</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')); ?>">
+  <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -38,14 +38,14 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($laya as $la)
-                    <td>{{ $la->nim }}</td>
-		              	<td>{{ $la->nama_mhs }}</td>
-			              <td>{{ $la->email_mhs }}</td>
-		              	<td>{{ $la->jurusan }}</td>
-		              	<td>{{ $la->jenis }}</td>
+                    <?php $__currentLoopData = $laya; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $la): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($la->nim); ?></td>
+		              	<td><?php echo e($la->nama_mhs); ?></td>
+			              <td><?php echo e($la->email_mhs); ?></td>
+		              	<td><?php echo e($la->jurusan); ?></td>
+		              	<td><?php echo e($la->jenis); ?></td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -67,48 +67,48 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/aak')}}">AAK</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo e(url('/aak')); ?>">AAK</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @foreach($set as $s)
+    <?php $__currentLoopData = $set; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php
              $datedis = date("Y-m-d",strtotime("-$s->dispensasi weekday"));
              $datebst = date("Y-m-d",strtotime("-$s->bst weekday"));
              $datecuti = date("Y-m-d",strtotime("-$s->cuti weekday"));
             ?>
-              @if(is_numeric($s->yudisium))
+              <?php if(is_numeric($s->yudisium)): ?>
               <?php
               $number = $s->yudisium/100*$sts;
               $num=ceil($number)
               ?>
-              @endif
-              @endforeach
-              @foreach($disindi as $d)
+              <?php endif; ?>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php $__currentLoopData = $disindi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php
               $dip= $d->created_at;
               ?>
-              @endforeach
-              @foreach($cutindi as $c)
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php $__currentLoopData = $cutindi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php
               $cis= $c->created_at;
               ?>
-              @endforeach
-              @foreach($bstindi as $bss)
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php $__currentLoopData = $bstindi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bss): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php
               $bt= $bss->created_at;
               ?>
-              @endforeach
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             
     <!-- Main content -->
     <div class="content">
       <div class="container">
 <h4>Indikator Proses Layanan </h4>
-          Batas Proses : Dispensasi  {{$s->dispensasi}} hari,Cuti {{$s->cuti}} hari, BST {{$s->bst}} hari
-       <br>Yudisium {{$s->yudisium}}% dari banyak mahasiswa selesai TA   
+          Batas Proses : Dispensasi  <?php echo e($s->dispensasi); ?> hari,Cuti <?php echo e($s->cuti); ?> hari, BST <?php echo e($s->bst); ?> hari
+       <br>Yudisium <?php echo e($s->yudisium); ?>% dari banyak mahasiswa selesai TA   
       <br>Keterangan: 1.Kurang 2.Cukup 3.Baik
      
      
@@ -116,32 +116,32 @@
         <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
-              @if($disindi->count()>0)
+              <?php if($disindi->count()>0): ?>
             <div class="small-box">
               <div class="inner">
-              @if($datedis>$dip)
+              <?php if($datedis>$dip): ?>
               <h3 style="color:#CD113B">1</h3>
-              @endif
-              @if($datedis==$dip)
+              <?php endif; ?>
+              <?php if($datedis==$dip): ?>
               <h3 style="color:#FF7600">2</h3>
-              @endif
-              @if($datedis<$dip)
+              <?php endif; ?>
+              <?php if($datedis<$dip): ?>
              <h3 style="color:#6384FF">3</h3>
-              @endif
+              <?php endif; ?>
              
                 <p>Dispensasi</p>
               </div>
                <div class="icon">
-              @if($datedis>$dip)
+              <?php if($datedis>$dip): ?>
               <i  style="color:#CD113B" class="far fa-frown"></i>
-              @endif
-              @if($datedis==$dip)
+              <?php endif; ?>
+              <?php if($datedis==$dip): ?>
               <i style="color:#FF7600" class="far fa-meh"></i>
-              @endif
-              @if($datedis<$dip)
+              <?php endif; ?>
+              <?php if($datedis<$dip): ?>
               <i style="color:#6384FF" class="far fa-smile"></i>
-              @endif
-              @else
+              <?php endif; ?>
+              <?php else: ?>
               <div class="small-box">
               <div class="inner">
               <h3 style="color:#6384FF">3</h3>
@@ -149,39 +149,39 @@
               </div>
               <div class="icon">
               <i style="color:#6384FF" class="far fa-smile"></i>
-              @endif
+              <?php endif; ?>
               
               </div>
-              <a href="{{url('/dashdispen')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(url('/dashdispen')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box">
               <div class="inner">
-              @if($ydm<$num)
+              <?php if($ydm<$num): ?>
              <h3 style="color:#CD113B">1</h3>
-              @endif
-              @if($ydm==$num)
+              <?php endif; ?>
+              <?php if($ydm==$num): ?>
              <h3 style="color:#FF7600">2</h3>
-              @endif
-              @if($ydm>$num)
+              <?php endif; ?>
+              <?php if($ydm>$num): ?>
               <h3 style="color:#6384FF">3</h3>
-              @endif
+              <?php endif; ?>
                 <p>Yudisium</p>
               </div>
               <div class="icon">
-              @if($ydm<$num)
+              <?php if($ydm<$num): ?>
               <i  style="color:#CD113B" class="far fa-frown"></i>
-                @endif
-                @if($ydm==$num)
+                <?php endif; ?>
+                <?php if($ydm==$num): ?>
                 <i style="color:#FF7600" class="far fa-meh"></i>
-                @endif
-                @if($ydm>$num)
+                <?php endif; ?>
+                <?php if($ydm>$num): ?>
                 <i style="color:#6384FF" class="far fa-smile"></i>
-                @endif
+                <?php endif; ?>
               </div>
-              <a href="{{url('/dashyudi')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(url('/dashyudi')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-6">
@@ -189,29 +189,29 @@
             <div class="small-box">
               <div class="inner">
              
-              @if($cutindi->count()>0)
-              @if($datecuti>$cis)
+              <?php if($cutindi->count()>0): ?>
+              <?php if($datecuti>$cis): ?>
               <h3 style="color:#CD113B">1</h3>
-              @endif
-              @if($datecuti==$cis)
+              <?php endif; ?>
+              <?php if($datecuti==$cis): ?>
               <h3 style="color:#FF7600">2</h3>
-              @endif
-              @if($datecuti<$cis)
+              <?php endif; ?>
+              <?php if($datecuti<$cis): ?>
              <h3 style="color:#6384FF">3</h3>
-              @endif
+              <?php endif; ?>
                 <p>Cuti</p>
               </div>
               <div class="icon">
-              @if($datecuti>$cis)
+              <?php if($datecuti>$cis): ?>
               <i  style="color:#CD113B" class="far fa-frown"></i>
-              @endif
-              @if($datecuti==$cis)
+              <?php endif; ?>
+              <?php if($datecuti==$cis): ?>
               <i style="color:#FF7600" class="far fa-meh"></i>
-              @endif
-              @if($datecuti<$cis)
+              <?php endif; ?>
+              <?php if($datecuti<$cis): ?>
               <i style="color:#6384FF" class="far fa-smile"></i>
-              @endif
-              @else
+              <?php endif; ?>
+              <?php else: ?>
               <div class="inner">
               <h3 style="color:#6384FF">3</h3>
               <p>Cuti</p>
@@ -219,38 +219,38 @@
               <div class="icon">
               <i style="color:#6384FF" class="far fa-smile"></i>
               </div>
-              @endif
+              <?php endif; ?>
               </div>
-              <a href="{{url('/dashcuti')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(url('/dashcuti')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box ">
               <div class="inner">
-              @if($bstindi->count()>0)
-              @if($datebst>$bt)
+              <?php if($bstindi->count()>0): ?>
+              <?php if($datebst>$bt): ?>
               <h3 style="color:#CD113B">1</h3>
-              @endif
-              @if($datebst==$bt)
+              <?php endif; ?>
+              <?php if($datebst==$bt): ?>
               <h3 style="color:#FF7600">2</h3>
-              @endif
-              @if($datebst<$bt)
+              <?php endif; ?>
+              <?php if($datebst<$bt): ?>
              <h3 style="color:#6384FF">3</h3>
-              @endif
+              <?php endif; ?>
                 <p>BST</p>
               </div>
               <div class="icon">
-              @if($datebst>$bt)
+              <?php if($datebst>$bt): ?>
               <i  style="color:#CD113B" class="far fa-frown"></i>
-              @endif
-              @if($datebst==$bt)
+              <?php endif; ?>
+              <?php if($datebst==$bt): ?>
               <i style="color:#FF7600" class="far fa-meh"></i>
-              @endif
-              @if($datebst<$bt)
+              <?php endif; ?>
+              <?php if($datebst<$bt): ?>
               <i style="color:#6384FF" class="far fa-smile"></i>
-              @endif
-              @else
+              <?php endif; ?>
+              <?php else: ?>
               <div class="inner">
               <h3 style="color:#6384FF">3</h3>
               <p>BST</p>
@@ -258,10 +258,10 @@
               <div class="icon">
               <i style="color:#6384FF" class="far fa-smile"></i>
               </div>
-              @endif
+              <?php endif; ?>
               </div>
 
-              <a href="{{url('/dashbst')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(url('/dashbst')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-6">
@@ -284,7 +284,7 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">{{$jumlahthnini}}</span>
+                    <span class="text-bold text-lg"><?php echo e($jumlahthnini); ?></span>
                     <span>Jumlah Layanan Setiap Bulan</span>
                   
                   </p>
@@ -341,10 +341,10 @@
                     <td>
                     Dispensasi
                     </td>
-                    <td>{{$dis}}</td>
+                    <td><?php echo e($dis); ?></td>
 
                     <td>
-                      <a href="{{url('/detdispen')}}" class="text-muted">
+                      <a href="<?php echo e(url('/detdispen')); ?>" class="text-muted">
                         <i class="fas fa-search"></i>
                       </a>
                     </td>
@@ -353,10 +353,10 @@
                     <td>
                       Yudisium
                     </td>
-                    <td>{{$yudi}}</td>
+                    <td><?php echo e($yudi); ?></td>
                     
                     <td>
-                      <a href="{{url('/detyudi')}}" class="text-muted">
+                      <a href="<?php echo e(url('/detyudi')); ?>" class="text-muted">
                         <i class="fas fa-search"></i>
                       </a>
                     </td>
@@ -365,9 +365,9 @@
                     <td>
                       Cuti/BSS
                     </td>
-                    <td>{{$cuti}}</td>
+                    <td><?php echo e($cuti); ?></td>
                     <td>
-                      <a href="{{url('/detcuti')}}" class="text-muted">
+                      <a href="<?php echo e(url('/detcuti')); ?>" class="text-muted">
                         <i class="fas fa-search"></i>
                       </a>
                     </td>
@@ -376,9 +376,9 @@
                     <td>
                     BST
                     </td>
-                    <td>{{$bst}}</td>
+                    <td><?php echo e($bst); ?></td>
                     <td>
-                      <a href="{{url('/detbst')}}" class="text-muted">
+                      <a href="<?php echo e(url('/detbst')); ?>" class="text-muted">
                         <i class="fas fa-search"></i>
                       </a>
                     </td>
@@ -441,14 +441,14 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/adminlte.min.js')); ?>"></script>
 
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
 <script>
 $(function () {
   'use strict'
@@ -470,12 +470,12 @@ $(function () {
         {
           backgroundColor: '#007bff',
           borderColor    : '#007bff',
-          data           : [{{$jumlahthnini}}]
+          data           : [<?php echo e($jumlahthnini); ?>]
         },
         {
           backgroundColor: '#ced4da',
           borderColor    : '#ced4da',
-          data           : [{{$jumlahthnlalu}}]
+          data           : [<?php echo e($jumlahthnlalu); ?>]
         }
       ]
     },
@@ -532,7 +532,7 @@ $(function () {
       labels  : bln,
       datasets: [{
         type                : 'line',
-        data                : {{$hslgenap}},
+        data                : <?php echo e($hslgenap); ?>,
         backgroundColor     : 'transparent',
         borderColor         : '#007bff',
         pointBorderColor    : '#007bff',
@@ -544,7 +544,7 @@ $(function () {
     },
     {
           type                : 'line',
-          data                : {{$hslganjil}},
+          data                : <?php echo e($hslganjil); ?>,
           backgroundColor     : 'tansparent',
           borderColor         : '#ced4da',
           pointBorderColor    : '#ced4da',
@@ -596,4 +596,5 @@ $(function () {
 </script>
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/aak.blade.php ENDPATH**/ ?>

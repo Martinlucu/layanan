@@ -33,7 +33,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                     
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                       <th>Tanggal Keluar</th>
@@ -45,7 +45,7 @@
                     @foreach($dispmaha as $di)
                     <td>{{ $di->nim }}</td>
 		              	<td>{{ $di->nama_mhs }}</td>
-			              <td>{{ $di->email_mhs }}</td>
+			             
 		              	<td>{{ $di->jurusan }}</td>
                     <td>{{ $di->created_at }}</td>
                     <td>{{ $di->updated_at }}</td>
@@ -74,7 +74,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                      
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                     
@@ -85,7 +85,7 @@
                     @foreach($dis as $diss)
                     <td>{{ $diss->nim }}</td>
 		              	<td>{{ $diss->nama_mhs }}</td>
-			              <td>{{ $diss->email_mhs }}</td>
+			            
 		              	<td>{{ $diss->jurusan }}</td>
 		              	<td>{{ $diss->created_at }}</td>
                     </tr>
@@ -193,7 +193,7 @@
               <div class="card-body">
               @foreach($set as $s)
               <?php
-              $datenow = date("Y-m-d",strtotime("-$s->dispensasi day"));
+              $datenow = date("Y-m-d",strtotime("-$s->dispensasi weekday"));
               ?>
              @endforeach
              @foreach($datedis as $d)
@@ -201,10 +201,11 @@
               $dip= $d->created_at;
               ?>
               @endforeach
+              <!-- {{$datenow}}-->
+            
               @if($dis->count()>0)
-              
-              <h5>Jumlah layanan yang belum diproses lebih dari {{$s->dispensasi}} hari</h5>
-              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+              <h5>Jumlah layanan yang belum diproses, batas proses {{$s->dispensasi}} hari</h5>
+              <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" >
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
               </div></div> <center><div id="some_element"></div></center>
@@ -215,7 +216,7 @@
               <center><h3 style="color:#FF7600">Cukup</h3></center>
               @endif
               @if($datenow<$dip)
-              <center><h3 style="color:#6384FF">BaiK</h3></center>
+              <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
               @else
               <h5>Jumlah Permohonan Dispensasi Kosong</h5>
@@ -250,7 +251,7 @@
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <script src="{{asset('dist/js/pages/dashboard3.js')}}"></script>
-<script src="{{asset('js/pureknob.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/pureknob.js')}}"></script>
 <script type="text/javascript">
 		
     function demoKnob() {
@@ -264,10 +265,10 @@
       @if($datenow>$dip)
       knob.setProperty('colorFG', '#CD113B');
       @endif
-      @if($datenow==$dip && $hit<=1  or $datenow==$di && $hit>1) 
+      @if($datenow==$dip) 
       knob.setProperty('colorFG', '#FF7600');
       @endif
-      @if($datenow<$dip && $hit<=1)
+      @if($datenow<$dip)
       knob.setProperty('colorFG', '#6384FF');
       @endif
       @else
@@ -276,8 +277,8 @@
       
       knob.setProperty('trackWidth', 0.4);
       knob.setProperty('valMin', 0);
-      knob.setProperty('valMax', 1);
-
+      knob.setProperty('valMax', 100);
+      knob.setProperty('readonly', true);
       // Set initial value.
       
 
@@ -311,20 +312,25 @@ var speedCanvas = document.getElementById("speedChart");
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
-var tgl = <?php echo json_encode($tanggal) ?>;
-var isi = <?php echo json_encode($tes) ?>;
+var bln = <?php echo json_encode($month) ?>;
 var dataSecond = {
-    label: "Jumlah per bulan",
-    data: isi,
+    label: "Jumlah Semester Genap",
+    data: {{$hslgenap}},
     fill: false,
-  borderColor: 'blue'
+  borderColor: '#007bff'
   };
 
-var speedData = {
-  labels:  tgl,
-  datasets: [dataSecond]
-};
+var dataFirst = {
+    label: "Jumlah Semester Ganjil",
+    data: {{$hslganjil}},
+    fill: false,
+  borderColor: '#ced4da'
+  };
 
+  var speedData = {
+  labels:  bln,
+  datasets: [dataSecond,dataFirst]
+};
 var chartOptions = {
   legend: {
     display: true,

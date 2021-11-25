@@ -1,5 +1,5 @@
-@extends('layouts.top')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,20 +9,20 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- Ionicons -->
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')); ?>">
   <!-- Daterange picker -->
   <!-- summernote -->
   <!-- Data table -->
-  <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')}}">
-  <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
-  <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+  <link rel="stylesheet" href="<?php echo e(asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')); ?>">
+  <link rel="stylesheet" href="<?php echo e(asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')); ?>">
+  <script src="<?php echo e(asset('https://code.jquery.com/jquery-3.5.1.js')); ?>"></script>
+  <script src="<?php echo e(asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')); ?>"></script>
+  <script src="<?php echo e(asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')); ?>"></script>
 
     <script>
         $(document).ready(function () {
@@ -50,7 +50,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="<?php echo e(url('/aak')); ?>">Home</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -60,7 +60,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-      <a href="{{url('/dokyudi/export_yudi')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+      <a href="<?php echo e(url('/dokyudi/export_yudi')); ?>" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
     <div class="table-responsive" style="padding:20px;width: 98%;">
     
       <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
@@ -79,17 +79,17 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($lapdis as $lapdis)
-                    <td>{{ $lapdis->nim }}</td>
-		              	<td>{{ $lapdis->nama_mhs }}</td>
+                    <?php $__currentLoopData = $lapdis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lapdis): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($lapdis->nim); ?></td>
+		              	<td><?php echo e($lapdis->nama_mhs); ?></td>
 			             
-		              	<td>{{ $lapdis->jurusan }}</td>
-		              	<td>{{ $lapdis->jenis }}</td>
-		              	<td>{{ $lapdis->status }}</td>
-		              	<td>{{ $lapdis->created_at }}</td>
-		              	<td>{{ $lapdis->updated_at }}</td>
+		              	<td><?php echo e($lapdis->jurusan); ?></td>
+		              	<td><?php echo e($lapdis->jenis); ?></td>
+		              	<td><?php echo e($lapdis->status); ?></td>
+		              	<td><?php echo e($lapdis->created_at); ?></td>
+		              	<td><?php echo e($lapdis->updated_at); ?></td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                    </tbody>
     </table>
     </div>
@@ -106,15 +106,16 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/adminlte.js')); ?>"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+<script src="<?php echo e(asset('dist/js/pages/dashboard.js')); ?>"></script>
 <!-- Data table -->
 
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/dokyudi.blade.php ENDPATH**/ ?>

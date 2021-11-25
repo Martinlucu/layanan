@@ -33,7 +33,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                     
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                       <th>Tanggal Keluar</th>
@@ -45,7 +45,7 @@
                     @foreach($ydmaha as $yd)
                     <td>{{ $yd->nim }}</td>
 		              	<td>{{ $yd->nama_mhs }}</td>
-			              <td>{{ $yd->email_mhs }}</td>
+			             
 		              	<td>{{ $yd->jurusan }}</td>
                     <td>{{ $yd->created_at }}</td>
                     <td>{{ $yd->updated_at }}</td>
@@ -74,7 +74,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                   
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                     
@@ -85,7 +85,7 @@
                     @foreach($yudi as $yu)
                     <td>{{ $yu->nim }}</td>
 		              	<td>{{ $yu->nama_mhs }}</td>
-			              <td>{{ $yu->email_mhs }}</td>
+			           
 		              	<td>{{ $yu->jurusan }}</td>
 		              	<td>{{ $yu->created_at }}</td>
                     </tr>
@@ -200,7 +200,7 @@
               $num=ceil($number)
               ?>
               @endif
-              <h5>Jumlah layanan yang telah selesai</h5><h5>dengan target {{$s->yudisium}}% dari {{$sts}} mahasiswa</h5>
+              <h5>Jumlah layanan yang telah selesai</h5><h5>dengan target {{$s->yudisium}}% dari {{$sts}} mahasiswa yang siap yudisium</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
@@ -245,19 +245,19 @@
 				// Set properties.
 				knob.setProperty('angleStart', -0.75 * Math.PI);
 				knob.setProperty('angleEnd', 0.75 * Math.PI);
-        @if($ydm<=$num)
-				knob.setProperty('CD113B', '#FF6384');
+        @if($ydm<$num)
+				knob.setProperty('CD113B', '#CD113B');
         @endif
         @if($ydm==$num)
 				knob.setProperty('colorFG', '#FF7600');
         @endif
-        @if($ydm>=$num)
+        @if($ydm>$num)
         knob.setProperty('colorFG', '#6384FF');
         @endif
 				knob.setProperty('trackWidth', 0.4);
 				knob.setProperty('valMin', 0);
-				knob.setProperty('valMax', 20);
-
+				knob.setProperty('valMax', 200);
+        knob.setProperty('readonly', true);
 				// Set initial value.
         
 
@@ -290,20 +290,25 @@ var speedCanvas = document.getElementById("speedChart");
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
-var tgl = <?php echo json_encode($tanggal) ?>;
-var isi = <?php echo json_encode($tes) ?>;
+var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
-    label: "Jumlah per bulan",
-    data: isi,
-    
+    label: "Jumlah Semester Genap",
+    data: {{$hslgenap}},
     fill: false,
-  borderColor: 'blue'
+  borderColor: '#007bff'
   };
 
-var speedData = {
-  labels: tgl,
-  datasets: [ dataSecond]
+var dataFirst = {
+    label: "Jumlah Semester Ganjil",
+    data: {{$hslganjil}},
+    fill: false,
+  borderColor: '#ced4da'
+  };
+
+  var speedData = {
+  labels:  bln,
+  datasets: [dataSecond,dataFirst]
 };
 
 var chartOptions = {

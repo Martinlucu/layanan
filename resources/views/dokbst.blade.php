@@ -68,7 +68,7 @@
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                      
                       <th>Jurusan</th>
                       <th>Jenis Dokumen</th>
                       <th>Status</th>
@@ -82,7 +82,7 @@
                     @foreach($lapdis as $lapdis)
                     <td>{{ $lapdis->nim }}</td>
 		              	<td>{{ $lapdis->nama_mhs }}</td>
-			              <td>{{ $lapdis->email_mhs }}</td>
+			              
 		              	<td>{{ $lapdis->jurusan }}</td>
 		              	<td>{{ $lapdis->jenis }}</td>
 		              	<td>{{ $lapdis->status }}</td>

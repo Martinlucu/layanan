@@ -33,7 +33,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                      
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                       <th>Tanggal Keluar</th>
@@ -45,7 +45,7 @@
                     @foreach($cutimaha as $ct)
                     <td>{{ $ct->nim }}</td>
 		              	<td>{{ $ct->nama_mhs }}</td>
-			              <td>{{ $ct->email_mhs }}</td>
+			             
 		              	<td>{{ $ct->jurusan }}</td>
                     <td>{{ $ct->created_at }}</td>
                     <td>{{ $ct->updated_at }}</td>
@@ -74,7 +74,7 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                     
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                     
@@ -85,7 +85,7 @@
                     @foreach($cut as $ci)
                     <td>{{ $ci->nim }}</td>
 		              	<td>{{ $ci->nama_mhs }}</td>
-			              <td>{{ $ci->email_mhs }}</td>
+			             
 		              	<td>{{ $ci->jurusan }}</td>
 		              	<td>{{ $ci->created_at }}</td>
                     </tr>
@@ -197,7 +197,7 @@
               <div class="card-body">
               @foreach($set as $s)
               <?php
-              $datenow = date("Y-m-d",strtotime("-$s->cuti day"));
+              $datenow = date("Y-m-d",strtotime("-$s->cuti weekday"));
               ?>
              @endforeach
              @foreach($datecut as $c)
@@ -206,7 +206,7 @@
               ?>
               @endforeach
               @if($cut->count()>0)
-              <h5>Jumlah layanan cuti yang belum diproses lebih dari {{$s->cuti}} hari</h5>
+              <h5>Jumlah layanan yang belum diproses, batas proses {{$s->cuti}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
@@ -278,7 +278,8 @@
       @endif
       knob.setProperty('trackWidth', 0.4);
       knob.setProperty('valMin', 0);
-      knob.setProperty('valMax', 1);
+      knob.setProperty('valMax', 100);
+      knob.setProperty('readonly', true);
 
       // Set initial value.
       
@@ -313,20 +314,25 @@ var speedCanvas = document.getElementById("speedChart");
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
-var tgl = <?php echo json_encode($tanggal) ?>;
-var isi = <?php echo json_encode($tes) ?>;
+var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
-    label: "Jumlah per bulan",
-    data: isi,
-   
+    label: "Jumlah Semester Genap",
+    data: {{$hslgenap}},
     fill: false,
-  borderColor: 'blue'
+  borderColor: '#007bff'
   };
-  
-var speedData = {
-  labels: tgl,
-  datasets: [dataSecond]
+
+var dataFirst = {
+    label: "Jumlah Semester Ganjil",
+    data: {{$hslganjil}},
+    fill: false,
+  borderColor: '#ced4da'
+  };
+
+  var speedData = {
+  labels:  bln,
+  datasets: [dataSecond,dataFirst]
 };
 
 var chartOptions = {

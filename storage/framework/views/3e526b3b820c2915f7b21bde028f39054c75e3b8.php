@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan Dispensasi</title>
+  <title>Laporan Cuti</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,7 +46,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan Dispensasi</h1>
+            <h1 class="m-0">Laporan Cuti</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -60,43 +60,43 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+      <a href="<?php echo e(url('/dokcuti/export_cuti')); ?>" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+    
+      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>E-mail</th>
                       <th>Jurusan</th>
-                      <th>File</th>
+                      <th>Jenis Dokumen</th>
+                      <th>Status</th>
                       <th>Tanggal Masuk</th>
-                      <th>Aksi</th>
+                      <th>Tanggal Selesai</th>
                     
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                    <?php $__currentLoopData = $dpmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php echo e(csrf_field()); ?>
-
-                    <input type="hidden" name="id" value="<?php echo e($d->id); ?>">
-                    <td><?php echo e($d->nim); ?></td>
-		              	<td><?php echo e($d->nama_mhs); ?></td>
-			              <td><?php echo e($d->email_mhs); ?></td>
-		              	<td><?php echo e($d->jurusan); ?></td>
-		              	<td><?php echo e($d->berkas); ?></td>
-		              	<td><?php echo e($d->created_at); ?></td>
-		              	<td> <a class="btn btn-success" href="<?php echo e(url('/detdispen/stjdis/'.$d->id)); ?>">Setuju
-                    <a class="btn btn-danger" href="<?php echo e(url('/detdispen/tlkdis/'.$d->id)); ?>">Tolak
-                  </td>
+                    <?php $__currentLoopData = $lapdis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lapdis): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <td><?php echo e($lapdis->nim); ?></td>
+		              	<td><?php echo e($lapdis->nama_mhs); ?></td>
+			              <td><?php echo e($lapdis->email_mhs); ?></td>
+		              	<td><?php echo e($lapdis->jurusan); ?></td>
+		              	<td><?php echo e($lapdis->jenis); ?></td>
+		              	<td><?php echo e($lapdis->status); ?></td>
+		              	<td><?php echo e($lapdis->created_at); ?></td>
+                    <td><?php echo e($lapdis->updated_at); ?></td>
+		              
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                   </tbody>
     </table>
     </div>
     </div></div>
     <!-- /.content -->
   </div>
-    
 <!-- ./wrapper -->
 
 <!-- jQuery -->
@@ -119,4 +119,4 @@
 </body>
 </html>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/detdispen.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/dokcuti.blade.php ENDPATH**/ ?>

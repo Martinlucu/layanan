@@ -53,7 +53,7 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col">
-                          <label for="exampleInputEmail1">NIM</label>
+                          <label for="exampleInputEmail1">NIM </label>
                           <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
                       </div>
                       <div class="col">
@@ -68,7 +68,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required></textarea>
                   </div>
                   </div>
                 

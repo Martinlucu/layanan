@@ -137,8 +137,14 @@ class mahasiswaController extends Controller
     // Bug di if yang terakhir & tidak bisa menghitung minggu dari perkuliahan
     public function createbss(Request $request){
         $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
+        $tanggal_sekarang = new Carbon();
+        $masuk_kuliah = new Carbon(Auth::user()->tanggal_masuk);
+
+        $minggu_kuliah = $tanggal_sekarang->diffInWeeks($masuk_kuliah);
+
+        echo $minggu_kuliah;
         
-        if(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2){
+        if(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4){
             DB::table('dokumen')->insert([
                 'nim'               => Auth::user()->nim,
                 'nama_mhs'          => Auth::user()->nama,
@@ -160,10 +166,12 @@ class mahasiswaController extends Controller
                 ]);
 
                 return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
-        }elseif(Auth::user()->semester < 3 & Auth::user()->jml_pengajuan_cuti <= 2){
+        }elseif(Auth::user()->semester < 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4){
             return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Anda sekarang semester'.Auth::user()->semester);
-        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti > 2){
+        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti > 2 && $minggu_kuliah >= 4){
             return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah Pengajuan cuti anda melalui batas! (Anda sudah mengajukan cuti sebanyak'.Auth::user()->jml_pengajuan_cuti.'x');
+        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah < 4){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda masih belum memasuki minggu ke 4 perkuliahan! (perkuliahan anda masih pada minggu ke : '.$minggu_kuliah);
         }else{
             return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda masih memiliki tanggungan keuangan sebesar Rp. '.$tanggungan);
         }

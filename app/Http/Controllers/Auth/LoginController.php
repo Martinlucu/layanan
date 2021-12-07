@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\Admin as Authenticatable;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -59,50 +60,24 @@ class LoginController extends Controller
         {
             return redirect()->route('home');
         }
+        if (Auth::guard('aak')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $details = Auth::guard('aak')->user();
+            $aak = $details['original'];
+            return redirect()->intended("/aak");
+        } else if (Auth::guard('mhs')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $details = Auth::guard('mhs')->user();
+            $aak = $details['original'];
+            return redirect()->intended("/mhs");
+        } else {
+            return redirect()->intended("/login");
+        }
 }
 
 
-public function showmhsLoginForm()
-{
-    return view('auth.login', ['url' => 'mhs']);
-}
-
-public function mhsLogin(Request $request)
-{
-    $this->validate($request, [
-        'email'   => 'required|email',
-        'password' => 'required|min:6'
-    ]);
-
-    if (Auth::guard('mhs')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-        return redirect()->intended("/mhs");
-    }
-    return back()->withInput($request->only('email', 'remember'));
-}
-
-public function showaakLoginForm()
-{
-    return view('auth.login', ['url' => 'aak']);
-}
-
-public function aakLogin(Request $request)
-{
-    $this->validate($request, [
-        'email'   => 'required|email',
-        'password' => 'required|min:6'
-    ]);
-
-    if (Auth::guard('aak')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-        return redirect()->intended("/aak");
-    }
-    return back()->withInput($request->only('email', 'remember'));
-}
 public function logout(Request $request)
 {
     $this->performLogout($request);
-    return redirect()->route('logaak');
+    return redirect()->route('login');
 }
 }
     

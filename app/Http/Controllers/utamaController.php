@@ -74,7 +74,7 @@ for ($m=1; $m<=12; $m++) {
         foreach($set as $s)
         $date2 = date("Y-m-d",strtotime("-$s->yudisium day"));
        
-        $sts = DB::table('dokumen')->where('semester','8')->whereyear('created_at',2021)->count();
+        $sts = DB::table('mhs')->where('ket_yud','T')->count();
         $cuti = DB::table('dokumen')->where('status','proses')->where('jenis','Cuti')->count();
     	$yudi = DB::table('dokumen')->where('status','proses')->where('jenis','Yudisium')->count();
     	$bst = DB::table('dokumen')->where('status','proses')->where('jenis','BST')->count();

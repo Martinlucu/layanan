@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan Dispensasi</title>
+  <title>Layanan BST</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,7 +46,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan Dispensasi</h1>
+            <h1 class="m-0">Layanan BST</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@
                       <th>Nama</th>
                       <th>E-mail</th>
                       <th>Jurusan</th>
-                      <th>File</th>
+                      <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
                       <th>Aksi</th>
                     
@@ -76,18 +76,19 @@
                   </thead>
                   <tbody>
                     <tr>
-                    <?php $__currentLoopData = $dpmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $bsmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php echo e(csrf_field()); ?>
 
-                    <input type="hidden" name="id" value="<?php echo e($d->id); ?>">
-                    <td><?php echo e($d->nim); ?></td>
-		              	<td><?php echo e($d->nama_mhs); ?></td>
-			              <td><?php echo e($d->email_mhs); ?></td>
-		              	<td><?php echo e($d->jurusan); ?></td>
-		              	<td><?php echo e($d->berkas); ?></td>
-		              	<td><?php echo e($d->created_at); ?></td>
-		              	<td> <a class="btn btn-success" href="<?php echo e(url('/detdispen/stjdis/'.$d->id)); ?>">Setuju
-                    <a class="btn btn-danger" href="<?php echo e(url('/detdispen/tlkdis/'.$d->id)); ?>">Tolak
+                    <input type="hidden" name="id" value="<?php echo e($b->id); ?>">
+                    <td><?php echo e($b->nim); ?></td>
+		              	<td><?php echo e($b->nama_mhs); ?></td>
+			              <td><?php echo e($b->email_mhs); ?></td>
+		              	<td><?php echo e($b->jurusan); ?></td>
+		              	<td><?php echo e($b->alasan_pengajuan); ?></td>
+		              	<td><?php echo e($b->created_at); ?></td>
+		              	<td><a class="btn btn-success" href="<?php echo e(url('/detbst/stjbst/'.$b->id)); ?>">Setuju
+                    <a class="btn btn-danger" href="<?php echo e(url('/detbst/tlkbst/'.$b->id)); ?>">Tolak
+                
                   </td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -119,4 +120,4 @@
 </body>
 </html>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/detdispen.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/detbst.blade.php ENDPATH**/ ?>

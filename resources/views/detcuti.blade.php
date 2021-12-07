@@ -68,7 +68,7 @@
                       <th>Nama</th>
                       <th>E-mail</th>
                       <th>Jurusan</th>
-                      <th>File</th>
+                      <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
                       <th>Aksi</th>
                     
@@ -83,7 +83,7 @@
 		              	<td>{{ $c->nama_mhs }}</td>
 			              <td>{{ $c->email_mhs }}</td>
 		              	<td>{{ $c->jurusan }}</td>
-		              	<td>{{ $c->berkas }}</td>
+		              	<td>{{ $c->alasan_pengajuan }}</td>
 		              	<td>{{ $c->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detcuti/stjcuti/'.$c->id)}}">Setuju
                     <a class="btn btn-danger" href="{{url('/detcuti/tlkcuti/'.$c->id) }}">Tolak

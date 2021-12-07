@@ -68,7 +68,7 @@
                       <th>Nama</th>
                       <th>E-mail</th>
                       <th>Jurusan</th>
-                      <th>File</th>
+                      <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
                       <th>Aksi</th>
                     
@@ -83,7 +83,7 @@
 		              	<td>{{ $b->nama_mhs }}</td>
 			              <td>{{ $b->email_mhs }}</td>
 		              	<td>{{ $b->jurusan }}</td>
-		              	<td>{{ $b->berkas }}</td>
+		              	<td>{{ $b->alasan_pengajuan }}</td>
 		              	<td>{{ $b->created_at }}</td>
 		              	<td><a class="btn btn-success" href="{{url('/detbst/stjbst/'.$b->id)}}">Setuju
                     <a class="btn btn-danger" href="{{url('/detbst/tlkbst/'.$b->id) }}">Tolak

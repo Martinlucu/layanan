@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan Dispensasi</title>
+  <title>Layanan Yudisium</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,7 +46,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan Dispensasi</h1>
+            <h1 class="m-0">Layanan Yudisium</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -76,18 +76,18 @@
                   </thead>
                   <tbody>
                     <tr>
-                    <?php $__currentLoopData = $dpmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $ydmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $yd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php echo e(csrf_field()); ?>
 
-                    <input type="hidden" name="id" value="<?php echo e($d->id); ?>">
-                    <td><?php echo e($d->nim); ?></td>
-		              	<td><?php echo e($d->nama_mhs); ?></td>
-			              <td><?php echo e($d->email_mhs); ?></td>
-		              	<td><?php echo e($d->jurusan); ?></td>
-		              	<td><?php echo e($d->berkas); ?></td>
-		              	<td><?php echo e($d->created_at); ?></td>
-		              	<td> <a class="btn btn-success" href="<?php echo e(url('/detdispen/stjdis/'.$d->id)); ?>">Setuju
-                    <a class="btn btn-danger" href="<?php echo e(url('/detdispen/tlkdis/'.$d->id)); ?>">Tolak
+                    <input type="hidden" name="id" value="<?php echo e($yd->id); ?>">
+                    <td><?php echo e($yd->nim); ?></td>
+		              	<td><?php echo e($yd->nama_mhs); ?></td>
+			              <td><?php echo e($yd->email_mhs); ?></td>
+		              	<td><?php echo e($yd->jurusan); ?></td>
+		              	<td><?php echo e($yd->berkas); ?> </td>
+		              	<td><?php echo e($yd->created_at); ?></td>
+		              	<td> <a class="btn btn-success" href="<?php echo e(url('/detyudi/stjyudi/'.$yd->id)); ?>">Setuju
+                    <a class="btn btn-danger" href="<?php echo e(url('/detyudi/tlkyudi/'.$yd->id)); ?>">Tolak
                   </td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -119,4 +119,4 @@
 </body>
 </html>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/detdispen.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\layanan\resources\views/detyudi.blade.php ENDPATH**/ ?>

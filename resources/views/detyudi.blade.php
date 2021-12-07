@@ -66,7 +66,6 @@
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>File</th>
                       <th>Tanggal Masuk</th>
@@ -81,7 +80,6 @@
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                     <td>{{ $yd->nim }}</td>
 		              	<td>{{ $yd->nama_mhs }}</td>
-			              <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>

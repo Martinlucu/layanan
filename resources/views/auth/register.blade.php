@@ -42,7 +42,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if($url=='aak')
+                        @if($url=='aak' || $url=='dosen')
                         <div class="form-group row">
                             <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
                             <div class="col-md-6">

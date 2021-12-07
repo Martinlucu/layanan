@@ -55,6 +55,10 @@ return [
             'driver' => 'session',
             'provider' => 'mhs',
         ],
+        'dosen' => [
+            'driver' => 'session',
+            'provider' => 'dosen',
+        ],
     ],
 
     /*
@@ -89,6 +93,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\mhs::class,
     ],
+     'dosen' => [
+        'driver' => 'eloquent',
+        'model' => App\dosen::class,
+],
 ],
 
     /*

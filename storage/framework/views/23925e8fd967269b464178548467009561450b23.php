@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -70,7 +68,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
-                        <?php if($url=='aak'): ?>
+                        <?php if($url=='aak' || $url=='dosen'): ?>
                         <div class="form-group row">
                             <label for="nik" class="col-md-4 col-form-label text-md-right"><?php echo e(__('NIK')); ?></label>
                             <div class="col-md-6">

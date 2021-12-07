@@ -24,12 +24,15 @@ Route::get('/login/aak', 'Auth\LoginController@showaakLoginForm')->name('logaak'
 Route::get('/login/mhs', 'Auth\LoginController@showmhsLoginForm')->name('logmhs');
 Route::get('/register/aak', 'Auth\RegisterController@showaakRegisterForm');
 Route::get('/register/mhs', 'Auth\RegisterController@showmhsRegisterForm');
+Route::get('/register/dosen', 'Auth\RegisterController@showdosenRegisterForm');
 
 
 Route::post('/login/aak', 'Auth\LoginController@aakLogin');
 Route::post('/login/mhs', 'Auth\LoginController@mhsLogin');
 Route::post('/register/aak', 'Auth\RegisterController@createaak');
 Route::post('/register/mhs', 'Auth\RegisterController@createmhs');
+Route::post('/register/dosen', 'Auth\RegisterController@createdosen');
+
 Route::group(['middleware' => 'auth:aak'], function () {
     Route::get('/aak', 'utamaController@aak');
     Route::get('/dashcuti', 'DashboardController@dashcuti');
@@ -75,4 +78,6 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     Route::post('/uploadyudisium', 'mahasiswaController@createyudi');
     Route::post('/uploaddispensasi', 'mahasiswaController@createdispensasi');
     });
-
+    Route::group(['middleware' => 'auth:dosen'], function () {
+        Route::get('/doshome', 'dosenController@doshome');
+    });

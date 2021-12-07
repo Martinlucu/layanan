@@ -43,6 +43,7 @@ class LoginController extends Controller
        $this->middleware('guest')->except('logout');
        $this->middleware('guest:aak')->except('logout');
        $this->middleware('guest:mhs')->except('logout');
+       $this->middleware('guest:dosen')->except('logout');
        
     }
    
@@ -68,7 +69,12 @@ class LoginController extends Controller
             $details = Auth::guard('mhs')->user();
             $aak = $details['original'];
             return redirect()->intended("/mhs");
-        } else {
+        } else if (Auth::guard('dosen')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $details = Auth::guard('dosen')->user();
+            $aak = $details['original'];
+            return redirect()->intended("/doshome");  
+        }
+        else {
             return redirect()->intended("/login");
         }
 }

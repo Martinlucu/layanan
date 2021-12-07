@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use App\aak;
 use App\mhs;
+use App\dosen;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -44,6 +45,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
         $this->middleware('guest:aak');
         $this->middleware('guest:mhs');
+        $this->middleware('guest:dosen');
     }
 
     /**
@@ -69,6 +71,10 @@ class RegisterController extends Controller
     public function showaakRegisterForm()
     {
         return view('auth.register', ['url' => 'aak']);
+    }
+    public function showdosenRegisterForm()
+    {
+        return view('auth.register', ['url' => 'dosen']);
     }
 
     /**
@@ -114,7 +120,7 @@ class RegisterController extends Controller
             'jurusan' => $request->jurusan,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('login/mhs');
+        return redirect()->intended('login');
     }
     /**
      * @param Request $request
@@ -131,6 +137,17 @@ class RegisterController extends Controller
             'nik' => $request->nik,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('login/aak');
+        return redirect()->intended('login');
+    }
+    protected function createdosen(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        dosen::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'nik' => $request->nik,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->intended('login');
     }
 }

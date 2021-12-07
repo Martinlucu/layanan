@@ -38,14 +38,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <?php if(auth()->guard()->guest()): ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo e(route('logaak')); ?>"><?php echo e(__('Login AAK')); ?></a>
-                            </li>
-                            <?php if(Route::has('register')): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo e(route('logmhs')); ?>"><?php echo e(__('Login Mahasiswa')); ?></a>
-                                </li>
-                            <?php endif; ?>
+                           
                         <?php else: ?>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

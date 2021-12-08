@@ -1,9 +1,11 @@
+
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><?php echo e(isset($url) ? ucwords($url) : ""); ?> <?php echo e(__('Login')); ?></div>
+                <div class="card-header"></div>
                <center> <img src="<?php echo e(asset('src/dinamika.png')); ?>"  width="400" height="130"></center>
                 <div class="card-body">
                 <?php if(isset($url)): ?>

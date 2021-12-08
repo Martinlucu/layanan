@@ -66,7 +66,6 @@
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
@@ -82,7 +81,6 @@
                     <input type="hidden" name="id" value="<?php echo e($b->id); ?>">
                     <td><?php echo e($b->nim); ?></td>
 		              	<td><?php echo e($b->nama_mhs); ?></td>
-			              <td><?php echo e($b->email_mhs); ?></td>
 		              	<td><?php echo e($b->jurusan); ?></td>
 		              	<td><?php echo e($b->alasan_pengajuan); ?></td>
 		              	<td><?php echo e($b->created_at); ?></td>

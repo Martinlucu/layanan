@@ -24,7 +24,9 @@ class RedirectIfAuthenticated
         if ($guard == "mhs" && Auth::guard($guard)->check()) {
             return redirect('/mhs');
         }
-
+        if ($guard == "dosen" && Auth::guard($guard)->check()) {
+            return redirect('/doshome');
+        }
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

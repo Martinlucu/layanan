@@ -14,13 +14,13 @@ class Handler extends ExceptionHandler
     {
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
+        }/*
         if ($request->is('aak') || $request->is('aak/*')) {
             return redirect()->guest('/login/aak');
         }
         if ($request->is('mhs') || $request->is('mhs/*')) {
             return redirect()->guest('/login/mhs');
-        }
+        }*/
         return redirect()->guest(route('login'));
     }
     /**

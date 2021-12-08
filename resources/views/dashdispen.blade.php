@@ -201,8 +201,7 @@
               $dip= $d->created_at;
               ?>
               @endforeach
-              <!-- {{$datenow}}-->
-            
+               
               @if($dis->count()>0)
               <h5>Jumlah layanan yang belum diproses, batas proses {{$s->dispensasi}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" >
@@ -215,7 +214,7 @@
               @if($datenow==$dip)
               <center><h3 style="color:#FF7600">Cukup</h3></center>
               @endif
-              @if($datenow<$dip)
+              @if($datenow<$dip) 
               <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
               @else

@@ -9,8 +9,6 @@ class detailController extends Controller
 {
     public function detyudi()
     {
-        $from = date('2021-04-01');
-        $to = date('2021-07-30');
         $ydm = DB::table('dokumen')->where('status','proses')->count();
         $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
         return view('detyudi',compact('ydm','ydmaha'));
@@ -51,8 +49,7 @@ class detailController extends Controller
 }
 
     public function detdispen()
-    {$from = date('2021-04-01');
-        $to = date('2021-07-30');
+    {
         $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
         $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
         return view('detdispen',compact('dpmaha','dp'));

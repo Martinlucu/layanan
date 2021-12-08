@@ -82,5 +82,27 @@ Route::group(['middleware' => 'auth:mhs'], function () {
 Route::group(['middleware' => 'auth:dosen'], function () {
         Route::get('/doshome', 'dosenController@doshome');
         
+        // Layanan
+        Route::get('/detyudi', 'detailController@detyudi');
+        Route::get('/detyudi/stjyudi/{id}', 'detailController@stjyudi');
+        Route::get('/detyudi/tlkyudi/{id}', 'detailController@tlkyudi');
         
+        Route::get('/dosdetdispen', 'detailController@detdispen');
+        Route::get('/dosdetdispen/dosstjdis/{id}', 'detailController@dosstjdis');
+        Route::get('/kapdetdispen/kapstjdis/{id}', 'detailController@kapstjdis');
+        Route::get('/dosdetdispen/dostlkdis/{id}', 'detailController@dostlkdis');
+        Route::get('/kapdetdispen/kaptlkdis/{id}', 'detailController@kaptlkdis');
+
+        Route::get('/dosdetbst', 'detailController@dosdetbst');
+        Route::get('/dosdetbst/dosstjbst/{id}', 'detailController@dosstjbst');
+        Route::get('/kapdetbst/kapstjbst/{id}', 'detailController@kapstjbst');
+        Route::get('/dosdetbst/dostlkbst/{id}', 'detailController@dostlkbst');
+        Route::get('/kapdetbst/kaptlkbst/{id}', 'detailController@kaptlkbst');
+
+        Route::get('/dosdetcuti', 'detailController@dosdetcuti');
+        Route::get('/dosdetcuti/dosstjcuti/{id}', 'detailController@dosstjcuti');
+        Route::get('/dosdetcuti/dostlkcuti/{id}', 'detailController@dostlkcuti');
+
+        Route::get('/setting', 'settingController@setting');
+        Route::post('/updateset', 'settingController@updateset');        
     });

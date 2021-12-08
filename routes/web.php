@@ -78,6 +78,9 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     Route::post('/uploadyudisium', 'mahasiswaController@createyudi');
     Route::post('/uploaddispensasi', 'mahasiswaController@createdispensasi');
     });
-    Route::group(['middleware' => 'auth:dosen'], function () {
+
+Route::group(['middleware' => 'auth:dosen'], function () {
         Route::get('/doshome', 'dosenController@doshome');
+        
+        
     });

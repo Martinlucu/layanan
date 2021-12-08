@@ -18,7 +18,25 @@
                     <?php endif; ?>
       <div class="collapse navbar-collapse order-3" id="navbarCollapse">
      
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="<?php echo e(url('/aak')); ?>" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Layanan</a>
+            <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+              <li><a href="<?php echo e(url('/detdispen')); ?>" class="dropdown-item">Dispensasi </a></li>
+              <li><a href="<?php echo e(url('/detyudi')); ?>" class="dropdown-item">Yudisium</a></li>
+              <li><a href="<?php echo e(url('/detcuti')); ?>" class="dropdown-item">Cuti/BSS</a></li>
+              <li><a href="<?php echo e(url('/detbst')); ?>" class="dropdown-item">BST</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+          <a href="<?php echo e(url('/setting')); ?>" aria-haspopup="true" aria-expanded="false" class="nav-link">Setting</a>
+      </li>
 
+        </ul>
        
         <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

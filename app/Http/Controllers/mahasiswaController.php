@@ -38,8 +38,8 @@ class mahasiswaController extends Controller
         
         
         if($s < 2 && $i < 2 && $a < 2){
-            $request->berkas_ketidakhadiran;
-            $nama_file = $request->file('berkas_ketidakhadiran')->getClientOriginalName();
+            $berkas= $request->berkas_ketidakhadiran;
+            $nama_berkas = $request->file('berkas_ketidakhadiran')->getClientOriginalName();
             
             DB::table('dokumen')->insert([
                 'nim'           => Auth::user()->nim,
@@ -55,14 +55,13 @@ class mahasiswaController extends Controller
                 'tanggal_absen' => $request->absen,
                 'tanggal_masuk' => $request->masuk,
                 'jenis'         => 'Dispensasi',
-                'berkas'        => $nama_file,
+                'berkas'        => $nama_berkas,
                 'status'        => 'Proses'
             ]);
             
             
-            $nama_berkas = $request->file('berkas_ketidakhadiran')->getClientOriginalName();
             $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_dispensasi');
-            $nama_berkas->move($tujuan_simpan, $nama_berkas);
+            $berkas->move($tujuan_simpan, $nama_berkas);
             
             
             return redirect('/mhs')->with('alert', 'Pengajuan dispensasi anda berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');

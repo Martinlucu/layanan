@@ -62,7 +62,7 @@ class mahasiswaController extends Controller
             
             $nama_berkas = $request->file('berkas_ketidakhadiran')->getClientOriginalName();
             $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_dispensasi');
-            $berkas->move($tujuan_simpan, $nama_berkas);
+            $nama_berkas->move($tujuan_simpan, $nama_berkas);
             
             
             return redirect('/mhs')->with('alert', 'Pengajuan dispensasi anda berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');

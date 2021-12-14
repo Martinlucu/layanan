@@ -48,6 +48,38 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+        <?php if($ydmaha->count()>0): ?>
+        <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table id="example" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>File</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Aksi</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <?php $__currentLoopData = $ydmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $yd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php echo e(csrf_field()); ?>
+
+                    <input type="hidden" name="id" value="<?php echo e($yd->id); ?>">
+                    <td><?php echo e($yd->nim); ?></td>
+		              	<td><?php echo e($yd->nama_mhs); ?></td>
+		              	<td><?php echo e($yd->jurusan); ?></td>
+		              	<td><?php echo e($yd->berkas); ?> </td>
+		              	<td><?php echo e($yd->created_at); ?></td>
+		              	<td><?php echo e($yd->status); ?>
+
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </table>
+    </div>
+        <?php else: ?>
         <div class="row">
         <div class="col-md-6">
         <div class="card card-primary">
@@ -140,6 +172,8 @@
           </div>
         </div>
         <!-- /.row -->
+        <?php endif; ?>
+       
       </div>
       <!-- /.container-fluid -->
     </div>

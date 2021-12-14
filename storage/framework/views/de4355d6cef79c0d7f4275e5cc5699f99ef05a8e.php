@@ -41,6 +41,39 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+        <?php if($ctmaha->count()>0): ?>
+        <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table id="example" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>Alasan Pengajuan</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Status</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <?php $__currentLoopData = $ctmaha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php echo e(csrf_field()); ?>
+
+                    <input type="hidden" name="id" value="<?php echo e($c->id); ?>">
+                    <td><?php echo e($c->nim); ?></td>
+		              	<td><?php echo e($c->nama_mhs); ?></td>
+		              	<td><?php echo e($c->jurusan); ?></td>
+		              	<td><?php echo e($c->alasan_pengajuan); ?></td>
+		              	<td><?php echo e($c->created_at); ?></td>
+		              	<td><?php echo e($c->status); ?>
+
+                    </tr>
+                   
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </table>
+    </div>
+        <?php else: ?>
         <div class="row">
         <div class="col-md-6">
         <div class="card card-primary">
@@ -83,6 +116,8 @@
           </div>
         </div>
         <!-- /.row -->
+        <?php endif; ?>
+        
       </div>
       <!-- /.container-fluid -->
     </div>

@@ -1,10 +1,10 @@
-@extends('layouts.top')
+@extends('layouts.topdos')
 @section('content')
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan BST</title>
+  <title>Layanan Cuti</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,7 +29,7 @@
   $('#example').DataTable();
 });
     </script>
-    
+
     <style>
       btn{
         color:white;
@@ -46,7 +46,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan BST</h1>
+            <h1 class="m-0">Layanan Cuti</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -75,19 +75,19 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bsmaha as $b)
+                    @foreach($ctmaha as $c)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $b->id }}">
-                    <td>{{ $b->nim }}</td>
-		              	<td>{{ $b->nama_mhs }}</td>
-		              	<td>{{ $b->jurusan }}</td>
-		              	<td>{{ $b->alasan_pengajuan }}</td>
-		              	<td>{{ $b->created_at }}</td>
-		              	<td><a class="btn btn-success" href="{{url('/detbst/stjbst/'.$b->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/detbst/tlkbst/'.$b->id) }}">Tolak
-                
+                    <input type="hidden" name="id" value="{{ $c->id }}">
+                    <td>{{ $c->nim }}</td>
+		              	<td>{{ $c->nama_mhs }}</td>
+		              	<td>{{ $c->jurusan }}</td>
+		              	<td>{{ $c->alasan_pengajuan }}</td>
+		              	<td>{{ $c->created_at }}</td>
+		              	<td> <a class="btn btn-success" href="{{url('/dosdetcuti/dosstjcuti/'.$c->id)}}">Setuju
+                    <a class="btn btn-danger" href="{{url('/dosdetcuti/dostlkcuti/'.$c->id) }}">Tolak
                   </td>
                     </tr>
+                   
                     @endforeach
     </table>
     </div>

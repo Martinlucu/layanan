@@ -28,13 +28,13 @@
             <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
               <li><a href="<?php echo e(url('/dosdetdispen')); ?>" class="dropdown-item">Dispensasi </a></li>
               <li><a href="<?php echo e(url('/dosdetyudi')); ?>" class="dropdown-item">Yudisium</a></li>
+              <?php if(Auth::user()->jabatan == "Pengajar"): ?>
               <li><a href="<?php echo e(url('/dosdetcuti')); ?>" class="dropdown-item">Cuti/BSS</a></li>
+              <?php endif; ?>
               <li><a href="<?php echo e(url('/dosdetbst')); ?>" class="dropdown-item">BST</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-          <a href="<?php echo e(url('/setting')); ?>" aria-haspopup="true" aria-expanded="false" class="nav-link">Setting</a>
-      </li>
+          
 
         </ul>
        

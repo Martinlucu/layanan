@@ -1,4 +1,4 @@
-@extends('layouts.top')
+@extends('layouts.topdos')
 @section('content')
 <html lang="en">
 <head>
@@ -29,7 +29,7 @@
   $('#example').DataTable();
 });
     </script>
-    
+
     <style>
       btn{
         color:white;

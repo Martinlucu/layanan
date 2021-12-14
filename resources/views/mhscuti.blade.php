@@ -41,6 +41,37 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+        @IF ($ctmaha->count()>0)
+        <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table id="example" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>Alasan Pengajuan</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Status</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    @foreach($ctmaha as $c)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $c->id }}">
+                    <td>{{ $c->nim }}</td>
+		              	<td>{{ $c->nama_mhs }}</td>
+		              	<td>{{ $c->jurusan }}</td>
+		              	<td>{{ $c->alasan_pengajuan }}</td>
+		              	<td>{{ $c->created_at }}</td>
+		              	<td>{{ $c->status }}
+                    </tr>
+                   
+                    @endforeach
+    </table>
+    </div>
+        @ELSE
         <div class="row">
         <div class="col-md-6">
         <div class="card card-primary">
@@ -83,6 +114,8 @@
           </div>
         </div>
         <!-- /.row -->
+        @ENDIF
+        
       </div>
       <!-- /.container-fluid -->
     </div>

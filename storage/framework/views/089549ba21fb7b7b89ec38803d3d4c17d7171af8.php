@@ -201,8 +201,7 @@
               $dip= $d->created_at;
               ?>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-              <!-- <?php echo e($datenow); ?>-->
-            
+               
               <?php if($dis->count()>0): ?>
               <h5>Jumlah layanan yang belum diproses, batas proses <?php echo e($s->dispensasi); ?> hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" >
@@ -215,7 +214,7 @@
               <?php if($datenow==$dip): ?>
               <center><h3 style="color:#FF7600">Cukup</h3></center>
               <?php endif; ?>
-              <?php if($datenow<$dip): ?>
+              <?php if($datenow<$dip): ?> 
               <center><h3 style="color:#6384FF">Baik</h3></center>
               <?php endif; ?>
               <?php else: ?>

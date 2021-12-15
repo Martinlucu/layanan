@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan BST</title>
+  <title>Laporan BST</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,7 +29,7 @@
   $('#example').DataTable();
 });
     </script>
-    
+
     <style>
       btn{
         color:white;
@@ -46,7 +46,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan BST</h1>
+            <h1 class="m-0">Laporan BST</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -60,41 +60,43 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+      <a href="{{url('/dokbst/export_bst')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+    
+      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
+                      
                       <th>Jurusan</th>
-                      <th>Alasan Pengajuan</th>
+                      <th>Jenis Dokumen</th>
+                      <th>Status</th>
                       <th>Tanggal Masuk</th>
-                      <th>Aksi</th>
+                      <th>Tanggal Selesai</th>
                     
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bsmaha as $b)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $b->id }}">
-                    <td>{{ $b->nim }}</td>
-		              	<td>{{ $b->nama_mhs }}</td>
-		              	<td>{{ $b->jurusan }}</td>
-		              	<td>{{ $b->alasan_pengajuan }}</td>
-		              	<td>{{ $b->created_at }}</td>
-		              	<td><a class="btn btn-success" href="{{url('/detbst/stjbst/'.$b->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/detbst/tlkbst/'.$b->id) }}">Tolak
-                
-                  </td>
+                    @foreach($lapdis as $lapdis)
+                    <td>{{ $lapdis->nim }}</td>
+		              	<td>{{ $lapdis->nama_mhs }}</td>
+			              
+		              	<td>{{ $lapdis->jurusan }}</td>
+		              	<td>{{ $lapdis->jenis }}</td>
+		              	<td>{{ $lapdis->status }}</td>
+		              	<td>{{ $lapdis->created_at }}</td>
+		              	<td>{{ $lapdis->updated_at }}</td>
+		              
                     </tr>
                     @endforeach
+                   </tbody>
     </table>
     </div>
     </div></div>
     <!-- /.content -->
   </div>
-    
 <!-- ./wrapper -->
 
 <!-- jQuery -->

@@ -26,8 +26,8 @@
             <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
               <li><a href="{{url('/detdispen')}}" class="dropdown-item">Dispensasi </a></li>
               <li><a href="{{url('/detyudi')}}" class="dropdown-item">Yudisium</a></li>
-              <li><a href="{{url('/detcuti')}}" class="dropdown-item">Cuti/BSS</a></li>
-              <li><a href="{{url('/detbst')}}" class="dropdown-item">BST</a></li>
+              <!-- <li><a href="{{url('/detcuti')}}" class="dropdown-item">Cuti/BSS</a></li>
+              <li><a href="{{url('/detbst')}}" class="dropdown-item">BST</a></li> -->
             </ul>
           </li>
           <li class="nav-item dropdown">

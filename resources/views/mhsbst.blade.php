@@ -40,6 +40,38 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+        @IF ($bsmaha->count()>0)
+        <div class="table-responsive" style="padding:20px;width: 98%;">
+          <table id="example" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+                          <th>NIM</th>
+                          <th>Nama</th>
+                          <th>Jurusan</th>
+                          <th>Alasan Pengajuan</th>
+                          <th>Tanggal Masuk</th>
+                          <th>Status</th>
+                        
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        @foreach($bsmaha as $b)
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $b->id }}">
+                        <td>{{ $b->nim }}</td>
+                        <td>{{ $b->nama_mhs }}</td>
+                        <td>{{ $b->jurusan }}</td>
+                        <td>{{ $b->alasan_pengajuan }}</td>
+                        <td>{{ $b->created_at }}</td>
+                        <td>
+                          {{ $b->status }}
+                        </td>
+                        </tr>
+                        @endforeach
+        </table>
+        </div>
+        @ELSE
         <div class="row">
         <div class="col-md-6">
         <div class="card card-primary">
@@ -82,6 +114,8 @@
           </div>
         </div>
         <!-- /.row -->
+        @ENDIF
+        
       </div>
       <!-- /.container-fluid -->
     </div>

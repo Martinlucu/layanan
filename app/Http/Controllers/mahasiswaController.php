@@ -15,20 +15,30 @@ class mahasiswaController extends Controller
 {
     public function mhscuti()
     {
+        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
+        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
         
-    	return view('mhscuti');
+        return view('mhscuti', compact('ct', 'ctmaha'));
     }
     public function mhsdispen()
     {
-    	return view('mhsdispen');
+    	$dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
+        $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
+        
+        return view('mhsdispen', compact('dp', 'dpmaha'));
     }
     public function mhsbst()
     {
-    	return view('mhsbst');
+    	$bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
+        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','Proses')->where('nim', Auth::user()->nim)->get();
+        
+        return view('mhsbst', compact('bs', 'bsmaha'));
     }
     public function mhsyudi()
     {
-    	return view('mhsyudi');
+    	$ydm = DB::table('dokumen')->where('status','proses')->count();
+        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
+        return view('mhsyudi', compact('ydm', 'ydmaha'));
     }
 
     public function createdispensasi(Request $request){
@@ -133,7 +143,7 @@ class mahasiswaController extends Controller
         // BETA TEST CODE !!!! MASIH TESTING, KALO EROR WAJAR !!!! -Fadhli
     }
 
-    // Bug di if yang terakhir & tidak bisa menghitung minggu dari perkuliahan
+    
     public function createbss(Request $request){
         $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
         $tanggal_sekarang = new Carbon();
@@ -156,7 +166,7 @@ class mahasiswaController extends Controller
                 'jurusan'           => Auth::user()->jurusan,
                 'fakultas'          => Auth::user()->fakultas,
                 'alasan_pengajuan'  => $request->alasan,
-                'jenis'             => 'BST',
+                'jenis'             => 'Cuti',
                 'status'            => 'Proses']);
 
             DB::table('mhs')->where('nim', '=', Auth::user()->nim)
@@ -195,6 +205,9 @@ class mahasiswaController extends Controller
             'status'            => 'Proses'
         ]);
 
+        // DB::table('mhs')->update([
+        //     'status_bst'        => 'proses'
+        // ])->where('nim', Auth::user()->nim);
         return redirect('/mhs')->with('alert', 'Permohonan BST anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
     }
     

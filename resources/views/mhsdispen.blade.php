@@ -41,6 +41,37 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
+        @IF ($dpmaha->count()>0)
+        <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table id="example" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>File</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Status</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    @foreach($dpmaha as $d)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $d->id }}">
+                    <td>{{ $d->nim }}</td>
+		              	<td>{{ $d->nama_mhs }}</td>
+		              	<td>{{ $d->jurusan }}</td>
+		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->created_at }}</td>
+		              	<td>{{ $d->status }}
+                  </td>
+                    </tr>
+                    @endforeach
+    </table>
+    </div>
+        @ELSE
         <div class="row">
         <div class="col-md-6">
         <div class="card card-primary">
@@ -100,6 +131,8 @@
           </div>
         </div>
         <!-- /.row -->
+        @ENDIF
+       
       </div>
       <!-- /.container-fluid -->
     </div>

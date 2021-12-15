@@ -1,4 +1,4 @@
-@extends('layouts.top')
+@extends('layouts.topdos')
 @section('content')
 <html lang="en">
 <head>
@@ -29,7 +29,7 @@
   $('#example').DataTable();
 });
     </script>
-    
+
     <style>
       btn{
         color:white;
@@ -83,8 +83,8 @@
 		              	<td>{{ $b->jurusan }}</td>
 		              	<td>{{ $b->alasan_pengajuan }}</td>
 		              	<td>{{ $b->created_at }}</td>
-		              	<td><a class="btn btn-success" href="{{url('/detbst/stjbst/'.$b->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/detbst/tlkbst/'.$b->id) }}">Tolak
+		              	<td><a class="btn btn-success" href="{{url('/dosdetbst/dosstjbst/'.$b->id)}}">Setuju
+                    <a class="btn btn-danger" href="{{url('/dosdetbst/dostlkbst/'.$b->id) }}">Tolak
                 
                   </td>
                     </tr>

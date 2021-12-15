@@ -16,7 +16,7 @@ class dosen extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email','nik','password', 
+        'nama', 'email','nik','jabatan','password', 
     ];
 
     /**

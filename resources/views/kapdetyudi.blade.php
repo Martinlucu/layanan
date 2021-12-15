@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan BST</title>
+  <title>Layanan Yudisium</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,7 +29,7 @@
   $('#example').DataTable();
 });
     </script>
-    
+
     <style>
       btn{
         color:white;
@@ -46,7 +46,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan BST</h1>
+            <h1 class="m-0">Layanan Yudisium</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -67,7 +67,7 @@
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
-                      <th>Alasan Pengajuan</th>
+                      <th>File</th>
                       <th>Tanggal Masuk</th>
                       <th>Aksi</th>
                     
@@ -75,17 +75,16 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($bsmaha as $b)
+                    @foreach($ydmaha as $yd)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $b->id }}">
-                    <td>{{ $b->nim }}</td>
-		              	<td>{{ $b->nama_mhs }}</td>
-		              	<td>{{ $b->jurusan }}</td>
-		              	<td>{{ $b->alasan_pengajuan }}</td>
-		              	<td>{{ $b->created_at }}</td>
-		              	<td><a class="btn btn-success" href="{{url('/detbst/stjbst/'.$b->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/detbst/tlkbst/'.$b->id) }}">Tolak
-                
+                    <input type="hidden" name="id" value="{{ $yd->id }}">
+                    <td>{{ $yd->nim }}</td>
+		              	<td>{{ $yd->nama_mhs }}</td>
+		              	<td>{{ $yd->jurusan }}</td>
+		              	<td>{{ $yd->berkas }} </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju
+                    <a class="btn btn-danger" href="{{url('/detyudi/tlkyudi/'.$yd->id) }}">Tolak
                   </td>
                     </tr>
                     @endforeach

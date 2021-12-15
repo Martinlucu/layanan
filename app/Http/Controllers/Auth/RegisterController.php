@@ -139,6 +139,12 @@ class RegisterController extends Controller
         ]);
         return redirect()->intended('login');
     }
+    /**
+     * @param Request $request
+     *@return \App\dosen
+     * @return \Illuminate\Http\RedirectResponse
+     * 
+     */
     protected function createdosen(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -146,6 +152,7 @@ class RegisterController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'nik' => $request->nik,
+            'jabatan' => $request->jabatan,
             'password' => Hash::make($request->password),
         ]);
         return redirect()->intended('login');

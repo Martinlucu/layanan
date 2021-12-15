@@ -218,6 +218,32 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
                         <?php endif; ?>
+                        <?php if($url=='dosen'): ?>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Jabatan')); ?></label>
+
+                            <div class="col-md-6">
+                                <select name="jabatan" id="myselect" type="jabatan" class="form-control">   
+                                    <option value="" disabled selected>-- Pilih Jabatan --</option>
+                                    <option value="Pengajar">Pengajar</option>
+                                    <option value="Kaprodi">Kaprodi</option>
+                                </select>
+
+                                <?php $__errorArgs = ['jurusan'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+                        <?php endif; ?>
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
 

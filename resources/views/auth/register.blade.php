@@ -120,6 +120,25 @@
                             </div>
                         </div>
                         @endif
+                        @if($url=='dosen')
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Jabatan') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="jabatan" id="myselect" type="jabatan" class="form-control">   
+                                    <option value="" disabled selected>-- Pilih Jabatan --</option>
+                                    <option value="Pengajar">Pengajar</option>
+                                    <option value="Kaprodi">Kaprodi</option>
+                                </select>
+
+                                @error('jurusan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endif
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

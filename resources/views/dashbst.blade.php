@@ -139,11 +139,10 @@
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
-                
               </div>
               <div class="card-body">
                <div>
-               <canvas id="speedChart" width="600" height="400"></canvas>
+               <canvas id="speedChart"  width="600" height="450"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -165,6 +164,7 @@
                 </div>
               </div>
               <div class="card-body">
+              <h5>Jumlah setiap jurusan pada semester sekarang</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
@@ -202,6 +202,7 @@
               ?>
               @endforeach
              @if($bst->count()>0)
+            
               <h5>Jumlah layanan yang belum diproses, batas proses {{$s->bst}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
@@ -312,22 +313,27 @@ Chart.defaults.global.defaultFontSize = 18;
 var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
-    label: "Jumlah Semester Genap",
+    label: "Jumlah Semester Genap {{$gnp}}2",
     data: {{$hslgenap}},
     fill: false,
   borderColor: '#007bff'
   };
 
 var dataFirst = {
-    label: "Jumlah Semester Ganjil",
+    label: "Jumlah Semester Ganjil {{$gjl}}1",
     data: {{$hslganjil}},
     fill: false,
   borderColor: '#ced4da'
   };
-
+  var dataThird = {
+    label: "Jumlah Semester Ganjil {{$gnp}}1",
+    data: {{$hslganjillama}},
+    fill: false,
+  borderColor: '#6a89bd'
+  };
   var speedData = {
   labels:  bln,
-  datasets: [dataSecond,dataFirst]
+  datasets: [dataThird,dataSecond,dataFirst]
 };
 
 var chartOptions = {
@@ -355,7 +361,7 @@ Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
 var  diagram= <?php echo json_encode($dia) ?>;
-var  isid= <?php echo json_encode($isid) ?>;
+var  isid= <?php echo json_encode($isi) ?>;
 var oilData = {
     labels: diagram,
     datasets: [
@@ -375,48 +381,6 @@ var oilData = {
         }]
 };
 
-var chartOptions = {
-  rotation: -Math.PI,
-  cutoutPercentage: 30,
-  circumference: Math.PI,
-  legend: {
-    position: 'bottom'
-  },
-  animation: {
-    animateRotate: false,
-    animateScale: true
-  }
-};
-
-var pieChart = new Chart(oilCanvas, {
-  type: 'doughnut',
-  data: oilData,
-  options: chartOptions
-});
-
-new Chart(document.getElementById("bar-chart-grouped"), {
-    type: 'bar',
-    data: {
-      labels: ["1900", "1950", "1999", "2050"],
-      datasets: [
-        {
-          label: "Africa",
-          backgroundColor: "#3e95cd",
-          data: [133,221,783,2478]
-        }, {
-          label: "Europe",
-          backgroundColor: "#8e5ea2",
-          data: [408,547,675,734]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Population growth (millions)'
-      }
-    }
-});
 </script>
 </body>
 </html>

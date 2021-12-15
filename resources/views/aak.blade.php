@@ -30,7 +30,6 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
                       <th>Jurusan</th>
                       <th>Jenis Layanan</th>
                     
@@ -41,7 +40,6 @@
                     @foreach($laya as $la)
                     <td>{{ $la->nim }}</td>
 		              	<td>{{ $la->nama_mhs }}</td>
-			              <td>{{ $la->email_mhs }}</td>
 		              	<td>{{ $la->jurusan }}</td>
 		              	<td>{{ $la->jenis }}</td>
                     </tr>
@@ -110,10 +108,7 @@
           Batas Proses : Dispensasi  {{$s->dispensasi}} hari,Cuti {{$s->cuti}} hari, BST {{$s->bst}} hari
        <br>Yudisium {{$s->yudisium}}% dari banyak mahasiswa selesai TA   
       <br>Keterangan: 1.Kurang 2.Cukup 3.Baik
-     
-     
-   
-        <div class="row">
+            <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
               @if($disindi->count()>0)
@@ -294,16 +289,16 @@
                 </div>
                 <div class="d-flex flex-row justify-content-end">
                   <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> Semester Genap
+                  <i class="fas fa-square" style="color:#6a89bd;"></i> Semester Ganjil {{$gnp}}1
                   </span>
-
+                  <span class="mr-2">
+                  <i class="fas fa-square text-primary"></i> Semester Genap {{$gnp}}2 
+                  </span>
                   <span>
-                    <i class="fas fa-square text-gray"></i> Semester Ganjil
-              
+                  <i class="fas fa-square text-gray"></i> Semester Ganjil {{$gjl}}1
                   </span>
                   <span class="mr-1">
-                 <br> Semester genap Maret-Agustus
-                   <br> Semester Ganjil September-Febuari
+               
                   </span>   
                 </div>
                 
@@ -549,6 +544,18 @@ $(function () {
           borderColor         : '#ced4da',
           pointBorderColor    : '#ced4da',
           pointBackgroundColor: '#ced4da',
+          fill                : false
+          // pointHoverBackgroundColor: '#ced4da',
+          // pointHoverBorderColor    : '#ced4da'
+       
+    },
+    {
+          type                : 'line',
+          data                : {{$hslganjillama}},
+          backgroundColor     : 'tansparent',
+          borderColor         : '#6a89bd',
+          pointBorderColor    : '#6a89bd',
+          pointBackgroundColor: '#6a89bd',
           fill                : false
           // pointHoverBackgroundColor: '#ced4da',
           // pointHoverBorderColor    : '#ced4da'

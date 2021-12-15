@@ -74,7 +74,6 @@
                     <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                   
                       <th>Jurusan</th>
                       <th>Tanggal Masuk</th>
                     
@@ -85,7 +84,6 @@
                     @foreach($yudi as $yu)
                     <td>{{ $yu->nim }}</td>
 		              	<td>{{ $yu->nama_mhs }}</td>
-			           
 		              	<td>{{ $yu->jurusan }}</td>
 		              	<td>{{ $yu->created_at }}</td>
                     </tr>
@@ -142,7 +140,7 @@
               </div>
               <div class="card-body">
                <div>
-               <canvas id="speedChart" width="600" height="400"></canvas>
+               <canvas id="speedChart" width="600" height="490"></canvas>
 
                 </div>
               </div>
@@ -165,6 +163,7 @@
                 </div>
               </div>
               <div class="card-body">
+              <h5>Jumlah setiap jurusan pada semester sekarang</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
@@ -293,22 +292,27 @@ Chart.defaults.global.defaultFontSize = 18;
 var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
-    label: "Jumlah Semester Genap",
+    label: "Jumlah Semester Genap {{$gnp}}2",
     data: {{$hslgenap}},
     fill: false,
   borderColor: '#007bff'
   };
 
 var dataFirst = {
-    label: "Jumlah Semester Ganjil",
+    label: "Jumlah Semester Ganjil {{$gjl}}1",
     data: {{$hslganjil}},
     fill: false,
   borderColor: '#ced4da'
   };
-
+  var dataThird = {
+    label: "Jumlah Semester Ganjil {{$gnp}}1",
+    data: {{$hslganjillama}},
+    fill: false,
+  borderColor: '#6a89bd'
+  };
   var speedData = {
   labels:  bln,
-  datasets: [dataSecond,dataFirst]
+  datasets: [dataThird,dataSecond,dataFirst]
 };
 
 var chartOptions = {
@@ -335,7 +339,7 @@ Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
 var  diagram= <?php echo json_encode($dia) ?>;
-var  isid= <?php echo json_encode($isid) ?>;
+var  isid= <?php echo json_encode($isi) ?>;
 var oilData = {
     labels:  diagram,
     datasets: [

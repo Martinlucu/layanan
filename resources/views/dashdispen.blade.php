@@ -142,7 +142,7 @@
               </div>
               <div class="card-body">
                <div>
-               <canvas id="speedChart" width="600" height="400"></canvas>
+               <canvas id="speedChart" width="600" height="450"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -164,6 +164,7 @@
                 </div>
               </div>
               <div class="card-body">
+              <h5>Jumlah setiap jurusan pada semester sekarang</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
@@ -190,7 +191,7 @@
                   </button>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body" >
               @foreach($set as $s)
               <?php
               $datenow = date("Y-m-d",strtotime("-$s->dispensasi weekday"));
@@ -201,12 +202,14 @@
               $dip= $d->created_at;
               ?>
               @endforeach
-               
+             
               @if($dis->count()>0)
+             
               <h5>Jumlah layanan yang belum diproses, batas proses {{$s->dispensasi}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" >
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
+           
               </div></div> <center><div id="some_element"></div></center>
               @if($datenow>$dip)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
@@ -222,7 +225,7 @@
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
-              </div></div> <center><div id="some_element"></div></center>
+              </div></div> <center><div id="some_element" ></div></center>
               <center><h3 style="color:#6384FF">Baik</h3></center>
               @endif
               
@@ -312,23 +315,28 @@ Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
 var bln = <?php echo json_encode($month) ?>;
-var dataSecond = {
-    label: "Jumlah Semester Genap",
-    data: {{$hslgenap}},
-    fill: false,
-  borderColor: '#007bff'
-  };
-
 var dataFirst = {
-    label: "Jumlah Semester Ganjil",
+    label: "Jumlah Semester Ganjil {{$gjl}}1",
     data: {{$hslganjil}},
     fill: false,
   borderColor: '#ced4da'
   };
 
+var dataSecond = {
+    label: "Jumlah Semester Genap {{$gnp}}2",
+    data: {{$hslgenap}},
+    fill: false,
+  borderColor: '#007bff'
+  };
+var dataThird = {
+    label: "Jumlah Semester Ganjil {{$gnp}}1",
+    data: {{$hslganjillama}},
+    fill: false,
+  borderColor: '#6a89bd'
+  };
   var speedData = {
   labels:  bln,
-  datasets: [dataSecond,dataFirst]
+  datasets: [dataThird,dataSecond,dataFirst]
 };
 var chartOptions = {
   legend: {
@@ -351,7 +359,8 @@ var lineChart = new Chart(speedCanvas, {
 var oilCanvas = document.getElementById("oilChart");
 
 var  diagram= <?php echo json_encode($dia) ?>;
-var  isid= <?php echo json_encode($isid) ?>;
+var  isid= <?php echo json_encode($isi) ?>;
+
 Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
@@ -364,7 +373,7 @@ var oilData = {
             backgroundColor: [
                 "#FF6384",
                 "#63FF84",
-                "#84FF63",
+                "#007bff",
                 "#8463FF",
                 "#6384FF",
                 "#ffc107",

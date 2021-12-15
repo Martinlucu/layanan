@@ -142,7 +142,7 @@
               </div>
               <div class="card-body">
                <div>
-               <canvas id="speedChart" width="600" height="400"></canvas>
+               <canvas id="speedChart" width="600" height="450"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -165,6 +165,7 @@
                 </div>
               </div>
               <div class="card-body">
+              <h5>Jumlah setiap jurusan pada semester sekarang</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
@@ -205,6 +206,7 @@
               $cis= $c->created_at;
               ?>
               @endforeach
+              
               @if($cut->count()>0)
               <h5>Jumlah layanan yang belum diproses, batas proses {{$s->cuti}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
@@ -317,22 +319,28 @@ Chart.defaults.global.defaultFontSize = 18;
 var bln = <?php echo json_encode($month) ?>;
 
 var dataSecond = {
-    label: "Jumlah Semester Genap",
+    label: "Jumlah Semester Genap {{$gnp}}2",
     data: {{$hslgenap}},
     fill: false,
   borderColor: '#007bff'
   };
 
 var dataFirst = {
-    label: "Jumlah Semester Ganjil",
+    label: "Jumlah Semester Ganjil {{$gjl}}1",
     data: {{$hslganjil}},
     fill: false,
   borderColor: '#ced4da'
   };
 
+  var dataThird = {
+    label: "Jumlah Semester Ganjil {{$gnp}}1",
+    data: {{$hslganjillama}},
+    fill: false,
+  borderColor: '#6a89bd'
+  };
   var speedData = {
   labels:  bln,
-  datasets: [dataSecond,dataFirst]
+  datasets: [dataThird,dataSecond,dataFirst]
 };
 
 var chartOptions = {
@@ -361,7 +369,7 @@ Chart.defaults.global.defaultFontFamily = "Lato";
 Chart.defaults.global.defaultFontSize = 18;
 
 var  diagram= <?php echo json_encode($dia) ?>;
-var  isid= <?php echo json_encode($isid) ?>;
+var  isid= <?php echo json_encode($isi) ?>;
 var oilData = {
     labels:  diagram,
     datasets: [

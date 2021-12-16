@@ -54,6 +54,7 @@
       <thead>
         <tr>
                       <th>NIM</th>
+                      <th>No. KTP</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>File</th>
@@ -68,6 +69,7 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                     <td>{{ $yd->nim }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
 		              	<td>{{ $yd->nama_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>{{ $yd->berkas }} </td>
@@ -113,7 +115,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" name="no_ktp" required>
+                      <input type="number" class="form-control" value="{{ Auth::user()->no_ktp }}" name="no_ktp" disabled>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>

@@ -54,6 +54,7 @@
       <thead>
         <tr>
                       <th>NIM</th>
+                      <th>No. KTP</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>File</th>
@@ -69,6 +70,7 @@
 
                     <input type="hidden" name="id" value="<?php echo e($yd->id); ?>">
                     <td><?php echo e($yd->nim); ?></td>
+                    <td><?php echo e($yd->no_ktp); ?></td>
 		              	<td><?php echo e($yd->nama_mhs); ?></td>
 		              	<td><?php echo e($yd->jurusan); ?></td>
 		              	<td><?php echo e($yd->berkas); ?> </td>
@@ -115,7 +117,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" name="no_ktp" required>
+                      <input type="number" class="form-control" value="<?php echo e(Auth::user()->no_ktp); ?>" name="no_ktp" disabled>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>

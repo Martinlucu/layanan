@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Setting Target</title>
+  <title>Setting</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -115,18 +115,60 @@
                 <div class="card-footer">
                   <input type="submit" class="btn btn-info" value="Update">
                 </div>
+                
+                  @endforeach
                 <!-- /.card-footer -->
               
              
             </div>
     </div>
-    
+    <div class="col-md-6">
+            <!-- /.card -->
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Semester</h3>
+                </div>
+               <div class="card-body">
+               <h6>Merubah target setiap layanan</h6>
+               <div class="form-group row">
+                  @foreach($setting as $s)
+                  <input type="hidden" name="id_set" value="{{ $s->id_set }}">
+                    <label class="col-sm-3 col-form-label">Ganjil awal</label>
+                    <div class="input-group col-sm-5">
+                      <input type="date" class="form-control" name="gjlawal" value="{{ $s->gjlawal }}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Ganjil Akhir</label>
+                    <div class="input-group col-sm-5">
+                      <input type="date" class="form-control" name="gjlakhir" value="{{ $s->gjlakhir }}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Genap Awal</label>
+                    <div class="input-group col-sm-5">
+                      <input type="date" class="form-control" name="gnpawal" value="{{ $s->gnpawal }}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Genap Akhir</label>
+                    <div class="input-group col-sm-5">
+                      <input type="date" class="form-control" name="gnpakhir" value="{{ $s->gnpakhir }}">
+                    </div>
+                  </div>
+                  </div>
+                   <div class="card-footer">
+                  <input type="submit" class="btn btn-info" value="Update">
+                </div>
+              </div>
+              
+          </div>
     </div>
   </div>
-  @endforeach
     <!-- /.content -->
 </div>
-    
+            
+  @endforeach
 <!-- ./wrapper -->
 
 <!-- jQuery -->

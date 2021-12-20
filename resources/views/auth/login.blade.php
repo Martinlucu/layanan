@@ -8,11 +8,9 @@
                 <div class="card-header"></div>
                <center> <img src="{{asset('src/dinamika.png')}}"  width="400" height="130"></center>
                 <div class="card-body">
-                @isset($url)
-                    <form method="POST" action='{{ url("login/$url") }}' aria-label="{{ __('Login') }}">
-                    @else
+              
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                    @endisset
+                   
                         @csrf
 
                         <div class="form-group row">
@@ -34,7 +32,9 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                                @if($errors->any())
+  <h5>{{$errors->first()}}</h5>
+@endif
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

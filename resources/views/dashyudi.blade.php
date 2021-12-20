@@ -139,6 +139,7 @@
                 
               </div>
               <div class="card-body">
+                
                <div>
                <canvas id="speedChart" width="600" height="490"></canvas>
 
@@ -199,6 +200,7 @@
               $num=ceil($number)
               ?>
               @endif
+             
               <h5>Jumlah layanan yang telah selesai</h5><h5>dengan target {{$s->yudisium}}% dari {{$sts}} mahasiswa yang siap yudisium</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
               </div><div class="chartjs-size-monitor-shrink"><div class="">
@@ -236,53 +238,57 @@
 <script src="{{asset('dist/js/pages/dashboard3.js')}}"></script>
 <script src="{{asset('js/pureknob.js')}}" type="text/javascript"></script>
 		<script type="text/javascript">
-		
-			function demoKnob() {
-				// Create knob element, 300 x 300 px in size.
-				const knob = pureknob.createKnob(300, 300);
+		function demoKnob() {
+      // Create knob element, 300 x 300 px in size.
+      const knob = pureknob.createKnob(300, 300);
 
-				// Set properties.
-				knob.setProperty('angleStart', -0.75 * Math.PI);
-				knob.setProperty('angleEnd', 0.75 * Math.PI);
-        @if($ydm<$num)
-				knob.setProperty('CD113B', '#CD113B');
-        @endif
-        @if($ydm==$num)
-				knob.setProperty('colorFG', '#FF7600');
-        @endif
-        @if($ydm>$num)
-        knob.setProperty('colorFG', '#6384FF');
-        @endif
-				knob.setProperty('trackWidth', 0.4);
-				knob.setProperty('valMin', 0);
-				knob.setProperty('valMax', 200);
-        knob.setProperty('readonly', true);
-				// Set initial value.
-        
+      // Set properties.
+      knob.setProperty('angleStart', -0.75 * Math.PI);
+      knob.setProperty('angleEnd', 0.75 * Math.PI);
+    
+      @if($ydm>$num)
+      knob.setProperty('colorFG', '#6384FF');
+      @endif
+      @if($ydm==$num)
+      knob.setProperty('colorFG', '#FF7600');
+      @endif
+      @if($ydm<$num )
+      knob.setProperty('colorFG', '#CD113B');
+      @endif
+     
+      knob.setProperty('trackWidth', 0.4);
+      knob.setProperty('valMin', 0);
+      knob.setProperty('valMax', 100);
+      knob.setProperty('readonly', true);
 
-				knob.setValue({{$ydm}});
-       
-				const listener = function(knob, value) {
-					console.log(value);
-				};
+      // Set initial value.
+      
 
-				knob.addListener(listener);
+      knob.setValue({{$ydm}});
+     
+      const listener = function(knob, value) {
+        console.log(value);
+      };
 
-				// Create element node.
-				const node = knob.node();
+      knob.addListener(listener);
 
-				// Add it to the DOM.
-				const elem = document.getElementById('some_element');
-				elem.appendChild(node);
-			}
-			function ready() {
-				demoKnob();
-			
-			}
+      // Create element node.
+      const node = knob.node();
 
-			document.addEventListener('DOMContentLoaded', ready, false);
+      // Add it to the DOM.
+      const elem = document.getElementById('some_element');
+      elem.appendChild(node);
+    }
+    function ready() {
+      demoKnob();
+    
+    }
+
+    document.addEventListener('DOMContentLoaded', ready, false);
+  
 		
 		</script>
+
 <script>
 var speedCanvas = document.getElementById("speedChart");
 
@@ -304,15 +310,10 @@ var dataFirst = {
     fill: false,
   borderColor: '#ced4da'
   };
-  var dataThird = {
-    label: "Jumlah Semester Ganjil {{$gnp}}1",
-    data: {{$hslganjillama}},
-    fill: false,
-  borderColor: '#6a89bd'
-  };
+  
   var speedData = {
   labels:  bln,
-  datasets: [dataThird,dataSecond,dataFirst]
+  datasets: [dataSecond,dataFirst]
 };
 
 var chartOptions = {
@@ -376,30 +377,6 @@ var pieChart = new Chart(oilCanvas, {
   type: 'doughnut',
   data: oilData,
   options: chartOptions
-});
-
-new Chart(document.getElementById("bar-chart-grouped"), {
-    type: 'bar',
-    data: {
-      labels: ["1900", "1950", "1999", "2050"],
-      datasets: [
-        {
-          label: "Africa",
-          backgroundColor: "#3e95cd",
-          data: [133,221,783,2478]
-        }, {
-          label: "Europe",
-          backgroundColor: "#8e5ea2",
-          data: [408,547,675,734]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Population growth (millions)'
-      }
-    }
 });
 
 </script>

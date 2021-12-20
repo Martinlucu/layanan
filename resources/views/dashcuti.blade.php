@@ -251,7 +251,6 @@
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
-
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <script src="{{asset('dist/js/pages/dashboard3.js')}}"></script>
@@ -332,15 +331,9 @@ var dataFirst = {
   borderColor: '#ced4da'
   };
 
-  var dataThird = {
-    label: "Jumlah Semester Ganjil {{$gnp}}1",
-    data: {{$hslganjillama}},
-    fill: false,
-  borderColor: '#6a89bd'
-  };
   var speedData = {
   labels:  bln,
-  datasets: [dataThird,dataSecond,dataFirst]
+  datasets: [dataSecond,dataFirst]
 };
 
 var chartOptions = {
@@ -408,29 +401,6 @@ var pieChart = new Chart(oilCanvas, {
   options: chartOptions
 });
 
-new Chart(document.getElementById("bar-chart-grouped"), {
-    type: 'bar',
-    data: {
-      labels: ["1900", "1950", "1999", "2050"],
-      datasets: [
-        {
-          label: "Africa",
-          backgroundColor: "#3e95cd",
-          data: [133,221,783,2478]
-        }, {
-          label: "Europe",
-          backgroundColor: "#8e5ea2",
-          data: [408,547,675,734]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Population growth (millions)'
-      }
-    }
-});
 </script>
 </body>
 </html>

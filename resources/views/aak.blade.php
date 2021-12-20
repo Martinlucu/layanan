@@ -279,7 +279,7 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">{{$jumlahthnini}}</span>
+                    <span class="text-bold text-lg">{{$jumlahsemester}}</span>
                     <span>Jumlah Layanan Setiap Bulan</span>
                   
                   </p>
@@ -288,9 +288,7 @@
                   <canvas id="visitors-chart" height="200"></canvas>
                 </div>
                 <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                  <i class="fas fa-square" style="color:#6a89bd;"></i> Semester Ganjil {{$gnp}}1
-                  </span>
+                  
                   <span class="mr-2">
                   <i class="fas fa-square text-primary"></i> Semester Genap {{$gnp}}2 
                   </span>
@@ -548,18 +546,7 @@ $(function () {
           // pointHoverBackgroundColor: '#ced4da',
           // pointHoverBorderColor    : '#ced4da'
        
-    },
-    {
-          type                : 'line',
-          data                : {{$hslganjillama}},
-          backgroundColor     : 'tansparent',
-          borderColor         : '#6a89bd',
-          pointBorderColor    : '#6a89bd',
-          pointBackgroundColor: '#6a89bd',
-          fill                : false
-          // pointHoverBackgroundColor: '#ced4da',
-          // pointHoverBorderColor    : '#ced4da'
-        }]
+    }],
     },
     options: {
       maintainAspectRatio: false,

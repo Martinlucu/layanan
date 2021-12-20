@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\dokumendispen;
@@ -15,26 +16,62 @@ class dokumenController extends Controller
 {
     public function dokdispen()
     {
-        $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
-        
+        $set = DB::table('setting')->where('id_set','1')->get();
+        foreach($set as $s){
+            $gjlawal=$s->gjlawal;
+            $gnpawal=$s->gnpawal;
+            $gjlakhir=$s->gjlakhir;
+            $gnpakhir=$s->gnpakhir;
+        } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
+        $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
+            $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        }
         return view('dokdispen',compact('lapdis'));
 }
 public function dokcuti()
 {
-    $lapdis = DB::table('dokumen')->where('jenis','Cuti')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
-    
+    $set = DB::table('setting')->where('id_set','1')->get();
+    foreach($set as $s){
+        $gjlawal=$s->gjlawal;
+        $gnpawal=$s->gnpawal;
+        $gjlakhir=$s->gjlakhir;
+        $gnpakhir=$s->gnpakhir;
+    } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
+    $lapdis = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+    } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
+        $lapdis = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+    }
     return view('dokcuti',compact('lapdis'));
 }
 public function dokbst()
 {
-    $lapdis = DB::table('dokumen')->where('jenis','BST')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
-    
+    $set = DB::table('setting')->where('id_set','1')->get();
+        foreach($set as $s){
+            $gjlawal=$s->gjlawal;
+            $gnpawal=$s->gnpawal;
+            $gjlakhir=$s->gjlakhir;
+            $gnpakhir=$s->gnpakhir;
+        } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
+        $lapdis = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
+            $lapdis = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        }
     return view('dokbst',compact('lapdis'));
 }
 public function dokyudi()
 {
-    $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
-    
+    $set = DB::table('setting')->where('id_set','1')->get();
+        foreach($set as $s){
+            $gjlawal=$s->gjlawal;
+            $gnpawal=$s->gnpawal;
+            $gjlakhir=$s->gjlakhir;
+            $gnpakhir=$s->gnpakhir;
+        } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
+        $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
+            $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        }
     return view('dokyudi',compact('lapdis'));
 }
 public function export_excel()

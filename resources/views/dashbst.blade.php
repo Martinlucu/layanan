@@ -325,15 +325,10 @@ var dataFirst = {
     fill: false,
   borderColor: '#ced4da'
   };
-  var dataThird = {
-    label: "Jumlah Semester Ganjil {{$gnp}}1",
-    data: {{$hslganjillama}},
-    fill: false,
-  borderColor: '#6a89bd'
-  };
+ 
   var speedData = {
   labels:  bln,
-  datasets: [dataThird,dataSecond,dataFirst]
+  datasets: [dataSecond,dataFirst]
 };
 
 var chartOptions = {
@@ -381,6 +376,24 @@ var oilData = {
         }]
 };
 
+var chartOptions = {
+  rotation: -Math.PI,
+  cutoutPercentage: 30,
+  circumference: Math.PI,
+  legend: {
+    position: 'bottom'
+  },
+  animation: {
+    animateRotate: false,
+    animateScale: true
+  }
+};
+
+var pieChart = new Chart(oilCanvas, {
+  type: 'doughnut',
+  data: oilData,
+  options: chartOptions
+});
 </script>
 </body>
 </html>

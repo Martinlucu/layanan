@@ -202,14 +202,12 @@
               $dip= $d->created_at;
               ?>
               @endforeach
-             
+          
               @if($dis->count()>0)
-             
               <h5>Jumlah layanan yang belum diproses, batas proses {{$s->dispensasi}} hari</h5>
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" >
               </div><div class="chartjs-size-monitor-shrink"><div class="">
               </div>
-           
               </div></div> <center><div id="some_element"></div></center>
               @if($datenow>$dip)
               <center><h3 style="color:#CD113B">Kurang</h3></center>
@@ -328,15 +326,9 @@ var dataSecond = {
     fill: false,
   borderColor: '#007bff'
   };
-var dataThird = {
-    label: "Jumlah Semester Ganjil {{$gnp}}1",
-    data: {{$hslganjillama}},
-    fill: false,
-  borderColor: '#6a89bd'
-  };
   var speedData = {
   labels:  bln,
-  datasets: [dataThird,dataSecond,dataFirst]
+  datasets: [dataSecond,dataFirst]
 };
 var chartOptions = {
   legend: {
@@ -403,29 +395,6 @@ var pieChart = new Chart(oilCanvas, {
   options: chartOptions
 });
 
-new Chart(document.getElementById("bar-chart-grouped"), {
-    type: 'bar',
-    data: {
-      labels: ["1900", "1950", "1999", "2050"],
-      datasets: [
-        {
-          label: "Africa",
-          backgroundColor: "#3e95cd",
-          data: [133,221,783,2478]
-        }, {
-          label: "Europe",
-          backgroundColor: "#8e5ea2",
-          data: [408,547,675,734]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Population growth (millions)'
-      }
-    }
-});
 </script>
 </body>
 </html>

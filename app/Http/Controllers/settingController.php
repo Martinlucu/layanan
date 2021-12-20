@@ -18,7 +18,11 @@ class settingController extends Controller
             'dispensasi' => $request->dispen,
             'yudisium' => $request->yudi,
             'cuti' => $request->cut,
-            'bst' => $request->bst
+            'bst' => $request->bst,
+            'gjlawal' => $request->gjlawal,
+            'gjlakhir' => $request->gjlakhir,
+            'gnpawal' => $request->gnpawal,
+            'gnpakhir' => $request->gnpakhir,
         ]);
     
         return redirect('/setting');

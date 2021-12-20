@@ -38,6 +38,7 @@ class mahasiswaController extends Controller
     {
     	$ydm = DB::table('dokumen')->where('status','proses')->count();
         $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
+        
         return view('mhsyudi', compact('ydm', 'ydmaha'));
     }
 
@@ -101,7 +102,7 @@ class mahasiswaController extends Controller
 
         DB::table('dokumen')->insert([
             'nim'           => Auth::user()->nim,
-            'no_ktp'        => $request->no_ktp,
+            'no_ktp'        => Auth::user()->no_ktp,
             'nama_mhs'      => Auth::user()->nama,
             'tempat_lahir'  => Auth::user()->tempat_lahir,
             'tanggal_lahir' => Auth::user()->tanggal_lahir,

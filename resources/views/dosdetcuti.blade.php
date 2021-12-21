@@ -91,6 +91,41 @@
                     @endforeach
     </table>
     </div>
+
+    <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table id="example" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>Alasan Pengajuan</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Status</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    @foreach($ctmahas as $cs)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $cs->id }}">
+                    <td>{{ $cs->nim }}</td>
+		              	<td>{{ $cs->nama_mhs }}</td>
+		              	<td>{{ $cs->jurusan }}</td>
+		              	<td>{{ $cs->alasan_pengajuan }}</td>
+		              	<td>{{ $cs->created_at }}</td>
+		              	@IF ($cs->status == 'selesai')
+                      <td>Disetujui</td>
+                    @ELSE
+                      <td>Disetujui</td>
+                    @ENDIF
+                    
+                    </tr>
+                   
+                    @endforeach
+    </table>
+    </div>
     </div></div>
     <!-- /.content -->
   </div>

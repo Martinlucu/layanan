@@ -41,7 +41,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        <?php if($ctmaha->count()>0): ?>
+        <?php if($ctmaha->count()>0 || $ctmahados->count()>0): ?>
         <div class="table-responsive" style="padding:20px;width: 98%;">
       <table id="example" class="table table-striped table-bordered">
       <thead>

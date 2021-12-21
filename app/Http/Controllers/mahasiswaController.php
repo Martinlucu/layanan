@@ -16,9 +16,10 @@ class mahasiswaController extends Controller
     public function mhscuti()
     {
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
+        $ctdos = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
         
-        return view('mhscuti', compact('ct', 'ctmaha'));
+        return view('mhscuti', compact('ct', 'ctdos', 'ctmaha'));
     }
     public function mhsdispen()
     {
@@ -43,6 +44,7 @@ class mahasiswaController extends Controller
     }
 
     public function createdispensasi(Request $request){
+        $date = date("Y-m-d");
         $s = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('sakit');
         $i = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('ijin');
         $a = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('alpha');
@@ -67,7 +69,8 @@ class mahasiswaController extends Controller
                 'tanggal_masuk' => $request->masuk,
                 'jenis'         => 'Dispensasi',
                 'berkas'        => $nama_berkas,
-                'status'        => 'Proses'
+                'status'        => 'Proses',
+                'created_at' => $date
             ]);
             
             
@@ -84,6 +87,7 @@ class mahasiswaController extends Controller
     }
 
     public function createyudi(Request $request){
+        $date = date("Y-m-d");
         $foto = $request->foto;
         $toefl = $request->toefl;
         $ijazah_sma = $request->ijazah_sma;
@@ -120,7 +124,8 @@ class mahasiswaController extends Controller
             'berkas'        => $nama_kk,
             'berkas'        => $nama_ktm,
             'berkas'        => $nama_ktp,
-            'status' => 'Proses'
+            'status' => 'Proses',
+            'created_at' => $date
         ]);
         
        
@@ -146,6 +151,7 @@ class mahasiswaController extends Controller
 
     
     public function createbss(Request $request){
+        $date = date("Y-m-d");
         $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
         $tanggal_sekarang = new Carbon();
         $masuk_kuliah = new Carbon(Auth::user()->tanggal_masuk);
@@ -168,7 +174,9 @@ class mahasiswaController extends Controller
                 'fakultas'          => Auth::user()->fakultas,
                 'alasan_pengajuan'  => $request->alasan,
                 'jenis'             => 'Cuti',
-                'status'            => 'Proses']);
+                'status'            => 'Proses',
+                'created_at'            => $date,                
+            ]);
 
             DB::table('mhs')->where('nim', '=', Auth::user()->nim)
                     ->update([
@@ -190,6 +198,7 @@ class mahasiswaController extends Controller
 
 
     public function createbst(Request $request){
+        $date = date("Y-m-d"); 
         DB::table('dokumen')->insert([
             'nim'               => Auth::user()->nim,
             'nama_mhs'          => Auth::user()->nama,
@@ -203,7 +212,8 @@ class mahasiswaController extends Controller
             'fakultas'          => Auth::user()->fakultas,
             'alasan_pengajuan'  => $request->alasan,
             'jenis'             => 'BST',
-            'status'            => 'Proses'
+            'status'            => 'Proses',
+            'created_at'            => $date
         ]);
 
         // DB::table('mhs')->update([

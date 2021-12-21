@@ -15,6 +15,35 @@
                     @endisset
                         @csrf
 
+                        @if($url=='mhs')
+                        <div class="form-group row">
+                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nim" type="nim" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim') }}" required autocomplete="nim">
+
+                                @error('nim')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('No. KTP') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="no_ktp" type="number" class="form-control @error('no_ktp') is-invalid @enderror" name="no_ktp" value="{{ old('no_ktp') }}" required autocomplete="no_ktp">
+
+                                @error('no_ktp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endif
                         <div class="form-group row">
                             <label for="nama" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
 
@@ -30,7 +59,7 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Dinamika') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -57,20 +86,6 @@
                         @endif
                         @if($url=='mhs')
                         <div class="form-group row">
-                            <label for="nim" class="col-md-4 col-form-label text-md-right">{{ __('NIM') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nim" type="nim" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim') }}" required autocomplete="nim">
-
-                                @error('nim')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                       
-                        <div class="form-group row">
                             <label for="semester" class="col-md-4 col-form-label text-md-right">{{ __('Semester') }}</label>
 
                             <div class="col-md-6">
@@ -85,12 +100,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="angkatan" class="col-md-4 col-form-label text-md-right">{{ __('Angkatan') }}</label>
+                            <label for="fakultas" class="col-md-4 col-form-label text-md-right">{{ __('Fakultas') }}</label>
 
                             <div class="col-md-6">
-                                <input id="angkatan" type="angkatan" class="form-control @error('angkatan') is-invalid @enderror" name="angkatan" value="{{ old('angkatan') }}" required autocomplete="angkatan">
+                                <select name="fakultas" id="myselect" class="form-control @error('fakultas') is-invalid @enderror"  value="{{ old('fakultas') }}" required autocomplete="fakultas">   
+                                <option value="Fakultas Teknologi Informasi">Fakultas Teknologi Informasi</option>
+                                <option value="Fakultas Ekonomi Bisnis">Fakultas Ekonomi Bisnis</option>
+                                </select>
 
-                                @error('angkatan')
+                                @error('fakultas')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

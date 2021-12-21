@@ -91,6 +91,42 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>
     </div>
+
+    <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table id="example" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Jurusan</th>
+                      <th>Alasan Pengajuan</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Status</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <?php $__currentLoopData = $ydmahas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ys): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php echo e(csrf_field()); ?>
+
+                    <input type="hidden" name="id" value="<?php echo e($ys->id); ?>">
+                    <td><?php echo e($ys->nim); ?></td>
+		              	<td><?php echo e($ys->nama_mhs); ?></td>
+		              	<td><?php echo e($ys->jurusan); ?></td>
+		              	<td><?php echo e($ys->alasan_pengajuan); ?></td>
+		              	<td><?php echo e($ys->created_at); ?></td>
+		              	<?php if($ys->status == 'selesai'): ?>
+                      <td>Disetujui</td>
+                    <?php else: ?>
+                      <td>Disetujui</td>
+                    <?php endif; ?>
+                    
+                    </tr>
+                   
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </table>
+    </div>
     </div></div>
     <!-- /.content -->
   </div>

@@ -20,27 +20,52 @@ class DosenController extends Controller
 
     public function detyudi()
     {
-        $from = date('2021-04-01');
-        $to = date('2021-07-30');
-        $ydm = DB::table('dokumen')->where('status','proses')->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
-        return view('detyudi',compact('ydm','ydmaha'));
+        if(Auth::user()->jabatan == "Pengajar"){
+            $from = date('2021-04-01');
+            $to = date('2021-07-30');
+            $ydm = DB::table('dokumen')->where('status','proses')->count();
+            $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','Proses')->get();
+            $ydmahas = DB::table('dokumen')->where('jenis','Yudisium')->where('status','selesai')->get();
+            
+            return view('dosdetyudi',compact('ydm','ydmaha','ydmahas'));
+        }else{
+            $from = date('2021-04-01');
+            $to = date('2021-07-30');
+            $ydm = DB::table('dokumen')->where('status','proses')->count();
+            $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by dosen')->get();
+            $ydmahas = DB::table('dokumen')->where('jenis','Yudisium')->where('status','selesai')->get();
+            return view('dosdetyudi',compact('ydm','ydmaha','ydmahas'));
+        }
 }
 
     public function detcuti()
-    { $from = date('2021-04-01');
+    { 
+        $from = date('2021-04-01');
         $to = date('2021-07-30');
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
-        return view('detcuti',compact('ct','ctmaha'));
+        $ctmahas = DB::table('dokumen')->where('jenis','Cuti')->where('status','selesai')->get();
+        
+        return view('dosdetcuti',compact('ct','ctmaha', 'ctmahas'));
 }
 
     public function detbst()
-    {$from = date('2021-04-01');
-        $to = date('2021-07-30');
-        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
-        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->get();
-        return view('detbst',compact('bs','bsmaha'));
+    {
+        if(Auth::user()->jabatan == "Pengajar"){
+            $from = date('2021-04-01');
+            $to = date('2021-07-30');
+            $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
+            $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','Proses')->get();
+            $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('status','selesai')->get();
+            return view('dosdetbst',compact('bs','bsmaha','bsmahas'));
+        }else{
+            $from = date('2021-04-01');
+            $to = date('2021-07-30');
+            $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
+            $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->get();
+            $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('status','selesai')->get();
+            return view('dosdetbst',compact('bs','bsmaha','bsmahas'));
+        }
 }
 
     public function detdispen()

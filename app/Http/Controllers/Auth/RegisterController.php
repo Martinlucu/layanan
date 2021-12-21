@@ -113,10 +113,11 @@ class RegisterController extends Controller
        
        return mhs::create([
             'nim' => $request->nim,
+            'no_ktp' => $request->no_ktp,
             'nama' => $request->nama,
             'email' => $request->email,
             'semester' => $request->semester,
-            'angkatan' => $request->angkatan,
+            'fakultas' => $request->fakultas,
             'jurusan' => $request->jurusan,
             'password' => Hash::make($request->password),
         ]);

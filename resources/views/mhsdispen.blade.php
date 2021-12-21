@@ -105,11 +105,11 @@
                     <div class="row">
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Awal</label>  
-                          <input type="date" name="absen" class="form-control" id="birthday" name="birthday" required>
+                          <input type="date" name="absen" class="form-control" required>
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Akhir</label>
-                          <input type="date" name="masuk" class="form-control" id="birthday" name="birthday" required>
+                          <input type="date" name="masuk" class="form-control" required>
                         </div>
                       </div>
                       </div>

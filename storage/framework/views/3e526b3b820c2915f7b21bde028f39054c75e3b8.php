@@ -68,7 +68,7 @@
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>E-mail</th>
+                      
                       <th>Jurusan</th>
                       <th>Jenis Dokumen</th>
                       <th>Status</th>
@@ -82,7 +82,7 @@
                     <?php $__currentLoopData = $lapdis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lapdis): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <td><?php echo e($lapdis->nim); ?></td>
 		              	<td><?php echo e($lapdis->nama_mhs); ?></td>
-			              <td><?php echo e($lapdis->email_mhs); ?></td>
+			            
 		              	<td><?php echo e($lapdis->jurusan); ?></td>
 		              	<td><?php echo e($lapdis->jenis); ?></td>
 		              	<td><?php echo e($lapdis->status); ?></td>

@@ -87,28 +87,28 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     });
 
 Route::group(['middleware' => 'auth:dosen'], function () {
-        Route::get('/doshome', 'dosenController@doshome');
+        Route::get('/doshome', 'DosenController@doshome');
         
         // Layanan
-        Route::get('/dosdetyudi', 'detailController@dosdetyudi');
+        Route::get('/dosdetyudi', 'DosenController@detyudi');
         
-        Route::get('/dosdetyudi/dosstjyudi/{id}', 'detailController@dosstjyudi');
+        Route::get('/dosdetyudi/dosstjyudi/{id}', 'DosenController@stjyudi');
         
-        Route::get('/dosyudi/dostlkyudi/{id}', 'detailController@dostlkyudi');
+        Route::get('/dosyudi/dostlkyudi/{id}', 'DosenController@tlkyudi');
         
         
-        Route::get('/dosdetdispen', 'detailController@dosdetdispen');
-        Route::get('/dosdetdispen/dosstjdis/{id}', 'detailController@dosstjdis');
-        Route::get('/dosdetdispen/dostlkdis/{id}', 'detailController@dostlkdis');
+        Route::get('/dosdetdispen', 'DosenController@detdispen');
+        Route::get('/dosdetdispen/dosstjdis/{id}', 'DosenController@stjdis');
+        Route::get('/dosdetdispen/dostlkdis/{id}', 'DosenController@tlkdis');
         
 
-        Route::get('/dosdetbst', 'detailController@dosdetbst');
-        Route::get('/dosdetbst/dosstjbst/{id}', 'detailController@dosstjbst');
-        Route::get('/dosdetbst/dostlkbst/{id}', 'detailController@dostlkbst');
-        Route::get('/kapdetbst/kaptlkbst/{id}', 'detailController@kaptlkbst');
+        Route::get('/dosdetbst', 'DosenController@detbst');
+        Route::get('/dosdetbst/dosstjbst/{id}', 'DosenController@stjbst');
+        Route::post('/dosdetbst/dostlkbst/{id}', 'DosenController@tlkbst');
+        
 
-        Route::get('/dosdetcuti', 'detailController@dosdetcuti');
-        Route::get('/dosdetcuti/dosstjcuti/{id}', 'detailController@dosstjcuti');
-        Route::get('/dosdetcuti/dostlkcuti/{id}', 'detailController@dostlkcuti');
+        Route::get('/dosdetcuti', 'DosenController@detcuti');
+        Route::get('/dosdetcuti/dosstjcuti/{id}', 'DosenController@stjcuti');
+        Route::get('/dosdetcuti/dostlkcuti/{id}', 'DosenController@stlkcuti');
       
     });

@@ -37,6 +37,7 @@ class detailController extends Controller
         $to = date('2021-07-30');
         $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
         $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
+        
         return view('detdispen',compact('dpmaha','dp'));
 }
 public function stjcuti($id)

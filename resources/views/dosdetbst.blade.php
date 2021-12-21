@@ -184,15 +184,15 @@
 		              	<td>{{ $b->alasan_pengajuan }}</td>
 		              	<td>{{ $b->created_at }}</td>
 		              	<td>
-                      <a class="btn btn-success" href="{{url('/dosdetbst/dosstjbst/'.$b->id)}}">Setuju</a>
+                      <a class="btn btn-success" href="{{url('/dosdetbst/stjbst/'.$b->id)}}">Setuju</a>
                       <!-- <a class="btn btn-danger" href="{{url('/dosdetbst/dostlkbst/'.$b->id) }}">Tolak -->
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                         Tolak
                       </button>
 
                       <div id="id01" class="modal">
-                          <form class="modal-content animate" action="/dosdetbst/dostlkbst/'.$b->id" method="post">
-                            
+                          <form class="modal-content animate" action="/dosdetbst/tlkbst/'.$b->id" method="post">
+                            @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
                               <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>

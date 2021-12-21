@@ -3,8 +3,8 @@
 <nav class="main-header navbar navbar-expand-md navbar-primary navbar-dark">
     <div class="container">
       <a href="<?php echo e(url('/aak')); ?>" class="navbar-brand">
-        <img src="<?php echo e(asset('dist/img/user.png')); ?>" class="brand-image img-circle elevation-3"
-             style="opacity: .8">
+       <!-- <img src="<?php echo e(asset('dist/img/user.png')); ?>" class="brand-image img-circle elevation-3"
+             style="opacity: .8"-->
       </a>
       
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,8 +27,8 @@
             <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
               <li><a href="<?php echo e(url('/detdispen')); ?>" class="dropdown-item">Dispensasi </a></li>
               <li><a href="<?php echo e(url('/detyudi')); ?>" class="dropdown-item">Yudisium</a></li>
-              <!-- <li><a href="<?php echo e(url('/detcuti')); ?>" class="dropdown-item">Cuti/BSS</a></li>
-              <li><a href="<?php echo e(url('/detbst')); ?>" class="dropdown-item">BST</a></li> -->
+               <li><a href="<?php echo e(url('/detcuti')); ?>" class="dropdown-item">Cuti/BSS</a></li>
+              <li><a href="<?php echo e(url('/detbst')); ?>" class="dropdown-item">BST</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">

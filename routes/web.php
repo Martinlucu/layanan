@@ -91,24 +91,19 @@ Route::group(['middleware' => 'auth:dosen'], function () {
         
         // Layanan
         Route::get('/dosdetyudi', 'DosenController@detyudi');
-        
-        Route::get('/dosdetyudi/dosstjyudi/{id}', 'DosenController@stjyudi');
-        
-        Route::get('/dosyudi/dostlkyudi/{id}', 'DosenController@tlkyudi');
-        
+        Route::get('/dosdetyudi/stjyudi/{id}', 'DosenController@stjyudi');
+        Route::get('/dosyudi/tlkyudi/{id}', 'DosenController@tlkyudi');
         
         Route::get('/dosdetdispen', 'DosenController@detdispen');
-        Route::get('/dosdetdispen/dosstjdis/{id}', 'DosenController@stjdis');
-        Route::get('/dosdetdispen/dostlkdis/{id}', 'DosenController@tlkdis');
+        Route::get('/dosdetdispen/stjdis/{id}', 'DosenController@stjdis');
+        Route::get('/dosdetdispen/tlkdis/{id}', 'DosenController@tlkdis');
         
-
         Route::get('/dosdetbst', 'DosenController@detbst');
-        Route::get('/dosdetbst/dosstjbst/{id}', 'DosenController@stjbst');
-        Route::post('/dosdetbst/dostlkbst/{id}', 'DosenController@tlkbst');
+        Route::get('/dosdetbst/stjbst/{id}', 'DosenController@stjbst');
+        Route::post('/dosdetbst/tlkbst/{id}', 'DosenController@tlkbst');
         
-
         Route::get('/dosdetcuti', 'DosenController@detcuti');
-        Route::get('/dosdetcuti/dosstjcuti/{id}', 'DosenController@stjcuti');
-        Route::get('/dosdetcuti/dostlkcuti/{id}', 'DosenController@stlkcuti');
-      
+        Route::get('/dosdetcuti/stjcuti/{id}', 'DosenController@stjcuti');
+        Route::get('/dosdetcuti/tlkcuti/{id}', 'DosenController@stlkcuti');
+
     });

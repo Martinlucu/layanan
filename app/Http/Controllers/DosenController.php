@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+// use App\Http\Controllers\Controller;
+// use App\Providers\RouteServiceProvider;
+// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+// use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -64,27 +64,31 @@ class DosenController extends Controller
             $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
             $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->get();
             $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('status','selesai')->get();
+            
             return view('dosdetbst',compact('bs','bsmaha','bsmahas'));
         }
 }
 
     public function detdispen()
-    {$from = date('2021-04-01');
-        $to = date('2021-07-30');
-        $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
-        $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
-        return view('detdispen',compact('dpmaha','dp'));
-}
-public function stjcuti($id)
-    {
-        $date = date("Y-m-d");
-        DB::table('dokumen')->where('id',$id)->update([
-            'status' => "selesai",
-            'updated_at'=> $date
-        ]);
+        {
+            $from = date('2021-04-01');
+            $to = date('2021-07-30');
+            $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
+            $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
+            $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','selesai')->get();
+            return view('dosdetdispen',compact('dpmaha','dp','dpmahas'));
+        }
     
-        return redirect('/detcuti');
-    }
+    public function stjcuti($id)
+        {
+            $date = date("Y-m-d");
+            DB::table('dokumen')->where('id',$id)->update([
+                'status' => "selesai",
+                'updated_at'=> $date
+            ]);
+        
+            return redirect('/dosdetcuti');
+        }
     
 public function stjbst($id)
 {
@@ -94,7 +98,7 @@ public function stjbst($id)
         'updated_at'=> $date
     ]);
 
-    return redirect('/detbst');
+    return redirect('/dosdetbst');
 }
 
 public function stjdis($id)
@@ -105,7 +109,7 @@ public function stjdis($id)
             'updated_at'=> $date
         ]);
     
-        return redirect('/detdispen');
+        return redirect('/dosdetdispen');
     }
     
 public function stjyudi($id)
@@ -116,7 +120,7 @@ public function stjyudi($id)
         'updated_at'=> $date
     ]);
 
-    return redirect('/detyudi');
+    return redirect('/dosdetyudi');
 }
     public function tlkcuti($id)
     {
@@ -126,7 +130,7 @@ public function stjyudi($id)
             'updated_at'=> $date
         ]);
     
-        return redirect('/detcuti');
+        return redirect('/dosdetcuti');
     }
     public function tlkdis($id)
     {
@@ -136,7 +140,7 @@ public function stjyudi($id)
             'updated_at'=> $date
         ]);
     
-        return redirect('/detdispen');
+        return redirect('/dosdetdispen');
     }
     public function tlkyudi($id)
     {
@@ -146,16 +150,27 @@ public function stjyudi($id)
             'updated_at'=> $date
         ]);
     
-        return redirect('/detyudi');
+        return redirect('/dosdetyudi');
     }
-    public function tlkbst($id)
+    public function tlkbst(Request $request, $id)
     {
-        $date = date("Y-m-d");
-        DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak",
+        if(Auth::user()->status == "pengajar"){
+            $date = date("Y-m-d");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by dosen",
+            'alasan_penolakan' => $request->alasan,
             'updated_at'=> $date
-        ]);
+            ]);
+        }else{
+            $date = date("Y-m-d");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by kaprodi",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+            ]);
+        }
+        
     
-        return redirect('/detbst');
+        return redirect('/dosdetbst');
     }
 }

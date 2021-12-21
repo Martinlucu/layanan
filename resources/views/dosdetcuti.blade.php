@@ -83,8 +83,8 @@
 		              	<td>{{ $c->jurusan }}</td>
 		              	<td>{{ $c->alasan_pengajuan }}</td>
 		              	<td>{{ $c->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/dosdetcuti/dosstjcuti/'.$c->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/dosdetcuti/dostlkcuti/'.$c->id) }}">Tolak
+		              	<td> <a class="btn btn-success" href="{{url('/dosdetcuti/stjcuti/'.$c->id)}}">Setuju
+                    <a class="btn btn-danger" href="{{url('/dosdetcuti/tlkcuti/'.$c->id) }}">Tolak
                   </td>
                     </tr>
                    

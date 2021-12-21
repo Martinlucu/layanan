@@ -168,39 +168,68 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>File</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($dpmaha as $d)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
-		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
-		              	<td>{{ $d->created_at }}</td>
-		              	<td> 
-                      <a class="btn btn-success" href="{{url('/dosdetdispen/dosstjdis/'.$d->id)}}">Setuju</a>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                        Tolak
-                      </button>
+                    @IF (Auth::user()->jabatan == "Pengajar")
+                      @foreach($dpmaha as $d)
+                      {{ csrf_field() }}
+                      <input type="hidden" name="id" value="{{ $d->id }}">
+                      <td>{{ $d->nim }}</td>
+                      <td>{{ $d->nama_mhs }}</td>
+                      <td>{{ $d->jurusan }}</td>
+                      <td>{{ $d->berkas }}</td>
+                      <td>{{ $d->created_at }}</td>
+                      <td> 
+                        <a class="btn btn-success" href="{{url('/dosdetdispen/stjdis/'.$d->id)}}">Setuju</a>
+                        <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
 
-                      <div id="id01" class="modal">
-                          <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
-                            @csrf
-                          <div class="container" style="padding:16px;">
-                              <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
-                              
-                              <button class ="btn btn-danger" type="submit">Submit</button>
-                      </div>
-                  </td>
-                    </tr>
-                    @endforeach
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                                <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                                
+                                <button class ="btn btn-danger" type="submit">Submit</button>
+                        </div>
+                    </td>
+                      </tr>
+                      @endforeach
+                    @ELSE
+                      @foreach($dpmahaa as $d)
+                      {{ csrf_field() }}
+                      <input type="hidden" name="id" value="{{ $d->id }}">
+                      <td>{{ $d->nim }}</td>
+                      <td>{{ $d->nama_mhs }}</td>
+                      <td>{{ $d->jurusan }}</td>
+                      <td>{{ $d->berkas }}</td>
+                      <td>{{ $d->created_at }}</td>
+                      <td> 
+                        <a class="btn btn-success" href="{{url('/dosdetdispen/stjdis/'.$d->id)}}">Setuju</a>
+                        <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                                <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                                
+                                <button class ="btn btn-danger" type="submit">Submit</button>
+                        </div>
+                    </td>
+                      </tr>
+                      @endforeach
+                    @ENDIF
     </table>
     </div>
 
@@ -212,7 +241,7 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Status</th>
                     
                     </tr>
@@ -221,16 +250,30 @@
                     <tr>
                     @foreach($dpmahas as $ds)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $ds->id }}">
-                    <td>{{ $ds->nim }}</td>
-		              	<td>{{ $ds->nama_mhs }}</td>
-		              	<td>{{ $ds->jurusan }}</td>
-		              	<td>{{ $ds->alasan_pengajuan }}</td>
-		              	<td>{{ $ds->created_at }}</td>
-		              	@IF ($ds->status == 'selesai')
-                      <td>Disetujui</td>
-                    @ELSE
-                      <td>Disetujui</td>
+                    @IF ($ds->status == 'setuju by dosen')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->alasan_pengajuan }}</td>
+                      <td>{{ $ds->created_at }}</td>
+                      <td>Disetujui oleh dosen</td>
+                    @ELSEIF ($ds->status == 'setuju by kaprodi')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->alasan_pengajuan }}</td>
+                      <td>{{ $ds->created_at }}</td>
+                      <td>Disetujui oleh kaprodi</td>
+                    @ELSEIF ($ds->status == 'selesai')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->alasan_pengajuan }}</td>
+                      <td>{{ $ds->created_at }}</td>
+                      <td>Selesai</td>
                     @ENDIF
                     
                     </tr>

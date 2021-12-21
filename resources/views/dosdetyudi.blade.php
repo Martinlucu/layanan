@@ -175,6 +175,7 @@
                   </thead>
                   <tbody>
                     <tr>
+                    @IF (Auth::user()->jabatan == "Pengajar")
                     @foreach($ydmaha as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
@@ -184,7 +185,7 @@
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
 		              	<td> 
-                      <a class="btn btn-success" href="{{url('/dosdetyudi/dosstjyudi/'.$yd->id)}}">Setuju</a>
+                      <a class="btn btn-success" href="{{url('/dosdetyudi/stjyudi/'.$yd->id)}}">Setuju</a>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                         Tolak
                       </button>
@@ -201,6 +202,34 @@
                   </td>
                     </tr>
                     @endforeach
+                    @ELSE
+                    @foreach($ydmahaa as $yd)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $yd->id }}">
+                    <td>{{ $yd->nim }}</td>
+		              	<td>{{ $yd->nama_mhs }}</td>
+		              	<td>{{ $yd->jurusan }}</td>
+		              	<td>{{ $yd->berkas }} </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td> 
+                      <a class="btn btn-success" href="{{url('/dosdetyudi/stjyudi/'.$yd->id)}}">Setuju</a>
+                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                        Tolak
+                      </button>
+
+                      <div id="id01" class="modal">
+                          <form role="form" class="modal-content animate" action="/dosdetyudi/tlkyudi/{{$yd->id}}" method="POST">
+                            @csrf
+                          <div class="container" style="padding:16px;">
+                              <label for="uname"><b>Alasan Penolakan :</b></label>
+                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                              
+                              <button class ="btn btn-danger" type="submit">Submit</button>
+                      </div>
+                  </td>
+                    </tr>
+                    @endforeach
+                    @ENDIF
     </table>
     </div>
 
@@ -221,16 +250,30 @@
                     <tr>
                     @foreach($ydmahas as $ys)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $ys->id }}">
-                    <td>{{ $ys->nim }}</td>
-		              	<td>{{ $ys->nama_mhs }}</td>
-		              	<td>{{ $ys->jurusan }}</td>
-		              	<td>{{ $ys->alasan_pengajuan }}</td>
-		              	<td>{{ $ys->created_at }}</td>
-		              	@IF ($ys->status == 'selesai')
-                      <td>Disetujui</td>
-                    @ELSE
-                      <td>Disetujui</td>
+                    @IF ($ys->status == 'setuju by dosen')
+                      <input type="hidden" name="id" value="{{ $ys->id }}">
+                      <td>{{ $ys->nim }}</td>
+                      <td>{{ $ys->nama_mhs }}</td>
+                      <td>{{ $ys->jurusan }}</td>
+                      <td>{{ $ys->alasan_pengajuan }}</td>
+                      <td>{{ $ys->created_at }}</td>
+                      <td>Disetujui oleh dosen</td>
+		                @ELSEIF ($ys->status == 'setuju by kaprodi')
+                      <input type="hidden" name="id" value="{{ $ys->id }}">
+                      <td>{{ $ys->nim }}</td>
+                      <td>{{ $ys->nama_mhs }}</td>
+                      <td>{{ $ys->jurusan }}</td>
+                      <td>{{ $ys->alasan_pengajuan }}</td>
+                      <td>{{ $ys->created_at }}</td>
+                      <td>Disetujui oleh kaprodi</td>
+                    @ELSEIF ($ys->status == 'selesai')
+                      <input type="hidden" name="id" value="{{ $ys->id }}">
+                      <td>{{ $ys->nim }}</td>
+                      <td>{{ $ys->nama_mhs }}</td>
+                      <td>{{ $ys->jurusan }}</td>
+                      <td>{{ $ys->alasan_pengajuan }}</td>
+                      <td>{{ $ys->created_at }}</td>
+                      <td>Selesai</td>
                     @ENDIF
                     
                     </tr>

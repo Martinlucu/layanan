@@ -48,37 +48,37 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($ydmaha->count()>0)
+        @IF ($ydmaha->count()>0 || $ydmahas->count()>0 || $ydmahass->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
-      <thead>
-        <tr>
-                      <th>NIM</th>
-                      <th>No. KTP</th>
-                      <th>Nama</th>
-                      <th>Jurusan</th>
-                      <th>File</th>
-                      <th>Tanggal Masuk</th>
-                      <th>Aksi</th>
-                    
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    @foreach($ydmaha as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-                    <td>{{ $yd->no_ktp }}</td>
-		              	<td>{{ $yd->nama_mhs }}</td>
-		              	<td>{{ $yd->jurusan }}</td>
-		              	<td>{{ $yd->berkas }} </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td>{{ $yd->status }}
-                    </tr>
-                    @endforeach
-    </table>
-    </div>
+          <table id="example" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+                          <th>NIM</th>
+                          <th>No. KTP</th>
+                          <th>Nama</th>
+                          <th>Jurusan</th>
+                          <th>File</th>
+                          <th>Tanggal Masuk</th>
+                          <th>Aksi</th>
+                        
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        @foreach($ydmaha as $yd)
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $yd->id }}">
+                        <td>{{ $yd->nim }}</td>
+                        <td>{{ $yd->no_ktp }}</td>
+                        <td>{{ $yd->nama_mhs }}</td>
+                        <td>{{ $yd->jurusan }}</td>
+                        <td>{{ $yd->berkas }} </td>
+                        <td>{{ $yd->created_at }}</td>
+                        <td>{{ $yd->status }}
+                        </tr>
+                        @endforeach
+        </table>
+      </div>
         @ELSE
         <div class="row">
         <div class="col-md-6">

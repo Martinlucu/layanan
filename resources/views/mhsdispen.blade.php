@@ -41,7 +41,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($dpmaha->count()>0)
+        @IF ($dpmaha->count()>0 || $dpmahas->count()>0 || $dpmahass->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
       <table id="example" class="table table-striped table-bordered">
       <thead>
@@ -50,7 +50,7 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>File</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Status</th>
                     
                     </tr>

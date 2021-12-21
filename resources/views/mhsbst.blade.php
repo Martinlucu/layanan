@@ -40,7 +40,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($bsmaha->count()>0)
+        @IF ($bsmaha->count()>0 || $bsmahas->count()>0 || $bsmahass->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
           <table id="example" class="table table-striped table-bordered">
           <thead>

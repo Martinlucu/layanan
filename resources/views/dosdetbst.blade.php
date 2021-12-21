@@ -175,6 +175,7 @@
                   </thead>
                   <tbody>
                     <tr>
+                    @IF (Auth::user()->jabatan == "Pengajar")
                     @foreach($bsmaha as $b)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $b->id }}">
@@ -205,6 +206,38 @@
                   </td>
                     </tr>
                     @endforeach
+                  @ELSE
+                  @foreach($bsmahaa as $b)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $b->id }}">
+                    <td>{{ $b->nim }}</td>
+		              	<td>{{ $b->nama_mhs }}</td>
+		              	<td>{{ $b->jurusan }}</td>
+		              	<td>{{ $b->alasan_pengajuan }}</td>
+		              	<td>{{ $b->created_at }}</td>
+		              	<td>
+                      <a class="btn btn-success" href="{{url('/dosdetbst/stjbst/'.$b->id)}}">Setuju</a>
+                      
+                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                        Tolak
+                      </button>
+
+                      <div id="id01" class="modal">
+                          <form role="form" class="modal-content animate" action="/dosdetbst/tlkbst/{{$b->id}}" method="POST">
+                            @csrf
+                          <div class="container" style="padding:16px;">
+                              <label for="uname"><b>Alasan Penolakan :</b></label>
+                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                              
+                              <button class ="btn btn-danger" type="submit">Submit</button>
+                      </div>
+                          </form>
+                      </div>
+
+                  </td>
+                    </tr>
+                    @endforeach
+                  @ENDIF
     </table>
     </div>
 
@@ -225,16 +258,30 @@
                     <tr>
                     @foreach($bsmahas as $bs)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $bs->id }}">
-                    <td>{{ $bs->nim }}</td>
-		              	<td>{{ $bs->nama_mhs }}</td>
-		              	<td>{{ $bs->jurusan }}</td>
-		              	<td>{{ $bs->alasan_pengajuan }}</td>
-		              	<td>{{ $bs->created_at }}</td>
-		              	@IF ($bs->status == 'selesai')
-                      <td>Disetujui</td>
-                    @ELSE
-                      <td>Disetujui</td>
+                    @IF ($bs->status == 'setuju by dosen')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at }}</td>
+                      <td>Disetujui oleh dosen</td>
+                    @ELSEIF ($bs->status == 'setuju by kaprodi')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at }}</td>
+                      <td>Disetujui oleh kaprodi</td>
+                    @ELSEIF ($bs->status == 'selesai')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at }}</td>
+                      <td>Selesai</td>
                     @ENDIF
                     
                     </tr>

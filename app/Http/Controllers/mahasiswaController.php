@@ -16,35 +16,50 @@ class mahasiswaController extends Controller
     public function mhscuti()
     {
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
-        $ctdos = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
+        $ctt = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->count();
+        $cttt = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by kaprodi')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
+        $ctmahas = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->get();
+        $ctmahass = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by aak')->get();
         
-        return view('mhscuti', compact('ct', 'ctdos', 'ctmaha'));
+        return view('mhscuti', compact('ct', 'ctt', 'ctt', 'ctmaha', 'ctmahas', 'ctmahass'));
     }
     public function mhsdispen()
     {
     	$dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
+    	$dpp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->count();
+    	$dppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->count();
         $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
+        $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
+        $dpmahass = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->get();
         
-        return view('mhsdispen', compact('dp', 'dpmaha'));
+        return view('mhsdispen', compact('dp', 'dpp', 'dppp', 'dpmaha', 'dpmahas', 'dpmahass'));
     }
     public function mhsbst()
     {
     	$bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
-        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','Proses')->where('nim', Auth::user()->nim)->get();
+    	$bss = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->count();
+    	$bsss = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by aak')->count();
+        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->where('nim', Auth::user()->nim)->get();
+        $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->where('nim', Auth::user()->nim)->get();
+        $bsmahass = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by aak')->where('nim', Auth::user()->nim)->get();
         
-        return view('mhsbst', compact('bs', 'bsmaha'));
+        return view('mhsbst', compact('bs', 'bss', 'bsss', 'bsmaha', 'bsmahas', 'bsmahass'));
     }
     public function mhsyudi()
     {
     	$ydm = DB::table('dokumen')->where('status','proses')->count();
+    	$ydmm = DB::table('dokumen')->where('status','setuju by dosen')->count();
+    	$ydmmm = DB::table('dokumen')->where('status','setuju by kaprodi')->count();
         $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
+        $ydmahas = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by dosen')->get();
+        $ydmahass = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by kaprodi')->get();
         
-        return view('mhsyudi', compact('ydm', 'ydmaha'));
+        return view('mhsyudi', compact('ydm', 'ydmm','ydmmm', 'ydmaha', 'ydmahas', 'ydmahass'));
     }
 
     public function createdispensasi(Request $request){
-        $date = date("Y-m-d");
+        $date = Carbon::now();
         $s = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('sakit');
         $i = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('ijin');
         $a = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('alpha');
@@ -57,8 +72,6 @@ class mahasiswaController extends Controller
             DB::table('dokumen')->insert([
                 'nim'           => Auth::user()->nim,
                 'nama_mhs'      => Auth::user()->nama,
-                'tempat_lahir'  => Auth::user()->tempat_lahir,
-                'tanggal_lahir' => Auth::user()->tanggal_lahir,
                 'no_telp'       => Auth::user()->no_telp,
                 'email_mhs'     => Auth::user()->email,
                 'semester'      => Auth::user()->semester,
@@ -69,7 +82,7 @@ class mahasiswaController extends Controller
                 'tanggal_masuk' => $request->masuk,
                 'jenis'         => 'Dispensasi',
                 'berkas'        => $nama_berkas,
-                'status'        => 'Proses',
+                'status'        => 'proses',
                 'created_at' => $date
             ]);
             
@@ -87,7 +100,7 @@ class mahasiswaController extends Controller
     }
 
     public function createyudi(Request $request){
-        $date = date("Y-m-d");
+        $date = Carbon::now();
         $foto = $request->foto;
         $toefl = $request->toefl;
         $ijazah_sma = $request->ijazah_sma;
@@ -108,12 +121,9 @@ class mahasiswaController extends Controller
             'nim'           => Auth::user()->nim,
             'no_ktp'        => Auth::user()->no_ktp,
             'nama_mhs'      => Auth::user()->nama,
-            'tempat_lahir'  => Auth::user()->tempat_lahir,
-            'tanggal_lahir' => Auth::user()->tanggal_lahir,
             'no_telp'       => Auth::user()->no_telp,
             'email_mhs'     => Auth::user()->email,
             'semester'      => Auth::user()->semester,
-            'angkatan'      => Auth::user()->angkatan,
             'jurusan'       => Auth::user()->jurusan,
             'fakultas'      => Auth::user()->fakultas,
             'jenis'         => 'Yudisium',
@@ -124,8 +134,8 @@ class mahasiswaController extends Controller
             'berkas'        => $nama_kk,
             'berkas'        => $nama_ktm,
             'berkas'        => $nama_ktp,
-            'status' => 'Proses',
-            'created_at' => $date
+            'status'        => 'proses',
+            'created_at'    => $date
         ]);
         
        
@@ -151,7 +161,7 @@ class mahasiswaController extends Controller
 
     
     public function createbss(Request $request){
-        $date = date("Y-m-d");
+        $date = date(Carbon::now());
         $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
         $tanggal_sekarang = new Carbon();
         $masuk_kuliah = new Carbon(Auth::user()->tanggal_masuk);
@@ -164,8 +174,6 @@ class mahasiswaController extends Controller
             DB::table('dokumen')->insert([
                 'nim'               => Auth::user()->nim,
                 'nama_mhs'          => Auth::user()->nama,
-                'tempat_lahir'      => Auth::user()->tempat_lahir,
-                'tanggal_lahir'     => Auth::user()->tanggal_lahir,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
                 'semester'          => Auth::user()->semester,
@@ -174,7 +182,7 @@ class mahasiswaController extends Controller
                 'fakultas'          => Auth::user()->fakultas,
                 'alasan_pengajuan'  => $request->alasan,
                 'jenis'             => 'Cuti',
-                'status'            => 'Proses',
+                'status'            => 'proses',
                 'created_at'            => $date,                
             ]);
 
@@ -198,12 +206,10 @@ class mahasiswaController extends Controller
 
 
     public function createbst(Request $request){
-        $date = date("Y-m-d"); 
+        $date = date(Carbon::now()); 
         DB::table('dokumen')->insert([
             'nim'               => Auth::user()->nim,
             'nama_mhs'          => Auth::user()->nama,
-            'tempat_lahir'      => Auth::user()->tempat_lahir,
-            'tanggal_lahir'     => Auth::user()->tanggal_lahir,
             'no_telp'           => Auth::user()->no_telp,
             'email_mhs'         => Auth::user()->email,
             'semester'          => Auth::user()->semester,
@@ -212,7 +218,7 @@ class mahasiswaController extends Controller
             'fakultas'          => Auth::user()->fakultas,
             'alasan_pengajuan'  => $request->alasan,
             'jenis'             => 'BST',
-            'status'            => 'Proses',
+            'status'            => 'proses',
             'created_at'            => $date
         ]);
 

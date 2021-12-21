@@ -222,16 +222,30 @@
                     <tr>
                     @foreach($ctmahas as $cs)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $cs->id }}">
-                    <td>{{ $cs->nim }}</td>
-		              	<td>{{ $cs->nama_mhs }}</td>
-		              	<td>{{ $cs->jurusan }}</td>
-		              	<td>{{ $cs->alasan_pengajuan }}</td>
-		              	<td>{{ $cs->created_at }}</td>
-		              	@IF ($cs->status == 'selesai')
-                      <td>Disetujui</td>
-                    @ELSE
-                      <td>Disetujui</td>
+                    @IF ($cs->status == 'setuju by dosen')
+                      <input type="hidden" name="id" value="{{ $cs->id }}">
+                      <td>{{ $cs->nim }}</td>
+                      <td>{{ $cs->nama_mhs }}</td>
+                      <td>{{ $cs->jurusan }}</td>
+                      <td>{{ $cs->alasan_pengajuan }}</td>
+                      <td>{{ $cs->created_at }}</td>
+                      <td>Disetujui oleh dosen</td>
+		              	@ELSEIF ($cs->status == 'setuju by kaprodi')
+                      <input type="hidden" name="id" value="{{ $cs->id }}">
+                      <td>{{ $cs->nim }}</td>
+                      <td>{{ $cs->nama_mhs }}</td>
+                      <td>{{ $cs->jurusan }}</td>
+                      <td>{{ $cs->alasan_pengajuan }}</td>
+                      <td>{{ $cs->created_at }}</td>
+                      <td>Disetujui oleh kaprodi</td>
+                    @ELSEIF ($cs->status == 'selesai')
+                      <input type="hidden" name="id" value="{{ $cs->id }}">
+                      <td>{{ $cs->nim }}</td>
+                      <td>{{ $cs->nama_mhs }}</td>
+                      <td>{{ $cs->jurusan }}</td>
+                      <td>{{ $cs->alasan_pengajuan }}</td>
+                      <td>{{ $cs->created_at }}</td>
+                      <td>Selesai</td>
                     @ENDIF
                     
                     </tr>

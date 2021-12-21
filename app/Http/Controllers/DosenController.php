@@ -81,88 +81,153 @@ class DosenController extends Controller
     
     public function stjcuti($id)
         {
-            $date = date("Y-m-d");
-            DB::table('dokumen')->where('id',$id)->update([
-                'status' => "selesai",
+            if(Auth::user()->status == "Pengajar"){
+                $date = date("Y-m-d H:i:s");
+                DB::table('dokumen')->where('id',$id)->update([
+                'status' => "setuju by dosen",
                 'updated_at'=> $date
-            ]);
+                ]);
+            }else{
+                $date = date("Y-m-d H:i:s");
+                DB::table('dokumen')->where('id',$id)->update([
+                'status' => "setuju by kaprodi",
+                'updated_at'=> $date
+                ]);
+            }
+            
         
             return redirect('/dosdetcuti');
         }
     
 public function stjbst($id)
 {
-    $date = date("Y-m-d");
-    DB::table('dokumen')->where('id',$id)->update([
-        'status' => "selesai",
+    if(Auth::user()->status == "Pengajar"){
+        $date = date("Y-m-d H:i:s");
+        DB::table('dokumen')->where('id',$id)->update([
+        'status' => "setuju by dosen",
+        'updated_at'=> $date
+        ]);
+    }else{
+        $date = date("Y-m-d H:i:s");
+        DB::table('dokumen')->where('id',$id)->update([
+        'status' => "setuju by kaprodi",
         'updated_at'=> $date
     ]);
+    }
+    
 
     return redirect('/dosdetbst');
 }
 
 public function stjdis($id)
     {
-        $date = date("Y-m-d");
-        DB::table('dokumen')->where('id',$id)->update([
-            'status' => "selesai",
+        if(Auth::user()->status == "Pengajar"){
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "setuju by dosen",
             'updated_at'=> $date
-        ]);
-    
+            ]);
+        }else{
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "setuju by kaprodi",
+            'updated_at'=> $date
+            ]);
+        }
+        
         return redirect('/dosdetdispen');
     }
     
 public function stjyudi($id)
 {
-    $date = date("Y-m-d");
-    DB::table('dokumen')->where('id',$id)->update([
-        'status' => "selesai",
+    if(Auth::user()->status == "Pengajar"){
+        $date = date("Y-m-d H:i:s");
+        DB::table('dokumen')->where('id',$id)->update([
+        'status' => "setuju by dosen",
         'updated_at'=> $date
-    ]);
-
+        ]);
+    }else{
+        $date = date("Y-m-d H:i:s");
+        DB::table('dokumen')->where('id',$id)->update([
+        'status' => "setuju by kaprodi",
+        'updated_at'=> $date
+        ]);
+    }
+    
     return redirect('/dosdetyudi');
 }
-    public function tlkcuti($id)
+    public function tlkcuti(Request $request, $id)
     {
-        $date = date("Y-m-d");
-        DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak",
-            'updated_at'=> $date
-        ]);
-    
-        return redirect('/dosdetcuti');
-    }
-    public function tlkdis($id)
-    {
-        $date = date("Y-m-d");
-        DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak",
-            'updated_at'=> $date
-        ]);
-    
-        return redirect('/dosdetdispen');
-    }
-    public function tlkyudi($id)
-    {
-        $date = date("Y-m-d");
-        DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak",
-            'updated_at'=> $date
-        ]);
-    
-        return redirect('/dosdetyudi');
-    }
-    public function tlkbst(Request $request, $id)
-    {
-        if(Auth::user()->status == "pengajar"){
-            $date = date("Y-m-d");
+        if(Auth::user()->status == "Pengajar"){
+            $date = date("Y-m-d H:i:s");
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by dosen",
             'alasan_penolakan' => $request->alasan,
             'updated_at'=> $date
             ]);
         }else{
-            $date = date("Y-m-d");
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by kaprodi",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+            ]);
+        }
+        
+        return redirect('/dosdetcuti');
+    }
+    public function tlkdis(Request $request, $id)
+    {
+        if(Auth::user()->status == "Pengajar"){
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by dosen",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+        ]);
+        }else{
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by kaprodi",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+        ]);
+        }
+        
+        return redirect('/dosdetdispen');
+    }
+    public function tlkyudi(Request $request, $id)
+    {
+        if(Auth::user()->status == "Pengajar"){
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by dosen",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+        ]);
+        }else{
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by kaprodi",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+        ]);
+        }
+        
+        return redirect('/dosdetyudi');
+    }
+
+    public function tlkbst(Request $request, $id)
+    {
+        if(Auth::user()->status == "Pengajar"){
+            $date = date("Y-m-d H:i:s");
+            DB::table('dokumen')->where('id',$id)->update([
+            'status' => "ditolak by dosen",
+            'alasan_penolakan' => $request->alasan,
+            'updated_at'=> $date
+            ]);
+        }else{
+            $date = date("Y-m-d H:i:s");
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by kaprodi",
             'alasan_penolakan' => $request->alasan,

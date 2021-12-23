@@ -119,8 +119,11 @@ class mahasiswaController extends Controller
 
         DB::table('dokumen')->insert([
             'nim'           => Auth::user()->nim,
-            'no_ktp'        => Auth::user()->no_ktp,
             'nama_mhs'      => Auth::user()->nama,
+            'tempat_lahir'      => Auth::user()->nama,
+            'tanggal_lahir'      => Auth::user()->nama,
+            'no_ktp'        => Auth::user()->no_ktp,
+            'alamat'        => Auth::user()->alamat,
             'no_telp'       => Auth::user()->no_telp,
             'email_mhs'     => Auth::user()->email,
             'semester'      => Auth::user()->semester,

@@ -82,8 +82,7 @@
                     @foreach($lapdis as $lapdis)
                     <td>{{ $lapdis->nim }}</td>
 		              	<td>{{ $lapdis->nama_mhs }}</td>
-			             
-		              	<td>{{ $lapdis->jurusan }}</td>
+			              <td>{{ $lapdis->jurusan }}</td>
 		              	<td>{{ $lapdis->jenis }}</td>
 		              	<td>{{ $lapdis->status }}</td>
 		              	<td>{{ $lapdis->created_at }}</td>

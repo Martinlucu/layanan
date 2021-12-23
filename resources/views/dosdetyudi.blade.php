@@ -36,7 +36,7 @@
       } */
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea{
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -160,15 +160,22 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-    <div class="table-responsive" style="padding:20px;width: 98%;">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+        <div class="table-responsive" style="padding:20px;width: 100%;">
       <table id="example" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>Jurusan</th>
-                      <th>File</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tempat lahir</th>
+                      <th>Tanggal lahir</th>
+                      <th>No. KTP</th>
+                      <th>Alamat</th>
+                      <th>No. Telp</th>
+                      <th>Email Dinamika</th>
+                      <th>Berkas</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
                     </tr>
@@ -181,7 +188,12 @@
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                     <td>{{ $yd->nim }}</td>
 		              	<td>{{ $yd->nama_mhs }}</td>
-		              	<td>{{ $yd->jurusan }}</td>
+                    <td>{{ $yd->tempat_lahir }}</td>
+                    <td>{{ $yd->tanggal_lahir }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
+                    <td>{{ $yd->alamat }}</td>
+                    <td>{{ $yd->no_telp }}</td>
+                    <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
 		              	<td> 
@@ -195,8 +207,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
-                              
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
                   </td>
@@ -208,7 +220,12 @@
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                     <td>{{ $yd->nim }}</td>
 		              	<td>{{ $yd->nama_mhs }}</td>
-		              	<td>{{ $yd->jurusan }}</td>
+                    <td>{{ $yd->tempat_lahir }}</td>
+                    <td>{{ $yd->tanggal_lahir }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
+                    <td>{{ $yd->alamat }}</td>
+                    <td>{{ $yd->no_telp }}</td>
+                    <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
 		              	<td> 
@@ -222,8 +239,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
-                              
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
                   </td>
@@ -232,17 +249,27 @@
                     @ENDIF
     </table>
     </div>
-
-    <div class="table-responsive" style="padding:20px;width: 98%;">
+        </div>
+      </div>
+     
+    
+    <div class="row justify-content-center">
+        <div class="col-auto">
+        <div class="table-responsive" style="padding:20px;width: 100%;">
       <table id="example" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>Jurusan</th>
-                      <th>Alasan Pengajuan</th>
+                      <th>Tempat lahir</th>
+                      <th>Tanggal lahir</th>
+                      <th>No. KTP</th>
+                      <th>Alamat</th>
+                      <th>No. Telp</th>
+                      <th>Email Dinamika</th>
                       <th>Tanggal Masuk</th>
                       <th>Status</th>
+                      <th>Tanggal Diproses</th>
                     
                     </tr>
                   </thead>
@@ -254,26 +281,80 @@
                       <input type="hidden" name="id" value="{{ $ys->id }}">
                       <td>{{ $ys->nim }}</td>
                       <td>{{ $ys->nama_mhs }}</td>
-                      <td>{{ $ys->jurusan }}</td>
-                      <td>{{ $ys->alasan_pengajuan }}</td>
+                      <td>{{ $ys->tempat_lahir }}</td>
+                      <td>{{ $ys->tanggal_lahir }}</td>
+                      <td>{{ $ys->no_ktp }}</td>
+                      <td>{{ $ys->alamat }}</td>
+                      <td>{{ $ys->no_telp }}</td>
+                      <td>{{ $ys->email_mhs }}</td>
                       <td>{{ $ys->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
+                      <td>{{ $ys->updated_at}}</td>
 		                @ELSEIF ($ys->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $ys->id }}">
                       <td>{{ $ys->nim }}</td>
                       <td>{{ $ys->nama_mhs }}</td>
-                      <td>{{ $ys->jurusan }}</td>
-                      <td>{{ $ys->alasan_pengajuan }}</td>
+                      <td>{{ $ys->tempat_lahir }}</td>
+                      <td>{{ $ys->tanggal_lahir }}</td>
+                      <td>{{ $ys->no_ktp }}</td>
+                      <td>{{ $ys->alamat }}</td>
+                      <td>{{ $ys->no_telp }}</td>
+                      <td>{{ $ys->email_mhs }}</td>
                       <td>{{ $ys->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $ys->updated_at}}</td>
                     @ELSEIF ($ys->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $ys->id }}">
                       <td>{{ $ys->nim }}</td>
                       <td>{{ $ys->nama_mhs }}</td>
-                      <td>{{ $ys->jurusan }}</td>
-                      <td>{{ $ys->alasan_pengajuan }}</td>
+                      <td>{{ $ys->tempat_lahir }}</td>
+                      <td>{{ $ys->tanggal_lahir }}</td>
+                      <td>{{ $ys->no_ktp }}</td>
+                      <td>{{ $ys->alamat }}</td>
+                      <td>{{ $ys->no_telp }}</td>
+                      <td>{{ $ys->email_mhs }}</td>
                       <td>{{ $ys->created_at }}</td>
                       <td>Selesai</td>
+                      <td>{{ $ys->updated_at}}</td>
+                      @ELSEIF ($ys->status == 'ditolak by dosen')
+                      <input type="hidden" name="id" value="{{ $ys->id }}">
+                      <td>{{ $ys->nim }}</td>
+                      <td>{{ $ys->nama_mhs }}</td>
+                      <td>{{ $ys->tempat_lahir }}</td>
+                      <td>{{ $ys->tanggal_lahir }}</td>
+                      <td>{{ $ys->no_ktp }}</td>
+                      <td>{{ $ys->alamat }}</td>
+                      <td>{{ $ys->no_telp }}</td>
+                      <td>{{ $ys->email_mhs }}</td>
+                      <td>{{ $ys->created_at }}</td>
+                      <td>Ditolak oleh Dosen karena {{$ys->alasan_penolakan}}</td>
+                      <td>{{ $ys->updated_at}}</td>
+                      @ELSEIF ($ys->status == 'ditolak by kaprodi')
+                      <input type="hidden" name="id" value="{{ $ys->id }}">
+                      <td>{{ $ys->nim }}</td>
+                      <td>{{ $ys->nama_mhs }}</td>
+                      <td>{{ $ys->tempat_lahir }}</td>
+                      <td>{{ $ys->tanggal_lahir }}</td>
+                      <td>{{ $ys->no_ktp }}</td>
+                      <td>{{ $ys->alamat }}</td>
+                      <td>{{ $ys->no_telp }}</td>
+                      <td>{{ $ys->email_mhs }}</td>
+                      <td>{{ $ys->created_at }}</td>
+                      <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$ys->alasan_penolakan}}</td>
+                      <td>{{ $ys->updated_at}}</td>
+                      @ELSEIF ($ys->status == 'ditolak by aak')
+                      <input type="hidden" name="id" value="{{ $ys->id }}">
+                      <td>{{ $ys->nim }}</td>
+                      <td>{{ $ys->nama_mhs }}</td>
+                      <td>{{ $ys->tempat_lahir }}</td>
+                      <td>{{ $ys->tanggal_lahir }}</td>
+                      <td>{{ $ys->no_ktp }}</td>
+                      <td>{{ $ys->alamat }}</td>
+                      <td>{{ $ys->no_telp }}</td>
+                      <td>{{ $ys->email_mhs }}</td>
+                      <td>{{ $ys->created_at }}</td>
+                      <td>Ditolak oleh AAK karena {{$ys->alasan_penolakan}}</td>
+                      <td>{{ $ys->updated_at}}</td>
                     @ENDIF
                     
                     </tr>
@@ -281,6 +362,9 @@
                     @endforeach
     </table>
     </div>
+        </div>
+      </div>
+    
     </div></div>
     <!-- /.content -->
   </div>
@@ -304,6 +388,17 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- Data table -->
 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
 @endsection

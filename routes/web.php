@@ -44,19 +44,19 @@ Route::group(['middleware' => 'auth:aak'], function () {
 
     Route::get('/detyudi', 'detailController@detyudi');
     Route::get('/detyudi/stjyudi/{id}', 'detailController@stjyudi');
-    Route::get('/detyudi/tlkyudi/{id}', 'detailController@tlkyudi');
+    Route::post('/detyudi/tlkyudi/{id}', 'detailController@tlkyudi');
 
     Route::get('/detdispen', 'detailController@detdispen');
     Route::get('/detdispen/stjdis/{id}', 'detailController@stjdis');
-    Route::get('/detdispen/tlkdis/{id}', 'detailController@tlkdis');
+    Route::post('/detdispen/tlkdis/{id}', 'detailController@tlkdis');
     
     Route::get('/detbst', 'detailController@detbst');
     Route::get('/detbst/stjbst/{id}', 'detailController@stjbst');
-    Route::get('/detbst/tlkbst/{id}', 'detailController@tlkbst');
+    Route::post('/detbst/tlkbst/{id}', 'detailController@tlkbst');
     
     Route::get('/detcuti', 'detailController@detcuti');
     Route::get('/detcuti/stjcuti/{id}', 'detailController@stjcuti');
-    Route::get('/detcuti/tlkcuti/{id}', 'detailController@tlkcuti');
+    Route::post('/detcuti/tlkcuti/{id}', 'detailController@tlkcuti');
     
     Route::get('/setting', 'settingController@setting');
     Route::post('/updateset', 'settingController@updateset');
@@ -92,11 +92,11 @@ Route::group(['middleware' => 'auth:dosen'], function () {
         // Layanan
         Route::get('/dosdetyudi', 'DosenController@detyudi');
         Route::get('/dosdetyudi/stjyudi/{id}', 'DosenController@stjyudi');
-        Route::get('/dosyudi/tlkyudi/{id}', 'DosenController@tlkyudi');
+        Route::post('/dosdetyudi/tlkyudi/{id}', 'DosenController@tlkyudi');
         
         Route::get('/dosdetdispen', 'DosenController@detdispen');
         Route::get('/dosdetdispen/stjdis/{id}', 'DosenController@stjdis');
-        Route::get('/dosdetdispen/tlkdis/{id}', 'DosenController@tlkdis');
+        Route::post('/dosdetdispen/tlkdis/{id}', 'DosenController@tlkdis');
         
         Route::get('/dosdetbst', 'DosenController@detbst');
         Route::get('/dosdetbst/stjbst/{id}', 'DosenController@stjbst');
@@ -104,6 +104,6 @@ Route::group(['middleware' => 'auth:dosen'], function () {
         
         Route::get('/dosdetcuti', 'DosenController@detcuti');
         Route::get('/dosdetcuti/stjcuti/{id}', 'DosenController@stjcuti');
-        Route::get('/dosdetcuti/tlkcuti/{id}', 'DosenController@stlkcuti');
+        Route::post('/dosdetcuti/tlkcuti/{id}', 'DosenController@tlkcuti');
 
     });

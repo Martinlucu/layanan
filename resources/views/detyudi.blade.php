@@ -30,10 +30,110 @@
 });
     </script>
 
-    <style>
-      btn{
+<style>
+      /* btn{
         color:white;
-      }
+      } */
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+          background-color: #04AA6D;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+
+        button:hover {
+          opacity: 0.8;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+
+        
+
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+          position: absolute;
+          right: 25px;
+          top: 0;
+          color: #000;
+          font-size: 35px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: red;
+          cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+        }
+          
+        @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+            display: block;
+            float: none;
+          }
+          .cancelbtn {
+            width: 100%;
+          }
+        }
     </style>
 </head>
 
@@ -65,6 +165,7 @@
       <thead>
         <tr>
                       <th>NIM</th>
+                      <th>No. KTP</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>File</th>
@@ -79,12 +180,25 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                     <td>{{ $yd->nim }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
 		              	<td>{{ $yd->nama_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju
-                    <a class="btn btn-danger" href="{{url('/detyudi/tlkyudi/'.$yd->id) }}">Tolak
+		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju</a>
+                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/detdispen/tlkdis/{{$yd->id}}" method="POST">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                                <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                                
+                                <button class ="btn btn-danger" type="submit">Submit</button>
+                        </div>
                   </td>
                     </tr>
                     @endforeach
@@ -113,6 +227,17 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- Data table -->
 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
 @endsection

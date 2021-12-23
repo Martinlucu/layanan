@@ -36,7 +36,7 @@
       } */
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea {
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -195,8 +195,8 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
-                                
+                                <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                                <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                     </td>
@@ -222,7 +222,8 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                                <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                                <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -240,9 +241,12 @@
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
-                      <th>Alasan Pengajuan</th>
+                      <th>Fakultas</th>
+                      <th>Tanggal Awal</th>
+                      <th>Tanggal Akhir</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Status</th>
+                      <th>Tanggal Diproses</th>
                     
                     </tr>
                   </thead>
@@ -255,26 +259,68 @@
                       <td>{{ $ds->nim }}</td>
                       <td>{{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
-                      <td>{{ $ds->alasan_pengajuan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
+                      <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
                       <td>{{ $ds->nim }}</td>
                       <td>{{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
-                      <td>{{ $ds->alasan_pengajuan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
                       <td>{{ $ds->nim }}</td>
                       <td>{{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
-                      <td>{{ $ds->alasan_pengajuan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Selesai</td>
-                    @ENDIF
+                      <td>{{ $ds->updated_at}}</td>
+                      @ELSEIF ($ds->status == 'ditolak by dosen')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at}}</td>
+                      <td>Ditolak karena {{$ds->alasan_penolakan}}</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ELSEIF ($ds->status == 'ditolak by kaprodi')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at}}</td>
+                      <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$ds->alasan_penolakan}}</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ELSEIF ($ds->status == 'ditolak by aak')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at}}</td>
+                      <td>Ditolak oleh AAK karena {{$ds->alasan_penolakan}}</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ENDIF
                     
                     </tr>
                    
@@ -304,6 +350,17 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- Data table -->
 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
 @endsection

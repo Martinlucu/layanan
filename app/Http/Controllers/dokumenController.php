@@ -23,9 +23,9 @@ class dokumenController extends Controller
             $gjlakhir=$s->gjlakhir;
             $gnpakhir=$s->gnpakhir;
         } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
-        $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
         } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
-            $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+            $lapdis = DB::table('dokumen')->where('jenis','Dispensasi')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
         }
         return view('dokdispen',compact('lapdis'));
 }
@@ -38,9 +38,9 @@ public function dokcuti()
         $gjlakhir=$s->gjlakhir;
         $gnpakhir=$s->gnpakhir;
     } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
-    $lapdis = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+    $lapdis = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
     } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
-        $lapdis = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        $lapdis = DB::table('dokumen')->where('jenis','Cuti')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
     }
     return view('dokcuti',compact('lapdis'));
 }
@@ -53,9 +53,9 @@ public function dokbst()
             $gjlakhir=$s->gjlakhir;
             $gnpakhir=$s->gnpakhir;
         } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
-        $lapdis = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        $lapdis = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
         } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
-            $lapdis = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+            $lapdis = DB::table('dokumen')->where('jenis','BST')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
         }
     return view('dokbst',compact('lapdis'));
 }
@@ -68,9 +68,9 @@ public function dokyudi()
             $gjlakhir=$s->gjlakhir;
             $gnpakhir=$s->gnpakhir;
         } if(Carbon::now()>=$gjlawal && Carbon::now()<=$gjlakhir){
-        $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+        $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at', [$gjlawal, $gjlakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
         } elseif(Carbon::now()>=$gnpawal && Carbon::now()<=$gnpakhir){
-            $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak'])->orderBy('jurusan','asc')->get();
+            $lapdis = DB::table('dokumen')->where('jenis','Yudisium')->whereBetween('created_at', [$gnpawal, $gnpakhir])->wherein('status',['selesai','ditolak by aak'])->orderBy('jurusan','asc')->get();
         }
     return view('dokyudi',compact('lapdis'));
 }

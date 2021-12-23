@@ -36,7 +36,7 @@
       } */
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea {
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -194,7 +194,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -246,8 +247,16 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Selesai</td>
+                    @ELSEIF ($cs->status == 'ditolak by dosen')
+                      <input type="hidden" name="id" value="{{ $cs->id }}">
+                      <td>{{ $cs->nim }}</td>
+                      <td>{{ $cs->nama_mhs }}</td>
+                      <td>{{ $cs->jurusan }}</td>
+                      <td>{{ $cs->alasan_pengajuan }}</td>
+                      <td>{{ $cs->created_at}}</td>
+                      <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$cs->alasan_penolakan}}</td>
+                      <td>{{ $cs->updated_at}}</td>
                     @ENDIF
-                    
                     </tr>
                    
                     @endforeach
@@ -276,6 +285,17 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- Data table -->
 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
 @endsection

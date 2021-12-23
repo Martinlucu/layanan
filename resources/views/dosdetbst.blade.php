@@ -36,7 +36,7 @@
       } */
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea {
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -196,7 +196,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -227,7 +228,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -251,6 +253,7 @@
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
                       <th>Status</th>
+                      <th>Tanggal Diproses</th>
                     
                     </tr>
                   </thead>
@@ -266,6 +269,7 @@
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
+                      <td>{{ $bs->updated_at}}</td>
                     @ELSEIF ($bs->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
                       <td>{{ $bs->nim }}</td>
@@ -274,6 +278,7 @@
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $bs->updated_at}}</td>
                     @ELSEIF ($bs->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
                       <td>{{ $bs->nim }}</td>
@@ -282,10 +287,28 @@
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
                       <td>Selesai</td>
+                      <td>{{ $bs->updated_at}}</td>
+                      @ELSEIF ($bs->status == 'ditolak by dosen')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at}}</td>
+                      <td>Ditolak karena {{$bs->alasan_penolakan}}</td>
+                      <td>{{ $bs->updated_at}}</td>
+                      @ELSEIF ($bs->status == 'ditolak by kaprodi')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at}}</td>
+                      <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$bs->alasan_penolakan}}</td>
+                      <td>{{ $bs->updated_at}}</td>
                     @ENDIF
                     
                     </tr>
-                   
                     @endforeach
     </table>
     </div>

@@ -18,45 +18,104 @@ class mahasiswaController extends Controller
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
         $ctt = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->count();
         $cttt = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by kaprodi')->count();
+        $ctttt = DB::table('dokumen')->where('jenis','Cuti')->where('status','ditolak by dosen')->count();
+        $cttttt = DB::table('dokumen')->where('jenis','Cuti')->where('status','ditolak by kaprodi')->count();
+        $ctttttt = DB::table('dokumen')->where('jenis','Cuti')->where('status','ditolak by aak')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
         $ctmahas = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->get();
-        $ctmahass = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by aak')->get();
+        $ctmahass = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by kaprodi')->get();
+        $ctmahasss = DB::table('dokumen')->where('jenis','Cuti')->where('status','ditolak by dosen')->get();
+        $ctmahassss = DB::table('dokumen')->where('jenis','Cuti')->where('status','ditolak by kaprodi')->get();
+        $ctmahasssss = DB::table('dokumen')->where('jenis','Cuti')->where('status','ditolak by aak')->get();
         
-        return view('mhscuti', compact('ct', 'ctt', 'ctt', 'ctmaha', 'ctmahas', 'ctmahass'));
+        return view('mhscuti', compact('ct', 'ctt', 'cttt', 'ctttt', 'cttttt', 'ctttttt', 'ctmaha', 'ctmahas', 'ctmahass', 'ctmahasss', 'ctmahassss', 'ctmahasssss'));
     }
+
+    public function lapcuti(){
+        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('nim',Auth::user()->nim)->where('status','selesai')->count();
+        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('nim',Auth::user()->nim)->where('status','selesai')->get();
+        
+        return view('mhslapcuti', compact('ct', 'ctmaha'));
+    }
+
     public function mhsdispen()
     {
     	$dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
     	$dpp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->count();
     	$dppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->count();
+    	$dpppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','ditolak by dosen')->count();
+    	$dppppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','ditolak by kaprodi')->count();
+    	$dpppppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','ditolak by aak')->count();
         $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
         $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
         $dpmahass = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->get();
+        $dpmahasss = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','ditolak by dosen')->get();
+        $dpmahassss = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','ditolak by kaprodi')->get();
+        $dpmahasssss = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','ditolak by aak')->get();
         
-        return view('mhsdispen', compact('dp', 'dpp', 'dppp', 'dpmaha', 'dpmahas', 'dpmahass'));
+        return view('mhsdispen', compact('dp', 'dpp', 'dppp', 'dpppp', 'dppppp', 'dpppppp', 'dpmaha', 'dpmahas', 'dpmahass', 'dpmahasss', 'dpmahassss', 'dpmahasssss'));
     }
+
+    public function lapdispen()
+    {
+    	$dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('nim', Auth::user()->nim)->where('status','selesai')->count();
+    	$dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('nim', Auth::user()->nim)->where('status','selesai')->get();
+        
+        return view('mhslapdispen', compact('dp', 'dpmaha'));
+    }
+
     public function mhsbst()
     {
     	$bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
     	$bss = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->count();
-    	$bsss = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by aak')->count();
-        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->where('nim', Auth::user()->nim)->get();
-        $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->where('nim', Auth::user()->nim)->get();
-        $bsmahass = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by aak')->where('nim', Auth::user()->nim)->get();
+    	$bsss = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->count();
+    	$bssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by dosen')->count();
+    	$bsssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by kaprodi')->count();
+    	$bssssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by aak')->count();
+    	$bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->get();
+        $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->get();
+        $bsmahass = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->get();
+        $bsmahasss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by dosen')->get();
+        $bsmahassss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by kaprodi')->get();
+        $bsmahasssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by aak')->get();
         
-        return view('mhsbst', compact('bs', 'bss', 'bsss', 'bsmaha', 'bsmahas', 'bsmahass'));
+        return view('mhsbst', compact('bs', 'bss', 'bsss', 'bssss', 'bsssss', 'bssssss', 'bsmaha', 'bsmahas', 'bsmahass', 'bsmahasss', 'bsmahassss', 'bsmahasssss'));
     }
+
+    public function lapbst()
+    {
+    	$bs = DB::table('dokumen')->where('jenis','BST')->where('nim', Auth::user()->nim)->where('status','selesai')->count();
+    	$bsmaha = DB::table('dokumen')->where('jenis','BST')->where('nim',Auth::user()->nim)->where('status','selesai')->get();
+        
+        return view('mhslapbst', compact('bs', 'bsmaha'));
+    }
+
     public function mhsyudi()
     {
     	$ydm = DB::table('dokumen')->where('status','proses')->count();
     	$ydmm = DB::table('dokumen')->where('status','setuju by dosen')->count();
     	$ydmmm = DB::table('dokumen')->where('status','setuju by kaprodi')->count();
+    	$ydmmmm = DB::table('dokumen')->where('status','ditolak by dosen')->count();
+    	$ydmmmmm = DB::table('dokumen')->where('status','ditolak by kaprodi')->count();
+    	$ydmmmmmm = DB::table('dokumen')->where('status','ditolak by aak')->count();
         $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
         $ydmahas = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by dosen')->get();
         $ydmahass = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by kaprodi')->get();
+        $ydmahasss = DB::table('dokumen')->where('jenis','Yudisium')->where('status','ditolak by dosen')->get();
+        $ydmahassss = DB::table('dokumen')->where('jenis','Yudisium')->where('status','ditolak by kaprodi')->get();
+        $ydmahasssss = DB::table('dokumen')->where('jenis','Yudisium')->where('status','ditolak by aak')->get();
         
-        return view('mhsyudi', compact('ydm', 'ydmm','ydmmm', 'ydmaha', 'ydmahas', 'ydmahass'));
+        return view('mhsyudi', compact('ydm', 'ydmm','ydmmm', 'ydmmmm', 'ydmmmmm', 'ydmmmmmm',  'ydmaha', 'ydmahas', 'ydmahass', 'ydmahasss', 'ydmahassss', 'ydmahasssss'));
     }
+
+    public function lapyudi()
+    {
+    	$ydm = DB::table('dokumen')->where('nim',Auth::user()->nim)->where('status','selesai')->count();
+    	$ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('nim',Auth::user()->nim)->where('status','selesai')->get();
+        
+        return view('mhslapyudi', compact('ydm', 'ydmaha'));
+    }
+    
 
     public function createdispensasi(Request $request){
         $date = Carbon::now();
@@ -99,6 +158,41 @@ class mahasiswaController extends Controller
         
     }
 
+    public function edispen(Request $request, $id){
+        $date = Carbon::now();
+        
+        $berkas= $request->berkas;
+        
+        $nama_berkas = $request->file('berkas')->getClientOriginalName();
+            
+             DB::table('dokumen')->where('id',$id)->update([
+                'nim'           => Auth::user()->nim,
+                'nama_mhs'      => Auth::user()->nama,
+                'no_telp'       => Auth::user()->no_telp,
+                'email_mhs'     => Auth::user()->email,
+                'semester'      => Auth::user()->semester,
+                'angkatan'      => Auth::user()->angkatan,
+                'jurusan'       => Auth::user()->jurusan,
+                'fakultas'      => Auth::user()->fakultas,
+                'tanggal_absen' => $request->absen,
+                'tanggal_masuk' => $request->masuk,
+                'jenis'         => 'Dispensasi',
+                'berkas'        => $nama_berkas,
+                'status'        => 'update by mhs',
+                'created_at' => $date
+            ]);
+            
+            
+            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_dispensasi');
+            $berkas->move($tujuan_simpan, $nama_berkas);
+            
+            
+            return redirect('/mhsdispen')->with('alert', 'Pengajuan dispensasi anda telah berhasil di ubah! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+        
+        
+        
+    }
+
     public function createyudi(Request $request){
         $date = Carbon::now();
         $foto = $request->foto;
@@ -120,8 +214,8 @@ class mahasiswaController extends Controller
         DB::table('dokumen')->insert([
             'nim'           => Auth::user()->nim,
             'nama_mhs'      => Auth::user()->nama,
-            'tempat_lahir'      => Auth::user()->nama,
-            'tanggal_lahir'      => Auth::user()->nama,
+            'tempat_lahir'      => Auth::user()->tempat_lahir,
+            'tanggal_lahir'      => Auth::user()->tanggal_lahir,
             'no_ktp'        => Auth::user()->no_ktp,
             'alamat'        => Auth::user()->alamat,
             'no_telp'       => Auth::user()->no_telp,
@@ -160,6 +254,62 @@ class mahasiswaController extends Controller
         return redirect('/mhs')->with('alert', 'Berkas yudisium anda telah berhasil diupload! Tetap cek notifikasi untuk mengetahui kabar selanjutnya.');
 
         // BETA TEST CODE !!!! MASIH TESTING, KALO EROR WAJAR !!!! -Fadhli
+    }
+
+    public function eyudi(Request $request, $id){
+        $date = Carbon::now();
+        $foto = $request->foto;
+        $toefl = $request->toefl;
+        $ijazah_sma = $request->ijazah_sma;
+        $akta = $request->akta;
+        $kk = $request->kk;
+        $ktm = $request->ktm;
+        $ktp = $request->ktp;
+
+        $nama_foto = $request->file('foto')->getClientOriginalName();
+        $nama_toefl = $request->file('toefl')->getClientOriginalName();
+        $nama_ijazah = $request->file('ijazah_sma')->getClientOriginalName();
+        $nama_akta = $request->file('akta')->getClientOriginalName();
+        $nama_kk = $request->file('kk')->getClientOriginalName();
+        $nama_ktm = $request->file('ktm')->getClientOriginalName();
+        $nama_ktp = $request->file('ktp')->getClientOriginalName();
+
+        DB::table('dokumen')->where('id', $id)->update([
+            'nim'           => Auth::user()->nim,
+            'nama_mhs'      => Auth::user()->nama,
+            'tempat_lahir'  => Auth::user()->tempat_lahir,
+            'tanggal_lahir' => Auth::user()->tanggal_lahir,
+            'no_ktp'        => Auth::user()->no_ktp,
+            'alamat'        => Auth::user()->alamat,
+            'no_telp'       => Auth::user()->no_telp,
+            'email_mhs'     => Auth::user()->email,
+            'semester'      => Auth::user()->semester,
+            'jurusan'       => Auth::user()->jurusan,
+            'fakultas'      => Auth::user()->fakultas,
+            'jenis'         => 'Yudisium',
+            'berkas'        => $nama_foto,
+            'berkas'        => $nama_toefl,
+            'berkas'        => $nama_ijazah,
+            'berkas'        => $nama_akta,
+            'berkas'        => $nama_kk,
+            'berkas'        => $nama_ktm,
+            'berkas'        => $nama_ktp,
+            'status'        => 'update by mhs',
+            'created_at'    => $date
+        ]);
+        
+       
+        
+        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_yudisium');
+        
+        $foto->move($tujuan_simpan, $nama_foto);
+        $toefl->move($tujuan_simpan, $nama_toefl);
+        $ijazah_sma->move($tujuan_simpan, $nama_ijazah);
+        $akta->move($tujuan_simpan, $nama_akta);
+        $kk->move($tujuan_simpan, $nama_kk);
+        $ktm->move($tujuan_simpan, $nama_ktm);
+        $ktp->move($tujuan_simpan, $nama_ktp);
+        return redirect('/mhs')->with('alert', 'Berkas yudisium anda telah berhasil di ubah! Tetap cek notifikasi untuk mengetahui kabar selanjutnya.');
     }
 
     
@@ -207,6 +357,36 @@ class mahasiswaController extends Controller
             
     }
 
+    public function ecuti(Request $request, $id){
+        $date = date(Carbon::now());
+        
+        
+        
+            DB::table('dokumen')->where('id', $id)->update([
+                'nim'               => Auth::user()->nim,
+                'nama_mhs'          => Auth::user()->nama,
+                'no_telp'           => Auth::user()->no_telp,
+                'email_mhs'         => Auth::user()->email,
+                'semester'          => Auth::user()->semester,
+                'angkatan'          => Auth::user()->angkatan,
+                'jurusan'           => Auth::user()->jurusan,
+                'fakultas'          => Auth::user()->fakultas,
+                'alasan_pengajuan'  => $request->alasan,
+                'jenis'             => 'Cuti',
+                'status'            => 'update by mhs',
+                'created_at'            => $date,                
+            ]);
+
+            DB::table('mhs')->where('nim', '=', Auth::user()->nim)
+                    ->update([
+                        'jml_pengajuan_cuti' =>  Auth::user()->jml_pengajuan_cuti + 1
+                ]);
+
+                return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda telah berhasil di edit! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+        
+            
+    }
+
 
     public function createbst(Request $request){
         $date = date(Carbon::now()); 
@@ -229,6 +409,26 @@ class mahasiswaController extends Controller
         //     'status_bst'        => 'proses'
         // ])->where('nim', Auth::user()->nim);
         return redirect('/mhs')->with('alert', 'Permohonan BST anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+    }
+
+    public function ebst(Request $request, $id){
+        $date = date(Carbon::now()); 
+        DB::table('dokumen')->where('id', $id)->update([
+            'nim'               => Auth::user()->nim,
+            'nama_mhs'          => Auth::user()->nama,
+            'no_telp'           => Auth::user()->no_telp,
+            'email_mhs'         => Auth::user()->email,
+            'semester'          => Auth::user()->semester,
+            'angkatan'          => Auth::user()->angkatan,
+            'jurusan'           => Auth::user()->jurusan,
+            'fakultas'          => Auth::user()->fakultas,
+            'alasan_pengajuan'  => $request->alasan,
+            'jenis'             => 'BST',
+            'status'            => 'proses',
+            'created_at'            => $date
+        ]);
+
+        return redirect('/mhs')->with('alert', 'Permohonan BST anda telah berhasil di edit! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
     }
     
 }

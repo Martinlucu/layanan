@@ -77,14 +77,28 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     Route::get('/mhsdispen', 'mahasiswaController@mhsdispen');
     Route::get('/mhsyudi', 'mahasiswaController@mhsyudi');
     Route::get('/mhsbst', 'mahasiswaController@mhsbst');
-    Route::get('/mhsbstdisplay', 'mahasiswaController@mhsbst');
+    
 
     // Route upload
     Route::post('/uploadbss', 'mahasiswaController@createbss');
     Route::post('/uploadbst', 'mahasiswaController@createbst');
     Route::post('/uploadyudisium', 'mahasiswaController@createyudi');
     Route::post('/uploaddispensasi', 'mahasiswaController@createdispensasi');
-    });
+    
+    // Route edit data
+    Route::post('/editdispen/{id}', 'mahasiswaController@edispen');
+    Route::post('/edityudisium/{id}', 'mahasiswaController@eyudi');
+    Route::post('/editcuti/{id}', 'mahasiswaController@ecuti');
+    Route::post('/editbst/{id}', 'mahasiswaController@ebst');
+
+    // Route Data laporan
+    Route::get('/mhslapdispen', 'mahasiswaController@lapdispen');
+    Route::get('/mhslapyudisium', 'mahasiswaController@lapyudi');
+    Route::get('/mhslapcuti', 'mahasiswaController@lapcuti');
+    Route::get('/mhslapbst', 'mahasiswaController@lapbst');
+});
+
+    
 
 Route::group(['middleware' => 'auth:dosen'], function () {
         Route::get('/doshome', 'DosenController@doshome');

@@ -226,7 +226,7 @@
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas }}</td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status }}</td>
+		              	<td>Ditolak oleh dosen karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data
@@ -291,8 +291,58 @@
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas }}</td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status }}
-                  </td>
+		              	<td>Ditolak oleh kaprodi karena {{ $d->alasan_penolakan }}</td>
+                    <td>
+                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Edit Data
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/editdispen/{{$d->id}}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="exampleInputEmail1">NIM</label>
+                                  <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
+                                </div>
+                                <div class="col">
+                                  <label for="exampleInputPassword1">Nama</label>
+                                  <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Jurusan</label>
+                              <input type="nama" class="form-control" name="jurusan" value=" {{ Auth::user()->jurusan }} " disabled>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Fakultas</label>
+                              <input type="nama" class="form-control" name="fakultas" value=" {{ Auth::user()->fakultas }} " disabled>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                  <label for="exampleInputPassword1">Tanggal Awal</label>  
+                                  <input type="date" name="absen" value="{{ $d->tanggal_absen }}" class="form-control" required>
+                                </div>
+                                <div class="col">
+                                  <label for="exampleInputPassword1">Tanggal Akhir</label>
+                                  <input type="date" name="masuk" value="{{ $d->tanggal_masuk }}" class="form-control" required>
+                                </div>
+                              </div>
+                              </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                                <div class="custom-file" style="margin-bottom:10px;">
+                                  <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
+                                </div>
+                            </div>
+                                
+                                <button class ="btn btn-danger" type="submit">Submit</button>
+                        </div>
+                    </td>
                     </tr>
                     @endforeach
                     <!-- Ditolak by aak -->
@@ -306,8 +356,58 @@
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas }}</td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status }}
-                  </td>
+		              	<td>Ditolak oleh AAK karena {{ $d->alasan_penolakan }}</td>
+                    <td>
+                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Edit Data
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/editdispen/{{$d->id}}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="exampleInputEmail1">NIM</label>
+                                  <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
+                                </div>
+                                <div class="col">
+                                  <label for="exampleInputPassword1">Nama</label>
+                                  <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Jurusan</label>
+                              <input type="nama" class="form-control" name="jurusan" value=" {{ Auth::user()->jurusan }} " disabled>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Fakultas</label>
+                              <input type="nama" class="form-control" name="fakultas" value=" {{ Auth::user()->fakultas }} " disabled>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                  <label for="exampleInputPassword1">Tanggal Awal</label>  
+                                  <input type="date" name="absen" value="{{ $d->tanggal_absen }}" class="form-control" required>
+                                </div>
+                                <div class="col">
+                                  <label for="exampleInputPassword1">Tanggal Akhir</label>
+                                  <input type="date" name="masuk" value="{{ $d->tanggal_masuk }}" class="form-control" required>
+                                </div>
+                              </div>
+                              </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                                <div class="custom-file" style="margin-bottom:10px;">
+                                  <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
+                                </div>
+                            </div>
+                                
+                                <button class ="btn btn-danger" type="submit">Submit</button>
+                        </div>
+                    </td>
                     </tr>
                     @endforeach
                     

@@ -166,7 +166,6 @@
                       <th>No. KTP</th>
                       <th>Alamat</th>
                       <th>No. Telp</th>
-                      <th>Email Dinamika</th>
                       <th>Berkas</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Status</th>
@@ -250,10 +249,10 @@
                     <td>{{ $yd->no_ktp }}</td>
                     <td>{{ $yd->alamat }}</td>
                     <td>{{ $yd->no_telp }}</td>
-                    <td>{{ $yd->email_mhs }}</td>
+                    
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td>{{ $yd->status }}</td>
+		              	<td>Ditolak oleh dosen karena {{ $yd->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data
@@ -342,7 +341,7 @@
                     <!-- Ditolak by kaprodi -->
                     @ELSEIF ($ydmahassss->count()>0)
                     <tr>
-                    @foreach($ydmahasss as $yd)
+                    @foreach($ydmahassss as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                     <td>{{ $yd->nim }}</td>
@@ -355,7 +354,7 @@
                     <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td>{{ $yd->status }}</td>
+		              	<td>Ditolak oleh kaprodi karena {{ $yd->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data
@@ -457,7 +456,7 @@
                     <td>{{ $yd->email_mhs }}</td>
 		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td>{{ $yd->status }}</td>
+		              	<td>Ditolak oleh AAK karena {{ $yd->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data

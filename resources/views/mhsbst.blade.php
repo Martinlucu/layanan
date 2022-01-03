@@ -220,7 +220,7 @@
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status }}</td>
+		              	<td>Ditolak oleh dosen karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data
@@ -265,9 +265,9 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status }}</td>
+		              	<td>Ditolak oleh kaprodi karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data
@@ -312,9 +312,9 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status }}</td>
+		              	<td>Ditolak oleh AAK karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data

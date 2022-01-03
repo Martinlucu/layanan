@@ -31,9 +31,9 @@
     </script>
 
 <style>
-      /* btn{
+      btn{
         color:white;
-      } */
+      }
 
         /* Full-width input fields */
         textarea {
@@ -235,7 +235,7 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>

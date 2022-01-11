@@ -195,8 +195,9 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
                                 <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                                <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                     </td>
@@ -222,9 +223,9 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
                                 <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                                <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
-                                
+                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                     </td>
@@ -360,6 +361,47 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+</script>
+<!-- tooltip -->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<!-- Penghitung huruf -->
+<script>
+  counter = function() {
+    var value = $('#alasan').val();
+
+    if (value.length == 0) {
+        $('#wordCount').html(0);
+        $('#totalChars').html(0);
+        $('#charCount').html(0);
+        $('#charCountNoSpace').html(0);
+        return;
+    }
+
+    var regex = /\s+/gi;
+    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    var totalChars = value.length;
+    var charCount = value.trim().length;
+    var charCountNoSpace = value.replace(regex, '').length;
+
+    $('#wordCount').html(wordCount);
+    $('#totalChars').html(totalChars);
+    $('#charCount').html(charCount);
+    $('#charCountNoSpace').html(charCountNoSpace);
+};
+
+$(document).ready(function() {
+    $('#count').click(counter);
+    $('#alasan').change(counter);
+    $('#alasan').keydown(counter);
+    $('#alasan').keypress(counter);
+    $('#alasan').keyup(counter);
+    $('#alasan').blur(counter);
+    $('#alasan').focus(counter);
+});
 </script>
 </body>
 </html>

@@ -305,31 +305,31 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="foto" class="form-control-file" onchange="return fileValidation()" id="berkas_foto" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="toefl" class="form-control-file" onchange="return fileValidation()" id="berkas_toefl" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return fileValidation()" id="berkas_ijazah" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="akta" class="form-control-file" onchange="return fileValidation()" id="berkas_akta" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="kk" class="form-control-file" onchange="return fileValidation()" id="berkas_kk" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktm" class="form-control-file" onchange="return fileValidation()" id="berkas_ktm" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktp" class="form-control-file" onchange="return fileValidation()" id="berkas_ktp" required>
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -407,31 +407,31 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="foto" class="form-control-file" onchange="return fileValidation()" id="berkas_foto" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="toefl" class="form-control-file" onchange="return fileValidation()" id="berkas_toefl" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return fileValidation()" id="berkas_ijazah" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="akta" class="form-control-file" onchange="return fileValidation()" id="berkas_akta" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="kk" class="form-control-file" onchange="return fileValidation()" id="berkas_kk" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktm" class="form-control-file" onchange="return fileValidation()" id="berkas_ktm" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktp" class="form-control-file" onchange="return fileValidation()" id="berkas_ktp" required>
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -509,31 +509,31 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="foto" class="form-control-file" onchange="return fileValidation()" id="berkas_foto" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="toefl" class="form-control-file" onchange="return fileValidation()" id="berkas_toefl" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return fileValidation()" id="berkas_ijazah" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="akta" class="form-control-file" onchange="return fileValidation()" id="berkas_akta" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="kk" class="form-control-file" onchange="return fileValidation()" id="berkas_kk" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktm" class="form-control-file" onchange="return fileValidation()" id="berkas_ktm" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktp" onchange="return fileValidation()" class="form-control-file" id="berkas_ktp" required>
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -599,31 +599,31 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="foto" onchange="return fileValidation()" class="form-control-file" id="berkas_foto" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="toefl" onchange="return fileValidation()" class="form-control-file" id="berkas_toefl" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ijazah_sma" onchange="return fileValidation()" class="form-control-file" id="berkas_ijazah" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="akta" onchange="return fileValidation()" class="form-control-file" id="berkas_akta" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="kk" onchange="return fileValidation()" class="form-control-file" id="berkas_kk" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktm" onchange="return fileValidation()" class="form-control-file" id="berkas_ktm" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+                            <input type="file" name="ktp" onchange="return fileValidation()" class="form-control-file" id="berkas_ktp" required>
                           </div>
                     </div>
                     
@@ -672,6 +672,60 @@ window.onclick = function(event) {
     }
 }
 </script>
+
+<!-- Checking format file sebelum upload -->
+<script>
+        function fileValidation() {
+            var foto = document.getElementById('berkas_foto');
+            var toefl = document.getElementById('berkas_toefl');
+            var ijazah = document.getElementById('berkas_ijazah');
+            var akta = document.getElementById('berkas_akta');
+            var kk = document.getElementById('berkas_kk');
+            var ktm = document.getElementById('berkas_ktm');
+            var ktp = document.getElementById('berkas_ktp');
+              
+            var filefoto = foto.value;
+            var filetoefl = toefl.value;
+            var fileijazah = ijazah.value;
+            var fileakta = akta.value;
+            var filekk = kk.value;
+            var filektm = ktm.value;
+            var filektp = ktp.value;
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(filefoto)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                filefoto.value = '';
+                return false;
+            }else if (!allowedExtensions.exec(filetoefl)){
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                filetoefl.value = '';
+                return false;
+            }else if (!allowedExtensions.exec(fileijazah)){
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                fileijazah.value = '';
+                return false;
+            }else if (!allowedExtensions.exec(fileakta)){
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                fileakta.value = '';
+                return false;
+            }else if (!allowedExtensions.exec(filekk)){
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                filekk.value = '';
+                return false;
+            }else if (!allowedExtensions.exec(filektm)){
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                filektm.value = '';
+                return false;
+            }else {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                filektp.value = '';
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
 @endsection

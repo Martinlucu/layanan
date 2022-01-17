@@ -357,7 +357,6 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
-
 <!-- Penghitung huruf -->
 <script>
   counter = function() {
@@ -377,14 +376,14 @@ $(document).ready(function(){
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    // $('#wordCount').html(wordCount);
+    $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    // $('#charCount').html(charCount);
-    // $('#charCountNoSpace').html(charCountNoSpace);
+    $('#charCount').html(charCount);
+    $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#alasan').click(counter);
+    $('#count').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);

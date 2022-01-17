@@ -195,9 +195,12 @@
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                                 <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
 =======
+=======
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
 =======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
                                 <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
@@ -261,6 +264,7 @@ $(document).ready(function(){
     if (value.length == 0) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         // $('#wordCount').html(0);
         $('#totalChars').html(200);
         // $('#charCount').html(0);
@@ -268,11 +272,16 @@ $(document).ready(function(){
 =======
 =======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
+=======
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
         $('#wordCount').html(0);
         $('#totalChars').html(0);
         $('#charCount').html(0);
         $('#charCountNoSpace').html(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
+=======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
 =======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
@@ -282,6 +291,7 @@ $(document).ready(function(){
     var regex = /\s+/gi;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
@@ -289,11 +299,16 @@ $(document).ready(function(){
 =======
 =======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
+=======
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
     var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = value.length;
     var charCount = value.trim().length;
     var charCountNoSpace = value.replace(regex, '').length;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
+=======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
 =======
 >>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)

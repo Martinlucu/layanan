@@ -193,18 +193,9 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-<<<<<<< HEAD
 
                                 <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-
-                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-
-=======
-                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
-                                
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>                                
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                 

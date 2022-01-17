@@ -199,11 +199,7 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-<<<<<<< HEAD
                                 <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
-                                <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
                                 <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -230,10 +226,7 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-<<<<<<< HEAD
                                 <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                                 <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
                                 <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
                                 
@@ -247,7 +240,18 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+    <table border="0" cellspacing="5" cellpadding="5">
+        <tbody><tr>
+            <td>Minimum date:</td>
+            <td><input type="date" class="form-control" name="tgllawal" value=""></td>
+        
+            <td>Maximum date:</td>
+            <td><input type="date" class="form-control" name="tglakhir" value=""></td>
+          
+            <td> <a class="btn btn-success" href="{{url('/dosdetdispen/disrange/')}}">go</a></td>
+        </tr>
+    </tbody></table>
+      <table id="preview" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -373,7 +377,6 @@ window.onclick = function(event) {
     }
 }
 </script>
-<<<<<<< HEAD
 <!-- tooltip -->
 <script>
 $(document).ready(function(){
@@ -415,8 +418,6 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

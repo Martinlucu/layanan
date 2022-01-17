@@ -66,7 +66,17 @@ class DosenController extends Controller
             
             return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas'));
         }
-    
+        public function disrange(){
+            $awal="tgllawal";
+            $akhir="tglakhir";
+            $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')
+            ->whereBetween('created_at', [$awal, $akhir])->get();
+            
+            $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
+            $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
+            $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
+            return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas'));;
+        }
     public function stjcuti($id)
         {
             

@@ -111,6 +111,7 @@ Route::group(['middleware' => 'auth:dosen'], function () {
         Route::get('/dosdetdispen', 'DosenController@detdispen');
         Route::get('/dosdetdispen/stjdis/{id}', 'DosenController@stjdis');
         Route::post('/dosdetdispen/tlkdis/{id}', 'DosenController@tlkdis');
+        Route::get('/dosdetdispen/disrange', 'DosenController@disrange');
         
         Route::get('/dosdetbst', 'DosenController@detbst');
         Route::get('/dosdetbst/stjbst/{id}', 'DosenController@stjbst');

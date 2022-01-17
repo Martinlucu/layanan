@@ -305,6 +305,33 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
+<<<<<<< HEAD
+                            <input type="file" name="foto" class="form-control-file" onchange="return validasifoto()" id="berkas_foto" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="toefl" class="form-control-file" onchange="return validasitoefl()" id="berkas_toefl" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return validasiijazaj()" id="berkas_ijazah" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="akta" class="form-control-file" onchange="return validasiakta()" id="berkas_akta" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="kk" class="form-control-file" onchange="return validasikk()" id="berkas_kk" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktm" class="form-control-file" onchange="return validasiktm()" id="berkas_ktm" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktp" class="form-control-file" onchange="return validasiktp()" id="berkas_ktp" required>
+=======
                             <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
@@ -330,6 +357,7 @@
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -407,6 +435,33 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
+<<<<<<< HEAD
+                            <input type="file" name="foto" class="form-control-file" onchange="return validasifoto()" id="berkas_foto" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="toefl" class="form-control-file" onchange="return validasitoefl()" id="berkas_toefl" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return validasiijazah()" id="berkas_ijazah" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="akta" class="form-control-file" onchange="return validasiakta()" id="berkas_akta" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="kk" class="form-control-file" onchange="return validasikk()" id="berkas_kk" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktm" class="form-control-file" onchange="return validasiktm()" id="berkas_ktm" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktp" class="form-control-file" onchange="return validasiktp()" id="berkas_ktp" required>
+=======
                             <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
@@ -432,6 +487,7 @@
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -509,6 +565,33 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
+<<<<<<< HEAD
+                            <input type="file" name="foto" class="form-control-file" onchange="return validasifoto()" id="berkas_foto" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="toefl" class="form-control-file" onchange="return validasitoefl()" id="berkas_toefl" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return validasiijazah()" id="berkas_ijazah" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="akta" class="form-control-file" onchange="return validasiakta()" id="berkas_akta" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="kk" class="form-control-file" onchange="return validasikk()" id="berkas_kk" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktm" class="form-control-file" onchange="return validasiktm()" id="berkas_ktm" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
+=======
                             <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
@@ -534,6 +617,7 @@
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -599,6 +683,33 @@
                     <div class="form-group">
                       <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
+<<<<<<< HEAD
+                            <input type="file" name="foto" onchange="return validasifoto()" class="form-control-file" id="berkas_foto" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="toefl" onchange="return validasitoefl()" class="form-control-file" id="berkas_toefl" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ijazah_sma" onchange="return validasiijazah()" class="form-control-file" id="berkas_ijazah" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="akta" onchange="return validasiakta()" class="form-control-file" id="berkas_akta" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="kk" onchange="return validasikk()" class="form-control-file" id="berkas_kk" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktm" onchange="return validasiktm()" class="form-control-file" id="berkas_ktm" required>
+                          </div>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
+=======
                             <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
                           </div>
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
@@ -624,6 +735,7 @@
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                           </div>
                     </div>
                     
@@ -672,6 +784,117 @@ window.onclick = function(event) {
     }
 }
 </script>
+<<<<<<< HEAD
+
+<!-- Checking format file sebelum upload -->
+<script>
+        function validasifoto() {
+            var foto = document.getElementById('berkas_foto');
+            var filefoto = foto.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(filefoto)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_foto.value = '';
+                return false;
+            }
+        }
+
+        function validasitoefl() {
+            var toefl = document.getElementById('berkas_toefl');
+            var filetoefl = toefl.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(filetoefl)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_toefl.value = '';
+                return false;
+            }
+        }
+          
+        function validasiijazah() {
+            var ijazah = document.getElementById('berkas_ijazah');
+            var fileijazah = ijazah.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(fileijazah)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_ijazah.value = '';
+                return false;
+            }
+        }
+
+        function validasiakta() {
+            var akta = document.getElementById('berkas_akta');
+            var fileakta = akta.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(fileakta)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_akta.value = '';
+                return false;
+            }
+        }
+
+        function validasikk() {
+            var kk = document.getElementById('berkas_kk');
+            var filekk = kk.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(filekk)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_kk.value = '';
+                return false;
+            }
+        }
+
+        function validasiktm() {
+            var ktm = document.getElementById('berkas_ktm');
+            var filektm = ktm.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(filektm)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_ktm.value = '';
+                return false;
+            }
+        }
+
+        function validasiktp() {
+            var ktp = document.getElementById('berkas_ktp');
+            var filektp = ktp.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+              
+            if (!allowedExtensions.exec(filektp)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_ktp.value = '';
+                return false;
+            }
+        }
+    </script>
+=======
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

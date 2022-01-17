@@ -31,12 +31,12 @@
     </script>
 
 <style>
-      btn{
+      /* btn{
         color:white;
-      }
+      } */
 
         /* Full-width input fields */
-        textarea {
+        input[type=text], input[type=password] {
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 4; /* Sit on top */
+          z-index: 1; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -89,7 +89,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 50%; /* Could be more or less, depending on screen size */
+          width: 80%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -195,8 +195,17 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+<<<<<<< HEAD
+
+                                <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
                                 <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+
+                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+
+=======
+                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -239,6 +248,8 @@ window.onclick = function(event) {
     }
 }
 </script>
+<<<<<<< HEAD
+
 <!-- tooltip -->
 <script>
 $(document).ready(function(){
@@ -251,23 +262,29 @@ $(document).ready(function(){
     var value = $('#alasan').val();
 
     if (value.length == 0) {
-        // $('#wordCount').html(0);
-        $('#totalChars').html(200);
-        // $('#charCount').html(0);
-        // $('#charCountNoSpace').html(0);
+        $('#wordCount').html(0);
+        $('#totalChars').html(0);
+        $('#charCount').html(0);
+        $('#charCountNoSpace').html(0);
         return;
     }
 
     var regex = /\s+/gi;
+
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    // $('#wordCount').html(wordCount);
+    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    var totalChars = value.length;
+    var charCount = value.trim().length;
+    var charCountNoSpace = value.replace(regex, '').length;
+
+    $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    // $('#charCount').html(charCount);
-    // $('#charCountNoSpace').html(charCountNoSpace);
+    $('#charCount').html(charCount);
+    $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
@@ -280,18 +297,8 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
-
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
+=======
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

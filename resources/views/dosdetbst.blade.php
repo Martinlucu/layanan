@@ -26,18 +26,18 @@
 
     <script>
         $(document).ready(function () {
-  $('#example').DataTable();
-});
-
-$(document).ready(function () {
-  $('#preview').DataTable();
-});
+          $('#example').DataTable();
+        });
+    
+        $(document).ready(function () {
+          $('#preview').DataTable();
+        });
     </script>
 
 <style>
-      btn{
+      /* btn{
         color:white;
-      }
+      } */
 
         /* Full-width input fields */
         textarea {
@@ -93,7 +93,7 @@ $(document).ready(function () {
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 50%; /* Could be more or less, depending on screen size */
+          width: 80%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -200,8 +200,13 @@ $(document).ready(function () {
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
+<<<<<<< HEAD
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+=======
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -232,8 +237,13 @@ $(document).ready(function () {
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
+<<<<<<< HEAD
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+=======
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -350,6 +360,8 @@ window.onclick = function(event) {
     }
 }
 </script>
+<<<<<<< HEAD
+
 <!-- tooltip -->
 <script>
 $(document).ready(function(){
@@ -375,10 +387,10 @@ $(document).ready(function(){
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    // $('#wordCount').html(wordCount);
+    $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    // $('#charCount').html(charCount);
-    // $('#charCountNoSpace').html(charCountNoSpace);
+    $('#charCount').html(charCount);
+    $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
@@ -391,6 +403,8 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
+=======
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

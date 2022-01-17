@@ -23,23 +23,22 @@
   <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+  
 
     <script>
-        
         $(document).ready(function () {
-        $('#example').DataTable();
-      });
-
-      $(document).ready(function () {
-        $('#preview').DataTable();
-      });
-     
-     </script>
+          $('#example').DataTable();
+        });
+    
+        $(document).ready(function () {
+          $('#preview').DataTable();
+        });
+    </script>
 
 <style>
-      btn{
+      /* btn{
         color:white;
-      }
+      } */
 
         /* Full-width input fields */
         textarea {
@@ -95,7 +94,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 50%; /* Could be more or less, depending on screen size */
+          width: 80%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -200,8 +199,18 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
+<<<<<<< HEAD
+
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+
+                              <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+
+=======
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -213,7 +222,7 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="preview" class="table table-striped table-bordered">
+      <table id="preview" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -222,6 +231,7 @@
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
                       <th>Status</th>
+                      <th>Tanggal Diproses</th>
                     
                     </tr>
                   </thead>
@@ -237,6 +247,7 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
+                      <td>{{ $cs->updated_at }}</td>
 		              	@ELSEIF ($cs->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
                       <td>{{ $cs->nim }}</td>
@@ -245,6 +256,7 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $cs->updated_at }}</td>
                     @ELSEIF ($cs->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
                       <td>{{ $cs->nim }}</td>
@@ -253,6 +265,7 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Selesai</td>
+                      <td>{{ $cs->updated_at }}</td>
                     @ELSEIF ($cs->status == 'ditolak by dosen')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
                       <td>{{ $cs->nim }}</td>
@@ -262,6 +275,7 @@
                       <td>{{ $cs->created_at}}</td>
                       <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$cs->alasan_penolakan}}</td>
                       <td>{{ $cs->updated_at}}</td>
+                      <td>{{ $cs->updated_at }}</td>
                     @ENDIF
                     </tr>
                    
@@ -302,6 +316,8 @@ window.onclick = function(event) {
     }
 }
 </script>
+<<<<<<< HEAD
+
 <!-- tooltip -->
 <script>
 $(document).ready(function(){
@@ -314,10 +330,17 @@ $(document).ready(function(){
     var value = $('#alasan').val();
 
     if (value.length == 0) {
+
         // $('#wordCount').html(0);
         $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
+
+        $('#wordCount').html(0);
+        $('#totalChars').html(0);
+        $('#charCount').html(0);
+        $('#charCountNoSpace').html(0);
+
         return;
     }
 
@@ -327,10 +350,16 @@ $(document).ready(function(){
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    // $('#wordCount').html(wordCount);
+    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    var totalChars = value.length;
+    var charCount = value.trim().length;
+    var charCountNoSpace = value.replace(regex, '').length;
+
+
+    $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    // $('#charCount').html(charCount);
-    // $('#charCountNoSpace').html(charCountNoSpace);
+    $('#charCount').html(charCount);
+    $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
@@ -343,6 +372,8 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
+=======
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

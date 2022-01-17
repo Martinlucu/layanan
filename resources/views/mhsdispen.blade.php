@@ -271,7 +271,7 @@
                             <div class="form-group">
                             <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
-                                  <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
+                                  <input type="file" name="berkas" class="form-control-file" onchange="return fileValidation()" id="berkas" required>
                                 </div>
                             </div>
                                 
@@ -336,7 +336,7 @@
                             <div class="form-group">
                             <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
-                                  <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
+                                  <input type="file" name="berkas" class="form-control-file" onchange="return fileValidation()" id="berkas" required>
                                 </div>
                             </div>
                                 
@@ -401,7 +401,7 @@
                             <div class="form-group">
                             <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
-                                  <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
+                                  <input type="file" name="berkas" class="form-control-file" onchange="return fileValidation()" id="berkas" required>
                                 </div>
                             </div>
                                 
@@ -459,7 +459,7 @@
                     <div class="form-group">
                     <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
                         <div class="custom-file" style="margin-bottom:10px;">
-                          <input type="file" name="berkas_ketidakhadiran" class="form-control-file" id="exampleformcontrolfile1" required>
+                          <input type="file" name="berkas_ketidakhadiran" onchange="return fileValidation()" class="form-control-file" id="berkas" required>
                         </div>
                     </div>
                   </div>
@@ -507,6 +507,25 @@ window.onclick = function(event) {
     }
 }
 </script>
+<!-- Checking format file sebelum upload -->
+<script>
+        function fileValidation() {
+            var fileInput = 
+                document.getElementById('berkas');
+              
+            var filePath = fileInput.value;
+          
+            // Allowing file type
+            var allowedExtensions = 
+/(\.doc|\.docx|\.odt|\.pdf|\.tex|\.txt|\.rtf|\.wps|\.wks|\.wpd)$/i;
+              
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima Word atau PDF!');
+                fileInput.value = '';
+                return false;
+            } 
+        }
+    </script>
 </body>
 </html>
 @endsection

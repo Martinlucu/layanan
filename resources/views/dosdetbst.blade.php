@@ -28,12 +28,16 @@
         $(document).ready(function () {
   $('#example').DataTable();
 });
+
+$(document).ready(function () {
+  $('#preview').DataTable();
+});
     </script>
 
-    <style>
-      /* btn{
+<style>
+      btn{
         color:white;
-      } */
+      }
 
         /* Full-width input fields */
         textarea {
@@ -89,7 +93,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
+          width: 50%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -196,8 +200,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -228,8 +232,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -244,7 +248,7 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+      <table id="preview" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -345,6 +349,47 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+</script>
+<!-- tooltip -->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<!-- Penghitung huruf -->
+<script>
+  counter = function() {
+    var value = $('#alasan').val();
+
+    if (value.length == 0) {
+        // $('#wordCount').html(0);
+        $('#totalChars').html(200);
+        // $('#charCount').html(0);
+        // $('#charCountNoSpace').html(0);
+        return;
+    }
+
+    var regex = /\s+/gi;
+    // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    var totalChars = 200 - value.length;
+    // var charCount = value.trim().length;
+    // var charCountNoSpace = value.replace(regex, '').length;
+
+    // $('#wordCount').html(wordCount);
+    $('#totalChars').html(totalChars);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
+};
+
+$(document).ready(function() {
+    $('#count').click(counter);
+    $('#alasan').change(counter);
+    $('#alasan').keydown(counter);
+    $('#alasan').keypress(counter);
+    $('#alasan').keyup(counter);
+    $('#alasan').blur(counter);
+    $('#alasan').focus(counter);
+});
 </script>
 </body>
 </html>

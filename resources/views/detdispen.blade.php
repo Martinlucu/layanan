@@ -31,12 +31,12 @@
     </script>
 
 <style>
-      /* btn{
+      btn{
         color:white;
-      } */
+      }
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea {
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -89,7 +89,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
+          width: 50%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -193,7 +193,8 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -224,6 +225,59 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- Data table -->
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+<!-- tooltip -->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<!-- Penghitung huruf -->
+<script>
+  counter = function() {
+    var value = $('#alasan').val();
+
+    if (value.length == 0) {
+        // $('#wordCount').html(0);
+        $('#totalChars').html(200);
+        // $('#charCount').html(0);
+        // $('#charCountNoSpace').html(0);
+        return;
+    }
+
+    var regex = /\s+/gi;
+    // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    var totalChars = 200 - value.length;
+    // var charCount = value.trim().length;
+    // var charCountNoSpace = value.replace(regex, '').length;
+
+    // $('#wordCount').html(wordCount);
+    $('#totalChars').html(totalChars);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
+};
+
+$(document).ready(function() {
+    $('#count').click(counter);
+    $('#alasan').change(counter);
+    $('#alasan').keydown(counter);
+    $('#alasan').keypress(counter);
+    $('#alasan').keyup(counter);
+    $('#alasan').blur(counter);
+    $('#alasan').focus(counter);
+});
+</script>
 
 <script>
 // Get the modal

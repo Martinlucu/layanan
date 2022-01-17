@@ -123,13 +123,13 @@
             </div>
     </div>
     <div class="col-md-6">
-            <!-- /.card -->
+            <!-- /.cardo -->
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Semester</h3>
                 </div>
                <div class="card-body">
-               <h6>Merubah target setiap layanan</h6>
+               <h6>Merubah Semester</h6>
                <div class="form-group row">
                   @foreach($setting as $s)
                   <input type="hidden" name="id_set" value="{{ $s->id_set }}">

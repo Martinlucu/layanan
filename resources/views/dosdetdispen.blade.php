@@ -20,14 +20,55 @@
   <!-- Data table -->
   <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
+  
   <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
 
-    <script>
-        $(document).ready(function () {
-  $('#example').DataTable();
-});
+  <script>
+      var minDate, maxDate;
+ 
+      // Custom filtering function which will search data in column four between two values
+      $.fn.dataTable.ext.search.push(
+          function( settings, data, dataIndex ) {
+              var min = minDate.val();
+              var max = maxDate.val();
+              var date = new Date( data[4] );
+        
+              if (
+                  ( min === null && max === null ) ||
+                  ( min === null && date <= max ) ||
+                  ( min <= date   && max === null ) ||
+                  ( min <= date   && date <= max )
+              ) {
+                  return true;
+              }
+              return false;
+          }
+      );
+      
+      $(document).ready(function () {
+          $('#example').DataTable();
+          });
+    
+      $(document).ready( function () {
+          // DataTables initialisation
+          var table = $('#preview').DataTable();
+
+          // Create date inputs
+          minDate = new DateTime($('#min'), {
+              format: 'MMMM Do YYYY'
+          });
+          maxDate = new DateTime($('#max'), {
+              format: 'MMMM Do YYYY'
+          });
+      
+          
+      // Refilter the table
+          $('#min, #max').on('change', function () {
+              table.draw();
+          });
+          } );
     </script>
 
 <style>
@@ -76,7 +117,7 @@
           z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
-          width: 100%; /* Full width */
+          width: 100%;
           height: 100%; /* Full height */
           overflow: auto; /* Enable scroll if needed */
           background-color: rgb(0,0,0); /* Fallback color */
@@ -89,7 +130,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
+          width: 50%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -195,9 +236,9 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                                 <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                     </td>
@@ -224,9 +265,9 @@
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
                                 <!-- <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b> -->
-                                <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                                 <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                     </td>
@@ -237,7 +278,16 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+    <table border="0" cellspacing="5" cellpadding="5">
+        <tbody><tr>
+            <td>Minimum date:</td>
+            <td><input type="text" id="min" name="min"></td>
+        
+            <td>Maximum date:</td>
+            <td><input type="text" id="max" name="max"></td>
+        </tr>
+    </tbody></table>
+      <table id="preview" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -377,7 +427,7 @@ $(document).ready(function(){
 
     if (value.length == 0) {
         // $('#wordCount').html(0);
-        $('#totalChars').html(50);
+        $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
         return;
@@ -385,7 +435,7 @@ $(document).ready(function(){
 
     var regex = /\s+/gi;
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = 50 - value.length;
+    var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 

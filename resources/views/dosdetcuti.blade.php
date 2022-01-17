@@ -23,11 +23,16 @@
   <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+  
 
     <script>
         $(document).ready(function () {
-  $('#example').DataTable();
-});
+          $('#example').DataTable();
+        });
+    
+        $(document).ready(function () {
+          $('#preview').DataTable();
+        });
     </script>
 
 <style>
@@ -194,8 +199,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -207,7 +212,7 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+      <table id="preview" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -216,6 +221,7 @@
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
                       <th>Status</th>
+                      <th>Tanggal Diproses</th>
                     
                     </tr>
                   </thead>
@@ -231,6 +237,7 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
+                      <td>{{ $cs->updated_at }}</td>
 		              	@ELSEIF ($cs->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
                       <td>{{ $cs->nim }}</td>
@@ -239,6 +246,7 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $cs->updated_at }}</td>
                     @ELSEIF ($cs->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
                       <td>{{ $cs->nim }}</td>
@@ -247,6 +255,7 @@
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
                       <td>Selesai</td>
+                      <td>{{ $cs->updated_at }}</td>
                     @ELSEIF ($cs->status == 'ditolak by dosen')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
                       <td>{{ $cs->nim }}</td>
@@ -256,6 +265,7 @@
                       <td>{{ $cs->created_at}}</td>
                       <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$cs->alasan_penolakan}}</td>
                       <td>{{ $cs->updated_at}}</td>
+                      <td>{{ $cs->updated_at }}</td>
                     @ENDIF
                     </tr>
                    
@@ -311,7 +321,7 @@ $(document).ready(function(){
 
     if (value.length == 0) {
         // $('#wordCount').html(0);
-        $('#totalChars').html(50);
+        $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
         return;
@@ -319,7 +329,7 @@ $(document).ready(function(){
 
     var regex = /\s+/gi;
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = 50 - value.length;
+    var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 

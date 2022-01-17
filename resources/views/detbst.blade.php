@@ -193,8 +193,8 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -253,7 +253,7 @@ $(document).ready(function(){
 
     if (value.length == 0) {
         // $('#wordCount').html(0);
-        $('#totalChars').html(50);
+        $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
         return;
@@ -261,7 +261,7 @@ $(document).ready(function(){
 
     var regex = /\s+/gi;
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = 50 - value.length;
+    var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 

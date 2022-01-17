@@ -199,6 +199,7 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
+<<<<<<< HEAD
 
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                               <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
@@ -206,6 +207,10 @@
                               <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
                               <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
 
+=======
+                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -311,6 +316,7 @@ window.onclick = function(event) {
     }
 }
 </script>
+<<<<<<< HEAD
 
 <!-- tooltip -->
 <script>
@@ -366,6 +372,8 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
+=======
+>>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

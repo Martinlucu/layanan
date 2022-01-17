@@ -13,7 +13,6 @@ use Auth;
 
 class mahasiswaController extends Controller
 {
-    // nggak bisa mensorting nim tertentu user
     public function mhscuti()
     {
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
@@ -39,7 +38,6 @@ class mahasiswaController extends Controller
         return view('mhslapcuti', compact('ct', 'ctmaha'));
     }
 
-    // nggak bisa mensorting nim tertentu user
     public function mhsdispen()
     {
     	$dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
@@ -66,7 +64,6 @@ class mahasiswaController extends Controller
         return view('mhslapdispen', compact('dp', 'dpmaha'));
     }
 
-    // nggak bisa mensorting nim tertentu user
     public function mhsbst()
     {
     	$bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
@@ -93,7 +90,6 @@ class mahasiswaController extends Controller
         return view('mhslapbst', compact('bs', 'bsmaha'));
     }
 
-    // nggak bisa mensorting nim tertentu user
     public function mhsyudi()
     {
     	$ydm = DB::table('dokumen')->where('status','proses')->count();
@@ -138,6 +134,7 @@ class mahasiswaController extends Controller
                 'no_telp'       => Auth::user()->no_telp,
                 'email_mhs'     => Auth::user()->email,
                 'semester'      => Auth::user()->semester,
+                'angkatan'      => Auth::user()->angkatan,
                 'jurusan'       => Auth::user()->jurusan,
                 'fakultas'      => Auth::user()->fakultas,
                 'tanggal_absen' => $request->absen,
@@ -320,7 +317,7 @@ class mahasiswaController extends Controller
         $date = date(Carbon::now());
         $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
         $tanggal_sekarang = new Carbon();
-        $masuk_kuliah = new Carbon(Auth::user()->created_at);
+        $masuk_kuliah = new Carbon(Auth::user()->tanggal_masuk);
 
         $minggu_kuliah = $tanggal_sekarang->diffInWeeks($masuk_kuliah);
 
@@ -333,6 +330,7 @@ class mahasiswaController extends Controller
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
                 'semester'          => Auth::user()->semester,
+                'angkatan'          => Auth::user()->angkatan,
                 'jurusan'           => Auth::user()->jurusan,
                 'fakultas'          => Auth::user()->fakultas,
                 'alasan_pengajuan'  => $request->alasan,
@@ -370,6 +368,7 @@ class mahasiswaController extends Controller
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
                 'semester'          => Auth::user()->semester,
+                'angkatan'          => Auth::user()->angkatan,
                 'jurusan'           => Auth::user()->jurusan,
                 'fakultas'          => Auth::user()->fakultas,
                 'alasan_pengajuan'  => $request->alasan,
@@ -378,7 +377,10 @@ class mahasiswaController extends Controller
                 'created_at'            => $date,                
             ]);
 
-            
+            DB::table('mhs')->where('nim', '=', Auth::user()->nim)
+                    ->update([
+                        'jml_pengajuan_cuti' =>  Auth::user()->jml_pengajuan_cuti + 1
+                ]);
 
                 return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda telah berhasil di edit! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
         
@@ -394,6 +396,7 @@ class mahasiswaController extends Controller
             'no_telp'           => Auth::user()->no_telp,
             'email_mhs'         => Auth::user()->email,
             'semester'          => Auth::user()->semester,
+            'angkatan'          => Auth::user()->angkatan,
             'jurusan'           => Auth::user()->jurusan,
             'fakultas'          => Auth::user()->fakultas,
             'alasan_pengajuan'  => $request->alasan,

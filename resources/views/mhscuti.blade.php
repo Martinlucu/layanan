@@ -174,7 +174,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->alasan_pengajuan }}</td>
+		              	<td>{{ $d->berkas }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>

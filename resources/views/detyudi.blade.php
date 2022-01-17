@@ -195,8 +195,13 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
+<<<<<<< HEAD
                                 <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
                                 <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+=======
+                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -246,34 +251,40 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
-
 <!-- Penghitung huruf -->
 <script>
   counter = function() {
     var value = $('#alasan').val();
 
     if (value.length == 0) {
-        // $('#wordCount').html(0);
-        $('#totalChars').html(50);
-        // $('#charCount').html(0);
-        // $('#charCountNoSpace').html(0);
+        $('#wordCount').html(0);
+        $('#totalChars').html(0);
+        $('#charCount').html(0);
+        $('#charCountNoSpace').html(0);
         return;
     }
 
     var regex = /\s+/gi;
+<<<<<<< HEAD
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
+=======
+    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    var totalChars = value.length;
+    var charCount = value.trim().length;
+    var charCountNoSpace = value.replace(regex, '').length;
+>>>>>>> parent of 0da6b49 (Perubahan pada keterangan jumlah karakter)
 
-    // $('#wordCount').html(wordCount);
+    $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    // $('#charCount').html(charCount);
-    // $('#charCountNoSpace').html(charCountNoSpace);
+    $('#charCount').html(charCount);
+    $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#alasan').click(counter);
+    $('#count').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);

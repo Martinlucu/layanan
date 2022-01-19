@@ -12,16 +12,15 @@ use Auth;
 
 class DosenController extends Controller
 {
-    public function doshome()
+    public function dotdoshome()
     {
         
     	return view('doshome');
     }
 
-    public function detyudi()
+    public function dosdetyudi()
     {
-        $from = date('2021-04-01');
-        $to = date('2021-07-30');
+        
         $ydm = DB::table('dokumen')->where('status','proses')->count();
         $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','Proses')->get();
         $ydmahaa = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by dosen')->get();
@@ -31,10 +30,9 @@ class DosenController extends Controller
         
 }
 
-    public function detcuti()
+    public function dosdetcuti()
     { 
-        $from = date('2021-04-01');
-        $to = date('2021-07-30');
+        
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
         $ctmahas = DB::table('dokumen')->where('jenis','Cuti')->get();
@@ -42,10 +40,9 @@ class DosenController extends Controller
         return view('dosdetcuti',compact('ct','ctmaha', 'ctmahas'));
 }
 
-    public function detbst()
+    public function dosdetbst()
     {
-        $from = date('2021-04-01');
-        $to = date('2021-07-30');
+        
         $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
         $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','Proses')->get();
         $bsmahaa = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->get();
@@ -55,10 +52,9 @@ class DosenController extends Controller
         
 }
 
-    public function detdispen()
+    public function dosdetdispen()
         {
-            $from = date('2021-04-01');
-            $to = date('2021-07-30');
+            
             $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
             $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
             $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
@@ -66,16 +62,17 @@ class DosenController extends Controller
             
             return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas'));
         }
-        public function disrange(){
-            $awal="tgllawal";
-            $akhir="tglakhir";
+        public function disrange(Request $request){
+            $awal = $request->get("tgllawal");
+           
+            $akhir=date('tglakhir');
             $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')
-            ->whereBetween('created_at', [$awal, $akhir])->get();
+            ->whereBetween('created_at', [$request->get('tgllawal'),$request->get('tglakhir')])->get();
             
             $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
             $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
             $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
-            return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas'));;
+            return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas','awal'));;
         }
     public function stjcuti($id)
         {

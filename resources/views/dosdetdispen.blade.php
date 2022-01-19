@@ -20,20 +20,69 @@
   <!-- Data table -->
   <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
-  <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+<link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
+<link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css')}}">
+<link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
 
-  <script>
-        $(document).ready(function () {
+<script type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
+<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>  
+<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+<script  type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+<script  type="text/javascript"  src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
+<script type="text/javascript"   src="{{asset('https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js')}}"></script>
+<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+  
+<script>
+  
+  var minDate, maxDate;
+   
+  // Custom filtering function which will search data in column four between two values
+  $.fn.dataTable.ext.search.push(
+      function( settings, data, dataIndex ) {
+          var min = minDate.val();
+          var max = maxDate.val();
+          var date = new Date( data[6,8] );
+   
+          if (
+              ( min === null && max === null ) ||
+              ( min === null && date <= max ) ||
+              ( min <= date   && max === null ) ||
+              ( min <= date   && date <= max )
+          ) {
+              return true;
+          }
+          return false;
+      }
+  );
+   
+  $(document).ready(function() {
+      // Create date inputs
+      minDate = new DateTime($('#min'), {
+          format: 'YYYY-MM-DD'
+      });
+      maxDate = new DateTime($('#max'), {
+          format: 'YYYY-MM-DD'
+      });
+   
+      // DataTables initialisation
+      var table = $('#example').DataTable();
+   
+      // Refilter the table
+      $('#min, #max').on('change', function () {
+          table.draw();
+      });
+  });
+
+   $(document).ready(function () {
           $('#example').DataTable();
         });
     
         $(document).ready(function () {
           $('#preview').DataTable();
         });
-    </script>
-
+  </script>
+  
 <style>
       btn{
         color:white;
@@ -165,7 +214,7 @@
     <div class="content">
       <div class="container">
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+      <table id="preview" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -243,15 +292,14 @@
     <table border="0" cellspacing="5" cellpadding="5">
         <tbody><tr>
             <td>Minimum date:</td>
-            <td><input type="date" class="form-control" name="tgllawal" value=""></td>
-        
+            <td><input type="text" name="min" id="min"></td>
+            </tr>
+        <tr>
             <td>Maximum date:</td>
-            <td><input type="date" class="form-control" name="tglakhir" value=""></td>
-          
-            <td> <a class="btn btn-success" href="{{url('/dosdetdispen/disrange/')}}">go</a></td>
+            <td><input type="text" name="max" id="max"></td>
         </tr>
     </tbody></table>
-      <table id="preview" class="table table-striped table-bordered" id="hidden-table-info">
+      <table id="example" class="display nowrap">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -280,7 +328,7 @@
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
-                      <td>{{ $ds->updated_at}}</td>
+                       <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
                       <td>{{ $ds->nim }}</td>
@@ -291,7 +339,7 @@
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
-                      <td>{{ $ds->updated_at}}</td>
+                     <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
                       <td>{{ $ds->nim }}</td>
@@ -335,7 +383,7 @@
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at}}</td>
                       <td>Ditolak oleh AAK karena {{$ds->alasan_penolakan}}</td>
-                      <td>{{ $ds->updated_at}}</td>
+                       <td>{{ $ds->updated_at}}</td>
                       @ENDIF
                     
                     </tr>
@@ -357,6 +405,7 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
+
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
@@ -364,8 +413,6 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
-<!-- Data table -->
-
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -377,12 +424,12 @@ window.onclick = function(event) {
     }
 }
 </script>
-<!-- tooltip -->
+<!-- tooltip 
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
-</script>
+</script>-->
 <!-- Penghitung huruf -->
 <script>
   counter = function() {

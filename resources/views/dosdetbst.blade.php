@@ -20,19 +20,71 @@
   <!-- Data table -->
   <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
-  <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+  <link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
+  <link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css')}}">
+  <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
 
-    <script>
-        $(document).ready(function () {
-          $('#example').DataTable();
+  <script type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>  
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
+  <script type="text/javascript"   src="{{asset('https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+  
+
+  <script>
+    
+    var minDate, maxDate;
+    
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date = new Date( data[4,6] );
+    
+            if (
+                ( min === null && max === null ) ||
+                ( min === null && date <= max ) ||
+                ( min <= date   && max === null ) ||
+                ( min <= date   && date <= max )
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    $(document).ready(function() {
+        // Create date inputs
+        minDate = new DateTime($('#min'), {
+            format: 'YYYY-MM-DD'
+        });
+        maxDate = new DateTime($('#max'), {
+            format: 'YYYY-MM-DD'
         });
     
-        $(document).ready(function () {
-          $('#preview').DataTable();
+        // DataTables initialisation
+        var table = $('#example').DataTable();
+    
+        // Refilter the table
+        $('#min, #max').on('change', function () {
+            table.draw();
         });
-    </script>
+    });
+
+    $(document).ready(function () {
+            $('#example').DataTable();
+          });
+      
+          $(document).ready(function () {
+            $('#preview').DataTable();
+          });
+    </script> 
+
+<style>
 
 <style>
       /* btn{
@@ -93,7 +145,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
+          width: 50%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -165,7 +217,7 @@
     <div class="content">
       <div class="container">
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+      <table id="preview" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -200,13 +252,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-<<<<<<< HEAD
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                               <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-=======
-                              <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -237,13 +284,8 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-<<<<<<< HEAD
-                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-=======
                               <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
                               <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -258,7 +300,17 @@
     </div>
 
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="preview" class="table table-striped table-bordered">
+    <table border="0" cellspacing="5" cellpadding="5">
+        <tbody>
+          <tr>
+            <td>Minimum date:</td>
+            <td><input type="text" name="min" id="min"></td>
+            
+            <td>Maximum date:</td>
+            <td><input type="text" name="max" id="max"></td>
+        </tr>
+    </tbody></table>
+      <table id="example" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -360,7 +412,6 @@ window.onclick = function(event) {
     }
 }
 </script>
-<<<<<<< HEAD
 
 <!-- tooltip -->
 <script>
@@ -403,8 +454,6 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

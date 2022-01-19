@@ -74,6 +74,7 @@ class DosenController extends Controller
             $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
             return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas','awal'));;
         }
+        
     public function stjcuti($id)
         {
             

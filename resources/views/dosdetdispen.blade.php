@@ -20,174 +20,174 @@
   <!-- Data table -->
   <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
-<link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css')}}">
-<link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
+  <link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
+  <link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css')}}">
+  <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
 
-<script type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
-<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>  
-<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
-<script  type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-<script  type="text/javascript"  src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
-<script type="text/javascript"   src="{{asset('https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js')}}"></script>
-<script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+  <script type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>  
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
+  <script type="text/javascript"   src="{{asset('https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js')}}"></script>
+  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
   
-<script>
-  
-  var minDate, maxDate;
-   
-  // Custom filtering function which will search data in column four between two values
-  $.fn.dataTable.ext.search.push(
-      function( settings, data, dataIndex ) {
-          var min = minDate.val();
-          var max = maxDate.val();
-          var date = new Date( data[6,8] );
-   
-          if (
-              ( min === null && max === null ) ||
-              ( min === null && date <= max ) ||
-              ( min <= date   && max === null ) ||
-              ( min <= date   && date <= max )
-          ) {
-              return true;
-          }
-          return false;
-      }
-  );
-   
-  $(document).ready(function() {
-      // Create date inputs
-      minDate = new DateTime($('#min'), {
-          format: 'YYYY-MM-DD'
-      });
-      maxDate = new DateTime($('#max'), {
-          format: 'YYYY-MM-DD'
-      });
-   
-      // DataTables initialisation
-      var table = $('#example').DataTable();
-   
-      // Refilter the table
-      $('#min, #max').on('change', function () {
-          table.draw();
-      });
-  });
-
-   $(document).ready(function () {
-          $('#example').DataTable();
+  <script>
+    
+    var minDate, maxDate;
+    
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date = new Date( data[6,8] );
+    
+            if (
+                ( min === null && max === null ) ||
+                ( min === null && date <= max ) ||
+                ( min <= date   && max === null ) ||
+                ( min <= date   && date <= max )
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    $(document).ready(function() {
+        // Create date inputs
+        minDate = new DateTime($('#min'), {
+            format: 'YYYY-MM-DD'
+        });
+        maxDate = new DateTime($('#max'), {
+            format: 'YYYY-MM-DD'
         });
     
-        $(document).ready(function () {
-          $('#preview').DataTable();
+        // DataTables initialisation
+        var table = $('#example').DataTable();
+    
+        // Refilter the table
+        $('#min, #max').on('change', function () {
+            table.draw();
         });
-  </script>
-  
-<style>
-      btn{
-        color:white;
-      }
+    });
 
-        /* Full-width input fields */
-        textarea {
-          width: 100%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          display: inline-block;
-          border: 1px solid #ccc;
-          box-sizing: border-box;
+    $(document).ready(function () {
+            $('#example').DataTable();
+          });
+      
+          $(document).ready(function () {
+            $('#preview').DataTable();
+          });
+    </script>
+    
+  <style>
+        btn{
+          color:white;
         }
 
-        /* Set a style for all buttons */
-        button {
-          background-color: #04AA6D;
-          color: white;
-          padding: 14px 20px;
-          margin: 8px 0;
-          border: none;
-          cursor: pointer;
-          width: 100%;
-        }
-
-        button:hover {
-          opacity: 0.8;
-        }
-
-        /* Extra styles for the cancel button */
-        .cancelbtn {
-          width: auto;
-          padding: 10px 18px;
-          background-color: #f44336;
-        }
-
-        
-
-        /* The Modal (background) */
-        .modal {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 4; /* Sit on top */
-          left: 0;
-          top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgb(0,0,0); /* Fallback color */
-          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-          padding-top: 60px;
-        }
-
-        /* Modal Content/Box */
-        .modal-content {
-          background-color: #fefefe;
-          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-          border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
-        }
-
-        /* The Close Button (x) */
-        .close {
-          position: absolute;
-          right: 25px;
-          top: 0;
-          color: #000;
-          font-size: 35px;
-          font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-          color: red;
-          cursor: pointer;
-        }
-
-        /* Add Zoom Animation */
-        .animate {
-          -webkit-animation: animatezoom 0.6s;
-          animation: animatezoom 0.6s
-        }
-
-        @-webkit-keyframes animatezoom {
-          from {-webkit-transform: scale(0)} 
-          to {-webkit-transform: scale(1)}
-        }
-          
-        @keyframes animatezoom {
-          from {transform: scale(0)} 
-          to {transform: scale(1)}
-        }
-
-        /* Change styles for span and cancel button on extra small screens */
-        @media screen and (max-width: 300px) {
-          span.psw {
-            display: block;
-            float: none;
+          /* Full-width input fields */
+          textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
           }
-          .cancelbtn {
+
+          /* Set a style for all buttons */
+          button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
             width: 100%;
           }
-        }
-    </style>
+
+          button:hover {
+            opacity: 0.8;
+          }
+
+          /* Extra styles for the cancel button */
+          .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+          }
+
+          
+
+          /* The Modal (background) */
+          .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 4; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+          }
+
+          /* Modal Content/Box */
+          .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */
+          }
+
+          /* The Close Button (x) */
+          .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+          }
+
+          .close:hover,
+          .close:focus {
+            color: red;
+            cursor: pointer;
+          }
+
+          /* Add Zoom Animation */
+          .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+          }
+
+          @-webkit-keyframes animatezoom {
+            from {-webkit-transform: scale(0)} 
+            to {-webkit-transform: scale(1)}
+          }
+            
+          @keyframes animatezoom {
+            from {transform: scale(0)} 
+            to {transform: scale(1)}
+          }
+
+          /* Change styles for span and cancel button on extra small screens */
+          @media screen and (max-width: 300px) {
+            span.psw {
+              display: block;
+              float: none;
+            }
+            .cancelbtn {
+              width: 100%;
+            }
+          }
+      </style>
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -248,8 +248,8 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
-                                <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="3" rows="3"></textarea>
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                     </td>
@@ -275,9 +275,8 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
-                                <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                                <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
@@ -288,18 +287,18 @@
     </table>
     </div>
 
+    
     <div class="table-responsive" style="padding:20px;width: 98%;">
     <table border="0" cellspacing="5" cellpadding="5">
         <tbody><tr>
             <td>Minimum date:</td>
             <td><input type="text" name="min" id="min"></td>
-            </tr>
-        <tr>
+           
             <td>Maximum date:</td>
             <td><input type="text" name="max" id="max"></td>
         </tr>
     </tbody></table>
-      <table id="example" class="display nowrap">
+    <table id="example" class="display nowrap">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -437,7 +436,7 @@ $(document).ready(function(){
 
     if (value.length == 0) {
         $('#wordCount').html(0);
-        $('#totalChars').html(0);
+        $('#totalChars').html(200);
         $('#charCount').html(0);
         $('#charCountNoSpace').html(0);
         return;
@@ -445,7 +444,7 @@ $(document).ready(function(){
 
     var regex = /\s+/gi;
     var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = value.length;
+    var totalChars = 200 - value.length;
     var charCount = value.trim().length;
     var charCountNoSpace = value.replace(regex, '').length;
 

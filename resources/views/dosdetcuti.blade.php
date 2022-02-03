@@ -248,7 +248,6 @@
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
-
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                               <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
 
@@ -384,12 +383,6 @@ $(document).ready(function(){
         $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
-
-        $('#wordCount').html(0);
-        $('#totalChars').html(0);
-        $('#charCount').html(0);
-        $('#charCountNoSpace').html(0);
-
         return;
     }
 
@@ -399,20 +392,15 @@ $(document).ready(function(){
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = value.length;
-    var charCount = value.trim().length;
-    var charCountNoSpace = value.replace(regex, '').length;
-
-
-    $('#wordCount').html(wordCount);
+    
+    // $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    $('#charCount').html(charCount);
-    $('#charCountNoSpace').html(charCountNoSpace);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#count').click(counter);
+    $('#alasan').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);

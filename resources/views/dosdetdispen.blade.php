@@ -32,7 +32,7 @@
   <script  type="text/javascript"  src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
   <script type="text/javascript"   src="{{asset('https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js')}}"></script>
   <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
-  
+
   <script>
     
     var minDate, maxDate;
@@ -81,113 +81,113 @@
           $(document).ready(function () {
             $('#preview').DataTable();
           });
-    </script>
-    
-  <style>
-        btn{
-          color:white;
+    </script> 
+
+<style>
+      /* btn{
+        color:white;
+      } */
+
+        /* Full-width input fields */
+        textarea{
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
         }
 
-          /* Full-width input fields */
-          textarea {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-          }
+        /* Set a style for all buttons */
+        button {
+          background-color: #04AA6D;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
 
-          /* Set a style for all buttons */
-          button {
-            background-color: #04AA6D;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-          }
+        button:hover {
+          opacity: 0.8;
+        }
 
-          button:hover {
-            opacity: 0.8;
-          }
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
 
-          /* Extra styles for the cancel button */
-          .cancelbtn {
-            width: auto;
-            padding: 10px 18px;
-            background-color: #f44336;
-          }
+        
 
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 4; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          width: 50%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+          position: absolute;
+          right: 25px;
+          top: 0;
+          color: #000;
+          font-size: 35px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: red;
+          cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+        }
           
+        @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+        }
 
-          /* The Modal (background) */
-          .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 4; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            padding-top: 60px;
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+            display: block;
+            float: none;
           }
-
-          /* Modal Content/Box */
-          .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-            border: 1px solid #888;
-            width: 50%; /* Could be more or less, depending on screen size */
+          .cancelbtn {
+            width: 100%;
           }
-
-          /* The Close Button (x) */
-          .close {
-            position: absolute;
-            right: 25px;
-            top: 0;
-            color: #000;
-            font-size: 35px;
-            font-weight: bold;
-          }
-
-          .close:hover,
-          .close:focus {
-            color: red;
-            cursor: pointer;
-          }
-
-          /* Add Zoom Animation */
-          .animate {
-            -webkit-animation: animatezoom 0.6s;
-            animation: animatezoom 0.6s
-          }
-
-          @-webkit-keyframes animatezoom {
-            from {-webkit-transform: scale(0)} 
-            to {-webkit-transform: scale(1)}
-          }
-            
-          @keyframes animatezoom {
-            from {transform: scale(0)} 
-            to {transform: scale(1)}
-          }
-
-          /* Change styles for span and cancel button on extra small screens */
-          @media screen and (max-width: 300px) {
-            span.psw {
-              display: block;
-              float: none;
-            }
-            .cancelbtn {
-              width: 100%;
-            }
-          }
-      </style>
+        }
+    </style>
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -244,14 +244,15 @@
                         </button>
 
                         <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                                <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="3" rows="3"></textarea>
-                                <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
+                          <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
+                            @csrf
+                          <div class="container" style="padding:16px;">
+                              <label for="uname"><b>Alasan Penolakan :</b></label>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+
+                              <button class ="btn btn-danger" type="submit">Submit</button>
+                      </div>
                     </td>
                       </tr>
                       @endforeach
@@ -271,15 +272,15 @@
                         </button>
 
                         <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                                <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                          <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
+                            @csrf
+                          <div class="container" style="padding:16px;">
+                              <label for="uname"><b>Alasan Penolakan :</b></label>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
                               <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-                                
-                                <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
+
+                              <button class ="btn btn-danger" type="submit">Submit</button>
+                      </div>
                     </td>
                       </tr>
                       @endforeach
@@ -287,18 +288,18 @@
     </table>
     </div>
 
-    
     <div class="table-responsive" style="padding:20px;width: 98%;">
     <table border="0" cellspacing="5" cellpadding="5">
-        <tbody><tr>
+        <tbody>
+          <tr>
             <td>Minimum date:</td>
             <td><input type="text" name="min" id="min"></td>
-           
+            
             <td>Maximum date:</td>
             <td><input type="text" name="max" id="max"></td>
         </tr>
     </tbody></table>
-    <table id="example" class="display nowrap">
+      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -327,7 +328,7 @@
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Disetujui oleh dosen</td>
-                       <td>{{ $ds->updated_at}}</td>
+                      <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
                       <td>{{ $ds->nim }}</td>
@@ -338,7 +339,7 @@
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
                       <td>Disetujui oleh kaprodi</td>
-                     <td>{{ $ds->updated_at}}</td>
+                      <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
                       <td>{{ $ds->nim }}</td>
@@ -382,7 +383,7 @@
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at}}</td>
                       <td>Ditolak oleh AAK karena {{$ds->alasan_penolakan}}</td>
-                       <td>{{ $ds->updated_at}}</td>
+                      <td>{{ $ds->updated_at}}</td>
                       @ENDIF
                     
                     </tr>
@@ -404,7 +405,6 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
@@ -412,6 +412,8 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+<!-- Data table -->
+
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -423,39 +425,41 @@ window.onclick = function(event) {
     }
 }
 </script>
-<!-- tooltip 
+<!-- tooltip -->
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
-</script>-->
+</script>
 <!-- Penghitung huruf -->
 <script>
   counter = function() {
     var value = $('#alasan').val();
 
     if (value.length == 0) {
-        $('#wordCount').html(0);
+
+        // $('#wordCount').html(0);
         $('#totalChars').html(200);
-        $('#charCount').html(0);
-        $('#charCountNoSpace').html(0);
+        // $('#charCount').html(0);
+        // $('#charCountNoSpace').html(0);
         return;
     }
 
     var regex = /\s+/gi;
-    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
+    // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = 200 - value.length;
-    var charCount = value.trim().length;
-    var charCountNoSpace = value.replace(regex, '').length;
+    // var charCount = value.trim().length;
+    // var charCountNoSpace = value.replace(regex, '').length;
 
-    $('#wordCount').html(wordCount);
+    
+    // $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    $('#charCount').html(charCount);
-    $('#charCountNoSpace').html(charCountNoSpace);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#count').click(counter);
+    $('#alasan').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);

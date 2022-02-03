@@ -86,7 +86,7 @@
 
 <style>
 
-<style>
+
       /* btn{
         color:white;
       } */
@@ -425,6 +425,7 @@ $(document).ready(function(){
     var value = $('#alasan').val();
 
     if (value.length == 0) {
+
         // $('#wordCount').html(0);
         $('#totalChars').html(200);
         // $('#charCount').html(0);
@@ -438,14 +439,15 @@ $(document).ready(function(){
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    $('#wordCount').html(wordCount);
+    
+    // $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    $('#charCount').html(charCount);
-    $('#charCountNoSpace').html(charCountNoSpace);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#count').click(counter);
+    $('#alasan').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);

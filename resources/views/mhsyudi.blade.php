@@ -154,22 +154,23 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-      @IF ($ydmaha->count()>0 || $ydmahas->count()>0 || $ydmahass->count()>0 || $ydmahasss->count()>0 || $ydmahassss->count()>0 || $ydmahasssss->count()>0)
+      @IF ($ydmaha->count()>0 || $ydmahas->count()>0 || $ydmahass->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
         <table id="example" class="table table-striped table-bordered">
       <thead>
         <tr>
-        <th>NIM</th>
+                      <th>NIM</th>
                       <th>Nama</th>
                       <th>Tempat lahir</th>
                       <th>Tanggal lahir</th>
                       <th>No. KTP</th>
                       <th>Alamat</th>
                       <th>No. Telp</th>
+                      <th>Email</th>
                       <th>Berkas</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Status</th>
-                      @IF ($ydmahasss->count()>0 || $ydmahassss->count()>0 || $ydmahasssss->count()>0)
+                      @IF ($ydmahas->count()>0)
                       <th>Aksi</th>
                       @ENDIF
                     
@@ -190,13 +191,25 @@
                     <td>{{ $yd->alamat }}</td>
                     <td>{{ $yd->no_telp }}</td>
                     <td>{{ $yd->email_mhs }}</td>
-		              	<td>{{ $yd->berkas }} </td>
+		              	<td>
+                      {{ $yd->berkas_akta }}
+                      <br><br>
+                      {{ $yd->berkas_toefl }} 
+                      <br><br>
+                      {{ $yd->berkas_ijazah }} 
+                      <br><br>
+                      {{ $yd->berkas_kk }} 
+                      <br><br>
+                      {{ $yd->berkas_ktp }} 
+                      <br><br>
+                      {{ $yd->berkas_ktm }} 
+                    </td>
 		              	<td>{{ $yd->created_at }}</td>
 		              	<td>{{ $yd->status }}
                   </td>
                     </tr>
                     @endforeach
-                    <!-- Setuju by dosen -->
+                 <!-- Ditolak by aak -->
                     @ELSEIF ($ydmahas->count()>0)
                     <tr>
                     @foreach($ydmahas as $yd)
@@ -210,307 +223,19 @@
                     <td>{{ $yd->alamat }}</td>
                     <td>{{ $yd->no_telp }}</td>
                     <td>{{ $yd->email_mhs }}</td>
-		              	<td>{{ $yd->berkas }} </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td>{{ $yd->status }}
-                  </td>
-                    </tr>
-                    @endforeach
-                    <!-- Setuju by kaprodi -->
-                    @ELSEIF ($ydmahass->count()>0)
-                    <tr>
-                    @foreach($ydmahass as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-		              	<td>{{ $yd->nama_mhs }}</td>
-                    <td>{{ $yd->tempat_lahir }}</td>
-                    <td>{{ $yd->tanggal_lahir }}</td>
-                    <td>{{ $yd->no_ktp }}</td>
-                    <td>{{ $yd->alamat }}</td>
-                    <td>{{ $yd->no_telp }}</td>
-                    <td>{{ $yd->email_mhs }}</td>
-		              	<td>{{ $yd->berkas }} </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td>{{ $yd->status }}
-                  </td>
-                    </tr>
-                    @endforeach
-                    <!-- ditolak by dosen -->
-                    @ELSEIF ($ydmahasss->count()>0)
-                    <tr>
-                    @foreach($ydmahasss as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-		              	<td>{{ $yd->nama_mhs }}</td>
-                    <td>{{ $yd->tempat_lahir }}</td>
-                    <td>{{ $yd->tanggal_lahir }}</td>
-                    <td>{{ $yd->no_ktp }}</td>
-                    <td>{{ $yd->alamat }}</td>
-                    <td>{{ $yd->no_telp }}</td>
-                    
-		              	<td>{{ $yd->berkas }} </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td>Ditolak oleh dosen karena {{ $yd->alasan_penolakan }}</td>
 		              	<td>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Edit Data
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/edityudisium/{{$yd->id}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                            <div class="form-group">
-                      <div class="row">
-                        <div class="col">
-                          <label for="exampleInputEmail1">NIM</label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                        </div>
-                        <div class="col">
-                          <label for="exampleInputPassword1">Nama</label>
-                          <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col">
-                          <label for="exampleInputEmail1">Tempat Lahir</label>
-                          <input type="tempat_lahir" class="form-control" name="tempat_lahir" value=" {{ Auth::user()->tempat_lahir }} " disabled>
-                        </div>
-                        <div class="col">
-                          <label for="exampleInputPassword1">Tanggal Lahir</label>
-                          <input type="text" class="form-control" name="tanggal_lahir" value=" {{ Auth::user()->tanggal_lahir }} " disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" value="{{ Auth::user()->no_ktp }}" name="no_ktp" disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Alamat</label>
-                      <input type="nama" class="form-control" name="alamat" value=" {{ Auth::user()->alamat }} " disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">E-mail Dinamika</label>
-                      <input type="nama" class="form-control" name="email" value=" {{ Auth::user()->email }} " disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-<<<<<<< HEAD
-                            <input type="file" name="foto" class="form-control-file" onchange="return validasifoto()" id="berkas_foto" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" onchange="return validasitoefl()" id="berkas_toefl" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return validasiijazaj()" id="berkas_ijazah" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" onchange="return validasiakta()" id="berkas_akta" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" onchange="return validasikk()" id="berkas_kk" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" onchange="return validasiktm()" id="berkas_ktm" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" onchange="return validasiktp()" id="berkas_ktp" required>
-=======
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
-                          </div>
-                    </div>
-                    <button class ="btn btn-danger" type="submit">Submit</button>
-                  </div>
-                </div>
+                      {{ $yd->berkas_akta }}
+                      <br><br>
+                      {{ $yd->berkas_toefl }} 
+                      <br><br>
+                      {{ $yd->berkas_ijazah }} 
+                      <br><br>
+                      {{ $yd->berkas_kk }} 
+                      <br><br>
+                      {{ $yd->berkas_ktp }} 
+                      <br><br>
+                      {{ $yd->berkas_ktm }} 
                     </td>
-                    </tr>
-                    @endforeach
-                    <!-- Ditolak by kaprodi -->
-                    @ELSEIF ($ydmahassss->count()>0)
-                    <tr>
-                    @foreach($ydmahassss as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-		              	<td>{{ $yd->nama_mhs }}</td>
-                    <td>{{ $yd->tempat_lahir }}</td>
-                    <td>{{ $yd->tanggal_lahir }}</td>
-                    <td>{{ $yd->no_ktp }}</td>
-                    <td>{{ $yd->alamat }}</td>
-                    <td>{{ $yd->no_telp }}</td>
-                    <td>{{ $yd->email_mhs }}</td>
-		              	<td>{{ $yd->berkas }} </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td>Ditolak oleh kaprodi karena {{ $yd->alasan_penolakan }}</td>
-		              	<td>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Edit Data
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/edityudisium/{{$yd->id}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                            <div class="form-group">
-                      <div class="row">
-                        <div class="col">
-                          <label for="exampleInputEmail1">NIM</label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                        </div>
-                        <div class="col">
-                          <label for="exampleInputPassword1">Nama</label>
-                          <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col">
-                          <label for="exampleInputEmail1">Tempat Lahir</label>
-                          <input type="tempat_lahir" class="form-control" name="tempat_lahir" value=" {{ Auth::user()->tempat_lahir }} " disabled>
-                        </div>
-                        <div class="col">
-                          <label for="exampleInputPassword1">Tanggal Lahir</label>
-                          <input type="text" class="form-control" name="tanggal_lahir" value=" {{ Auth::user()->tanggal_lahir }} " disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" value="{{ Auth::user()->no_ktp }}" name="no_ktp" disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Alamat</label>
-                      <input type="nama" class="form-control" name="alamat" value=" {{ Auth::user()->alamat }} " disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">E-mail Dinamika</label>
-                      <input type="nama" class="form-control" name="email" value=" {{ Auth::user()->email }} " disabled>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-<<<<<<< HEAD
-                            <input type="file" name="foto" class="form-control-file" onchange="return validasifoto()" id="berkas_foto" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" onchange="return validasitoefl()" id="berkas_toefl" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" onchange="return validasiijazah()" id="berkas_ijazah" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" onchange="return validasiakta()" id="berkas_akta" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" onchange="return validasikk()" id="berkas_kk" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" onchange="return validasiktm()" id="berkas_ktm" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" onchange="return validasiktp()" id="berkas_ktp" required>
-=======
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
-                          </div>
-                    </div>
-                    <button class ="btn btn-danger" type="submit">Submit</button>
-                  </div>
-                </div>
-                    </td>
-                    </tr>
-                    @endforeach
-                    <!-- Ditolak by aak -->
-                    @ELSE
-                    <tr>
-                    @foreach($ydmahasssss as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-		              	<td>{{ $yd->nama_mhs }}</td>
-                    <td>{{ $yd->tempat_lahir }}</td>
-                    <td>{{ $yd->tanggal_lahir }}</td>
-                    <td>{{ $yd->no_ktp }}</td>
-                    <td>{{ $yd->alamat }}</td>
-                    <td>{{ $yd->no_telp }}</td>
-                    <td>{{ $yd->email_mhs }}</td>
-		              	<td>{{ $yd->berkas }} </td>
 		              	<td>{{ $yd->created_at }}</td>
 		              	<td>Ditolak oleh AAK karena {{ $yd->alasan_penolakan }}</td>
 		              	<td>
@@ -526,11 +251,11 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">NIM</label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
+                          <input type="nim" class="form-control" name="nim">
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Nama</label>
-                          <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                          <input type="nama" class="form-control" name="nama">
                         </div>
                       </div>
                     </div>
@@ -538,36 +263,35 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">Tempat Lahir</label>
-                          <input type="tempat_lahir" class="form-control" name="tempat_lahir" value=" {{ Auth::user()->tempat_lahir }} " disabled>
+                          <input type="text" class="form-control" name="tempat_lahir">
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Lahir</label>
-                          <input type="text" class="form-control" name="tanggal_lahir" value=" {{ Auth::user()->tanggal_lahir }} " disabled>
+                          <input type="date" class="form-control" name="tanggal_lahir">
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" value="{{ Auth::user()->no_ktp }}" name="no_ktp" disabled>
+                      <input type="number" pattern="[0-9]{16}" class="form-control" name="no_ktp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>
-                      <input type="nama" class="form-control" name="alamat" value=" {{ Auth::user()->alamat }} " disabled>
+                      <input type="text" class="form-control" name="alamat">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
+                      <input type="tel" pattern="[0-9]{12}" class="form-control" name="no_telp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">E-mail Dinamika</label>
-                      <input type="nama" class="form-control" name="email" value=" {{ Auth::user()->email }} " disabled>
+                      <input type="email" class="form-control" name="email">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
+                      <!-- <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-<<<<<<< HEAD
                             <input type="file" name="foto" class="form-control-file" onchange="return validasifoto()" id="berkas_foto" required>
-                          </div>
+                          </div> -->
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="toefl" class="form-control-file" onchange="return validasitoefl()" id="berkas_toefl" required>
@@ -591,33 +315,6 @@
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
-=======
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                           </div>
                     </div>
                     <button class ="btn btn-danger" type="submit">Submit</button>
@@ -626,7 +323,37 @@
                     </td>
                     </tr>
                     @endforeach
-                    
+                    <!-- Update by mhs -->
+                    @ELSEIF ($ydmahass->count()>0)
+                    <tr>
+                    @foreach($ydmahass as $yd)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $yd->id }}">
+                    <td>{{ $yd->nim }}</td>
+		              	<td>{{ $yd->nama_mhs }}</td>
+                    <td>{{ $yd->tempat_lahir }}</td>
+                    <td>{{ $yd->tanggal_lahir }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
+                    <td>{{ $yd->alamat }}</td>
+                    <td>{{ $yd->no_telp }}</td>
+                    <td>{{ $yd->email_mhs }}</td>
+		              	<td>
+                      {{ $yd->berkas_akta }}
+                      <br><br>
+                      {{ $yd->berkas_toefl }} 
+                      <br><br>
+                      {{ $yd->berkas_ijazah }} 
+                      <br><br>
+                      {{ $yd->berkas_kk }} 
+                      <br><br>
+                      {{ $yd->berkas_ktp }} 
+                      <br><br>
+                      {{ $yd->berkas_ktm }} 
+                    </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td>Dalam proses oleh AAK</td>
+                    </tr>
+                    @endforeach
                     @ENDIF
     </table>
       </div>
@@ -644,11 +371,11 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">NIM</label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
+                          <input type="number" class="form-control" name="nim">
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Nama</label>
-                          <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
+                          <input type="text" class="form-control" name="nama">
                         </div>
                       </div>
                     </div>
@@ -656,36 +383,35 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">Tempat Lahir</label>
-                          <input type="tempat_lahir" class="form-control" name="tempat_lahir" value=" {{ Auth::user()->tempat_lahir }} " disabled>
+                          <input type="text" class="form-control" name="tempat_lahir">
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Lahir</label>
-                          <input type="text" class="form-control" name="tanggal_lahir" value=" {{ Auth::user()->tanggal_lahir }} " disabled>
+                          <input type="date" class="form-control" name="tanggal_lahir">
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" class="form-control" value="{{ Auth::user()->no_ktp }}" name="no_ktp" disabled>
+                      <input type="number" pattern="[0-9]{16}" class="form-control" name="no_ktp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>
-                      <input type="nama" class="form-control" name="alamat" value=" {{ Auth::user()->alamat }} " disabled>
+                      <input type="text" class="form-control" name="alamat">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
+                      <input type="tel" pattern="[0-9]{12}" class="form-control" name="no_telp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">E-mail Dinamika</label>
-                      <input type="nama" class="form-control" name="email" value=" {{ Auth::user()->email }} " disabled>
+                      <input type="email" class="form-control" name="email">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
+                      <!-- <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-<<<<<<< HEAD
                             <input type="file" name="foto" onchange="return validasifoto()" class="form-control-file" id="berkas_foto" required>
-                          </div>
+                          </div> -->
                       <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="toefl" onchange="return validasitoefl()" class="form-control-file" id="berkas_toefl" required>
@@ -709,33 +435,6 @@
                       <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
-=======
-                            <input type="file" name="foto" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" class="form-control-file" id="exampleformcontrolfile1" required>
-                          </div>
-                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
-                          <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktp" class="form-control-file" id="exampleformcontrolfile1" required>
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
                           </div>
                     </div>
                     
@@ -784,24 +483,23 @@ window.onclick = function(event) {
     }
 }
 </script>
-<<<<<<< HEAD
 
 <!-- Checking format file sebelum upload -->
 <script>
-        function validasifoto() {
-            var foto = document.getElementById('berkas_foto');
-            var filefoto = foto.value;
+        // function validasifoto() {
+        //     var foto = document.getElementById('berkas_foto');
+        //     var filefoto = foto.value;
            
           
-            // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        //     // Allowing file type
+        //     var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
               
-            if (!allowedExtensions.exec(filefoto)) {
-                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
-                berkas_foto.value = '';
-                return false;
-            }
-        }
+        //     if (!allowedExtensions.exec(filefoto)) {
+        //         alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+        //         berkas_foto.value = '';
+        //         return false;
+        //     }
+        // }
 
         function validasitoefl() {
             var toefl = document.getElementById('berkas_toefl');
@@ -893,8 +591,6 @@ window.onclick = function(event) {
             }
         }
     </script>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

@@ -68,12 +68,10 @@
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      
                       <th>Jurusan</th>
-                      <th>Jenis Dokumen</th>
                       <th>Status</th>
-                      <th>Tanggal Masuk</th>
-                      <th>Tanggal Selesai</th>
+                      <th>Tanggal Pengajuan</th>
+                      <th>Tanggal Diproses</th>
                     
                     </tr>
                   </thead>
@@ -82,9 +80,7 @@
                     @foreach($lapdis as $lapdis)
                     <td>{{ $lapdis->nim }}</td>
 		              	<td>{{ $lapdis->nama_mhs }}</td>
-			            
-		              	<td>{{ $lapdis->jurusan }}</td>
-		              	<td>{{ $lapdis->jenis }}</td>
+			              <td>{{ $lapdis->jurusan }}</td>
 		              	<td>{{ $lapdis->status }}</td>
 		              	<td>{{ $lapdis->created_at }}</td>
                     <td>{{ $lapdis->updated_at }}</td>

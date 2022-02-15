@@ -13,33 +13,42 @@ class detailController extends Controller
     {
        
         $ydm = DB::table('dokumen')->where('status','proses')->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by kaprodi')->get();
-        return view('detyudi',compact('ydm','ydmaha'));
+        $ydmm = DB::table('dokumen')->where('status','update by mhs ke aak')->count();
+        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
+        $ydmahaa = DB::table('dokumen')->where('jenis','Yudisium')->where('status','update by mhs ke aak')->get();
+        return view('detyudi',compact('ydm', 'ydmm', 'ydmaha', 'ydmahaa'));
 }
 
     public function detcuti()
     { $from = date('2021-04-01');
         $to = date('2021-07-30');
-        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
+        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->count();
+        // $ctt = DB::table('dokumen')->where('jenis','Cuti')->where('status','update by mhs ke aak')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->get();
+        // $ctmahaa = DB::table('dokumen')->where('jenis','Cuti')->where('status','update by mhs ke aak')->get();
         return view('detcuti',compact('ct','ctmaha'));
 }
 
     public function detbst()
     {$from = date('2021-04-01');
         $to = date('2021-07-30');
-        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
+        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->count();
         $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->get();
+        // $bsmahaa = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke aak')->get();
         return view('detbst',compact('bs','bsmaha'));
 }
 
     public function detdispen()
     {$from = date('2021-04-01');
         $to = date('2021-07-30');
-        $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
+        $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->count();
+        $dpp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->count();
+        // $dppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->count();
         $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->get();
+        $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->get();
+        // $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs ke aak')->get();
         
-        return view('detdispen',compact('dpmaha','dp'));
+        return view('detdispen',compact('dpmaha', 'dpmahaa','dp', 'dpp'));
 }
 public function stjcuti($id)
     {

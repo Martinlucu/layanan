@@ -168,7 +168,7 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
                     </tr>
@@ -192,11 +192,11 @@
                             <form role="form" class="modal-content animate" action="/detbst/tlkbst/{{$b->id}}" method="POST">
                               @csrf
                             <div class="container" style="padding:16px;">
-                                <label for="uname"><b>Alasan Penolakan :</b></label>
-
-                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>                                
-                                <button class ="btn btn-danger" type="submit">Submit</button>
+                              <label for="uname"><b>Alasan Penolakan :</b></label>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
+                              
+                              <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                 
                   </td>
@@ -227,7 +227,6 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- Data table -->
 
-<<<<<<< HEAD
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -257,34 +256,24 @@ $(document).ready(function(){
         $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
-
-        $('#wordCount').html(0);
-        $('#totalChars').html(0);
-        $('#charCount').html(0);
-        $('#charCountNoSpace').html(0);
-
+        return;
+    }
 
     var regex = /\s+/gi;
-
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = value.length;
-    var charCount = value.trim().length;
-    var charCountNoSpace = value.replace(regex, '').length;
-
-
-    $('#wordCount').html(wordCount);
+    
+    // $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    $('#charCount').html(charCount);
-    $('#charCountNoSpace').html(charCountNoSpace);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#count').click(counter);
+    $('#alasan').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);
@@ -293,8 +282,6 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

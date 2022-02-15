@@ -146,7 +146,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($bsmaha->count()>0 || $bsmahas->count()>0 || $bsmahass->count()>0 || $bsmahasss->count()>0 || $bsmahassss->count()>0 || $bsmahasssss->count()>0)
+        @IF ($bsmaha->count()>0 || $bsmahas->count()>0 || $bsmahass->count()>0 || $bsmahasss->count()>0 || $bsmahassss->count()>0 || $bsmahasssss->count()>0 || $bsmahassssss->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
            <table id="example" class="table table-striped table-bordered">
       <thead>
@@ -173,7 +173,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -188,7 +188,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -203,7 +203,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -304,7 +304,7 @@
                     </tr>
                     @endforeach
                     <!-- Ditolak by aak -->
-                    @ELSE
+                    @ELSEIF ($bsmahasssss->count()>0)
                     <tr>
                     @foreach($bsmahasssss as $d)
                     {{ csrf_field() }}
@@ -350,7 +350,20 @@
                     </td>
                     </tr>
                     @endforeach
-                    
+                    <!-- Update by mhs -->
+                    @ELSE
+                    <tr>
+                    @foreach($bsmahassssss as $d)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $d->id }}">
+                    <td>{{ $d->nim }}</td>
+		              	<td>{{ $d->nama_mhs }}</td>
+		              	<td>{{ $d->jurusan }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
+		              	<td>{{ $d->created_at }}</td>
+		              	<td>Proses</td>
+                    </tr>
+                    @endforeach
                     @ENDIF
     </table>
         </div>

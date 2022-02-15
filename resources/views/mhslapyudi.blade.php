@@ -29,19 +29,12 @@
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
 
-  <script>
+    <script>
         $(document).ready(function () {
   $('#example').DataTable();
 });
     </script>
 
-  <style>
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  </style>
 </head>
 <body class="hold-transition layout-top-nav">
 
@@ -52,11 +45,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Yudisium</h1>
+            <h1 class="m-0 text-dark">History layanan yudisium</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Yudisium</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / History layanan yudisium</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -68,16 +61,15 @@
     <div class="content">
       <div class="container">
         <div class="table-responsive" style="padding:20px;width: 98%;">
-          <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+        <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
           <thead>
             <tr>
                           <th>NIM</th>
-                          <th>No. KTP</th>
                           <th>Nama</th>
-                          <th>Jurusan</th>
-                          <th>File</th>
-                          <th>Tanggal Masuk</th>
-                          <th>Aksi</th>
+                          <th>Berkas</th>
+                          <th>Tanggal Pengajuan</th>
+                          <th>Status</th>
+                          <th>Tanggal Diproses</th>
                         
                         </tr>
                       </thead>
@@ -87,10 +79,17 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $yd->id }}">
                         <td>{{ $yd->nim }}</td>
-                        <td>{{ $yd->no_ktp }}</td>
                         <td>{{ $yd->nama_mhs }}</td>
-                        <td>{{ $yd->jurusan }}</td>
-                        <td>{{ $yd->berkas }} </td>
+                        <td>
+                          {{ 
+                              $yd->berkas_toefl,
+                              $yd->berkas_akta,  
+                              $yd->berkas_ijazah,  
+                              $yd->berkas_kk,  
+                              $yd->berkas_ktm,  
+                              $yd->berkas_ktp  
+                          }}
+                        </td>
                         <td>{{ $yd->created_at }}</td>
                         <td>{{ $yd->status }}
                         </tr>

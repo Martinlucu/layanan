@@ -147,7 +147,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($ctmaha->count()>0 || $ctmahas->count()>0 || $ctmahass->count()>0 || $ctmahasss->count()>0 || $ctmahassss->count()>0 || $ctmahasssss->count()>0)
+        @IF ($ctmaha->count()>0 || $ctmahas->count()>0 || $ctmahass->count()>0 || $ctmahasss->count()>0 || $ctmahassss->count()>0 || $ctmahasssss->count()>0 || $ctmahassssss->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
       <table id="example" class="table table-striped table-bordered">
       <thead>
@@ -166,7 +166,7 @@
                   </thead>
                   <tbody>
                      <!-- Proses -->
-                     @IF ($ctmaha->count()>0)
+                    @IF ($ctmaha->count()>0)
                     <tr>
                     @foreach($ctmaha as $d)
                     {{ csrf_field() }}
@@ -174,7 +174,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -189,7 +189,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -204,7 +204,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -266,7 +266,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Ditolak oleh kaprodi karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
@@ -305,7 +305,7 @@
                     </tr>
                     @endforeach
                     <!-- Ditolak by aak -->
-                    @ELSE
+                    @ELSEIF ($ctmahasssss->count()>0)
                     <tr>
                     @foreach($ctmahasssss as $d)
                     {{ csrf_field() }}
@@ -313,7 +313,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Ditolak oleh AAK karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
@@ -351,7 +351,20 @@
                     </td>
                     </tr>
                     @endforeach
-                    
+                    <!-- Update by mhs -->
+                    @ELSE
+                    <tr>
+                    @foreach($ctmahassssss as $d)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $d->id }}">
+                    <td>{{ $d->nim }}</td>
+		              	<td>{{ $d->nama_mhs }}</td>
+		              	<td>{{ $d->jurusan }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
+		              	<td>{{ $d->created_at }}</td>
+		              	<td>Proses</td>
+                    </tr>
+                    @endforeach
                     @ENDIF
     </table>
     </div>

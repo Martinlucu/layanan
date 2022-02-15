@@ -217,8 +217,8 @@
       <div class="row justify-content-center">
         <div class="col-auto">
         <div class="table-responsive" style="padding:20px;width: 100%;">
-      <table id="preview" class="table table-striped table-bordered">
-      <thead>
+        <table id="preview" class="table table-striped table-bordered">
+        <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
@@ -236,40 +236,6 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @IF (Auth::user()->jabatan == "Pengajar")
-                    @foreach($ydmaha as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-		              	<td>{{ $yd->nama_mhs }}</td>
-                    <td>{{ $yd->tempat_lahir }}</td>
-                    <td>{{ $yd->tanggal_lahir }}</td>
-                    <td>{{ $yd->no_ktp }}</td>
-                    <td>{{ $yd->alamat }}</td>
-                    <td>{{ $yd->no_telp }}</td>
-                    <td>{{ $yd->email_mhs }}</td>
-		              	<td>{{ $yd->berkas }} </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td> 
-                      <a class="btn btn-success" href="{{url('/dosdetyudi/stjyudi/'.$yd->id)}}">Setuju</a>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                        Tolak
-                      </button>
-
-                      <div id="id01" class="modal">
-                          <form role="form" class="modal-content animate" action="/dosdetyudi/tlkyudi/{{$yd->id}}" method="POST">
-                            @csrf
-                          <div class="container" style="padding:16px;">
-                              <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
-
-                              <button class ="btn btn-danger" type="submit">Submit</button>
-                      </div>
-                  </td>
-                    </tr>
-                    @endforeach
-                    @ELSE
                     @foreach($ydmahaa as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
@@ -302,13 +268,26 @@
                   </td>
                     </tr>
                     @endforeach
-                    @ENDIF
-    </table>
-    </div>
+         </table>
+        </div>
         </div>
       </div>
      
     
+      
+    </div>
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">History Pengajuan Mahasiswa</h1>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-auto">
         <div class="table-responsive" style="padding:20px;width: 100%;">

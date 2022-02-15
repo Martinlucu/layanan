@@ -235,7 +235,7 @@
                       <td>{{ $d->nim }}</td>
                       <td>{{ $d->nama_mhs }}</td>
                       <td>{{ $d->jurusan }}</td>
-                      <td>{{ $d->berkas }}</td>
+                      <td>{{ $d->berkas_dispensasi }}</td>
                       <td>{{ $d->created_at }}</td>
                       <td> 
                         <a class="btn btn-success" href="{{url('/dosdetdispen/stjdis/'.$d->id)}}">Setuju</a>
@@ -249,7 +249,7 @@
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
 
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -277,7 +277,7 @@
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
 
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -287,7 +287,20 @@
                     @ENDIF
     </table>
     </div>
-
+    </div>
+    
+     <!-- Content Header (Page header) -->
+     <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">History Pengajuan Mahasiswa</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="container">
     <div class="table-responsive" style="padding:20px;width: 98%;">
     <table border="0" cellspacing="5" cellpadding="5">
         <tbody>
@@ -391,7 +404,8 @@
                     @endforeach
     </table>
     </div>
-    </div></div>
+  </div>
+  </div>
     <!-- /.content -->
   </div>
     

@@ -152,7 +152,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($dpmaha->count()>0 || $dpmahas->count()>0 || $dpmahass->count()>0 || $dpmahasss->count()>0 || $dpmahassss->count()>0 || $dpmahasssss->count()>0)
+        @IF ($dpmaha->count()>0 || $dpmahas->count()>0 || $dpmahass->count()>0 || $dpmahasss->count()>0 || $dpmahassss->count()>0 || $dpmahasssss->count()>0 || $dpmahassssss->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
       <table id="example" class="table table-striped table-bordered">
       <thead>
@@ -179,7 +179,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -194,7 +194,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -209,7 +209,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -224,7 +224,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Ditolak oleh dosen karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
@@ -267,9 +267,13 @@
                                   <input type="date" name="masuk" value="{{ $d->tanggal_masuk }}" class="form-control" required>
                                 </div>
                               </div>
-                              </div>
+                            </div>
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                              <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
+                              <textarea class="form-control" name="alasan" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Upload berkas dispensasi</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
                                   <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
                                 </div>
@@ -332,9 +336,13 @@
                                   <input type="date" name="masuk" value="{{ $d->tanggal_masuk }}" class="form-control" required>
                                 </div>
                               </div>
-                              </div>
+                            </div>
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                              <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
+                              <textarea class="form-control" name="alasan" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Upload berkas dispensasi</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
                                   <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
                                 </div>
@@ -346,7 +354,7 @@
                     </tr>
                     @endforeach
                     <!-- Ditolak by aak -->
-                    @ELSE
+                    @ELSEIF ($dpmahasssss->count()>0)
                     <tr>
                     @foreach($dpmahasssss as $d)
                     {{ csrf_field() }}
@@ -397,9 +405,13 @@
                                   <input type="date" name="masuk" value="{{ $d->tanggal_masuk }}" class="form-control" required>
                                 </div>
                               </div>
-                              </div>
+                            </div>
                             <div class="form-group">
-                            <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                              <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
+                              <textarea class="form-control" name="alasan" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Upload dispensasi</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
                                   <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
                                 </div>
@@ -410,7 +422,20 @@
                     </td>
                     </tr>
                     @endforeach
-                    
+                    <!-- Update by mhs -->
+                    @ELSE
+                    <tr>
+                    @foreach($dpmahassssss as $d)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $d->id }}">
+                    <td>{{ $d->nim }}</td>
+		              	<td>{{ $d->nama_mhs }}</td>
+		              	<td>{{ $d->jurusan }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
+		              	<td>{{ $d->created_at }}</td>
+		              	<td>Proses</td>
+                    </tr>
+                    @endforeach
                     @ENDIF
     </table>
     </div>
@@ -445,7 +470,7 @@
                       <input type="nama" class="form-control" name="fakultas" value=" {{ Auth::user()->fakultas }} " disabled>
                     </div>
                     <div class="form-group">
-                    <div class="row">
+                      <div class="row">
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Awal</label>  
                           <input type="date" name="absen" class="form-control" required>
@@ -455,9 +480,13 @@
                           <input type="date" name="masuk" class="form-control" required>
                         </div>
                       </div>
-                      </div>
+                    </div>
                     <div class="form-group">
-                    <label for="exampleInputPassword1">Upload berkas ketidakhadiran</label>
+                      <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
+                      <textarea class="form-control" name="alasan" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">Upload berkas dispensasi</label>
                         <div class="custom-file" style="margin-bottom:10px;">
                           <input type="file" name="berkas_ketidakhadiran" class="form-control-file" id="exampleformcontrolfile1" required>
                         </div>

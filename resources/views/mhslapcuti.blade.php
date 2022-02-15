@@ -67,11 +67,11 @@
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
-                      <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Status</th>
-                    
+                      <th>Tanggal Diproses</th>
+
                     </tr>
                   </thead>
                   <tbody>
@@ -81,10 +81,10 @@
                     <input type="hidden" name="id" value="{{ $c->id }}">
                     <td>{{ $c->nim }}</td>
 		              	<td>{{ $c->nama_mhs }}</td>
-		              	<td>{{ $c->jurusan }}</td>
 		              	<td>{{ $c->alasan_pengajuan }}</td>
 		              	<td>{{ $c->created_at }}</td>
-		              	<td>{{ $c->status }}
+		              	<td>{{ $c->status }}</td>
+		              	<td>{{ $c->updated_at }}</td>
                     </tr>
                    
                     @endforeach
@@ -118,7 +118,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required></textarea>
+                    <textarea class="form-control" name="alasan" rows="3" required></textarea>
                   </div>
                   </div>
                 

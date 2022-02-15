@@ -76,11 +76,11 @@
     });
 
     $(document).ready(function () {
-            $('#example').DataTable();
+            $('#preview').DataTable();
           });
       
           $(document).ready(function () {
-            $('#preview').DataTable();
+            $('#example').DataTable();
           });
     </script> 
 
@@ -204,25 +204,25 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home / Layanan Cuti</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-    <!-- Main content -->
-    <div class="content">
-      <div class="container">
-    <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="preview" class="table table-striped table-bordered">
-      <thead>
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <div class="content">
+          <div class="container">
+        <div class="table-responsive" style="padding:20px;width: 98%;">
+          <table id="preview" class="table table-striped table-bordered">
+          <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
                     </tr>
@@ -249,7 +249,7 @@
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="3" rows="3"></textarea>
 
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -257,10 +257,23 @@
                     </tr>
                    
                     @endforeach
-    </table>
+        </table>
+        </div>
     </div>
 
-    <div class="table-responsive" style="padding:20px;width: 98%;">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">History Pengajuan Mahasiswa</h1>
+          </div>
+        </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+    <div class="container">
+      <div class="table-responsive" style="padding:20px;width: 98%;">
     <table border="0" cellspacing="5" cellpadding="5">
         <tbody>
           <tr>
@@ -278,7 +291,7 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Status</th>
                       <th>Tanggal Diproses</th>
                     
@@ -331,7 +344,8 @@
                     @endforeach
     </table>
     </div>
-    </div></div>
+      </div>
+    </div>
     <!-- /.content -->
   </div>
     

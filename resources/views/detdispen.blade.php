@@ -36,7 +36,7 @@
       } */
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea{
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -89,7 +89,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
+          width: 50%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */
@@ -167,13 +167,14 @@
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
-                      <th>File</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Berkas</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($dpmaha->count()>0)
                     <tr>
                     @foreach($dpmaha as $d)
                     {{ csrf_field() }}
@@ -181,7 +182,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>
                     <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
@@ -193,19 +194,44 @@
                               @csrf
                             <div class="container" style="padding:16px;">
                                 <label for="uname"><b>Alasan Penolakan :</b></label>
-
-                                <b><span style ="float:right;"><span id="totalChars">50</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-
-                                <b><span style ="float:right;"><span id="totalChars">0</span>/50</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="50" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
-
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
                         </div>
                   </td>
                     </tr>
                     @endforeach
+                    @ELSE
+                    <tr>
+                    @foreach($dpmahaa as $d)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $d->id }}">
+                    <td>{{ $d->nim }}</td>
+		              	<td>{{ $d->nama_mhs }}</td>
+		              	<td>{{ $d->jurusan }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
+		              	<td>{{ $d->created_at }}</td>
+		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>
+                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/detdispen/tlkdis/{{$d->id}}" method="POST">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                                <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
+                                
+                                <button class ="btn btn-danger" type="submit">Submit</button>
+                        </div>
+                  </td>
+                    </tr>
+                    @endforeach
+                    @ENDIF
+
     </table>
     </div>
     </div></div>
@@ -242,7 +268,6 @@ window.onclick = function(event) {
     }
 }
 </script>
-<<<<<<< HEAD
 
 <!-- tooltip -->
 <script>
@@ -261,33 +286,24 @@ $(document).ready(function(){
         $('#totalChars').html(200);
         // $('#charCount').html(0);
         // $('#charCountNoSpace').html(0);
-
-        $('#wordCount').html(0);
-        $('#totalChars').html(0);
-        $('#charCount').html(0);
-        $('#charCountNoSpace').html(0);
-
+        return;
+    }
 
     var regex = /\s+/gi;
-
     // var wordCount = value.trim().replace(regex, ' ').split(' ').length;
     var totalChars = 200 - value.length;
     // var charCount = value.trim().length;
     // var charCountNoSpace = value.replace(regex, '').length;
 
-    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
-    var totalChars = value.length;
-    var charCount = value.trim().length;
-    var charCountNoSpace = value.replace(regex, '').length;
-
-    $('#wordCount').html(wordCount);
+    
+    // $('#wordCount').html(wordCount);
     $('#totalChars').html(totalChars);
-    $('#charCount').html(charCount);
-    $('#charCountNoSpace').html(charCountNoSpace);
+    // $('#charCount').html(charCount);
+    // $('#charCountNoSpace').html(charCountNoSpace);
 };
 
 $(document).ready(function() {
-    $('#count').click(counter);
+    $('#alasan').click(counter);
     $('#alasan').change(counter);
     $('#alasan').keydown(counter);
     $('#alasan').keypress(counter);
@@ -296,8 +312,6 @@ $(document).ready(function() {
     $('#alasan').focus(counter);
 });
 </script>
-=======
->>>>>>> parent of 2e6eec1 (Merge branch 'main' of https://github.com/Martinlucu/layanan)
 </body>
 </html>
 @endsection

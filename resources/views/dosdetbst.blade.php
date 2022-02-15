@@ -215,16 +215,16 @@
     <!-- /.content-header -->
     <!-- Main content -->
     <div class="content">
-      <div class="container">
-    <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="preview" class="table table-striped table-bordered">
+        <div class="container">
+      <div class="table-responsive" style="padding:20px;width: 98%;">
+        <table id="preview" class="table table-striped table-bordered">
       <thead>
         <tr>
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
                     </tr>
@@ -253,7 +253,7 @@
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
                               <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="3" rows="3"></textarea>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -285,7 +285,7 @@
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
                               <!-- <input type="text" placeholder="Tuliskan alasan anda menolak pengajuan ini" name="alasan" id="alasan" required> -->
-                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini" cols="30" rows="10"></textarea>
+                              <textarea name="alasan" id="alasan" placeholder="Tuliskan alasan anda menolak pengajuan ini. Max 200 karakter." cols="5" rows="5"></textarea>
                               
                               <button class ="btn btn-danger" type="submit">Submit</button>
                       </div>
@@ -299,8 +299,24 @@
     </table>
     </div>
 
-    <div class="table-responsive" style="padding:20px;width: 98%;">
-    <table border="0" cellspacing="5" cellpadding="5">
+    
+    </div>
+  </div>
+    <!-- /.content -->
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">History Pengajuan Mahasiswa</h1>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+  <div class="container">
+  <div class="table-responsive" style="padding:20px;width: 98%;">
+      <table border="0" cellspacing="5" cellpadding="5">
         <tbody>
           <tr>
             <td>Minimum date:</td>
@@ -309,7 +325,7 @@
             <td>Maximum date:</td>
             <td><input type="text" name="max" id="max"></td>
         </tr>
-    </tbody></table>
+      </tbody></table>
       <table id="example" class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -317,7 +333,7 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
-                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Pengajuan</th>
                       <th>Status</th>
                       <th>Tanggal Diproses</th>
                     
@@ -376,10 +392,9 @@
                     
                     </tr>
                     @endforeach
-    </table>
+      </table>
     </div>
-    </div></div>
-    <!-- /.content -->
+  </div>
   </div>
     
 <!-- ./wrapper -->

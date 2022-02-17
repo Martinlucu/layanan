@@ -79,6 +79,9 @@ class DosenController extends Controller
         {
             
                 $date = date("Y-m-d H:i:s");
+
+                \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti_dosen_setuju);
+
                 DB::table('dokumen')->where('id',$id)->update([
                 'status' => "setuju by dosen",
                 'updated_at'=> $date
@@ -93,12 +96,18 @@ public function stjbst($id)
 {
     if(Auth::user()->jabatan == "Pengajar"){
         $date = date("Y-m-d H:i:s");
+        
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_dosen_stj);
+
         DB::table('dokumen')->where('id',$id)->update([
         'status' => "setuju by dosen",
         'updated_at'=> $date
         ]);
     }else{
         $date = date("Y-m-d H:i:s");
+        
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_kaprodi_stj);
+
         DB::table('dokumen')->where('id',$id)->update([
         'status' => "setuju by kaprodi",
         'updated_at'=> $date
@@ -111,106 +120,90 @@ public function stjbst($id)
 
 public function stjdis($id)
     {
-        if(Auth::user()->jabatan == "Pengajar"){
+        
             $date = date("Y-m-d H:i:s");
-            DB::table('dokumen')->where('id',$id)->update([
-            'status' => "setuju by dosen",
-            'updated_at'=> $date
-            ]);
-        }else{
-            $date = date("Y-m-d H:i:s");
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispensasi_kaprodi_stj);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "setuju by kaprodi",
             'updated_at'=> $date
             ]);
-        }
+        
         
         return redirect('/dosdetdispen');
     }
     
-public function stjyudi($id)
-{
-    if(Auth::user()->jabatan == "Pengajar"){
-        $date = date("Y-m-d H:i:s");
-        DB::table('dokumen')->where('id',$id)->update([
-        'status' => "setuju by dosen",
-        'updated_at'=> $date
-        ]);
-    }else{
-        $date = date("Y-m-d H:i:s");
-        DB::table('dokumen')->where('id',$id)->update([
-        'status' => "setuju by kaprodi",
-        'updated_at'=> $date
-        ]);
-    }
-    
-    return redirect('/dosdetyudi');
-}
+    // public function stjyudi($id)
+    // {
+    //     if(Auth::user()->jabatan == "Pengajar"){
+    //         $date = date("Y-m-d H:i:s");
+    //         DB::table('dokumen')->where('id',$id)->update([
+    //         'status' => "setuju by dosen",
+    //         'updated_at'=> $date
+    //         ]);
+    //     }else{
+    //         $date = date("Y-m-d H:i:s");
+    //         DB::table('dokumen')->where('id',$id)->update([
+    //         'status' => "setuju by kaprodi",
+    //         'updated_at'=> $date
+    //         ]);
+    //     }
+        
+    //     return redirect('/dosdetyudi');
+    // }
     public function tlkcuti(Request $request, $id)
     {
-        if(Auth::user()->jabatan == "Pengajar"){
+        
             $date = date("Y-m-d H:i:s");
-            DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak by dosen",
-            'alasan_penolakan' => $request->alasan,
-            'updated_at'=> $date
-            ]);
-        }else{
-            $date = date("Y-m-d H:i:s");
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by kaprodi",
             'alasan_penolakan' => $request->alasan,
             'updated_at'=> $date
             ]);
-        }
+        
         
         return redirect('/dosdetcuti');
     }
     public function tlkdis(Request $request, $id)
     {
-        if(Auth::user()->jabatan == "Pengajar"){
+        
             $date = date("Y-m-d H:i:s");
-            DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak by dosen",
-            'alasan_penolakan' => $request->alasan,
-            'updated_at'=> $date
-        ]);
-        }else{
-            $date = date("Y-m-d H:i:s");
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispen_kaprodi_tlk);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by kaprodi",
             'alasan_penolakan' => $request->alasan,
             'updated_at'=> $date
         ]);
-        }
+        
         
         return redirect('/dosdetdispen');
     }
-    public function tlkyudi(Request $request, $id)
-    {
-        if(Auth::user()->jabatan == "Pengajar"){
-            $date = date("Y-m-d H:i:s");
-            DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak by dosen",
-            'alasan_penolakan' => $request->alasan,
-            'updated_at'=> $date
-        ]);
-        }else{
-            $date = date("Y-m-d H:i:s");
-            DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak by kaprodi",
-            'alasan_penolakan' => $request->alasan,
-            'updated_at'=> $date
-        ]);
-        }
+    // public function tlkyudi(Request $request, $id)
+    // {
+    //     if(Auth::user()->jabatan == "Pengajar"){
+    //         $date = date("Y-m-d H:i:s");
+    //         DB::table('dokumen')->where('id',$id)->update([
+    //         'status' => "ditolak by dosen",
+    //         'alasan_penolakan' => $request->alasan,
+    //         'updated_at'=> $date
+    //     ]);
+    //     }else{
+    //         $date = date("Y-m-d H:i:s");
+    //         DB::table('dokumen')->where('id',$id)->update([
+    //         'status' => "ditolak by kaprodi",
+    //         'alasan_penolakan' => $request->alasan,
+    //         'updated_at'=> $date
+    //     ]);
+    //     }
         
-        return redirect('/dosdetyudi');
-    }
+    //     return redirect('/dosdetyudi');
+    // }
 
     public function tlkbst(Request $request, $id)
     {
         if(Auth::user()->jabatan == "Pengajar"){
             $date = date("Y-m-d H:i:s");
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by dosen",
             'alasan_penolakan' => $request->alasan,
@@ -218,6 +211,7 @@ public function stjyudi($id)
             ]);
         }else{
             $date = date("Y-m-d H:i:s");
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_kaprodi_tlk);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by kaprodi",
             'alasan_penolakan' => $request->alasan,

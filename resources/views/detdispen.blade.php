@@ -167,6 +167,7 @@
                       <th>NIM</th>
                       <th>Nama</th>
                       <th>Jurusan</th>
+                      <th>Alasan Pengajuan</th>
                       <th>Berkas</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
@@ -182,6 +183,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>
@@ -210,6 +212,7 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>

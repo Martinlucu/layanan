@@ -68,7 +68,7 @@
                           <th>Nama</th>
                           <th>Jurusan</th>
                           <th>Alasan Pengajuan</th>
-                          <th>Tanggal Masuk</th>
+                          <th>Tanggal Pengajuan</th>
                           <th>Status</th>
                           <th>Tanggal Diproses</th>
                         

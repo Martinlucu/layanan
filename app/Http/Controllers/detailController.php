@@ -53,6 +53,7 @@ class detailController extends Controller
 public function stjcuti($id)
     {
         $date = date(Carbon::now());
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti_aak_stj);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "selesai",
             'updated_at'=> $date
@@ -64,6 +65,7 @@ public function stjcuti($id)
 public function stjbst($id)
 {
     $date = date(Carbon::now());
+    \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_aak_stj);
     DB::table('dokumen')->where('id',$id)->update([
         'status' => "selesai",
         'updated_at'=> $date
@@ -75,6 +77,7 @@ public function stjbst($id)
 public function stjdis($id)
     {
         $date = date(Carbon::now());
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispen_aak_stj);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "selesai",
             'updated_at'=> $date
@@ -86,6 +89,7 @@ public function stjdis($id)
 public function stjyudi($id)
 {
     $date = date(Carbon::now());
+    \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Yudisium_aak_stj);
     DB::table('dokumen')->where('id',$id)->update([
         'status' => "selesai",
         'updated_at'=> $date
@@ -96,6 +100,7 @@ public function stjyudi($id)
     public function tlkcuti(Request $request, $id)
     {
         $date = date(Carbon::now());
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,
@@ -107,6 +112,7 @@ public function stjyudi($id)
     public function tlkdis(Request $request, $id)
     {
         $date = date(Carbon::now());;
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispensasi_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,
@@ -118,6 +124,7 @@ public function stjyudi($id)
     public function tlkyudi(Request $request, $id)
     {
         $date = date(Carbon::now());;
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Yudisium_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,
@@ -129,6 +136,7 @@ public function stjyudi($id)
     public function tlkbst(Request $request, $id)
     {
         $date = date(Carbon::now());;
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,

@@ -92,6 +92,7 @@
                         </td>
                         <td>{{ $yd->created_at }}</td>
                         <td>{{ $yd->status }}
+                        <td>{{ $yd->updated_at }}
                         </tr>
                         @endforeach
         </table>

@@ -28,6 +28,9 @@ Route::get('/register/aak', 'Auth\RegisterController@showaakRegisterForm');
 Route::get('/register/mhs', 'Auth\RegisterController@showmhsRegisterForm');
 Route::get('/register/dosen', 'Auth\RegisterController@showdosenRegisterForm');
 
+// // Route notifikasi email
+    // Route::get('/kirim-email', 'MailController@index');
+
 /*
 Route::post('/login/aak', 'Auth\LoginController@aakLogin');
 Route::post('/login/mhs', 'Auth\LoginController@mhsLogin');*/
@@ -96,6 +99,8 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     Route::get('/mhslapyudisium', 'mahasiswaController@lapyudi');
     Route::get('/mhslapcuti', 'mahasiswaController@lapcuti');
     Route::get('/mhslapbst', 'mahasiswaController@lapbst');
+
+    
 });
 
     

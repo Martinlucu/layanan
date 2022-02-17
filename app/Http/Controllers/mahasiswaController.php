@@ -139,6 +139,7 @@ class mahasiswaController extends Controller
         $i = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('ijin');
         $a = DB::table('matkul_pkn')->where('nim', '=', Auth::user()->nim)->value('alpha');
         
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispensasi);
         
         if($s < 2 && $i < 2 && $a < 2){
             $berkas= $request->berkas_ketidakhadiran;
@@ -165,8 +166,7 @@ class mahasiswaController extends Controller
             $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_dispensasi');
             $berkas->move($tujuan_simpan, $nama_berkas);
             
-            
-            return redirect('/mhs')->with('alert', 'Pengajuan dispensasi anda berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+           return redirect('/mhs')->with('alert', 'Pengajuan dispensasi anda berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
         }else{
             return redirect('/mhs')->with('alert', 'Mohon maaf, pengajuan dispensasi anda ditolak! Alasan : Jumlah sakit/ijin/alpha anda melebihi batas.');
         }
@@ -226,6 +226,8 @@ class mahasiswaController extends Controller
         $nama_ktm = $request->file('ktm')->getClientOriginalName();
         $nama_ktp = $request->file('ktp')->getClientOriginalName();
 
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Yudisium);
+
         DB::table('dokumen')->insert([
             'nim'            => $request->nim,
             'nama_mhs'       => $request->nama,
@@ -266,6 +268,7 @@ class mahasiswaController extends Controller
         $kk->move($tujuan_simpan, $nama_kk);
         $ktm->move($tujuan_simpan, $nama_ktm);
         $ktp->move($tujuan_simpan, $nama_ktp);
+        
         return redirect('/mhs')->with('alert', 'Berkas yudisium anda telah berhasil diupload! Tetap cek notifikasi untuk mengetahui kabar selanjutnya.');
 
         // BETA TEST CODE !!!! MASIH TESTING, KALO EROR WAJAR !!!! -Fadhli
@@ -338,6 +341,8 @@ class mahasiswaController extends Controller
         $minggu_kuliah = $tanggal_sekarang->diffInWeeks($masuk_kuliah);
 
         echo $minggu_kuliah;
+
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti);
         
         if(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4){
             DB::table('dokumen')->insert([
@@ -359,7 +364,8 @@ class mahasiswaController extends Controller
                         'jml_pengajuan_cuti' =>  Auth::user()->jml_pengajuan_cuti + 1
                 ]);
 
-                return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+            
+            return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
         }elseif(Auth::user()->semester < 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4){
             return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Anda sekarang semester'.Auth::user()->semester);
         }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti > 2 && $minggu_kuliah >= 4){
@@ -400,7 +406,10 @@ class mahasiswaController extends Controller
 
 
     public function createbst(Request $request){
-        $date = date(Carbon::now()); 
+        $date = date(Carbon::now());
+        
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST);
+
         DB::table('dokumen')->insert([
             'nim'               => Auth::user()->nim,
             'nama_mhs'          => Auth::user()->nama,
@@ -418,6 +427,8 @@ class mahasiswaController extends Controller
         // DB::table('mhs')->update([
         //     'status_bst'        => 'proses'
         // ])->where('nim', Auth::user()->nim);
+        
+
         return redirect('/mhs')->with('alert', 'Permohonan BST anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
     }
 

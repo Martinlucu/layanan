@@ -202,7 +202,7 @@
                         </button>
 
                         <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/detdispen/tlkdis/{{$yd->id}}" method="POST">
+                            <form role="form" class="modal-content animate" action="/detyudi/tlkyudi/{{$yd->id}}" method="POST">
                               @csrf
                             <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
@@ -242,7 +242,7 @@
                         </button>
 
                         <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/detdispen/tlkdis/{{$yd->id}}" method="POST">
+                            <form role="form" class="modal-content animate" action="/detyudi/tlkyudi/{{$yd->id}}" method="POST">
                               @csrf
                             <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>

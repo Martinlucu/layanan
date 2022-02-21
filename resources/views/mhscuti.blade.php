@@ -130,6 +130,11 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
+      @if (session('alert'))
+            <div class="alert alert-success">
+                {{ session('alert') }}
+            </div>
+        @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Cuti(BSS)</h1>
@@ -210,53 +215,6 @@
                   </td>
                     </tr>
                     @endforeach
-                    <!-- ditolak by dosen -->
-                    @ELSEIF ($ctmahasss->count()>0)
-                    <tr>
-                    @foreach($ctmahasss as $d)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
-		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->alasan_pengajuan }}</td>
-		              	<td>{{ $d->created_at }}</td>
-		              	<td>Ditolak oleh dosen karena {{ $d->alasan_penolakan }}</td>
-		              	<td>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Edit Data
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/editcuti/{{$d->id}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                            <div class="form-group">
-                    <div class="row">
-                      <div class="col">
-                          <label for="exampleInputEmail1">NIM </label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                      </div>
-                      <div class="col">
-                        <label for="exampleInputPassword1">Nama</label>
-                        <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">No. Telp</label>
-                    <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" placeholder="{{ $d->alasan_pengajuan }}" name="alasan" name="alasan" rows="3" required></textarea>
-                  </div>
-                                
-                                <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
-                    </td>
-                    </tr>
-                    @endforeach
                     <!-- Ditolak by kaprodi -->
                     @ELSEIF ($ctmahassss->count()>0)
                     <tr>
@@ -296,7 +254,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required></textarea>
+                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required>{{ $d->alasan_pengajuan }}</textarea>
                   </div>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
@@ -343,7 +301,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required></textarea>
+                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required>{{ $d->alasan_pengajuan }}</textarea>
                   </div>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>

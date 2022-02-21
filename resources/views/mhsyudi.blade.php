@@ -137,6 +137,11 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
+      @if (session('alert'))
+            <div class="alert alert-success">
+                {{ session('alert') }}
+            </div>
+        @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Yudisium</h1>
@@ -251,11 +256,11 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">NIM</label>
-                          <input type="nim" class="form-control" name="nim">
+                          <input type="nim" value="{{ $yd->nim }}" class="form-control" maxlength="11" name="nim" required>
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Nama</label>
-                          <input type="nama" class="form-control" name="nama">
+                          <input type="nama" value="{{ $yd->nama_mhs }}" class="form-control" name="nama" required>
                         </div>
                       </div>
                     </div>
@@ -263,29 +268,29 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">Tempat Lahir</label>
-                          <input type="text" class="form-control" name="tempat_lahir">
+                          <input type="text" value="{{ $yd->tempat_lahir }}" class="form-control" name="tempat_lahir" required>
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Lahir</label>
-                          <input type="date" class="form-control" name="tanggal_lahir">
+                          <input type="date" value="{{ $yd->tanggal_lahir }}" class="form-control" name="tanggal_lahir" required>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" pattern="[0-9]{16}" class="form-control" name="no_ktp">
+                      <input type="number" value="{{ $yd->no_ktp }}" maxlength="16" class="form-control" name="no_ktp" title="Format KTP adalah 16 karakter" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>
-                      <input type="text" class="form-control" name="alamat">
+                      <input type="text" value="{{ $yd->alamat }}" class="form-control" name="alamat" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="tel" pattern="[0-9]{12}" class="form-control" name="no_telp">
+                      <input type="tel" value="{{ $yd->no_telp }}" pattern="[0-9]{12}" maxlength="12" class="form-control" name="no_telp" title="Format no.telfon adalah kode telfon diikuti dengan nomor telfon max.12 karakter" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">E-mail Dinamika</label>
-                      <input type="email" class="form-control" name="email">
+                      <input type="email" value="{{ $yd->email_mhs }}" class="form-control" name="email" title="format email harus menggunakan '@' dan '.com' " required>
                     </div>
                     <div class="form-group">
                       <!-- <label for="exampleInputPassword1">Upload Foto 3x4 Berwarna</label>
@@ -393,7 +398,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" pattern="[0-9]{16}" class="form-control" name="no_ktp">
+                      <input type="number" max="16" class="form-control" name="no_ktp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>
@@ -401,7 +406,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="tel" pattern="[0-9]{12}" class="form-control" name="no_telp">
+                      <input type="tel" pattern="[0-9]{12}" max="12" class="form-control" name="no_telp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">E-mail Dinamika</label>
@@ -507,7 +512,7 @@ window.onclick = function(event) {
            
           
             // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
               
             if (!allowedExtensions.exec(filetoefl)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
@@ -522,7 +527,7 @@ window.onclick = function(event) {
            
           
             // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
               
             if (!allowedExtensions.exec(fileijazah)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
@@ -537,7 +542,7 @@ window.onclick = function(event) {
            
           
             // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
               
             if (!allowedExtensions.exec(fileakta)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
@@ -552,7 +557,7 @@ window.onclick = function(event) {
            
           
             // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
               
             if (!allowedExtensions.exec(filekk)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
@@ -567,7 +572,7 @@ window.onclick = function(event) {
            
           
             // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
               
             if (!allowedExtensions.exec(filektm)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
@@ -582,7 +587,7 @@ window.onclick = function(event) {
            
           
             // Allowing file type
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
               
             if (!allowedExtensions.exec(filektp)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');

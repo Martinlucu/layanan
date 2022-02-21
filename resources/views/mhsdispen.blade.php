@@ -161,6 +161,7 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>File</th>
+                      <th>Alasan Pengajuan</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Status</th>
                       @IF ($dpmahasss->count()>0 || $dpmahassss->count()>0 || $dpmahasssss->count()>0)
@@ -180,6 +181,7 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
+		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -210,6 +212,7 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -225,6 +228,7 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Ditolak oleh dosen karena {{ $d->alasan_penolakan }}</td>
 		              	<td>
@@ -293,7 +297,8 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Ditolak oleh kaprodi karena {{ $d->alasan_penolakan }}</td>
                     <td>
@@ -339,12 +344,12 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                              <textarea class="form-control" name="alasan" rows="3" required></textarea>
+                              <textarea class="form-control" name="alasan" rows="3" required>{{ $d->alasan_pengajuan }}</textarea>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Upload berkas dispensasi</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
-                                  <input type="file" name="berkas" class="form-control-file" id="exampleformcontrolfile1" required>
+                                  <input type="file" name="berkas" value="{{ $d->berkas_dispensasi }}" class="form-control-file" id="exampleformcontrolfile1" required>
                                 </div>
                             </div>
                                 
@@ -362,7 +367,8 @@
                     <td>{{ $d->nim }}</td>
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->berkas }}</td>
+		              	<td>{{ $d->berkas_dispensasi }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Ditolak oleh AAK karena {{ $d->alasan_penolakan }}</td>
                     <td>
@@ -408,7 +414,7 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                              <textarea class="form-control" name="alasan" rows="3" required></textarea>
+                              <textarea class="form-control" name="alasan" rows="3" required>{{ $d->alasan_pengajuan }}</textarea>
                             </div>
                             <div class="form-group">
                             <label for="exampleInputPassword1">Upload dispensasi</label>
@@ -432,6 +438,7 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>Proses</td>
                     </tr>

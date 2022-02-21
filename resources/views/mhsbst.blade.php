@@ -129,6 +129,11 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
+      @if (session('alert'))
+            <div class="alert alert-success">
+                {{ session('alert') }}
+            </div>
+        @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Berhenti Studi Tetap(BST)</h1>
@@ -248,7 +253,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" placeholder="{{ $d->alasan_pengajuan }}" name="alasan" name="alasan" rows="3" required></textarea>
+                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required>{{ $d->alasan_pengajuan }}</textarea>
                   </div>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>
@@ -342,7 +347,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required></textarea>
+                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required> {{ $d->alasan_pengajuan }} </textarea>
                   </div>
                                 
                                 <button class ="btn btn-danger" type="submit">Submit</button>

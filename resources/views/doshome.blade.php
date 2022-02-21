@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Dahboard Dosen</title>
+    @if(Auth::user()->jabatan == "Pengajar")
+      <title>Dahboard Dosen</title>
+    @else
+      <title>Dahboard Kaprodi</title>
+    @endif
+  
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">

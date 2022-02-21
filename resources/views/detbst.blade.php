@@ -36,7 +36,7 @@
       } */
 
         /* Full-width input fields */
-        input[type=text], input[type=password] {
+        textarea{
           width: 100%;
           padding: 12px 20px;
           margin: 8px 0;
@@ -73,7 +73,7 @@
         .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
+          z-index: 4; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
@@ -89,7 +89,7 @@
           background-color: #fefefe;
           margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
+          width: 50%; /* Could be more or less, depending on screen size */
         }
 
         /* The Close Button (x) */

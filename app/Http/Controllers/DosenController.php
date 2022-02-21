@@ -34,7 +34,7 @@ class DosenController extends Controller
     { 
         
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->count();
-        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->get();
+        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->wherein('status',['proses', 'update ke dosen'])->get();
         $ctmahas = DB::table('dokumen')->where('jenis','Cuti')->get();
         
         return view('dosdetcuti',compact('ct','ctmaha', 'ctmahas'));
@@ -44,8 +44,10 @@ class DosenController extends Controller
     {
         
         $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->count();
-        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','Proses')->get();
-        $bsmahaa = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by dosen')->get();
+        
+        $bsmaha = DB::table('dokumen')->where('jenis','BST')->wherein('status',['Proses','update ke dosen'])->get();
+        $bsmahaa = DB::table('dokumen')->where('jenis','BST')->wherein('status',['setuju by dosen','update ke kaprodi'])->get();
+        
         $bsmahas = DB::table('dokumen')->where('jenis','BST')->get();
             
         return view('dosdetbst',compact('bs','bsmaha', 'bsmahaa','bsmahas'));
@@ -56,11 +58,10 @@ class DosenController extends Controller
         {
             
             $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
-            $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
-            $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
+            $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['setuju by dosen','update ke kaprodi'])->get();
             $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->get();
             
-            return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas'));
+            return view('dosdetdispen',compact('dpmaha', 'dp','dpmahas'));
         }
         public function disrange(Request $request){
             $awal = $request->get("tgllawal");
@@ -80,7 +81,7 @@ class DosenController extends Controller
             
                 $date = date("Y-m-d H:i:s");
 
-                \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti_dosen_setuju);
+                \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\cuti_dosen_stj);
 
                 DB::table('dokumen')->where('id',$id)->update([
                 'status' => "setuju by dosen",
@@ -122,7 +123,7 @@ public function stjdis($id)
     {
         
             $date = date("Y-m-d H:i:s");
-            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispensasi_kaprodi_stj);
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\dispensasi_kaprodi_stj);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "setuju by kaprodi",
             'updated_at'=> $date
@@ -154,7 +155,7 @@ public function stjdis($id)
     {
         
             $date = date("Y-m-d H:i:s");
-            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti_dosen_tlk);
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\cuti_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by kaprodi",
             'alasan_penolakan' => $request->alasan,
@@ -168,7 +169,7 @@ public function stjdis($id)
     {
         
             $date = date("Y-m-d H:i:s");
-            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Dispen_kaprodi_tlk);
+            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\dispensasi_kaprodi_tlk);
             DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by kaprodi",
             'alasan_penolakan' => $request->alasan,

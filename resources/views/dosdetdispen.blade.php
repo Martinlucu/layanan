@@ -228,7 +228,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @IF (Auth::user()->jabatan == "Pengajar")
+                    
                       @foreach($dpmaha as $d)
                       {{ csrf_field() }}
                       <input type="hidden" name="id" value="{{ $d->id }}">
@@ -256,35 +256,6 @@
                     </td>
                       </tr>
                       @endforeach
-                    @ELSE
-                      @foreach($dpmahaa as $d)
-                      {{ csrf_field() }}
-                      <input type="hidden" name="id" value="{{ $d->id }}">
-                      <td>{{ $d->nim }}</td>
-                      <td>{{ $d->nama_mhs }}</td>
-                      <td>{{ $d->jurusan }}</td>
-                      <td>{{ $d->berkas }}</td>
-                      <td>{{ $d->created_at }}</td>
-                      <td> 
-                        <a class="btn btn-success" href="{{url('/dosdetdispen/stjdis/'.$d->id)}}">Setuju</a>
-                        <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Tolak
-                        </button>
-
-                        <div id="id01" class="modal">
-                          <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
-                            @csrf
-                          <div class="container" style="padding:16px;">
-                              <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
-
-                              <button class ="btn btn-danger" type="submit">Submit</button>
-                      </div>
-                    </td>
-                      </tr>
-                      @endforeach
-                    @ENDIF
     </table>
     </div>
     </div>

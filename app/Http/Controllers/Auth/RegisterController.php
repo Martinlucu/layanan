@@ -8,6 +8,8 @@ use App\User;
 use App\aak;
 use App\mhs;
 use App\dosen;
+use App\keuangan;
+use App\perpustakaan;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -46,6 +48,8 @@ class RegisterController extends Controller
         $this->middleware('guest:aak');
         $this->middleware('guest:mhs');
         $this->middleware('guest:dosen');
+        $this->middleware('guest:keuangan');
+        $this->middleware('guest:perpustakaan');
     }
 
     /**
@@ -84,7 +88,14 @@ class RegisterController extends Controller
     {
         return view('auth.register', ['url' => 'mhs']);
     }
-
+    public function showkeuanganRegisterForm()
+    {
+        return view('auth.register', ['url' => 'keuangan']);
+    }
+    public function showperpustakaanRegisterForm()
+    {
+        return view('auth.register', ['url' => 'perpustakaan']);
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -154,6 +165,40 @@ class RegisterController extends Controller
             'email' => $request->email,
             'nik' => $request->nik,
             'jabatan' => $request->jabatan,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->intended('login');
+    }
+     /**
+     * @param Request $request
+     *@return \App\keuangan
+     * @return \Illuminate\Http\RedirectResponse
+     * 
+     */
+    protected function createkeuangan(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        keuangan::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'nik' => $request->nik,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->intended('login');
+    }
+       /**
+     * @param Request $request
+     *@return \App\perpustakaan
+     * @return \Illuminate\Http\RedirectResponse
+     * 
+     */
+    protected function createperpustakaan(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        perpustakaan::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'nik' => $request->nik,
             'password' => Hash::make($request->password),
         ]);
         return redirect()->intended('login');

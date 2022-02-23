@@ -71,7 +71,7 @@
                                 @enderror
                             </div>
                         </div>
-                        @if($url=='aak' || $url=='dosen')
+                        @if($url=='aak' || $url=='dosen' || $url=='keuangan' || $url=='perpustakaan')
                         <div class="form-group row">
                             <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
                             <div class="col-md-6">

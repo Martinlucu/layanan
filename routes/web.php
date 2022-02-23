@@ -27,6 +27,8 @@ Route::get('/login/mhs', 'Auth\LoginController@showmhsLoginForm')->name('logmhs'
 Route::get('/register/aak', 'Auth\RegisterController@showaakRegisterForm');
 Route::get('/register/mhs', 'Auth\RegisterController@showmhsRegisterForm');
 Route::get('/register/dosen', 'Auth\RegisterController@showdosenRegisterForm');
+Route::get('/register/keuangan', 'Auth\RegisterController@showkeuanganRegisterForm');
+Route::get('/register/perpustakaan', 'Auth\RegisterController@showperpustakaanRegisterForm');
 
 // // Route notifikasi email
     // Route::get('/kirim-email', 'MailController@index');
@@ -37,6 +39,8 @@ Route::post('/login/mhs', 'Auth\LoginController@mhsLogin');*/
 Route::post('/register/aak', 'Auth\RegisterController@createaak');
 Route::post('/register/mhs', 'Auth\RegisterController@createmhs');
 Route::post('/register/dosen', 'Auth\RegisterController@createdosen');
+Route::post('/register/keuangan', 'Auth\RegisterController@createkeuangan');
+Route::post('/register/perpustakaan', 'Auth\RegisterController@createperpustakaan');
 
 Route::group(['middleware' => 'auth:aak'], function () {
     Route::get('/aak', 'utamaController@aak');  

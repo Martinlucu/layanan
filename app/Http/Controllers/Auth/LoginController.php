@@ -44,6 +44,8 @@ class LoginController extends Controller
        $this->middleware('guest:aak')->except('logout');
        $this->middleware('guest:mhs')->except('logout');
        $this->middleware('guest:dosen')->except('logout');
+       $this->middleware('guest:keuangan')->except('logout');
+       $this->middleware('guest:perpustakaan')->except('logout');
        
     }
    
@@ -81,7 +83,18 @@ class LoginController extends Controller
             $aak = $details['original'];
             
             return redirect()->intended("/doshome");  
+        } else if (Auth::guard('keuangan')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $details = Auth::guard('keuangan')->user();
+            $aak = $details['original'];
+            
+            return redirect()->intended("/keuanganhome");  
+        } else if (Auth::guard('perpustakaan')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $details = Auth::guard('perpustakaan')->user();
+            $aak = $details['original'];
+            
+            return redirect()->intended("/perpushome");  
         }
+
         else {
             return redirect()->back()->withErrors(['E-mail atau password salah', 'The Message']);
             

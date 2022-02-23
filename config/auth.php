@@ -59,6 +59,14 @@ return [
             'driver' => 'session',
             'provider' => 'dosen',
         ],
+        'keuangan' => [
+            'driver' => 'session',
+            'provider' => 'keuangan',
+        ],
+        'perpustakaan' => [
+            'driver' => 'session',
+            'provider' => 'perpustakaan',
+        ],
     ],
 
     /*
@@ -96,6 +104,14 @@ return [
      'dosen' => [
         'driver' => 'eloquent',
         'model' => App\dosen::class,
+    ],
+    'keuangan' => [
+        'driver' => 'eloquent',
+        'model' => App\keuangan::class,
+    ],
+    'perpustakaan' => [
+        'driver' => 'eloquent',
+        'model' => App\perpustakaan::class,
 ],
 ],
 

@@ -28,8 +28,8 @@ Route::get('/register/aak', 'Auth\RegisterController@showaakRegisterForm');
 Route::get('/register/mhs', 'Auth\RegisterController@showmhsRegisterForm');
 Route::get('/register/dosen', 'Auth\RegisterController@showdosenRegisterForm');
 
-// // Route notifikasi email
-    // Route::get('/kirim-email', 'MailController@index');
+// Route notifikasi email
+    Route::get('/kirim-email', 'MailController@index');
 
 /*
 Route::post('/login/aak', 'Auth\LoginController@aakLogin');

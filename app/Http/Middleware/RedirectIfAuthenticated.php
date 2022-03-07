@@ -27,6 +27,12 @@ class RedirectIfAuthenticated
         if ($guard == "dosen" && Auth::guard($guard)->check()) {
             return redirect('/doshome');
         }
+        if ($guard == "keuangan" && Auth::guard($guard)->check()) {
+            return redirect('/keuanganhome');
+        }
+        if ($guard == "perpustakaan" && Auth::guard($guard)->check()) {
+            return redirect('/perpushome');
+        }
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

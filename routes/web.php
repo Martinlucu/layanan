@@ -107,8 +107,6 @@ Route::group(['middleware' => 'auth:mhs'], function () {
     
 });
 
-    
-
 Route::group(['middleware' => 'auth:dosen'], function () {
         Route::get('/doshome', 'DosenController@dotdoshome');
         
@@ -131,3 +129,21 @@ Route::group(['middleware' => 'auth:dosen'], function () {
         Route::post('/dosdetcuti/tlkcuti/{id}', 'DosenController@tlkcuti');
 
     });
+
+Route::group(['middleware' => 'auth:keuangan'], function () {
+    Route::get('/keuanganhome', 'KeuanganController@home');
+
+    Route::get('/keuanganbst', 'KeuanganController@BST');
+    Route::get('/keuanganbst/stjbst/{id}', 'KeuanganController@stjbst');
+    Route::get('/keuanganbst/tlkbst/{id}', 'KeuanganController@tlkbst');
+    
+});
+
+Route::group(['middleware' => 'auth:perpustakaan'], function () {
+    Route::get('/perpushome', 'PerpustakaanController@home');
+
+    Route::get('/perpustakaanbst', 'PerpustakaanController@BST');
+    Route::get('/perpustakaanbst/stjbst/{id}', 'PerpustakaanController@stjbst');
+    Route::get('/perpustakaanbst/tlkbst/{id}', 'PerpustakaanController@tlkbst');
+    
+});

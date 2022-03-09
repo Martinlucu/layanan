@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -8,11 +6,9 @@
                 <div class="card-header"></div>
                <center> <img src="<?php echo e(asset('src/dinamika.png')); ?>"  width="400" height="130"></center>
                 <div class="card-body">
-                <?php if(isset($url)): ?>
-                    <form method="POST" action='<?php echo e(url("login/$url")); ?>' aria-label="<?php echo e(__('Login')); ?>">
-                    <?php else: ?>
+              
                     <form method="POST" action="<?php echo e(route('login')); ?>" aria-label="<?php echo e(__('Login')); ?>">
-                    <?php endif; ?>
+                   
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group row">
@@ -55,7 +51,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="current-password">
-
+                                <?php if($errors->any()): ?>
+  <h5><?php echo e($errors->first()); ?></h5>
+<?php endif; ?>
                                 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

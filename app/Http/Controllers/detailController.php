@@ -12,11 +12,10 @@ class detailController extends Controller
     public function detyudi()
     {
        
-        $ydm = DB::table('dokumen')->where('status','proses')->count();
-        $ydmm = DB::table('dokumen')->where('status','update by mhs ke aak')->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','proses')->get();
-        $ydmahaa = DB::table('dokumen')->where('jenis','Yudisium')->where('status','update by mhs ke aak')->get();
-        return view('detyudi',compact('ydm', 'ydmm', 'ydmaha', 'ydmahaa'));
+        $ydm = DB::table('dokumen')->wherein('status',['proses','update ke aak'])->count();
+        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['proses','update ke aak'])->get();
+        
+        return view('detyudi',compact('ydm', 'ydmaha'));
 }
 
     public function detcuti()

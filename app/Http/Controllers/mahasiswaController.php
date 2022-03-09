@@ -167,7 +167,7 @@ class mahasiswaController extends Controller
             ]);
             
             
-            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_dispensasi');
+            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
             $berkas->move($tujuan_simpan, $nama_berkas);
             
            return redirect('/mhs')->with('alert', 'Pengajuan dispensasi anda berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
@@ -224,7 +224,7 @@ class mahasiswaController extends Controller
             
             
             
-            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_dispensasi');
+            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
             $berkas->move($tujuan_simpan, $nama_berkas);
             
             
@@ -278,14 +278,7 @@ class mahasiswaController extends Controller
             'created_at'     => $date
         ]);
         
-       
-        
-        // BETA TEST CODE !!!! MASIH TESTING, KALO EROR WAJAR !!!! -Fadhli
-        // $nim = Auth::user()->nim;
-        // $nama = Auth::user()->nama;
-        // $tanggal = date('Y-m-d');
-        // $reference = $nim.$nama.$tanggal; 
-        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_yudisium');
+        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
         
         // $foto->move($tujuan_simpan, $nama_foto);
         $toefl->move($tujuan_simpan, $nama_toefl);
@@ -346,7 +339,7 @@ class mahasiswaController extends Controller
         
        
         
-        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_yudisium');
+        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
         
         // $foto->move($tujuan_simpan, $nama_foto);
         $toefl->move($tujuan_simpan, $nama_toefl);

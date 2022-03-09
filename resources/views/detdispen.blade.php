@@ -184,7 +184,7 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
-		              	<td>{{ $d->berkas_dispensasi }}</td>
+		              	<td><a href="storage/berkas_mhs/{{ $d->nim }}_{{ $d->jenis }}/{{ $d->berkas_dispensasi }}">{{ $d->berkas_dispensasi }}</a></td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>
                     <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">

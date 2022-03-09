@@ -9,6 +9,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
+use App\Mail\Disepnsasi;
+use App\Mail\Yudisium;
+use App\Mail\BST;
+use App\Mail\Cuti;
 
 class DosenController extends Controller
 {

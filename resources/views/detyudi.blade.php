@@ -174,7 +174,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @IF ($ydmaha->count()>0)
                     <tr>
                     @foreach($ydmaha as $yd)
                     {{ csrf_field() }}
@@ -183,17 +182,17 @@
                     <td>{{ $yd->nama_mhs }}</td>
 		              	<td>{{ $yd->jurusan }}</td>
 		              	<td>
-                      {{ $yd->berkas_akta }}
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
                       <br><br>
-                      {{ $yd->berkas_toefl }} 
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
                       <br><br>
-                      {{ $yd->berkas_ijazah }} 
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
                       <br><br>
-                      {{ $yd->berkas_kk }} 
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
                       <br><br>
-                      {{ $yd->berkas_ktp }} 
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
                       <br><br>
-                      {{ $yd->berkas_ktm }} 
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a>
                     </td>
 		              	<td>{{ $yd->created_at }}</td>
 		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju</a>
@@ -214,47 +213,6 @@
                   </td>
                     </tr>
                     @endforeach
-                    @ELSE
-                    <tr>
-                    @foreach($ydmahaa as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-                    <td>{{ $yd->nama_mhs }}</td>
-		              	<td>{{ $yd->jurusan }}</td>
-		              	<td>
-                      {{ $yd->berkas_akta }}
-                      <br><br>
-                      {{ $yd->berkas_toefl }} 
-                      <br><br>
-                      {{ $yd->berkas_ijazah }} 
-                      <br><br>
-                      {{ $yd->berkas_kk }} 
-                      <br><br>
-                      {{ $yd->berkas_ktp }} 
-                      <br><br>
-                      {{ $yd->berkas_ktm }} 
-                    </td>
-		              	<td>{{ $yd->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju</a>
-                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Tolak
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/detyudi/tlkyudi/{{$yd->id}}" method="POST">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                              <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="5" rows="5"></textarea>
-
-                              <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
-                  </td>
-                    </tr>
-                    @endforeach
-                    @ENDIF
     </table>
     </div>
     </div></div>

@@ -16,10 +16,41 @@ class PerpustakaanController extends Controller
         return view('perpushome');
     }
 
-    public function perpusdetbst(){
-        $pbst = DB::table('dokumen')->where('status', 'setuju by dosen');
-        $pbstm = DB::table('dokumen')->where('jenis', 'BST')->where('status', 'setuju by dosen');
+    public function perpusbst(){
+        $pbst = DB::table('dokumen')->where('jenis', 'BST')->where('status', 'setuju by keuangan')->count();
+        $pbstm = DB::table('dokumen')->where('jenis', 'BST')->where('status', 'setuju by keuangan')->get();
+        
+        $pbstall = DB::table('dokumen')->where('jenis', 'BST')->get();
 
-        return view('perpusbst', compact('pbst', 'pbstm'));
+        return view('perpustakaanbst', compact('pbst', 'pbstm', 'pbstall'));
+    }
+
+    public function stjbst($id)
+    {
+        $date = date("Y-m-d H:i:s");
+        
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_perpustakaan_stj);
+
+        DB::table('dokumen')->where('id',$id)->update([
+        'status' => "setuju by perpustakaan",
+        'updated_at'=> $date
+        ]);
+    
+        return redirect('/perpustakaanbst');
+    }
+
+    public function tlkbst(Request $request, $id)
+    {
+        $date = date("Y-m-d H:i:s");
+        
+        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_perpustakaan_tlk);
+
+        DB::table('dokumen')->where('id',$id)->update([
+        'status' => "ditolak by perpustakaan",
+        'alasan_penolakan' => $request->alasan,
+        'updated_at'=> $date
+        ]);
+    
+        return redirect('/perpustakaanbst');
     }
 }

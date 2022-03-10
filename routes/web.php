@@ -135,7 +135,7 @@ Route::group(['middleware' => 'auth:keuangan'], function () {
 
     Route::get('/keuanganbst', 'KeuanganController@keuanganbst');
     Route::get('/keuanganbst/stjbst/{id}', 'KeuanganController@stjbst');
-    Route::get('/keuanganbst/tlkbst/{id}', 'KeuanganController@tlkbst');
+    Route::post('/keuanganbst/tlkbst/{id}', 'KeuanganController@tlkbst');
     
 });
 
@@ -144,6 +144,6 @@ Route::group(['middleware' => 'auth:perpustakaan'], function () {
 
     Route::get('/perpustakaanbst', 'PerpustakaanController@perpusbst');
     Route::get('/perpustakaanbst/stjbst/{id}', 'PerpustakaanController@stjbst');
-    Route::get('/perpustakaanbst/tlkbst/{id}', 'PerpustakaanController@tlkbst');
+    Route::post('/perpustakaanbst/tlkbst/{id}', 'PerpustakaanController@tlkbst');
     
 });

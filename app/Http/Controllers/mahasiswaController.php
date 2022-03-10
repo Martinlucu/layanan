@@ -90,6 +90,8 @@ class mahasiswaController extends Controller
     	$bssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by dosen')->count();
     	$bsssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by kaprodi')->count();
     	$bssssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by aak')->count();
+    	$bssssssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by keuangan')->count();
+    	$bsssssssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by perpustakaan')->count();
     	$bsssssss = DB::table('dokumen')->where('jenis','BST')->wherein('status',['update ke dosen','update ke kaprodi','update ke aak'])->count();
     	// $bssssssss = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke dosen')->count();
     	// $bsssssssss = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke kaprodi')->count();
@@ -100,12 +102,14 @@ class mahasiswaController extends Controller
         $bsmahasss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by dosen')->get();
         $bsmahassss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by kaprodi')->get();
         $bsmahasssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by aak')->get();
+        $bsmahasssssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by keuangan')->get();
+        $bsmahassssssss = DB::table('dokumen')->where('jenis','BST')->where('status','ditolak by perpustakaan')->get();
         $bsmahassssss = DB::table('dokumen')->where('jenis','BST')->wherein('status',['update ke dosen','update ke kaprodi','update ke aak'])->get();
         // $bsmahasssssss = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke dosen')->get();
         // $bsmahassssssss = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke kaprodi')->get();
         // $bsmahasssssssss = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke aak')->get();
         
-        return view('mhsbst', compact('bs', 'bss', 'bsss', 'bssss', 'bsssss', 'bssssss', 'bsssssss', 'bsmaha', 'bsmahas', 'bsmahass', 'bsmahasss', 'bsmahassss', 'bsmahasssss', 'bsmahassssss'));
+        return view('mhsbst', compact('bs', 'bss', 'bsss', 'bssss', 'bsssss', 'bssssss', 'bsssssss', 'bssssssss', 'bsssssssss', 'bsmaha', 'bsmahas', 'bsmahass', 'bsmahasss', 'bsmahassss', 'bsmahasssss', 'bsmahassssss', 'bsmahasssssss', 'bsmahassssssss'));
     }
 
     public function lapbst()

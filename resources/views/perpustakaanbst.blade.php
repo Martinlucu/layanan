@@ -231,23 +231,23 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($kbstt as $k)
+                    @foreach($pbstm as $p)
                     {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $k->id }}">
-                    <td>{{ $k->nim }}</td>
-		              	<td>{{ $k->nama_mhs }}</td>
-		              	<td>{{ $k->jurusan }}</td>
-		              	<td>{{ $k->alasan_pengajuan }}</td>
-		              	<td>{{ $k->created_at }}</td>
+                    <input type="hidden" name="id" value="{{ $p->id }}">
+                    <td>{{ $p->nim }}</td>
+		              	<td>{{ $p->nama_mhs }}</td>
+		              	<td>{{ $p->jurusan }}</td>
+		              	<td>{{ $p->alasan_pengajuan }}</td>
+		              	<td>{{ $p->created_at }}</td>
 		              	<td>
-                      <a class="btn btn-success" href="{{url('/keuanganbst/stjbst/'.$k->id)}}">Setuju</a>
+                      <a class="btn btn-success" href="{{url('/perpustakaanbst/stjbst/'.$p->id)}}">Setuju</a>
                       
                       <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                         Tolak
                       </button>
 
                       <div id="id01" class="modal">
-                          <form role="form" class="modal-content animate" action="/keuanganbst/tlkbst/{{$k->id}}" method="POST">
+                          <form role="form" class="modal-content animate" action="/perpustakaanbst/tlkbst/{{$p->id}}" method="POST">
                             @csrf
                           <div class="container" style="padding:16px;">
                               <label for="uname"><b>Alasan Penolakan :</b></label>
@@ -307,7 +307,7 @@
                   </thead>
                   <tbody>
                     <tr>
-                    @foreach($kbstm as $ks)
+                    @foreach($pbstall as $ks)
                     {{ csrf_field() }}
                     @IF ($ks->status == 'setuju by dosen')
                       <input type="hidden" name="id" value="{{ $ks->id }}">
@@ -354,7 +354,7 @@
                       <td>{{ $ks->created_at}}</td>
                       <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$ks->alasan_penolakan}}</td>
                       <td>{{ $ks->updated_at}}</td>
-                      @ELSEIF ($ks->status == 'ditolak by keuangan')
+                      @ELSEIF ($ks->status == 'ditolak by perpustakaan')
                       <input type="hidden" name="id" value="{{ $ks->id }}">
                       <td>{{ $ks->nim }}</td>
                       <td>{{ $ks->nama_mhs }}</td>

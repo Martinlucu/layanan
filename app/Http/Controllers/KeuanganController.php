@@ -15,4 +15,11 @@ class KeuanganController extends Controller
     public function home(){
         return view('keuanganhome');
     }
+
+    public function keuanganbst(){
+        $kbst = DB::table('dokumen')->where('status', 'proses')->count();
+        $kbstm = DB::table('dokumen')->where('jenis', 'BST')->where('status', 'setuju by dosen');
+
+        return view('keuanganbst', compact('kbst', 'kbstm'));
+    }
 }

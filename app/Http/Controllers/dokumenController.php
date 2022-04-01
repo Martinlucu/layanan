@@ -76,18 +76,20 @@ public function dokyudi()
 }
 public function export_excel()
 	{
-		return Excel::download(new dispenExport, 'dispen.xlsx');
+		$date = Carbon::now()->format('Y');
+        
+return Excel::download(new dispenExport, 'Rekap laporan dispensasi '.$date.'.xlsx');
 	}
     public function export_cuti()
 	{
-		return Excel::download(new cutiExport, 'cuti.xlsx');
+		return Excel::download(new cutiExport, 'Rekap laporan cuti '.$date.'.xlsx');
 	}
     public function export_yudi()
 	{
-		return Excel::download(new yudiExport, 'yudisium.xlsx');
+		return Excel::download(new yudiExport, 'Rekap laporan yudisium '.$date.'.xlsx');
 	}
     public function export_bst()
 	{
-		return Excel::download(new bstExport, 'bst.xlsx');
+		return Excel::download(new bstExport, 'Rekap laporan BST '.$date.'.xlsx');
 	}
 }

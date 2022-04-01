@@ -29,7 +29,7 @@ class PerpustakaanController extends Controller
     {
         $date = date("Y-m-d H:i:s");
         
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_perpustakaan_stj);
+        // \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_perpustakaan_stj);
 
         DB::table('dokumen')->where('id',$id)->update([
         'status' => "setuju by perpustakaan",
@@ -43,7 +43,7 @@ class PerpustakaanController extends Controller
     {
         $date = date("Y-m-d H:i:s");
         
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_perpustakaan_tlk);
+        // \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_perpustakaan_tlk);
 
         DB::table('dokumen')->where('id',$id)->update([
         'status' => "ditolak by perpustakaan",

@@ -28,6 +28,8 @@ class Yudisium_aak_stj extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan yudisium dari Bag.AAK')->view('emails.yudisium_aak_stj');
+        return $this->subject('Pemberitahuan pengajuan yudisium dari Bag.AAK')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.yudisium_aak_stj');
     }
 }

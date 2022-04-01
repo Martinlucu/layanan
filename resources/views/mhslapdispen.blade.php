@@ -74,8 +74,8 @@
                       <th>Nama</th>
                       <th>Berkas</th>
                       <th>Tanggal Pengajuan</th>
-                      <th>Status</th>
                       <th>Tanggal Diproses</th>
+                      <th>Status</th>
         </tr>
                   </thead>
                   <tbody>
@@ -88,8 +88,8 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
                     <td>{{ $d->created_at }}</td>
-		              	<td>{{ $d->status}}</td>
-                    <td>{{ $d->updated_at }}</td>
+		              	<td>{{ $d->updated_at }}</td>
+                    <td>{{ $d->status}}</td>
                     </tr>
                     @endforeach
                     @ENDIF

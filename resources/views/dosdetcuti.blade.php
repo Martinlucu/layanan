@@ -81,6 +81,7 @@
       
           $(document).ready(function () {
             $('#example').DataTable();
+            
           });
     </script> 
 
@@ -215,7 +216,7 @@
         <div class="content">
           <div class="container">
         <div class="table-responsive" style="padding:20px;width: 98%;">
-          <table id="preview" class="table table-striped table-bordered">
+          <table id="preview" class="table table-striped table-bordered" data-order="[]">
           <thead>
         <tr>
                       <th>NIM</th>
@@ -284,7 +285,7 @@
             <td><input type="text" name="max" id="max"></td>
         </tr>
     </tbody></table>
-      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+      <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM</th>

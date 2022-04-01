@@ -375,7 +375,7 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan dispensasi anda telah disetujui oleh Kaprodi, Silahkan menunggu persetujuan dari Bag.AAK.</p>
+                                               <p> Pengajuan dispensasi anda telah diproses oleh Kaprodi, Silahkan melihat perubahan status anda di SICYCA..</p>
                                                <br><br><br>
 
                                                Terima kasih.

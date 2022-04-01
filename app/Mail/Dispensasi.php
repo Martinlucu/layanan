@@ -29,7 +29,9 @@ class Dispensasi extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan Dispensasi oleh '.Auth::user()->nama.' '.Auth::user()->nim)->view('emails.dispensasi');
+        return $this->subject('Pemberitahuan Dispensasi oleh '.Auth::user()->nama.' '.Auth::user()->nim)
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.dispensasi');
     }
 }
 

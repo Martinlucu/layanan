@@ -28,6 +28,8 @@ class Cuti_dosen_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan cuti dari Dosen')->view('emails.cuti_dosen_tlk');
+        return $this->subject('Pemberitahuan pengajuan cuti dari Dosen')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.cuti_dosen_tlk');
     }
 }

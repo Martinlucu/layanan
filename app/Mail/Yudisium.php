@@ -30,6 +30,7 @@ class Yudisium extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan pengajuan Yudisium dari '.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.yudisium');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.yudisium');
     }
 }

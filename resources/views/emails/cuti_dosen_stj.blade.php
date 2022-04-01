@@ -375,7 +375,7 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan cuti anda telah disetujui oleh Dosen, Silahkan menunggu persetujuan dari Bag.AAK .</p>
+                                               <p> {{ $isi }}</p>
                                                <br><br><br>
 
                                                Terima kasih.

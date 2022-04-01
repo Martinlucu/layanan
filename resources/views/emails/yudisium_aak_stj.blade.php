@@ -375,7 +375,11 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan yudisium anda telah disetujui oleh Bag.AAK. Silahkan menunggu untuk jadwal wisuda anda keluar.</p>
+                                               <p> 
+                                                   Pengajuan yudisium anda telah diproses oleh Bag.AAK. Silahkan menunggu jadwal yudisium anda keluar.
+                                               <br><br>
+                                                   Untuk info lebih lanjut silahkan ditanyakan ke Bag.AAK . 
+                                               </p>
                                                <br><br><br>
 
                                                Terima kasih.

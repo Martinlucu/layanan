@@ -30,6 +30,7 @@ class BST_edit_ke_kaprodi extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan perubahan data pengajuan BST oleh'.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.BST_edit_ke_kaprodi');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.BST_edit_ke_kaprodi');
     }
 }

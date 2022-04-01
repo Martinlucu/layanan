@@ -30,6 +30,7 @@ class cuti_edit_ke_dosen extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan perubahan data pengajuan cuti oleh '.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.cuti_edit_ke_dosen');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.cuti_edit_ke_dosen');
     }
 }

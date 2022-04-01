@@ -217,7 +217,7 @@
     <div class="content">
         <div class="container">
       <div class="table-responsive" style="padding:20px;width: 98%;">
-        <table id="preview" class="table table-striped table-bordered">
+        <table id="preview" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -326,7 +326,7 @@
             <td><input type="text" name="max" id="max"></td>
         </tr>
       </tbody></table>
-      <table id="example" class="table table-striped table-bordered">
+      <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -341,6 +341,7 @@
                   </thead>
                   <tbody>
                     <tr>
+                    @IF(Auth::user()->jabatan == "Pengajar")
                     @foreach($bsmahas as $bs)
                     {{ csrf_field() }}
                     @IF ($bs->status == 'setuju by dosen')
@@ -389,9 +390,60 @@
                       <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$bs->alasan_penolakan}}</td>
                       <td>{{ $bs->updated_at}}</td>
                     @ENDIF
-                    
                     </tr>
-                    @endforeach
+                  @endforeach
+                  @ELSE
+                  @foreach($bsmahass as $bs)
+                    {{ csrf_field() }}
+                    @IF ($bs->status == 'setuju by dosen')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at }}</td>
+                      <td>Disetujui oleh dosen</td>
+                      <td>{{ $bs->updated_at}}</td>
+                    @ELSEIF ($bs->status == 'setuju by kaprodi')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at }}</td>
+                      <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $bs->updated_at}}</td>
+                    @ELSEIF ($bs->status == 'selesai')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at }}</td>
+                      <td>Selesai</td>
+                      <td>{{ $bs->updated_at}}</td>
+                      @ELSEIF ($bs->status == 'ditolak by dosen')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at}}</td>
+                      <td>Ditolak karena {{$bs->alasan_penolakan}}</td>
+                      <td>{{ $bs->updated_at}}</td>
+                      @ELSEIF ($bs->status == 'ditolak by kaprodi')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }}</td>
+                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at}}</td>
+                      <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$bs->alasan_penolakan}}</td>
+                      <td>{{ $bs->updated_at}}</td>
+                    @ENDIF
+                    </tr>
+                  @endforeach
+                  @ENDIF
       </table>
     </div>
   </div>

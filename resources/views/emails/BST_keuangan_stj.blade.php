@@ -375,7 +375,7 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan BST anda telah diperiksa dan disetujui oleh Bag.Keuangan, Silahkan menunggu persetujuan dari Bag.AAK.</p>
+                                               <p> Pengajuan BST anda telah diperiksa dan disetujui oleh Bag.Keuangan, Silahkan menunggu proses dari Bag.AAK.</p>
                                                <br><br><br>
 
                                                Terima kasih.

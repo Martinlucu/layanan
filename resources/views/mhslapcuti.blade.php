@@ -60,7 +60,6 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-        @IF ($ctmaha->count()>0 || $ctmahas->count()>0 || $ctmahass->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
       <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
@@ -69,8 +68,8 @@
                       <th>Nama</th>
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Pengajuan</th>
-                      <th>Status</th>
                       <th>Tanggal Diproses</th>
+                      <th>Status</th>
 
                     </tr>
                   </thead>
@@ -83,58 +82,14 @@
 		              	<td>{{ $c->nama_mhs }}</td>
 		              	<td>{{ $c->alasan_pengajuan }}</td>
 		              	<td>{{ $c->created_at }}</td>
-		              	<td>{{ $c->status }}</td>
 		              	<td>{{ $c->updated_at }}</td>
+                    <td>{{ $c->status }}</td>
                     </tr>
                    
                     @endforeach
     </table>
     </div>
-        @ELSE
-        <div class="row">
-        <div class="col-md-6">
-        <div class="card card-primary">
-
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" method="POST" action="/uploadbss">
-              @csrf
-                <div class="card-body">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col">
-                          <label for="exampleInputEmail1">NIM </label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                      </div>
-                      <div class="col">
-                        <label for="exampleInputPassword1">Nama</label>
-                        <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">No. Telp</label>
-                    <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" rows="3" required></textarea>
-                  </div>
-                  </div>
-                
-                </div>
-                <!-- /.card-body -->
-
-                
-                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- /.row -->
-        @ENDIF
-        
+       
       </div>
       <!-- /.container-fluid -->
     </div>

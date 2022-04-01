@@ -42,7 +42,7 @@
         function( settings, data, dataIndex ) {
             var min = minDate.val();
             var max = maxDate.val();
-            var date = new Date( data[6,8] );
+            var date = new Date( data[6] );
     
             if (
                 ( min === null && max === null ) ||
@@ -214,7 +214,7 @@
     <div class="content">
       <div class="container">
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="preview" class="table table-striped table-bordered">
+      <table id="preview" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -228,14 +228,14 @@
                   </thead>
                   <tbody>
                     <tr>
-                    
+                    @IF(Auth::user()->jabatan == "Pengajar")
                       @foreach($dpmaha as $d)
                       {{ csrf_field() }}
                       <input type="hidden" name="id" value="{{ $d->id }}">
                       <td>{{ $d->nim }}</td>
                       <td>{{ $d->nama_mhs }}</td>
                       <td>{{ $d->jurusan }}</td>
-                      <td>{{ $d->berkas_dispensasi }}</td>
+                      <td><a href="storage/berkas_mhs/{{ $d->nim }}_{{ $d->jenis }}/{{ $d->berkas_dispensasi }}">{{ $d->berkas_dispensasi }}</a></td>
                       <td>{{ $d->created_at }}</td>
                       <td> 
                         <a class="btn btn-success" href="{{url('/dosdetdispen/stjdis/'.$d->id)}}">Setuju</a>
@@ -256,6 +256,36 @@
                     </td>
                       </tr>
                       @endforeach
+                  @ELSE
+                    @foreach($dpmahaa as $d)
+                      {{ csrf_field() }}
+                      <input type="hidden" name="id" value="{{ $d->id }}">
+                      <td>{{ $d->nim }}</td>
+                      <td>{{ $d->nama_mhs }}</td>
+                      <td>{{ $d->jurusan }}</td>
+                      <td><a href="storage/berkas_mhs/{{ $d->nim }}_{{ $d->jenis }}/{{ $d->berkas_dispensasi }}">{{ $d->berkas_dispensasi }}</td>
+                      <td>{{ $d->created_at }}</td>
+                      <td> 
+                        <a class="btn btn-success" href="{{url('/dosdetdispen/stjdis/'.$d->id)}}">Setuju</a>
+                        <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
+
+                        <div id="id01" class="modal">
+                          <form role="form" class="modal-content animate" action="/dosdetdispen/tlkdis/{{$d->id}}" method="POST">
+                            @csrf
+                          <div class="container" style="padding:16px;">
+                              <label for="uname"><b>Alasan Penolakan :</b></label>
+                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
+
+                              <button class ="btn btn-danger" type="submit">Submit</button>
+                      </div>
+                    </td>
+                      </tr>
+                      @endforeach
+                  @ENDIF
+
     </table>
     </div>
     </div>
@@ -283,7 +313,7 @@
             <td><input type="text" name="max" id="max"></td>
         </tr>
     </tbody></table>
-      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+      <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -300,6 +330,7 @@
                   </thead>
                   <tbody>
                     <tr>
+                    @IF(Auth::user()->jabatan == "Pengajar")
                     @foreach($dpmahas as $ds)
                     {{ csrf_field() }}
                     @IF ($ds->status == 'setuju by dosen')
@@ -369,10 +400,82 @@
                       <td>Ditolak oleh AAK karena {{$ds->alasan_penolakan}}</td>
                       <td>{{ $ds->updated_at}}</td>
                       @ENDIF
-                    
                     </tr>
-                   
-                    @endforeach
+                   @endforeach
+                   @ELSE
+                   @foreach($dpmahass as $ds)
+                    {{ csrf_field() }}
+                    @IF ($ds->status == 'setuju by dosen')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at }}</td>
+                      <td>Disetujui oleh dosen</td>
+                      <td>{{ $ds->updated_at}}</td>
+                    @ELSEIF ($ds->status == 'setuju by kaprodi')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at }}</td>
+                      <td>Disetujui oleh kaprodi</td>
+                      <td>{{ $ds->updated_at}}</td>
+                    @ELSEIF ($ds->status == 'selesai')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at }}</td>
+                      <td>Selesai</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ELSEIF ($ds->status == 'ditolak by dosen')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at}}</td>
+                      <td>Ditolak karena {{$ds->alasan_penolakan}}</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ELSEIF ($ds->status == 'ditolak by kaprodi')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at}}</td>
+                      <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$ds->alasan_penolakan}}</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ELSEIF ($ds->status == 'ditolak by aak')
+                      <input type="hidden" name="id" value="{{ $ds->id }}">
+                      <td>{{ $ds->nim }}</td>
+                      <td>{{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->jurusan }}</td>
+                      <td>{{ $ds->fakultas }}</td>
+                      <td>{{ $ds->tanggal_absen }}</td>
+                      <td>{{ $ds->tanggal_masuk }}</td>
+                      <td>{{ $ds->created_at}}</td>
+                      <td>Ditolak oleh AAK karena {{$ds->alasan_penolakan}}</td>
+                      <td>{{ $ds->updated_at}}</td>
+                      @ENDIF
+                    </tr>
+                   @endforeach
+                  @ENDIF
+
     </table>
     </div>
   </div>

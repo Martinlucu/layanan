@@ -28,6 +28,8 @@ class Dispensasi_kaprodi_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan dispensasi dari Kaprodi')->view('emails.dispensasi_kaprodi_tlk');
+        return $this->subject('Pemberitahuan pengajuan dispensasi dari Kaprodi')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.dispensasi_kaprodi_tlk');
     }
 }

@@ -27,6 +27,7 @@
             <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
               <!-- <li><a href="{{url('/dosdetyudi')}}" class="dropdown-item">Yudisium</a></li> -->
               @if (Auth::user()->jabatan == "Pengajar")
+              <li><a href="{{url('/dosdetdispen')}}" class="dropdown-item">Dispensasi </a></li>
               <li><a href="{{url('/dosdetcuti')}}" class="dropdown-item">Cuti/BSS</a></li>
               <li><a href="{{url('/dosdetbst')}}" class="dropdown-item">BST</a></li>
               @else

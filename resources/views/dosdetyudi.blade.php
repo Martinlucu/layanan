@@ -217,7 +217,7 @@
       <div class="row justify-content-center">
         <div class="col-auto">
         <div class="table-responsive" style="padding:20px;width: 100%;">
-        <table id="preview" class="table table-striped table-bordered">
+        <table id="preview" class="table table-striped table-bordered" data-order="[]">
         <thead>
         <tr>
                       <th>NIM</th>
@@ -290,7 +290,7 @@
     <div class="container">
     <div class="row justify-content-center">
         <div class="col-auto">
-        <div class="table-responsive" style="padding:20px;width: 100%;">
+        <div class="table-responsive" style="padding:20px;width: 100%;" data-order="[]">
         <table border="0" cellspacing="5" cellpadding="5">
         <tbody>
           <tr>

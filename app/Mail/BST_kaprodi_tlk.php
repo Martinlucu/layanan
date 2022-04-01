@@ -28,6 +28,8 @@ class BST_kaprodi_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan BST oleh Kaprodi')->view('emails.BST_kaprodi_tlk');
+        return $this->subject('Pemberitahuan pengajuan BST oleh Kaprodi')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.BST_kaprodi_tlk');
     }
 }

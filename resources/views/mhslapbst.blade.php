@@ -69,8 +69,8 @@
                           <th>Jurusan</th>
                           <th>Alasan Pengajuan</th>
                           <th>Tanggal Pengajuan</th>
-                          <th>Status</th>
                           <th>Tanggal Diproses</th>
+                          <th>Status</th>
                         
                         </tr>
                       </thead>
@@ -84,8 +84,8 @@
                         <td>{{ $b->jurusan }}</td>
                         <td>{{ $b->alasan_pengajuan }}</td>
                         <td>{{ $b->created_at }}</td>
-                        <td>{{ $b->status }}</td>
                         <td>{{ $b->updated_at }}</td>
+                        <td>{{ $b->status }}</td>
                         </tr>
                         @endforeach
         </table>

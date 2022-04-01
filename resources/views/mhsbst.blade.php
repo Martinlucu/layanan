@@ -355,101 +355,7 @@
                     </td>
                     </tr>
                     @endforeach
-                    <!-- Ditolak by keuangan -->
-                    @ELSEIF ($bsmahasssssss->count()>0)
-                    <tr>
-                    @foreach($bsmahasssssss as $d)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
-		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->alasan_pengajuan }}</td>
-		              	<td>{{ $d->created_at }}</td>
-		              	<td>Ditolak oleh AAK karena {{ $d->alasan_penolakan }}</td>
-		              	<td>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Edit Data
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/editbst/{{$d->id}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                            <div class="form-group">
-                    <div class="row">
-                      <div class="col">
-                          <label for="exampleInputEmail1">NIM </label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                      </div>
-                      <div class="col">
-                        <label for="exampleInputPassword1">Nama</label>
-                        <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">No. Telp</label>
-                    <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required> {{ $d->alasan_pengajuan }} </textarea>
-                  </div>
-                                
-                                <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
-                    </td>
-                    </tr>
-                    @endforeach
-                     <!-- Ditolak by perpustakaan -->
-                     @ELSEIF ($bsmahassssssss->count()>0)
-                    <tr>
-                    @foreach($bsmahassssssss as $d)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
-		              	<td>{{ $d->jurusan }}</td>
-		              	<td>{{ $d->alasan_pengajuan }}</td>
-		              	<td>{{ $d->created_at }}</td>
-		              	<td>Ditolak oleh AAK karena {{ $d->alasan_penolakan }}</td>
-		              	<td>
-                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Edit Data
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/editbst/{{$d->id}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                            <div class="form-group">
-                    <div class="row">
-                      <div class="col">
-                          <label for="exampleInputEmail1">NIM </label>
-                          <input type="nim" class="form-control" name="nim" value=" {{ Auth::user()->nim }} " disabled>
-                      </div>
-                      <div class="col">
-                        <label for="exampleInputPassword1">Nama</label>
-                        <input type="nama" class="form-control" name="nama" value=" {{ Auth::user()->nama }} " disabled>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">No. Telp</label>
-                    <input type="nama" class="form-control" name="no_telp" value=" {{ Auth::user()->no_telp }} " disabled>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Alasan Pengajuan</label>
-                    <textarea class="form-control" name="alasan" name="alasan" rows="3" required> {{ $d->alasan_pengajuan }} </textarea>
-                  </div>
-                                
-                                <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
-                    </td>
-                    </tr>
-                    @endforeach
-                    <!-- Update by mhs -->
+                   <!-- Update by mhs -->
                     @ELSE
                     <tr>
                     @foreach($bsmahassssss as $d)
@@ -541,6 +447,21 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function validasibop() {
+            var bop = document.getElementById('struk_bop');
+            var filebop = bop.value;
+           
+          
+            // Allowing file type
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+              
+            if (!allowedExtensions.exec(filetoefl)) {
+                alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png!');
+                berkas_toefl.value = '';
+                return false;
+            }
+        }
 </script>
 </body>
 </html>

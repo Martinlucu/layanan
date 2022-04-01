@@ -30,6 +30,7 @@ class Cuti extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan pengajuan cuti dari '.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.cuti');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.cuti');
     }
 }

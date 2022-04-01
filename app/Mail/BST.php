@@ -30,6 +30,7 @@ class BST extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan pengajuan BST dari '.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.bst');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.bst');
     }
 }

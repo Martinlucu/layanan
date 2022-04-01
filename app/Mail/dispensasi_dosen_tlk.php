@@ -6,9 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Auth;
 
-class BST_edit_ke_keuangan extends Mailable
+class dispensasi_dosen_tlk extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,8 +28,8 @@ class BST_edit_ke_keuangan extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan perubahan data pengajuan BST oleh'.Auth::user()->nama.' '.Auth::user()->nim)
+        return $this->subject('Pemberitahuan pengajuan dispensasi dari Dosen Wali')
                     ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
-                    ->view('emails.BST_edit_ke_keuangan');
+                    ->view('emails.dispensasi_dosen_tlk');
     }
 }

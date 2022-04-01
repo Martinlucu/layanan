@@ -30,6 +30,7 @@ class yudisium_edit_ke_aak extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan perubahan data pengajuan yudisium dari '.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.yudisium_edit_ke_aak');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.yudisium_edit_ke_aak');
     }
 }

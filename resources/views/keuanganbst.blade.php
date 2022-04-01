@@ -224,6 +224,9 @@
                       <th>Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
+                      @IF($kbstt->count()>0)
+                        <th>Bukti pembayaran tunggakan BOP</th>
+                      @ENDIF
                       <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
@@ -238,6 +241,9 @@
 		              	<td>{{ $k->nama_mhs }}</td>
 		              	<td>{{ $k->jurusan }}</td>
 		              	<td>{{ $k->alasan_pengajuan }}</td>
+		              	@IF($kbstt->count()>0)
+                      <td>{{ $k->file }}</td>
+                    @ENDIF
 		              	<td>{{ $k->created_at }}</td>
 		              	<td>
                       <a class="btn btn-success" href="{{url('/keuanganbst/stjbst/'.$k->id)}}">Setuju</a>

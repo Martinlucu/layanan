@@ -5,11 +5,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Email</title>
-        
+
         <?php
             use Illuminate\Http\Request as r;
         ?>
-
+        
         <style>
     
             img {
@@ -375,10 +375,10 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan cuti anda diproses oleh Bag.AAK. Silahkan melihat perubahan status anda di SICYCA.</p>
-                                               <br><br><br>
+                                               <p>{{ $isi }}</p>
+                                               <br>
 
-                                               Terima kasih.
+                                               Terima Kasih.
                                             </td>
                                         </tr>
                                     </table>

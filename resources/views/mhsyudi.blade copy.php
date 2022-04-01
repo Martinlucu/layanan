@@ -22,10 +22,6 @@
       -webkit-appearance: none;
       margin: 0;
     }
-
-    th{
-      width: 250px;
-    }
   </style>
 
 <style>
@@ -132,11 +128,6 @@
             width: 100%;
           }
         }
-
-        .required:after{
-          content:"*";
-          color: red;
-        }
     </style>
 </head>
 <body class="hold-transition layout-top-nav">
@@ -171,263 +162,88 @@
       @IF ($ydmaha->count()>0 || $ydmahas->count()>0 || $ydmahass->count()>0)
         <div class="table-responsive" style="padding:20px;width: 98%;">
         <table id="example" class="table table-striped table-bordered"> <!--style="table-layout:fixed"-->
-            <tbody>
+      <thead>
+        <tr>
+                      <th>NIM</th>
+                      <th>Nama</th>
+                      <th>Tempat lahir</th>
+                      <th>Tanggal lahir</th>
+                      <th>No. KTP</th>
+                      <th>Alamat</th>
+                      <th>No. Telp</th>
+                      <th>Email</th>
+                      <th>Berkas</th>
+                      <th>Tanggal Pengajuan</th>
+                      <th>Status</th>
+                      @IF ($ydmahas->count()>0)
+                      <th>Aksi</th>
+                      @ENDIF
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
                     <!-- Proses -->
                     @IF ($ydmaha->count()>0)
+                    <tr>
                     @foreach($ydmaha as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
+                    <td>{{ $yd->nim }}</td>
+		              	<td>{{ $yd->nama_mhs }}</td>
+                    <td>{{ $yd->tempat_lahir }}</td>
+                    <td>{{ $yd->tanggal_lahir }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
+                    <td>{{ $yd->alamat }}</td>
+                    <td>{{ $yd->no_telp }}</td>
+                    <td>{{ $yd->email_mhs }}</td>
+		              	<td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
+                    </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td>{{ $yd->status }}</td>
+                    </tr>
+                    @endforeach
+                 <!-- Ditolak by aak -->
+                    @ELSEIF ($ydmahas->count()>0)
                     <tr>
-                      <th>NIM</th>
-                      <td>{{ $yd->nim }}</td>
-                    </tr>
-                    <tr>
-                      <th>Nama</th>
-                      <td>{{ $yd->nama_mhs }}</td>
-                    </tr>
-		              	<tr>
-                      <th>Tempat lahir</th>
-                      <td>{{ $yd->tempat_lahir }}</td>
-                    </tr>
-                    <tr>
-                      <th>Tanggal lahir</th>
-                      <td>{{ $yd->tanggal_lahir }}</td>
-                    </tr>
-                    <tr>
-                      <th>No. KTP</th>
-                      <td>{{ $yd->no_ktp }}</td>  
-                    </tr>
-                    <tr>
-                      <th>Alamat</th>
-                      <td>{{ $yd->alamat }}</td>
-                    </tr>
-                    <tr>
-                      <th>No. Telp</th>
-                      <td>{{ $yd->no_telp }}</td>
-                    </tr>
-                    <tr>
-                      <th>Email</th>
-                      <td>{{ $yd->email_mhs }}</td>
-                    </tr>
-                    <tr>
-                      <th>Berkas TOEFL</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas Ijazah</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
-                      </td>
-                    </tr>  
-                    <tr>
-                      <th>Berkas KK</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas KTP</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas KTM</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
-                      </td>
-                    </tr>
-		                <tr>
-                      <th>Tanggal Pengajuan</th>
-                      <td>{{ $yd->created_at }}</td>
-                    </tr>
-		              	<tr>
-                      <th>Status</th>
-                      <td>{{ $yd->status }}</td>
-                    </tr>
-		              	@endforeach
-                   <!-- Ditolak by aak -->
-                   @ELSEIF ($ydmahas->count()>0)
                     @foreach($ydmahas as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <tr>
-                      <th>NIM</th>
-                      <td>{{ $yd->nim }}</td>
-                    </tr>
-                    <tr>
-                      <th>Nama</th>
-                      <td>{{ $yd->nama_mhs }}</td>
-                    </tr>
-		              	<tr>
-                      <th>Tempat lahir</th>
-                      <td>{{ $yd->tempat_lahir }}</td>
-                    </tr>
-                    <tr>
-                      <th>Tanggal lahir</th>
-                      <td>{{ $yd->tanggal_lahir }}</td>
-                    </tr>
-                    <tr>
-                      <th>No. KTP</th>
-                      <td>{{ $yd->no_ktp }}</td>
-                    </tr>
-                    <tr>
-                      <th>Alamat</th>
-                      <td>{{ $yd->alamat }}</td>
-                    </tr>
-                    <tr>
-                      <th>No. Telp</th>
-                      <td>{{ $yd->no_telp }}</td>
-                    </tr>
-                    <tr>
-                      <th>Email</th>
-                      <td>{{ $yd->email_mhs }}</td>
-                    </tr>
-                    <tr>
-                      <th>Berkas akta</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas SSKM</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">{{ $yd->berkas_sskm }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas TOEFL</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas Ijazah</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
-                      </td>
-                    </tr>  
-                    <tr>
-                      <th>Berkas KK</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas KTP</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas KTM</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Tanggal Pengajuan</th>
-                      <td>{{ $yd->created_at }}</td>
-                    </tr>
-		              	<tr>
-                      <th>Status</th>
-                      <td>Ditolak oleh AAK karena {{ $yd->alasan_penolakan }}</td>
-                    </tr>
-		                @endforeach
-                    <!-- Update by mhs -->
-                    @ELSEIF ($ydmahass->count()>0)
-                    @foreach($ydmahass as $yd)
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <tr>
-                      <th>NIM</th>
-                      <td>{{ $yd->nim }}</td>
-                    </tr>
-                    <tr>
-                      <th>Nama</th>
-                      <td>{{ $yd->nama_mhs }}</td>
-                    </tr>
-		              	<tr>
-                      <th>Tempat lahir</th>
-                      <td>{{ $yd->tempat_lahir }}</td>
-                    </tr>
-                    <tr>
-                      <th>Tanggal lahir</th>
-                      <td>{{ $yd->tanggal_lahir }}</td>
-                    </tr>
-                    <tr>
-                      <th>No. KTP</th>
-                      <td>{{ $yd->no_ktp }}</td>  
-                    </tr>
-                    <tr>
-                      <th>Alamat</th>
-                      <td>{{ $yd->alamat }}</td>
-                    </tr>
-                    <tr>
-                      <th>No. Telp</th>
-                      <td>{{ $yd->no_telp }}</td>
-                    </tr>
-                    <tr>
-                      <th>Email</th>
-                      <td>{{ $yd->email_mhs }}</td>
-                    </tr>
-                    <tr>
-                      <th>Berkas Akta</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas SSKM</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">{{ $yd->berkas_sskm }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas TOEFL</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas Ijazah</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
-                      </td>
-                    </tr>  
-                    <tr>
-                      <th>Berkas KK</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas KTP</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Berkas KTM</th>
-                      <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
-                      </td>
-                    </tr>
-		                <tr>
-                      <th>Tanggal Pengajuan</th>
-                      <td>{{ $yd->created_at }}</td>
-                    </tr>
-		              	<tr>
-                      <th>Status</th>
-                      <td>Sedang diproses oleh Bag. AAK</td>
-                    </tr>
-		              	@endforeach
-                    @ENDIF
-          </table>
-    @IF ($ydmahas->count()>0)
-    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:100%;">
+                    <td>{{ $yd->nim }}</td>
+		              	<td>{{ $yd->nama_mhs }}</td>
+                    <td>{{ $yd->tempat_lahir }}</td>
+                    <td>{{ $yd->tanggal_lahir }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
+                    <td>{{ $yd->alamat }}</td>
+                    <td>{{ $yd->no_telp }}</td>
+                    <td>{{ $yd->email_mhs }}</td>
+		              	<td>
+                    <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
+                      <br><br>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
+                    </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td>Ditolak oleh AAK karena {{ $yd->alasan_penolakan }}</td>
+		              	<td>
+                      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Edit Data
                         </button>
 
@@ -508,7 +324,43 @@
                     <button class ="btn btn-danger" type="submit">Submit</button>
                   </div>
                 </div>
-                      @ENDIF
+                    </td>
+                    </tr>
+                    @endforeach
+                    <!-- Update by mhs -->
+                    @ELSEIF ($ydmahass->count()>0)
+                    <tr>
+                    @foreach($ydmahass as $yd)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $yd->id }}">
+                    <td>{{ $yd->nim }}</td>
+		              	<td>{{ $yd->nama_mhs }}</td>
+                    <td>{{ $yd->tempat_lahir }}</td>
+                    <td>{{ $yd->tanggal_lahir }}</td>
+                    <td>{{ $yd->no_ktp }}</td>
+                    <td>{{ $yd->alamat }}</td>
+                    <td>{{ $yd->no_telp }}</td>
+                    <td>{{ $yd->email_mhs }}</td>
+		              	<td>
+                      {{ $yd->berkas_akta }}
+                      <br><br>
+                      {{ $yd->berkas_toefl }} 
+                      <br><br>
+                      {{ $yd->berkas_ijazah }} 
+                      <br><br>
+                      {{ $yd->berkas_kk }} 
+                      <br><br>
+                      {{ $yd->berkas_ktp }} 
+                      <br><br>
+                      {{ $yd->berkas_ktm }} 
+                    </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td>Dalam proses oleh AAK</td>
+                    </tr>
+                    @endforeach
+                    @ENDIF
+      </tbody>
+    </table>
       </div>
         @ELSE
         <div class="row">
@@ -523,12 +375,12 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col">
-                          <label for="exampleInputEmail1" class="required">NIM</label>
-                          <input type="number" max="11" class="form-control" name="nim" value="{{Auth::user()->nim}}" disabled>
+                          <label for="exampleInputEmail1">NIM</label>
+                          <input type="number" max="11" class="form-control" name="nim" value=" {{Auth::user()->nim}} " disabled>
                         </div>
                         <div class="col">
-                          <label for="exampleInputPassword1" class="required">Nama</label>
-                          <input type="text" class="form-control" name="nama" value="{{Auth::user()->nama}}" disabled>
+                          <label for="exampleInputPassword1">Nama</label>
+                          <input type="text" class="form-control" name="nama">
                         </div>
                       </div>
                     </div>
@@ -536,21 +388,21 @@
                       <div class="row">
                         <div class="col">
                           <label for="exampleInputEmail1">Tempat Lahir</label>
-                          <input type="text" class="form-control" name="tempat_lahir" value="{{Auth::user()->tempat_lahir}}" disabled>
+                          <input type="text" class="form-control" name="tempat_lahir">
                         </div>
                         <div class="col">
                           <label for="exampleInputPassword1">Tanggal Lahir</label>
-                          <input type="date" class="form-control" name="tanggal_lahir" value="{{Auth::user()->tanggal_lahir}}" disabled>
+                          <input type="date" class="form-control" name="tanggal_lahir">
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. KTP</label>
-                      <input type="number" max="16" class="form-control" name="no_ktp" value="{{Auth::user()->no_ktp}}" disabled>
+                      <input type="number" max="16" class="form-control" name="no_ktp">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Alamat</label>
-                      <input type="text" class="form-control" name="alamat" value="{{Auth::user()->alamat}}" disabled>
+                      <input type="text" class="form-control" name="alamat">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. Telfon</label>
@@ -558,69 +410,48 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">E-mail Dinamika</label>
-                      <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}" disabled>
+                      <input type="email" class="form-control" name="email">
                     </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                  
-            </div>
-            <div class="col-md-6">
-              <div class="card card-primary" style="height:97.5%;">
-                <div class="card-body">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col">
-                      <label for="exampleInputPassword1" class="required">Upload Bukti SSKM</label>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Upload Bukti SSKM</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="sskm" onchange="return validasisskm()" class="form-control-file" id="berkas_sskm" required>
                           </div>
-                      </div>
-                      <div class="col">
-                      <label for="exampleInputPassword1" class="required">Upload Sertifikat Toefl/Toeic</label>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="toefl" onchange="return validasitoefl()" class="form-control-file" id="berkas_toefl" required>
                           </div>
-                      </div>
-                    </div>
-                    <div class="row" style="padding-top:30px;">
-                      <div class="col">
-                      <label for="exampleInputPassword1" class="required">Upload Ijazah SMA</label>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Ijazah SMA</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ijazah_sma" onchange="return validasiijazah()" class="form-control-file" id="berkas_ijazah" required>
                           </div>
-                      </div>
-                      <div class="col">
-                      <label for="exampleInputPassword1" class="required">Upload Akta Kelahiran</label>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Akta Kelahiran</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="akta" onchange="return validasiakta()" class="form-control-file" id="berkas_akta" required>
                           </div>
-                      </div>
-                    </div>
-                    <div class="row" style="padding-top:30px;">
-                      <div class="col">
-                      <label for="exampleInputPassword1" class="required">Upload Kartu Keluarga</label>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Keluarga</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="kk" onchange="return validasikk()" class="form-control-file" id="berkas_kk" required>
                           </div>
-                      </div>
-                      <div class="col">
-                      <label for="exampleInputPassword1" class="required">Upload Kartu Tanda Mahasiswa</label>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Mahasiswa</label>
                           <div class="custom-file" style="margin-bottom:10px;">
                             <input type="file" name="ktm" onchange="return validasiktm()" class="form-control-file" id="berkas_ktm" required>
                           </div>
-                      </div>
-                    </div>  
-                    <label for="exampleInputPassword1" class="required" style="padding-top:30px;">Upload Kartu Tanda Penduduk</label>
-                      <div class="custom-file" style="margin-bottom:10px;">
-                      <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
+                      <label for="exampleInputPassword1">Upload Scan Berwarna Kartu Tanda Penduduk</label>
+                          <div class="custom-file" style="margin-bottom:10px;">
+                            <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
                           </div>
                     </div>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                
               </form>
+            </div>
           </div>
         </div>
         <!-- /.row -->

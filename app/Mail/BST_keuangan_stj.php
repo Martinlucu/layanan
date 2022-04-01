@@ -28,6 +28,8 @@ class BST_keuangan_stj extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan BST dari Bag.Keuangan')->view('emails.BST_keuangan_stj');
+        return $this->subject('Pemberitahuan pengajuan BST dari Bag.Keuangan')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.BST_keuangan_stj');
     }
 }

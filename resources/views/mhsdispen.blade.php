@@ -197,6 +197,7 @@
 		              	<td>{{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
+                    <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->status }}
                   </td>
@@ -448,8 +449,8 @@
     </div>
         @ELSE
         <div class="row">
-        <div class="col-md-6">
-        <div class="card card-primary">
+        <div class="col-md-12">
+        <div class="card card-primary" style="height:86%">
 
               <!-- /.card-header -->
               <!-- form start -->
@@ -494,7 +495,7 @@
                     </div>
                     <div class="form-group">
                     <label for="exampleInputPassword1">Upload berkas dispensasi</label>
-                        <div class="custom-file" style="margin-bottom:10px;">
+                        <div class="custom-file">
                           <input type="file" name="berkas_ketidakhadiran" class="form-control-file" id="exampleformcontrolfile1" required>
                         </div>
                     </div>

@@ -6,7 +6,9 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use DB;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-class dispenExport implements FromCollection,WithHeadings
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+
+class dispenExport implements FromCollection,WithHeadings,ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection

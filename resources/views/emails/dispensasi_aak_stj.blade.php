@@ -375,7 +375,7 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan dispensasi anda telah disetujui oleh Bag. AAK.</p>
+                                               <p> Pengajuan dispensasi anda telah diproses oleh Bag. AAK. Silahkan melihat perubahan status anda di SICYCA.</p>
                                                <br><br><br>
 
                                                Terima kasih.

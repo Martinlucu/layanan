@@ -28,6 +28,8 @@ class BST_dosen_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan Pengajuan BST dari Dosen')->view('emails.bst_dosen_tlk');
+        return $this->subject('Pemberitahuan Pengajuan BST dari Dosen')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.bst_dosen_tlk');
     }
 }

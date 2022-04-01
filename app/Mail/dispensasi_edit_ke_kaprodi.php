@@ -30,6 +30,7 @@ class dispensasi_edit_ke_kaprodi extends Mailable
     public function build()
     {
         return $this->subject('Pemberitahuan perubahan data pengajuan dispensasi dari '.Auth::user()->nama.' '.Auth::user()->nim)
-        ->view('emails.dispensasi_edit_ke_kaprodi');
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.dispensasi_edit_ke_kaprodi');
     }
 }

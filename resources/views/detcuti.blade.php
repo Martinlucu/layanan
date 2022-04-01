@@ -161,7 +161,7 @@
     <div class="content">
       <div class="container">
     <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered">
+      <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM</th>
@@ -183,10 +183,10 @@
 		              	<td>{{ $c->jurusan }}</td>
 		              	<td>{{ $c->alasan_pengajuan }}</td>
 		              	<td>{{ $c->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detcuti/stjcuti/'.$c->id)}}">Setuju</a>
-                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+		              	<td> <a class="btn btn-success" href="{{url('/detcuti/stjcuti/'.$c->id)}}">Proses</a>
+                    <!-- <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
                           Tolak
-                        </button>
+                        </button> -->
 
                         <div id="id01" class="modal">
                             <form role="form" class="modal-content animate" action="/detcuti/tlkcuti/{{$c->id}}" method="POST">

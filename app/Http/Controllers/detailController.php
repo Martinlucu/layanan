@@ -13,7 +13,7 @@ class detailController extends Controller
     {
        
         $ydm = DB::table('dokumen')->wherein('status',['proses','update ke aak'])->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['proses','update ke aak'])->get();
+        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['proses','update ke aak'])->orderBy('created_at', 'DESC')->get();
         
         return view('detyudi',compact('ydm', 'ydmaha'));
 }
@@ -23,7 +23,7 @@ class detailController extends Controller
         $to = date('2021-07-30');
         $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->count();
         // $ctt = DB::table('dokumen')->where('jenis','Cuti')->where('status','update by mhs ke aak')->count();
-        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->get();
+        $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->orderBy('created_at', 'DESC')->get();
         // $ctmahaa = DB::table('dokumen')->where('jenis','Cuti')->where('status','update by mhs ke aak')->get();
         return view('detcuti',compact('ct','ctmaha'));
 }
@@ -32,7 +32,7 @@ class detailController extends Controller
     {$from = date('2021-04-01');
         $to = date('2021-07-30');
         $bs = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by perpustakaan')->count();
-        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by perpustakaan')->get();
+        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by perpustakaan')->orderBy('created_at', 'DESC')->get();
         // $bsmahaa = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke aak')->get();
         return view('detbst',compact('bs','bsmaha'));
 }
@@ -43,8 +43,8 @@ class detailController extends Controller
         $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->count();
         $dpp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->count();
         // $dppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->count();
-        $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->get();
-        $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->get();
+        $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->orderBy('created_at', 'DESC')->get();
+        $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->orderBy('created_at', 'DESC')->get();
         // $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs ke aak')->get();
         
         return view('detdispen',compact('dpmaha', 'dpmahaa','dp', 'dpp'));
@@ -52,7 +52,7 @@ class detailController extends Controller
 public function stjcuti($id)
     {
         $date = date(Carbon::now());
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\cuti_aak_stj);
+        \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\cuti_aak_stj);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "selesai",
             'updated_at'=> $date
@@ -64,7 +64,7 @@ public function stjcuti($id)
 public function stjbst($id)
 {
     $date = date(Carbon::now());
-    \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_aak_stj);
+    \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\BST_aak_stj);
     DB::table('dokumen')->where('id',$id)->update([
         'status' => "selesai",
         'updated_at'=> $date
@@ -76,7 +76,7 @@ public function stjbst($id)
 public function stjdis($id)
     {
         $date = date(Carbon::now());
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\dispensasi_aak_stj);
+        \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\dispensasi_aak_stj);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "selesai",
             'updated_at'=> $date
@@ -88,7 +88,7 @@ public function stjdis($id)
 public function stjyudi($id)
 {
     $date = date(Carbon::now());
-    \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\yudisium_aak_stj);
+    \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\yudisium_aak_stj);
     DB::table('dokumen')->where('id',$id)->update([
         'status' => "selesai",
         'updated_at'=> $date
@@ -99,7 +99,7 @@ public function stjyudi($id)
     public function tlkcuti(Request $request, $id)
     {
         $date = date(Carbon::now());
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\cuti_aak_tlk);
+        \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\cuti_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,
@@ -111,7 +111,7 @@ public function stjyudi($id)
     public function tlkdis(Request $request, $id)
     {
         $date = date(Carbon::now());;
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\dispensasi_aak_tlk);
+        \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\dispensasi_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,
@@ -123,7 +123,7 @@ public function stjyudi($id)
     public function tlkyudi(Request $request, $id)
     {
         $date = date(Carbon::now());;
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\yudisium_aak_tlk);
+        \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\yudisium_aak_tlk);
         
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
@@ -136,7 +136,7 @@ public function stjyudi($id)
     public function tlkbst(Request $request, $id)
     {
         $date = date(Carbon::now());;
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_aak_tlk);
+        \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\BST_aak_tlk);
         DB::table('dokumen')->where('id',$id)->update([
             'status' => "ditolak by aak",
             'alasan_penolakan' => $request->alasan,

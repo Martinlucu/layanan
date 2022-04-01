@@ -17,8 +17,8 @@ class KeuanganController extends Controller
     }
 
     public function keuanganbst(){
-        $kbst = DB::table('dokumen')->where('jenis', 'BST')->where('status', 'setuju by kaprodi')->count();
-        $kbstt = DB::table('dokumen')->where('jenis', 'BST')->where('status', 'setuju by kaprodi')->get();
+        $kbst = DB::table('dokumen')->where('jenis', 'BST')->wherein('status', ['setuju by kaprodi', 'update ke keuangan'])->count();
+        $kbstt = DB::table('dokumen')->where('jenis', 'BST')->wherein('status', ['setuju by kaprodi', 'update ke keuangan'])->get();
         
         $kbstm = DB::table('dokumen')->where('jenis', 'BST')->get();
 
@@ -29,7 +29,7 @@ class KeuanganController extends Controller
     {
         $date = date("Y-m-d H:i:s");
         
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_keuangan_stj);
+        // \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_keuangan_stj);
 
         DB::table('dokumen')->where('id',$id)->update([
         'status' => "setuju by keuangan",
@@ -43,7 +43,7 @@ class KeuanganController extends Controller
     {
         $date = date("Y-m-d H:i:s");
         
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_keuangan_tlk);
+        // \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST_keuangan_tlk);
 
         DB::table('dokumen')->where('id',$id)->update([
         'status' => "ditolak by keuangan",

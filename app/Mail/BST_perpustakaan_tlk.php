@@ -28,6 +28,8 @@ class BST_perpustakaan_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan BST dari Perpustakaan')->view('emails.BST_perpustakaan_tlk');
+        return $this->subject('Pemberitahuan pengajuan BST dari Perpustakaan')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.BST_perpustakaan_tlk');
     }
 }

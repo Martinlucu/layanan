@@ -68,9 +68,9 @@
                           <th>Nama</th>
                           <th>Berkas</th>
                           <th>Tanggal Pengajuan</th>
-                          <th>Status</th>
                           <th>Tanggal Diproses</th>
-                        
+                          <th>Status</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
@@ -91,8 +91,8 @@
                           }}
                         </td>
                         <td>{{ $yd->created_at }}</td>
-                        <td>{{ $yd->status }}
-                        <td>{{ $yd->updated_at }}
+                        <td>{{ $yd->updated_at }}</td>
+                        <td>{{ $yd->status }}</td>
                         </tr>
                         @endforeach
         </table>

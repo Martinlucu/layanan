@@ -28,6 +28,8 @@ class Dispensasi_aak_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan dispensasi dari Bag.AAK')->view('emails.dispensasi_aak_tlk');
+        return $this->subject('Pemberitahuan pengajuan dispensasi dari Bag.AAK')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.dispensasi_aak_tlk');
     }
 }

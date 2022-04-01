@@ -375,8 +375,8 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan dispensasi anda telah disetujui oleh Dosen, Silahkan menunggu persetujuan dari Kaprodi.</p>
-                                               <br><br><br>
+                                               <p> {{ $isi }}</p>
+                                               <br>
 
                                                Terima kasih.
                                             </td>

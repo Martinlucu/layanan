@@ -28,6 +28,8 @@ class BST_aak_tlk extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan BST dari Bag.AAK')->view('emails.BST_aak_tlk');
+        return $this->subject('Pemberitahuan pengajuan BST dari Bag.AAK')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.BST_aak_tlk');
     }
 }

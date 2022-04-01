@@ -155,6 +155,7 @@ class mahasiswaController extends Controller
             
             DB::table('dokumen')->insert([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -171,7 +172,8 @@ class mahasiswaController extends Controller
             ]);
             
             
-            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
+            // $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
+            $tujuan_simpan = storage_path('app/public/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
             $berkas->move($tujuan_simpan, $nama_berkas);
             
            return redirect('/mhs')->with('alert', 'Pengajuan dispensasi anda berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
@@ -190,10 +192,11 @@ class mahasiswaController extends Controller
         $nama_berkas = $request->file('berkas')->getClientOriginalName();
         
         if(DB::table('dokumen')->where('id', $id)->value('status') == 'ditolak by kaprodi'){
-            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\dispensasi_edit_ke_kaprodi);
+            \Mail::to('fadhlidzil.prakoso@gmail.com')->send(new \App\Mail\dispensasi_edit_ke_kaprodi);
 
             DB::table('dokumen')->where('id',$id)->update([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -208,9 +211,10 @@ class mahasiswaController extends Controller
                 'created_at'        => $date
             ]);
         }else{
-            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\dispensasi_edit_ke_aak);
+            \Mail::to('howland2nd@gmail.com')->send(new \App\Mail\dispensasi_edit_ke_aak);
             DB::table('dokumen')->where('id',$id)->update([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -228,7 +232,8 @@ class mahasiswaController extends Controller
             
             
             
-            $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
+            // $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
+            $tujuan_simpan = storage_path('app/public/berkas_mhs/'.Auth::user()->nim.'_Dispensasi');
             $berkas->move($tujuan_simpan, $nama_berkas);
             
             
@@ -240,7 +245,7 @@ class mahasiswaController extends Controller
 
     public function createyudi(Request $request){
         $date = Carbon::now();
-        // $foto = $request->foto;
+        $sskm = $request->sskm;
         $toefl = $request->toefl;
         $ijazah_sma = $request->ijazah_sma;
         $akta = $request->akta;
@@ -248,7 +253,7 @@ class mahasiswaController extends Controller
         $ktm = $request->ktm;
         $ktp = $request->ktp;
 
-        // $nama_foto = $request->file('foto')->getClientOriginalName();
+        $nama_sskm = $request->file('sskm')->getClientOriginalName();
         $nama_toefl = $request->file('toefl')->getClientOriginalName();
         $nama_ijazah = $request->file('ijazah_sma')->getClientOriginalName();
         $nama_akta = $request->file('akta')->getClientOriginalName();
@@ -256,10 +261,71 @@ class mahasiswaController extends Controller
         $nama_ktm = $request->file('ktm')->getClientOriginalName();
         $nama_ktp = $request->file('ktp')->getClientOriginalName();
 
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Yudisium);
+        \Mail::to('howland2nd@gmail.com')->send(new \App\Mail\Yudisium);
 
         DB::table('dokumen')->insert([
+            'nim'            => Auth::user()->nim,
+            'kode_dosen'        => Auth::user()->kode_dosen,
+            'nama_mhs'       => Auth::user()->nama,
+            'tempat_lahir'   => Auth::user()->tempat_lahir,
+            'tanggal_lahir'  => Auth::user()->tanggal_lahir,
+            'no_ktp'         => Auth::user()->no_ktp,
+            'alamat'         => Auth::user()->alamat,
+            'no_telp'        => $request->no_telp,
+            'email_mhs'      => Auth::user()->email,
+            'semester'       => Auth::user()->semester,
+            'jurusan'        => Auth::user()->jurusan,
+            'fakultas'       => Auth::user()->fakultas,
+            'jenis'          => 'Yudisium',
+            'berkas_sskm'    => $nama_sskm,
+            'berkas_toefl'   => $nama_toefl,
+            'berkas_ijazah'  => $nama_ijazah,
+            'berkas_akta'    => $nama_akta,
+            'berkas_kk'      => $nama_kk,
+            'berkas_ktm'     => $nama_ktm,
+            'berkas_ktp'     => $nama_ktp,
+            'status'         => 'proses',
+            'created_at'     => $date
+        ]);
+        
+        // $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
+        // $tujuan_simpan = storage_path('app/public/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
+        $tujuan_simpan = storage_path('app/public/berkas_mhs/'.$request->nim.'_Yudisium');
+        
+        $sskm->move($tujuan_simpan, $nama_sskm);
+        $toefl->move($tujuan_simpan, $nama_toefl);
+        $ijazah_sma->move($tujuan_simpan, $nama_ijazah);
+        $akta->move($tujuan_simpan, $nama_akta);
+        $kk->move($tujuan_simpan, $nama_kk);
+        $ktm->move($tujuan_simpan, $nama_ktm);
+        $ktp->move($tujuan_simpan, $nama_ktp);
+        
+        return redirect('/mhs')->with('alert', 'Berkas yudisium anda telah berhasil diupload! Tetap cek notifikasi untuk mengetahui kabar selanjutnya.');
+    }
+
+    public function eyudi(Request $request, $id){
+        $date = Carbon::now();
+        $sskm = $request->sskm;
+        $toefl = $request->toefl;
+        $ijazah_sma = $request->ijazah_sma;
+        $akta = $request->akta;
+        $kk = $request->kk;
+        $ktm = $request->ktm;
+        $ktp = $request->ktp;
+
+        $nama_sskm = $request->file('sskm')->getClientOriginalName();
+        $nama_toefl = $request->file('toefl')->getClientOriginalName();
+        $nama_ijazah = $request->file('ijazah_sma')->getClientOriginalName();
+        $nama_akta = $request->file('akta')->getClientOriginalName();
+        $nama_kk = $request->file('kk')->getClientOriginalName();
+        $nama_ktm = $request->file('ktm')->getClientOriginalName();
+        $nama_ktp = $request->file('ktp')->getClientOriginalName();
+
+        \Mail::to('howland2nd@gmail.com')->send(new \App\Mail\yudisium_edit_ke_aak);
+
+        DB::table('dokumen')->where('id', $id)->update([
             'nim'            => $request->nim,
+            'kode_dosen'     => Auth::user()->kode_dosen,
             'nama_mhs'       => $request->nama,
             'tempat_lahir'   => $request->tempat_lahir,
             'tanggal_lahir'  => $request->tanggal_lahir,
@@ -271,66 +337,7 @@ class mahasiswaController extends Controller
             'jurusan'        => Auth::user()->jurusan,
             'fakultas'       => Auth::user()->fakultas,
             'jenis'          => 'Yudisium',
-            // 'berkas_foto' => $nama_foto,
-            'berkas_toefl'   => $nama_toefl,
-            'berkas_ijazah'  => $nama_ijazah,
-            'berkas_akta'    => $nama_akta,
-            'berkas_kk'      => $nama_kk,
-            'berkas_ktm'     => $nama_ktm,
-            'berkas_ktp'     => $nama_ktp,
-            'status'         => 'proses',
-            'created_at'     => $date
-        ]);
-        
-        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
-        
-        // $foto->move($tujuan_simpan, $nama_foto);
-        $toefl->move($tujuan_simpan, $nama_toefl);
-        $ijazah_sma->move($tujuan_simpan, $nama_ijazah);
-        $akta->move($tujuan_simpan, $nama_akta);
-        $kk->move($tujuan_simpan, $nama_kk);
-        $ktm->move($tujuan_simpan, $nama_ktm);
-        $ktp->move($tujuan_simpan, $nama_ktp);
-        
-        return redirect('/mhs')->with('alert', 'Berkas yudisium anda telah berhasil diupload! Tetap cek notifikasi untuk mengetahui kabar selanjutnya.');
-
-        // BETA TEST CODE !!!! MASIH TESTING, KALO EROR WAJAR !!!! -Fadhli
-    }
-
-    public function eyudi(Request $request, $id){
-        $date = Carbon::now();
-        // $foto = $request->foto;
-        $toefl = $request->toefl;
-        $ijazah_sma = $request->ijazah_sma;
-        $akta = $request->akta;
-        $kk = $request->kk;
-        $ktm = $request->ktm;
-        $ktp = $request->ktp;
-
-        // $nama_foto = $request->file('foto')->getClientOriginalName();
-        $nama_toefl = $request->file('toefl')->getClientOriginalName();
-        $nama_ijazah = $request->file('ijazah_sma')->getClientOriginalName();
-        $nama_akta = $request->file('akta')->getClientOriginalName();
-        $nama_kk = $request->file('kk')->getClientOriginalName();
-        $nama_ktm = $request->file('ktm')->getClientOriginalName();
-        $nama_ktp = $request->file('ktp')->getClientOriginalName();
-
-        \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\yudisium_edit_ke_aak);
-
-        DB::table('dokumen')->where('id', $id)->update([
-            'nim'            => Auth::user()->nim,
-            'nama_mhs'       => Auth::user()->nama,
-            'tempat_lahir'   => Auth::user()->tempat_lahir,
-            'tanggal_lahir'  => Auth::user()->tanggal_lahir,
-            'no_ktp'         => Auth::user()->no_ktp,
-            'alamat'         => Auth::user()->alamat,
-            'no_telp'        => Auth::user()->no_telp,
-            'email_mhs'      => Auth::user()->email,
-            'semester'       => Auth::user()->semester,
-            'jurusan'        => Auth::user()->jurusan,
-            'fakultas'       => Auth::user()->fakultas,
-            'jenis'          => 'Yudisium',
-            // 'berkas_foto' => $nama_foto,
+            'berkas_sskm'    => $nama_sskm,
             'berkas_toefl'   => $nama_toefl,
             'berkas_ijazah'  => $nama_ijazah,
             'berkas_akta'    => $nama_akta,
@@ -343,9 +350,10 @@ class mahasiswaController extends Controller
         
        
         
-        $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
+        // $tujuan_simpan = public_path('/berkas_mhs/'.Auth::user()->nim.'_Yudisium');
+        $tujuan_simpan = storage_path('app/public/berkas_mhs/'.$request_nim.'_Yudisium');
         
-        // $foto->move($tujuan_simpan, $nama_foto);
+        $sskm->move($tujuan_simpan, $nama_sskm);
         $toefl->move($tujuan_simpan, $nama_toefl);
         $ijazah_sma->move($tujuan_simpan, $nama_ijazah);
         $akta->move($tujuan_simpan, $nama_akta);
@@ -369,9 +377,10 @@ class mahasiswaController extends Controller
 
         \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\Cuti);
         
-        if(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4){
+        if(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4 && Auth::user()->status_peminjaman == "tidak ada" && $tanggungan == 0){
             DB::table('dokumen')->insert([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -391,12 +400,14 @@ class mahasiswaController extends Controller
 
             
             return redirect('/mhs')->with('alert', 'Pengajuan Cuti anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
-        }elseif(Auth::user()->semester < 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4){
-            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Anda sekarang semester'.Auth::user()->semester);
-        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti > 2 && $minggu_kuliah >= 4){
-            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti!<br><br>Alasan : Jumlah Pengajuan cuti anda melalui batas! (Anda sudah mengajukan cuti sebanyak'.Auth::user()->jml_pengajuan_cuti.'x');
-        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah < 4){
+        }elseif(Auth::user()->semester < 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4 && Auth::user()->status_peminjaman == "tidak ada" && $tanggungan == 0){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda sekarang semester'.Auth::user()->semester);
+        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti > 2 && $minggu_kuliah >= 4 && Auth::user()->status_peminjaman == "tidak ada" && $tanggungan == 0){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Jumlah Pengajuan cuti anda melalui batas! (Anda sudah mengajukan cuti sebanyak'.Auth::user()->jml_pengajuan_cuti.'x');
+        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah < 4 && Auth::user()->status_peminjaman == "tidak ada" && $tanggungan == 0){
             return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda masih belum memasuki minggu ke 4 perkuliahan! (perkuliahan anda masih pada minggu ke : '.$minggu_kuliah);
+        }elseif(Auth::user()->semester >= 3 & Auth::user()->jml_pengajuan_cuti <= 2 && $minggu_kuliah >= 4 && Auth::user()->status_peminjaman == "ada" && $tanggungan == 0){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : ada buku yang belum dikembalikan ke perpustakaan. Harap cek SICYCA anda!');
         }else{
             return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda masih memiliki tanggungan keuangan sebesar Rp. '.$tanggungan);
         }
@@ -410,6 +421,7 @@ class mahasiswaController extends Controller
             \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\cuti_edit_ke_dosen);
             DB::table('dokumen')->where('id', $id)->update([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -430,6 +442,7 @@ class mahasiswaController extends Controller
             \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\cuti_edit_ke_aak);
             DB::table('dokumen')->where('id', $id)->update([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -455,29 +468,35 @@ class mahasiswaController extends Controller
 
     public function createbst(Request $request){
         $date = date(Carbon::now());
-        
+        $tanggungan = 11000000 - Auth::user()->jml_bop_dibayar;
+
         \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\BST);
+        
+        if(Auth::user()->status_pengembalian == "ada" && $tanggungan == 0){
+            DB::table('dokumen')->insert([
+                'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
+                'nama_mhs'          => Auth::user()->nama,
+                'no_telp'           => Auth::user()->no_telp,
+                'email_mhs'         => Auth::user()->email,
+                'semester'          => Auth::user()->semester,
+                'jurusan'           => Auth::user()->jurusan,
+                'fakultas'          => Auth::user()->fakultas,
+                'alasan_pengajuan'  => $request->alasan,
+                'jenis'             => 'BST',
+                'status'            => 'proses',
+                'created_at'            => $date
+            ]);
 
-        DB::table('dokumen')->insert([
-            'nim'               => Auth::user()->nim,
-            'nama_mhs'          => Auth::user()->nama,
-            'no_telp'           => Auth::user()->no_telp,
-            'email_mhs'         => Auth::user()->email,
-            'semester'          => Auth::user()->semester,
-            'jurusan'           => Auth::user()->jurusan,
-            'fakultas'          => Auth::user()->fakultas,
-            'alasan_pengajuan'  => $request->alasan,
-            'jenis'             => 'BST',
-            'status'            => 'proses',
-            'created_at'            => $date
-        ]);
-
-        // DB::table('mhs')->update([
-        //     'status_bst'        => 'proses'
-        // ])->where('nim', Auth::user()->nim);
+            return redirect('/mhs')->with('alert', 'Permohonan BST anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+        }elseif(Auth::user()->status_pengembalian == "ada" && $tanggungan == 0){
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : ada buku yang belum dikembalikan ke perpustakaan. Harap cek SICYCA anda!');
+        }else{
+            return redirect('/mhs')->with('alert', 'Mohon maaf, Anda tidak bisa mengajukan Cuti! Alasan : Anda masih memiliki tanggungan keuangan sebesar Rp. '.$tanggungan);
+        }
         
 
-        return redirect('/mhs')->with('alert', 'Permohonan BST anda telah berhasil di upload! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
+        
     }
 
     public function ebst(Request $request, $id){
@@ -487,6 +506,7 @@ class mahasiswaController extends Controller
             \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\bst_edit_ke_dosen);
             DB::table('dokumen')->where('id', $id)->update([
                 'nim'               => Auth::user()->nim,
+                'kode_dosen'        => Auth::user()->kode_dosen,
                 'nama_mhs'          => Auth::user()->nama,
                 'no_telp'           => Auth::user()->no_telp,
                 'email_mhs'         => Auth::user()->email,
@@ -498,8 +518,8 @@ class mahasiswaController extends Controller
                 'status'            => 'update ke dosen',
                 'created_at'            => $date
             ]);
-        }else{
-            \Mail::to('david.thehackedone@gmail.com')->send(new \App\Mail\bst_edit_ke_aak);
+        }elseif(DB::table('dokumen')->where('id', $id)->value('status') == 'ditolak by kaprodi'){
+            \Mail::to('howland2nd@gmail.com')->send(new \App\Mail\bst_edit_ke_aak);
             DB::table('dokumen')->where('id', $id)->update([
                 'nim'               => Auth::user()->nim,
                 'nama_mhs'          => Auth::user()->nama,
@@ -515,7 +535,6 @@ class mahasiswaController extends Controller
             ]);
         }
         
-
         return redirect('/mhsbst')->with('alert', 'Permohonan BST anda telah berhasil di edit! Harap menunggu pihak terkait untuk menyetujui pengajuan anda. Tetap cek notifikasi');
     }
     

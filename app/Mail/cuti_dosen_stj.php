@@ -16,9 +16,10 @@ class Cuti_dosen_stj extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($isi)
     {
         //
+        $this->isi = $isi;
     }
 
     /**
@@ -28,6 +29,12 @@ class Cuti_dosen_stj extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pemberitahuan pengajuan cuti dari Dosen')->view('emails.cuti_dosen_stj');
+        return $this->subject('Pemberitahuan pengajuan cuti dari Dosen Wali')
+                    ->from('howland2nd@gmail.com', 'Layanan Administrasi Akademik')
+                    ->view('emails.cuti_dosen_stj')
+                    ->with(
+                        [
+                            'isi' => $this->isi
+                        ]);
     }
 }

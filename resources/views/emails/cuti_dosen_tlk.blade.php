@@ -376,9 +376,12 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan cuti anda telah ditolak oleh Dosen, dimohon untuk meninjau kembali pengajuan anda.</p>
+                                               <p> Pengajuan cuti anda telah ditolak oleh Dosen Wali, dimohon untuk meninjau kembali pengajuan anda.</p>
                                                <br><br><br>
-
+                                               <p>
+                                                   Untuk melakukan proses edit data, bisa klik <u><a href="http://localhost:8000/mhscuti">disini</a></u>
+                                               </p>
+                                               <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

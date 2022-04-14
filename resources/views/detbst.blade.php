@@ -164,8 +164,7 @@
       <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Pengajuan</th>
@@ -178,27 +177,11 @@
                     @foreach($bsmaha as $b)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $b->id }}">
-                    <td>{{ $b->nim }}</td>
-		              	<td>{{ $b->nama_mhs }}</td>
+                    <td>{{ $b->nim }} - {{ $b->nama_mhs }}</td>
 		              	<td>{{ $b->jurusan }}</td>
 		              	<td>{{ $b->alasan_pengajuan }}</td>
 		              	<td>{{ $b->created_at }}</td>
 		              	<td><a class="btn btn-success" href="{{url('/detbst/stjbst/'.$b->id)}}">Proses</a>
-                    <!-- <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Tolak
-                        </button> -->
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/detbst/tlkbst/{{$b->id}}" method="POST">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                              <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
-                              
-                              <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
-                
                   </td>
                     </tr>
                     @endforeach

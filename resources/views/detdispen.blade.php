@@ -160,12 +160,11 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-    <div class="table-responsive" style="padding:20px;width: 98%;">
+    <div class="table-responsive" style="padding:20px;width: 100%;">
       <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
-        <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                    <tr>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
                       <th>Berkas</th>
@@ -180,27 +179,14 @@
                     @foreach($dpmaha as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
+                    <td>
+                      {{ $d->nim }} - {{ $d->nama_mhs }}
+                    </td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td><a href="storage/berkas_mhs/{{ $d->nim }}_{{ $d->jenis }}/{{ $d->berkas_dispensasi }}">{{ $d->berkas_dispensasi }}</a></td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>
-                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Tolak
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/detdispen/tlkdis/{{$d->id}}" method="POST">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                                <label for="uname"><b>Alasan Penolakan :</b></label>
-                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
-                                
-                                <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
+		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Proses</a>
                   </td>
                     </tr>
                     @endforeach
@@ -209,8 +195,7 @@
                     @foreach($dpmahaa as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
                     <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>

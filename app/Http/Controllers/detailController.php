@@ -31,8 +31,8 @@ class detailController extends Controller
     public function detbst()
     {$from = date('2021-04-01');
         $to = date('2021-07-30');
-        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by perpustakaan')->count();
-        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by perpustakaan')->orderBy('created_at', 'DESC')->get();
+        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->count();
+        $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->orderBy('created_at', 'DESC')->get();
         // $bsmahaa = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke aak')->get();
         return view('detbst',compact('bs','bsmaha'));
 }

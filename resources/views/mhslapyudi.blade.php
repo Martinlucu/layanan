@@ -64,8 +64,7 @@
         <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
           <thead>
             <tr>
-                          <th>NIM</th>
-                          <th>Nama</th>
+                          <th>NIM - Nama</th>
                           <th>Berkas</th>
                           <th>Tanggal Pengajuan</th>
                           <th>Tanggal Diproses</th>
@@ -78,8 +77,7 @@
                         @foreach($ydmaha as $yd)
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $yd->id }}">
-                        <td>{{ $yd->nim }}</td>
-                        <td>{{ $yd->nama_mhs }}</td>
+                        <td>{{ $yd->nim }} - {{ $yd->nama_mhs }}</td>
                         <td>
                           {{ 
                               $yd->berkas_toefl,

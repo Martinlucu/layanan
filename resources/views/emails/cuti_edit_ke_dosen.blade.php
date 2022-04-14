@@ -381,7 +381,10 @@
                                                <p> Baru saja mahasiswa anda <?php echo $nama ?> dengan nim <?php echo $nim ?>  telah 
                                                    melakukan edit data pada pengajuan cuti. Mohon untuk ditinjau kembali.</p>
                                                <br><br><br>
-
+                                               <p>
+                                                   Untuk melakukan proses persetujuan/penolakan, bisa klik <u><a href="http://localhost:8000/dosdetcuti">disini</a></u>
+                                               </p>
+                                               <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

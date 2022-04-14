@@ -377,7 +377,10 @@
 
                                                <p> {{ $isi }}</p>
                                                <br>
-
+                                                @IF($email = 'david.thehackedone@gmail.com')
+                                                <p>Untuk melakukan proses persetujuan/penolakan, silahkan klik <u><a href="localhost:8000/detdispen">disini</a></u>.</p>
+                                                @ENDIF
+                                                <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

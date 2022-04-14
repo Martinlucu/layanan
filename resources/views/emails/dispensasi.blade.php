@@ -381,7 +381,10 @@
                                                <p> Baru saja mahasiswa anda <?php echo $nama ?> dengan nim <?php echo $nim ?>  telah 
                                                    mengupload pengajuan dispensasi. Mohon untuk melakukan proses persetujuan/penolakan.</p>
                                                <br><br><br>
-
+                                               <p>
+                                                   Untuk melakukan proses persetujuan/penolakan, bisa klik <u><a href="http://localhost:8000/dosdetdispen">disini</a></u>.
+                                               </p>
+                                               <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

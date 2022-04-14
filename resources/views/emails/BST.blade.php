@@ -10,7 +10,7 @@
             use Auth as a;
             $nama = Auth::user()->nama;
             $nim = Auth::user()->nim;
-            $kaprodi = Auth::user()->kaprodi;
+            $dospem = Auth::user()->dosen_pembimbing;
         ?>
         
         <style>
@@ -375,13 +375,18 @@
                                         <tr>
                                             <td>
                                                <!-- @yield('content') -->
-                                               Selamat siang <?php echo $kaprodi ?>,
+                                               Selamat siang <?php echo $dospem ?>,
                                                <br><br>
 
                                                <p> Baru saja mahasiswa anda <?php echo $nama ?> dengan nim <?php echo $nim ?>  telah 
-                                                   mengupload pengajuan BST. Mohon untuk melakukan proses persetujuan/penolakan.</p>
-                                               <br><br><br>
-
+                                                   mengupload pengajuan BST. Mohon untuk melakukan proses persetujuan/penolakan.
+                                               </p>
+                                               
+                                              <br><br><br>
+                                               <p>
+                                                   Untuk melakukan proses persetujuan/penolakan, bisa klik <u><a href="http://localhost:8000/dosdetdispen">disini</a></u>
+                                               </p>
+                                               <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

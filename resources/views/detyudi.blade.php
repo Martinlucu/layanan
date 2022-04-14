@@ -26,8 +26,8 @@
 
     <script>
         $(document).ready(function () {
-  $('#example').DataTable();
-});
+        $('#example').DataTable({});
+      });
     </script>
 
 <style>
@@ -164,10 +164,15 @@
       <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
-                      <th>Berkas</th>
+                      <th>Berkas SSKM</th>
+                      <th>Berkas Akta</th>
+                      <th>Berkas TOEFL</th>
+                      <th>Berkas Ijazah</th>
+                      <th>Berkas KK</th>
+                      <th>Berkas KTP</th>
+                      <th>Berkas KTM</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Aksi</th>
                     
@@ -178,38 +183,50 @@
                     @foreach($ydmaha as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
-                    <td>{{ $yd->nim }}</td>
-                    <td>{{ $yd->nama_mhs }}</td>
-		              	<td>{{ $yd->jurusan }}</td>
+                    <td>{{ $yd->nim }} - {{ $yd->nama_mhs }}</td>
+                    <td>{{ $yd->jurusan }}</td>
 		              	<td>
-                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
-                      <br><br>
-                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
-                      <br><br>
-                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
-                      <br><br>
-                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
-                      <br><br>
-                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
-                      <br><br>
-                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">
+                        <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                      
+                      <!-- view PDF (kinda?) -->
+                      <!-- <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">
+                        <embed src="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}" type="application/pdf" height="200" width="200">
+                      </a> -->
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
                     </td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju</a>
-                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                          Tolak
-                        </button>
-
-                        <div id="id01" class="modal">
-                            <form role="form" class="modal-content animate" action="/detyudi/tlkyudi/{{$yd->id}}" method="POST">
-                              @csrf
-                            <div class="container" style="padding:16px;">
-                              <label for="uname"><b>Alasan Penolakan :</b></label>
-                              <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
-                              <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 50 karakter" cols="5" rows="5"></textarea>
-
-                              <button class ="btn btn-danger" type="submit">Submit</button>
-                        </div>
+		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Proses</a>
                   </td>
                     </tr>
                     @endforeach

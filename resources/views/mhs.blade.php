@@ -25,7 +25,11 @@
             <div class="alert alert-success">
                 {{ session('alert') }}
             </div>
-        @endif
+      @elseif (session('danger'))
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+      @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Home</h1>

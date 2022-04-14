@@ -66,8 +66,7 @@
       <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
       <thead>
         <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
                       <th>Status</th>
                       <th>Tanggal Pengajuan</th>
@@ -78,9 +77,8 @@
                   <tbody>
                     <tr>
                     @foreach($lapdis as $lapdis)
-                    <td>{{ $lapdis->nim }}</td>
-		              	<td>{{ $lapdis->nama_mhs }}</td>
-			              <td>{{ $lapdis->jurusan }}</td>
+                    <td>{{ $lapdis->nim }} - {{ $lapdis->nama_mhs }}</td>
+		              	<td>{{ $lapdis->jurusan }}</td>
 		              	<td>{{ $lapdis->status }}</td>
 		              	<td>{{ $lapdis->created_at }}</td>
                     <td>{{ $lapdis->updated_at }}</td>

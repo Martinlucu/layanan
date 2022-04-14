@@ -375,9 +375,11 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan BST anda telah ditolak oleh Kaprodi, dimohon untuk meninjau kembali pengajuan anda.</p>
+                                               <p> Pengajuan BST anda telah ditolak oleh Dosen Wali, dimohon untuk meninjau kembali pengajuan anda.</p>
                                                <br><br><br>
-
+                                               <p>
+                                                   Untuk melakukan proses edit data, bisa klik <u><a href="http://localhost:8000/mhsbst">disini</a></u>
+                                               </p>
                                                Terima kasih.
                                             </td>
                                         </tr>

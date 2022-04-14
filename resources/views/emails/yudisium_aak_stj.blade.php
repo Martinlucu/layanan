@@ -376,11 +376,9 @@
                                                <br><br>
 
                                                <p> 
-                                                   Pengajuan yudisium anda telah diproses oleh Bag.AAK. Silahkan menunggu jadwal yudisium anda keluar.
-                                               <br><br>
-                                                   Untuk info lebih lanjut silahkan ditanyakan ke Bag.AAK . 
+                                                   Pengajuan yudisium anda telah diproses oleh Bag.AAK. Silahkan menunggu jadwal yudisium anda keluar. Untuk info lebih lanjut silahkan ditanyakan ke Bag.AAK . 
                                                </p>
-                                               <br><br><br>
+                                               <br><br>
 
                                                Terima kasih.
                                             </td>

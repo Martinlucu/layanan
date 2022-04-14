@@ -220,8 +220,7 @@
         <table id="preview" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Pengajuan</th>
@@ -235,8 +234,7 @@
                     @foreach($bsmaha as $b)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $b->id }}">
-                    <td>{{ $b->nim }}</td>
-		              	<td>{{ $b->nama_mhs }}</td>
+                    <td>{{ $b->nim }} - {{ $b->nama_mhs }}</td>
 		              	<td>{{ $b->jurusan }}</td>
 		              	<td>{{ $b->alasan_pengajuan }}</td>
 		              	<td>{{ $b->created_at }}</td>
@@ -267,8 +265,7 @@
                   @foreach($bsmahaa as $b)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $b->id }}">
-                    <td>{{ $b->nim }}</td>
-		              	<td>{{ $b->nama_mhs }}</td>
+                    <td>{{ $b->nim }} - {{ $b->nama_mhs }}</td>
 		              	<td>{{ $b->jurusan }}</td>
 		              	<td>{{ $b->alasan_pengajuan }}</td>
 		              	<td>{{ $b->created_at }}</td>
@@ -329,8 +326,7 @@
       <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Pengajuan</th>
@@ -346,8 +342,7 @@
                     {{ csrf_field() }}
                     @IF ($bs->status == 'setuju by dosen')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
@@ -355,8 +350,7 @@
                       <td>{{ $bs->updated_at}}</td>
                     @ELSEIF ($bs->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
@@ -364,8 +358,7 @@
                       <td>{{ $bs->updated_at}}</td>
                     @ELSEIF ($bs->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
@@ -373,8 +366,7 @@
                       <td>{{ $bs->updated_at}}</td>
                       @ELSEIF ($bs->status == 'ditolak by dosen')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at}}</td>
@@ -382,12 +374,19 @@
                       <td>{{ $bs->updated_at}}</td>
                       @ELSEIF ($bs->status == 'ditolak by kaprodi')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at}}</td>
                       <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$bs->alasan_penolakan}}</td>
+                      <td>{{ $bs->updated_at}}</td>
+                      @ELSEIF ($bs->status == 'update ke dosen')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at}}</td>
+                      <td>Update ke Dosen</td>
                       <td>{{ $bs->updated_at}}</td>
                     @ENDIF
                     </tr>
@@ -397,8 +396,7 @@
                     {{ csrf_field() }}
                     @IF ($bs->status == 'setuju by dosen')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
@@ -406,8 +404,7 @@
                       <td>{{ $bs->updated_at}}</td>
                     @ELSEIF ($bs->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
@@ -415,8 +412,7 @@
                       <td>{{ $bs->updated_at}}</td>
                     @ELSEIF ($bs->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at }}</td>
@@ -424,8 +420,7 @@
                       <td>{{ $bs->updated_at}}</td>
                       @ELSEIF ($bs->status == 'ditolak by dosen')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at}}</td>
@@ -433,12 +428,19 @@
                       <td>{{ $bs->updated_at}}</td>
                       @ELSEIF ($bs->status == 'ditolak by kaprodi')
                       <input type="hidden" name="id" value="{{ $bs->id }}">
-                      <td>{{ $bs->nim }}</td>
-                      <td>{{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
                       <td>{{ $bs->jurusan }}</td>
                       <td>{{ $bs->alasan_pengajuan }}</td>
                       <td>{{ $bs->created_at}}</td>
                       <td>Ditolak oleh {{Auth::user()->jabatan}} karena {{$bs->alasan_penolakan}}</td>
+                      <td>{{ $bs->updated_at}}</td>
+                      @ELSEIF ($bs->status == 'update ke kaprodi')
+                      <input type="hidden" name="id" value="{{ $bs->id }}">
+                      <td>{{ $bs->nim }} - {{ $bs->nama_mhs }}</td>
+                      <td>{{ $bs->jurusan }}</td>
+                      <td>{{ $bs->alasan_pengajuan }}</td>
+                      <td>{{ $bs->created_at}}</td>
+                      <td>{{ $bs->status }}</td>
                       <td>{{ $bs->updated_at}}</td>
                     @ENDIF
                     </tr>

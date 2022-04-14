@@ -375,8 +375,9 @@
                                                Selamat siang,
                                                <br><br>
 
-                                               <p> Pengajuan cuti anda diproses oleh Bag.AAK. Silahkan melihat perubahan status anda di SICYCA.</p>
-                                               <br><br><br>
+                                               <p> Pengajuan cuti anda diproses oleh Bag.AAK. Silahkan melihat perubahan status anda di <u><a href="https://sicyca.dinamika.ac.id/akademik">SICYCA</a></u>. 
+                                                </p>
+                                               <br><br>
 
                                                Terima kasih.
                                             </td>

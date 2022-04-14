@@ -67,11 +67,10 @@
     <div class="content">
       <div class="container">
         <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+      <table id="example" class="table table-striped table-bordered" id="hidden-table-info" data-order="[]">
       <thead>
         <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Berkas</th>
                       <th>Tanggal Pengajuan</th>
                       <th>Tanggal Diproses</th>
@@ -84,8 +83,7 @@
                     @foreach($dpmaha as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }}</td>
-		              	<td>{{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->berkas_dispensasi }}</td>
                     <td>{{ $d->created_at }}</td>
 		              	<td>{{ $d->updated_at }}</td>

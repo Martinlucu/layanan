@@ -375,13 +375,16 @@
                                         <tr>
                                             <td>
                                                <!-- @yield('content') -->
-                                               Selamat siang <?php echo $dospem ?>,
+                                               Selamat siang Pak <?php echo $dospem ?>,
                                                <br><br>
 
                                                <p> Baru saja mahasiswa anda <?php echo $nama ?> dengan nim <?php echo $nim ?>  telah 
                                                    mengupload pengajuan cuti. Mohon untuk melakukan proses persetujuan/penolakan.</p>
                                                <br><br><br>
-
+                                               <p>
+                                                   Untuk melakukan proses persetujuan/penolakan, bisa klik <u><a href="http://localhost:8000/dosdetcuti">disini</a></u>.
+                                               </p>
+                                               <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

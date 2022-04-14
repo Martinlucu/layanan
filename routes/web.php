@@ -31,7 +31,7 @@ Route::get('/register/keuangan', 'Auth\RegisterController@showkeuanganRegisterFo
 Route::get('/register/perpustakaan', 'Auth\RegisterController@showperpustakaanRegisterForm');
 
 // Route notifikasi email
-    Route::get('/kirim-email', 'MailController@index');
+Route::get('/kirim-email', 'MailController@index');
 
 /*
 Route::post('/login/aak', 'Auth\LoginController@aakLogin');
@@ -130,20 +130,5 @@ Route::group(['middleware' => 'auth:dosen'], function () {
 
     });
 
-Route::group(['middleware' => 'auth:keuangan'], function () {
-    Route::get('/keuanganhome', 'KeuanganController@home');
-
-    Route::get('/keuanganbst', 'KeuanganController@keuanganbst');
-    Route::get('/keuanganbst/stjbst/{id}', 'KeuanganController@stjbst');
-    Route::post('/keuanganbst/tlkbst/{id}', 'KeuanganController@tlkbst');
-    
-});
-
-Route::group(['middleware' => 'auth:perpustakaan'], function () {
-    Route::get('/perpushome', 'PerpustakaanController@home');
-
-    Route::get('/perpustakaanbst', 'PerpustakaanController@perpusbst');
-    Route::get('/perpustakaanbst/stjbst/{id}', 'PerpustakaanController@stjbst');
-    Route::post('/perpustakaanbst/tlkbst/{id}', 'PerpustakaanController@tlkbst');
-    
-});
+// Verifikasi data
+Route::get('/verifikasi_pengajuan', 'mahasiswaController@verifikasifile');

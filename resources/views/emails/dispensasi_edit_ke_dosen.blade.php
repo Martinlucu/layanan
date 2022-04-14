@@ -7,7 +7,10 @@
         <title>Email</title>
 
         <?php
-            use Illuminate\Http\Request as r;
+            use Auth as a;
+            $nama = Auth::user()->nama;
+            $nim = Auth::user()->nim;
+            $dospem =  Auth::user()->dosen_pembimbing;
         ?>
         
         <style>
@@ -372,12 +375,15 @@
                                         <tr>
                                             <td>
                                                <!-- @yield('content') -->
-                                               Selamat siang,
+                                               Selamat siang <?php echo $dospem ?> ,
                                                <br><br>
 
-                                               <p> Pengajuan dispensasi anda telah ditolak oleh Bag.AAK, dimohon untuk meninjau kembali pengajuan anda.</p>
+                                               <p> Baru saja mahasiswa anda <?php echo $nama ?> dengan nim <?php echo $nim ?>  telah 
+                                                   melakukan edit data pada pengajuan dispensasi. Mohon untuk ditinjau kembali.</p>
                                                <br><br><br>
-
+                                               <p>Untuk melakukan proses persetujuan/penolakan, 
+                                                   silahkan klik <u><a href="localhost:8000/dosdetdispen">disini</a></u>.</p>
+                                               <br><br>
                                                Terima kasih.
                                             </td>
                                         </tr>

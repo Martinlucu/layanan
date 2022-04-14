@@ -50,7 +50,7 @@ class DosenController extends Controller
         
         $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->where('kode_dosen', Auth::user()->kode_dosen)->count();
         $bsmaha = DB::table('dokumen')->where('jenis','BST')->wherein('status',['Proses','update ke dosen'])->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
-        $bsmahaa = DB::table('dokumen')->where('jenis','BST')->wherein('status',['setuju by dosen','update ke kaprodi'])->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
+        $bsmahaa = DB::table('dokumen')->where('jenis','BST')->wherein('status',['setuju by dosen','update ke kaprodi'])->orderBy('created_at', 'DESC')->get();
         $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
         $bsmahass = DB::table('dokumen')->where('jenis','BST')->where('jurusan', 'S1 Sistem informasi')->orderBy('created_at', 'DESC')->get();
             
@@ -63,7 +63,7 @@ class DosenController extends Controller
             
             $dp = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['proses', 'setuju by dosen','update ke dosen','update ke kaprodi'])->where('kode_dosen', Auth::user()->kode_dosen)->count();
             $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['proses', 'update ke dosen',])->orderBy('created_at')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
-            $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['setuju by dosen','update ke kaprodi'])->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at')->orderBy('created_at', 'DESC')->get();
+            $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['setuju by dosen','update ke kaprodi'])->orderBy('created_at')->get();
             $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->orderBy('created_at', 'DESC')->where('kode_dosen', Auth::user()->kode_dosen)->get();
             $dpmahass = DB::table('dokumen')->where('jenis','Dispensasi')->orderBy('created_at', 'DESC')->where('jurusan', 'S1 Sistem Informasi')->get();
             
@@ -84,23 +84,25 @@ class DosenController extends Controller
         
     public function stjcuti($id)
         {
-            
+            $nama = DB::table('dokumen')->where('id',$id)->value('nama_mhs');
+            $nim = DB::table('dokumen')->where('id',$id)->value('nim');
+
                 $date = date("Y-m-d H:i:s");
 
                 $email=[
                     [
                         'email' => '17410100019@dinamika.ac.id',
-                        'isi' => 'Pengajuan cuti anda telah disetujui oleh Dosen Wali, Silahkan menunggu persetujuan dari Bag.AAK .'
+                        'isi' => 'Pengajuan cuti anda telah disetujui oleh Dosen Wali, Silahkan menunggu persetujuan dari Kaprodi.'
     
                     ],
                     [
                         'email' => 'fadhlidzil.prakoso@gmail.com',
-                        'isi' => 'Ada pengajuan dispensasi yang masuk, dimohon untuk melakukan proses persetujuan/penolakan.'
+                        'isi' => 'Ada pengajuan cuti yang masuk atas nama '.$nama.' dengan NIM '.$nim.', dimohon untuk melakukan proses persetujuan/penolakan.'
     
                     ]
                 ];
                 foreach($email as $value){
-                    Mail::to($value['email'])->send(new \App\Mail\BST_dosen_stj($value['isi']));
+                    Mail::to($value['email'])->send(new \App\Mail\cuti_dosen_stj($value['isi']));
                 }
 
                 DB::table('dokumen')->where('id',$id)->update([
@@ -115,18 +117,21 @@ class DosenController extends Controller
     
 public function stjbst($id)
 {
+    $nama = DB::table('dokumen')->where('id',$id)->value('nama_mhs');
+    $nim = DB::table('dokumen')->where('id',$id)->value('nim');
+
     if(Auth::user()->jabatan == "Pengajar"){
         $date = date("Y-m-d H:i:s");
         
         $email=[
                 [
                     'email' => '17410100019@dinamika.ac.id',
-                    'isi' => 'Pengajuan dispensasi anda telah disetujui oleh Dosen Wali, Silahkan menunggu persetujuan dari Kaprodi.'
+                    'isi' => 'Pengajuan BST anda telah disetujui oleh Dosen Wali, silahkan menunggu persetujuan dari Kaprodi.'
 
                 ],
                 [
                     'email' => 'fadhlidzil.prakoso@gmail.com',
-                    'isi' => 'Ada pengajuan dispensasi yang masuk, dimohon untuk melakukan proses persetujuan/penolakan.'
+                    'isi' => 'Ada pengajuan BST yang masuk atas nama '.$nama.' dengan NIM '.$nim.', dimohon untuk melakukan proses persetujuan/penolakan.'
 
                 ]
             ];
@@ -144,17 +149,17 @@ public function stjbst($id)
         $email=[
             [
                 'email' => '17410100019@dinamika.ac.id',
-                'isi' => 'Pengajuan dispensasi anda telah disetujui oleh Kaprodi, Silahkan menunggu proses dari Bag. AAK.'
+                'isi' => 'Pengajuan BST anda telah disetujui oleh Kaprodi, Silahkan menunggu proses dari Bag. AAK.'
 
             ],
             [
-                'email' => 'fadhlidzil.prakoso@gmail.com',
-                'isi' => 'Ada pengajuan dispensasi yang masuk, dimohon untuk melakukan proses persetujuan/penolakan.'
+                'email' => 'howland2nd@gmail.com',
+                'isi' => 'Ada pengajuan BST yang masuk atas nama '.$nama.' dengan NIM '.$nim.', dimohon untuk melakukan proses persetujuan/penolakan.'
 
             ]
         ];
         foreach($email as $value){
-            Mail::to($value['email'])->send(new \App\Mail\BST_dosen_stj($value['isi']));
+            Mail::to($value['email'])->send(new \App\Mail\BST_kaprodi_stj($value['isi']));
         }
 
         DB::table('dokumen')->where('id',$id)->update([
@@ -167,8 +172,11 @@ public function stjbst($id)
     return redirect('/dosdetbst');
 }
 
-public function stjdis($id)
+public function stjdis(Request $request, $id)
     {
+        $nama = DB::table('dokumen')->where('id',$id)->value('nama_mhs');
+        $nim = DB::table('dokumen')->where('id',$id)->value('nim');
+        
         if(Auth::user()->jabatan == "Pengajar"){
             $date = date("Y-m-d H:i:s");
             
@@ -180,7 +188,7 @@ public function stjdis($id)
                 ],
                 [
                     'email' => 'fadhlidzil.prakoso@gmail.com',
-                    'isi' => 'Ada pengajuan dispensasi yang masuk, dimohon untuk melakukan proses persetujuan/penolakan.'
+                    'isi' => 'Ada pengajuan dispensasi yang masuk atas nama '.$nama.' dengan NIM '.$nim.', dimohon untuk melakukan proses persetujuan/penolakan.'
 
                 ]
             ];
@@ -202,8 +210,8 @@ public function stjdis($id)
 
                 ],
                 [
-                    'email' => 'fadhlidzil.prakoso@gmail.com',
-                    'isi' => 'Ada pengajuan dispensasi yang masuk, dimohon untuk melakukan proses persetujuan/penolakan.'
+                    'email' => 'howland2nd@gmail.com',
+                    'isi' => 'Ada pengajuan dispensasi yang masuk '.$nama.' dengan NIM '.$nim.', dimohon untuk melakukan proses persetujuan/penolakan.'
 
                 ]
             ];
@@ -227,7 +235,7 @@ public function stjdis($id)
             $date = date("Y-m-d H:i:s");
             \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\cuti_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak by kaprodi",
+            'status' => "ditolak by dosen",
             'alasan_penolakan' => $request->alasan,
             'updated_at'=> $date
             ]);
@@ -235,6 +243,7 @@ public function stjdis($id)
         
         return redirect('/dosdetcuti');
     }
+    
     public function tlkdis(Request $request, $id)
     {
         
@@ -242,7 +251,7 @@ public function stjdis($id)
             $date = date("Y-m-d H:i:s");
             \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\dispensasi_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([
-            'status' => "ditolak by kaprodi",
+            'status' => "ditolak by dosen",
             'alasan_penolakan' => $request->alasan,
             'updated_at'=> $date
         ]);
@@ -258,27 +267,7 @@ public function stjdis($id)
             
         return redirect('/dosdetdispen');
     }
-    // public function tlkyudi(Request $request, $id)
-    // {
-    //     if(Auth::user()->jabatan == "Pengajar"){
-    //         $date = date("Y-m-d H:i:s");
-    //         DB::table('dokumen')->where('id',$id)->update([
-    //         'status' => "ditolak by dosen",
-    //         'alasan_penolakan' => $request->alasan,
-    //         'updated_at'=> $date
-    //     ]);
-    //     }else{
-    //         $date = date("Y-m-d H:i:s");
-    //         DB::table('dokumen')->where('id',$id)->update([
-    //         'status' => "ditolak by kaprodi",
-    //         'alasan_penolakan' => $request->alasan,
-    //         'updated_at'=> $date
-    //     ]);
-    //     }
-        
-    //     return redirect('/dosdetyudi');
-    // }
-
+   
     public function tlkbst(Request $request, $id)
     {
         if(Auth::user()->jabatan == "Pengajar"){

@@ -61,11 +61,10 @@
     <div class="content">
       <div class="container">
         <div class="table-responsive" style="padding:20px;width: 98%;">
-          <table id="example" class="table table-striped table-bordered" id="hidden-table-info">
+          <table id="example" class="table table-striped table-bordered" id="hidden-table-info" data-order="[]">
           <thead>
             <tr>
-                          <th>NIM</th>
-                          <th>Nama</th>
+                          <th>NIM - Nama</th>
                           <th>Jurusan</th>
                           <th>Alasan Pengajuan</th>
                           <th>Tanggal Pengajuan</th>
@@ -79,8 +78,7 @@
                         @foreach($bsmaha as $b)
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $b->id }}">
-                        <td>{{ $b->nim }}</td>
-                        <td>{{ $b->nama_mhs }}</td>
+                        <td>{{ $b->nim }} - {{ $b->nama_mhs }}</td>
                         <td>{{ $b->jurusan }}</td>
                         <td>{{ $b->alasan_pengajuan }}</td>
                         <td>{{ $b->created_at }}</td>

@@ -10,7 +10,7 @@
             use Auth as a;
             $nama = Auth::user()->nama;
             $nim = Auth::user()->nim;
-            $dospem = Auth::user()->dosen_pembimbing;
+            $doswal = Auth::user()->dosen_wali;
         ?>
         
         <style>
@@ -375,7 +375,7 @@
                                         <tr>
                                             <td>
                                                <!-- @yield('content') -->
-                                               Selamat siang <?php echo $dospem ?>,
+                                               Selamat siang <?php echo $doswal ?>,
                                                <br><br>
 
                                                <p> Baru saja mahasiswa anda <?php echo $nama ?> dengan nim <?php echo $nim ?>  telah 

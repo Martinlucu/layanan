@@ -202,11 +202,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan BST</h1>
+            <h1 class="m-0">Layanan Berhenti Studi Tetap (BST)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home &nbsp</a>/ Layanan Berhenti Studi Tetap (BST)</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -229,8 +229,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($bsmaha->count()>0)
                     <tr>
-                    @IF (Auth::user()->jabatan == "Pengajar")
+                    @IF (Auth::user()->jabatan == "dosen wali")
                     @foreach($bsmaha as $b)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $b->id }}">
@@ -293,11 +294,10 @@
                     </tr>
                     @endforeach
                   @ENDIF
+                  @ENDIF
     </table>
     </div>
-
-    
-    </div>
+</div>
   </div>
     <!-- /.content -->
   <!-- Content Header (Page header) -->
@@ -313,17 +313,9 @@
     <!-- /.content-header -->
   <div class="container">
   <div class="table-responsive" style="padding:20px;width: 98%;">
-      <table border="0" cellspacing="5" cellpadding="5">
-        <tbody>
-          <tr>
-            <td>Minimum date:</td>
-            <td><input type="text" name="min" id="min"></td>
-            
-            <td>Maximum date:</td>
-            <td><input type="text" name="max" id="max"></td>
-        </tr>
-      </tbody></table>
-      <table id="example" class="table table-striped table-bordered" data-order="[]">
+        Minimum date: <input type="text" name="min" id="min">
+        Maximum date: <input type="text" name="max" id="max"><br><br>
+    <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
                       <th>NIM - Nama</th>
@@ -336,6 +328,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($bsmaha->count()>0)
                     <tr>
                     @IF(Auth::user()->jabatan == "Pengajar")
                     @foreach($bsmahas as $bs)
@@ -445,6 +438,7 @@
                     @ENDIF
                     </tr>
                   @endforeach
+                  @ENDIF
                   @ENDIF
       </table>
     </div>

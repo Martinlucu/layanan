@@ -150,7 +150,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a>/ Layanan Yudisium</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -179,7 +179,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF($ydmaha->count()>0 || $ydmahaa->count()>0)
                     <tr>
+                    @IF($ydmaha->count()>0)
                     @foreach($ydmaha as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
@@ -230,6 +232,59 @@
                   </td>
                     </tr>
                     @endforeach
+                    @ELSE
+                    @foreach($ydmahaa as $yd)
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{ $yd->id }}">
+                    <td>{{ $yd->nim }} - {{ $yd->nama_mhs }}</td>
+                    <td>{{ $yd->jurusan }}</td>
+		              	<td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">
+                        <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                      
+                      <!-- view PDF (kinda?) -->
+                      <!-- <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">
+                        <embed src="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}" type="application/pdf" height="200" width="200">
+                      </a> -->
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+                    <td>
+                      <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">
+                      <img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50">
+                      </a>
+                    </td>
+		              	<td>{{ $yd->created_at }}</td>
+		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Proses</a>
+                  </td>
+                    </tr>
+                    @endforeach
+                    @ENDIF
+                    @ENDIF
     </table>
     </div>
     </div></div>

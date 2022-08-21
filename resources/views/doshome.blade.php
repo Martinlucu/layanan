@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    @if(Auth::user()->jabatan == "Pengajar")
-      <title>Dahboard Dosen</title>
+    @if(Auth::user()->jabatan == "dosen wali")
+      <title>Dahboard Dosen Wali</title>
     @else
       <title>Dahboard Kaprodi</title>
     @endif
@@ -35,11 +35,12 @@
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Home</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
+          <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/doshome')}}">Home</a></li>
             </ol>
-          </div><!-- /.col -->
+          </div> -->
+          <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

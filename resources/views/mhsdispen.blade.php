@@ -142,11 +142,11 @@
         @endif
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dispensasi</h1>
+            <h1 class="m-0 text-dark">Dispensasi Sakit</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Dispensasi</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home </a>/ Pengajuan Layanan - Dispensasi Sakit</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -290,14 +290,14 @@
                                 </label>
                             </div> -->
                             <div class="form-group">
-                            <label for="exampleInputPassword1" class="required">Upload berkas dispensasi</label>
+                            <label for="exampleInputPassword1">Upload berkas dispensasi</label>
                                 <div class="custom-file" style="margin-bottom:10px;">
                                   <input type="file" value="{{ $d->berkas_dispensasi }}" name="berkas_dispensasi" onchange="return validasiberkas()" class="form-control-file" id="berkas_dispensasi">
-                                  <span><i> Max. 2 MB dengan format .PDF </i></span>
+                                  <span><i> Max. 2 MB dengan format .PDF , lewati jika tidak perlu mengupload file. </i></span>
                                 </div>
                             </div>
                                 
-                                <button class ="btn btn-danger" type="submit">Submit</button>
+                                <button class ="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </td>
                     </tr>

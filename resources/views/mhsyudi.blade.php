@@ -157,7 +157,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Yudisium</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home </a>/ Pengajuan Layanan - Yudisium</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -498,7 +498,7 @@
                       <div class="col">
                       <label for="exampleInputPassword1" class="required">Upload Sertifikat Toefl/Toeic</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="toefl" onchange="return validasitoefl()" class="form-control-file" id="berkas_toefl" required>
+                            <input type="file" name="berkas_toefl" onchange="return validasitoefl()" class="form-control-file" id="berkas_toefl" required>
                             <span><i> Max. 2 MB dan format .JPG, .JPEG, .PNG, dan .PDF </i></span>
                           </div>
                       </div>
@@ -507,14 +507,14 @@
                       <div class="col">
                       <label for="exampleInputPassword1" class="required">Upload Ijazah SMA</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ijazah_sma" onchange="return validasiijazah()" class="form-control-file" id="berkas_ijazah" required>
+                            <input type="file" name="berkas_ijazah_sma" onchange="return validasiijazah()" class="form-control-file" id="berkas_ijazah" required>
                             <span><i> Max. 2 MB dan format .JPG, .JPEG, .PNG, dan .PDF </i></span>
                           </div>
                       </div>
                       <div class="col">
                       <label for="exampleInputPassword1" class="required">Upload Akta Kelahiran</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="akta" onchange="return validasiakta()" class="form-control-file" id="berkas_akta" required>
+                            <input type="file" name="berkas_akta" onchange="return validasiakta()" class="form-control-file" id="berkas_akta" required>
                             <span><i> Max. 2 MB dan format .JPG, .JPEG, .PNG, dan .PDF </i></span>
                           </div>
                       </div>
@@ -523,21 +523,21 @@
                       <div class="col">
                       <label for="exampleInputPassword1" class="required">Upload Kartu Keluarga</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="kk" onchange="return validasikk()" class="form-control-file" id="berkas_kk" required>
+                            <input type="file" name="berkas_kk" onchange="return validasikk()" class="form-control-file" id="berkas_kk" required>
                             <span><i> Max. 2 MB dan format .JPG, .JPEG, .PNG, dan .PDF </i></span>
                           </div>
                       </div>
                       <div class="col">
                       <label for="exampleInputPassword1" class="required">Upload Kartu Tanda Mahasiswa</label>
                           <div class="custom-file" style="margin-bottom:10px;">
-                            <input type="file" name="ktm" onchange="return validasiktm()" class="form-control-file" id="berkas_ktm" required>
+                            <input type="file" name="berkas_ktm" onchange="return validasiktm()" class="form-control-file" id="berkas_ktm" required>
                             <span><i> Max. 2 MB dan format .JPG, .JPEG, .PNG, dan .PDF </i></span>
                           </div>
                       </div>
                     </div>  
                     <label for="exampleInputPassword1" class="required" style="padding-top:35px;">Upload Kartu Tanda Penduduk</label>
                       <div class="custom-file" style="margin-bottom:10px;">
-                      <input type="file" name="ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
+                      <input type="file" name="berkas_ktp" onchange="return validasiktp()" class="form-control-file" id="berkas_ktp" required>
                       <span><i> Max. 2 MB dan format .JPG, .JPEG, .PNG, dan .PDF </i></span>
                           </div>
                     </div>
@@ -592,7 +592,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = sskm.files[0];
+            var allowedFilesize = sskm.files[0].size;
               
             if (!allowedExtensions.exec(filesskm)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');
@@ -612,7 +612,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = toefl.files[0];
+            var allowedFilesize = toefl.files[0].size;
               
             if (!allowedExtensions.exec(filetoefl)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');
@@ -632,7 +632,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = ijazah.files[0];
+            var allowedFilesize = ijazah.files[0].size;
               
             if (!allowedExtensions.exec(fileijazah)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');
@@ -652,7 +652,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = akta.files[0];
+            var allowedFilesize = akta.files[0].size;
               
             if (!allowedExtensions.exec(fileakta)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');
@@ -672,7 +672,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = kk.files[0];
+            var allowedFilesize = kk.files[0].size;
               
             if (!allowedExtensions.exec(filekk)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');
@@ -692,7 +692,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = ktm.files[0];
+            var allowedFilesize = ktm.files[0].size;
               
             if (!allowedExtensions.exec(filektm)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');
@@ -712,7 +712,7 @@ window.onclick = function(event) {
           
             // Allowing file type
             var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-            var allowedFilesize = ktp.files[0];
+            var allowedFilesize = ktp.files[0].size;
               
             if (!allowedExtensions.exec(filektp)) {
                 alert('Mohon maaf, jenis file anda tidak benar. Hanya menerima format jpg/jpeg/png/PDF!');

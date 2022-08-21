@@ -46,11 +46,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Laporan Dispensasi</h1>
+            <h1 class="m-0">Laporan Dispensasi Sakit</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home &nbsp</a>/ Laporan Dispensasi Sakit</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -60,7 +60,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-      <a href="{{url('/dokdispen/export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+      <a href="{{url('/dokdispen/export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT TABEL</a>
     <div class="table-responsive" style="padding:20px;width: 98%;">
     
       <table id="example" class="table table-striped table-bordered" id="hidden-table-info" data-order="[]">
@@ -75,6 +75,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($lapdis->count()>0)
                     <tr>
                     @foreach($lapdis as $lapdis)
                     <td>{{ $lapdis->nim }} - {{ $lapdis->nama_mhs }}</td>
@@ -84,7 +85,8 @@
 		              	<td>{{ $lapdis->updated_at }}</td>
                     </tr>
                     @endforeach
-                   </tbody>
+                    @ENDIF
+                  </tbody>
     </table>
     </div>
     </div></div>

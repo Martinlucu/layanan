@@ -136,11 +136,11 @@
         @endif
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Berhenti Studi Tetap(BST)</h1>
+            <h1 class="m-0 text-dark">Berhenti Studi Tetap (BST)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Berhenti Studi Tetap(BST)</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home </a>/ Pengajuan Layanan - Berhenti Studi Tetap(BST)</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -156,7 +156,7 @@
            <table id="example" class="table table-striped table-bordered">
       <thead>
         <tr>
-                      <th>NIM / Nama</th>
+                      <th>NIM - Nama</th>
                       <th>Jurusan</th>
                       <th>Alasan Pengajuan</th>
                       <th>Tanggal Masuk</th>
@@ -174,7 +174,7 @@
                     @foreach($bsmaha as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }} / {{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
@@ -192,7 +192,7 @@
                     @foreach($bsmahas as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }} / {{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
@@ -205,7 +205,7 @@
                     @foreach($bsmahass as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }} / {{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
@@ -218,7 +218,7 @@
                     @foreach($bsmahasss as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }} / {{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
@@ -253,7 +253,7 @@
                     <textarea class="form-control" name="alasan" name="alasan" rows="3" required>{{ $d->alasan_pengajuan }}</textarea>
                   </div>
                                 
-                                <button class ="btn btn-danger" type="submit">Submit</button>
+                                <button class ="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </td>
                     </tr>
@@ -264,7 +264,7 @@
                     @foreach($bsmahassss as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
-                    <td>{{ $d->nim }} / {{ $d->nama_mhs }}</td>
+                    <td>{{ $d->nim }} - {{ $d->nama_mhs }}</td>
 		              	<td>{{ $d->jurusan }}</td>
                     <td>{{ $d->alasan_pengajuan }}</td>
 		              	<td>{{ $d->created_at }}</td>
@@ -299,7 +299,7 @@
                     <textarea class="form-control" name="alasan" name="alasan" rows="3" required></textarea>
                   </div>
                                 
-                                <button class ="btn btn-danger" type="submit">Submit</button>
+                                <button class ="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </td>
                     </tr>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layanan Dispensasi</title>
+  <title>Layanan Dispensasi Sakit</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,8 +26,8 @@
 
     <script>
         $(document).ready(function () {
-  $('#example').DataTable();
-});
+          $('#example').DataTable();
+        });
     </script>
 
 <style>
@@ -146,11 +146,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan Dispensasi</h1>
+            <h1 class="m-0">Layanan Dispensasi Sakit</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home &nbsp</a>/ Layanan Dispensasi Sakit</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -174,8 +174,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @IF ($dpmaha->count()>0)
+                  @IF ($dpmaha->count()>0 || $dpmahaa->count()>0)
                     <tr>
+                    @IF ($dpmaha->count()>0)
                     @foreach($dpmaha as $d)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $d->id }}">
@@ -186,7 +187,21 @@
 		              	<td>{{ $d->alasan_pengajuan }}</td>
 		              	<td><a href="storage/berkas_mhs/{{ $d->nim }}_{{ $d->jenis }}/{{ $d->berkas_dispensasi }}">{{ $d->berkas_dispensasi }}</a></td>
 		              	<td>{{ $d->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Proses</a>
+		              	<td> <a class="btn btn-success" href="{{url('/detdispen/stjdis/'.$d->id)}}">Setuju</a>
+                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/detdispen/tlkdis/{{$d->id}}" method="POST">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                                <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
+                                
+                                <button class ="btn btn-primary" type="submit">Submit</button>
+                        </div>
                   </td>
                     </tr>
                     @endforeach
@@ -219,8 +234,8 @@
                     </tr>
                     @endforeach
                     @ENDIF
-
-    </table>
+                    @ENDIF
+      </table>
     </div>
     </div></div>
     <!-- /.content -->

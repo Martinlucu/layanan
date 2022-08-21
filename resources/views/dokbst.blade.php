@@ -75,6 +75,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($lapdis->count()>0)
                     <tr>
                     @foreach($lapdis as $lapdis)
                     <td>{{ $lapdis->nim }} - {{ $lapdis->nama_mhs }}</td>
@@ -82,9 +83,9 @@
 		              	<td>{{ $lapdis->status }}</td>
 		              	<td>{{ $lapdis->created_at }}</td>
 		              	<td>{{ $lapdis->updated_at }}</td>
-		              
-                    </tr>
+		                </tr>
                     @endforeach
+                    @ENDIF
                    </tbody>
     </table>
     </div>

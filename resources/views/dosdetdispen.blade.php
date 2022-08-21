@@ -76,11 +76,9 @@
 
     $(document).ready(function () {
             $('#example').DataTable();
-          });
-      
-          $(document).ready(function () {
             $('#preview').DataTable();
           });
+    
     </script> 
 
 <style>
@@ -226,8 +224,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($dpmaha->count()>0 || $dpmaha->count()>0)
                     <tr>
-                    @IF(Auth::user()->jabatan == "Pengajar")
+                    @IF(Auth::user()->jabatan == "dosen wali")
                       @foreach($dpmaha as $d)
                       {{ csrf_field() }}
                       <input type="hidden" name="id" value="{{ $d->id }}">
@@ -282,6 +281,7 @@
                       </tr>
                       @endforeach
                   @ENDIF
+                  @ENDIF
 
     </table>
     </div>
@@ -300,16 +300,8 @@
     <!-- /.content-header -->
     <div class="container">
     <div class="table-responsive" style="padding:20px;width: 100%;">
-    <table border="0" cellspacing="5" cellpadding="5">
-        <tbody>
-          <tr>
-            <td>Minimum date:</td>
-            <td><input type="text" name="min" id="min"></td>
-            
-            <td>Maximum date:</td>
-            <td><input type="text" name="max" id="max"></td>
-        </tr>
-    </tbody></table>
+          Minimum date: <input type="text" name="min" id="min">
+          Maximum date: <input type="text" name="max" id="max"><br><br>
       <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
@@ -325,13 +317,14 @@
                     </tr>
                   </thead>
                   <tbody>
+                  @IF ($dpmahass->count()>0)
                     <tr>
-                    @IF(Auth::user()->jabatan == "Pengajar")
+                    @IF(Auth::user()->jabatan == "dosen wali")
                     @foreach($dpmahas as $ds)
                     {{ csrf_field() }}
                     @IF ($ds->status == 'setuju by dosen')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -341,7 +334,7 @@
                       <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -351,7 +344,7 @@
                       <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -361,7 +354,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'ditolak by dosen')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -371,7 +364,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'ditolak by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -381,7 +374,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'ditolak by aak')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -391,7 +384,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'update ke dosen')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -407,7 +400,7 @@
                     {{ csrf_field() }}
                     @IF ($ds->status == 'setuju by dosen')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -417,7 +410,7 @@
                       <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -427,17 +420,17 @@
                       <td>{{ $ds->updated_at}}</td>
                     @ELSEIF ($ds->status == 'selesai')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
                       <td>{{ $ds->tanggal_masuk }}</td>
                       <td>{{ $ds->created_at }}</td>
-                      <td>Selesai</td>
+                      <b><td>Selesai</td></b>
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'ditolak by dosen')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -447,7 +440,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'ditolak by kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -457,7 +450,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'ditolak by aak')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -467,7 +460,7 @@
                       <td>{{ $ds->updated_at}}</td>
                       @ELSEIF ($ds->status == 'update ke kaprodi')
                       <input type="hidden" name="id" value="{{ $ds->id }}">
-                      <td>pdf.png{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
+                      <td>{{ $ds->nim }} - {{ $ds->nama_mhs }}</td>
                       <td>{{ $ds->jurusan }}</td>
                       <td>{{ $ds->fakultas }}</td>
                       <td>{{ $ds->tanggal_absen }}</td>
@@ -479,8 +472,8 @@
                     </tr>
                    @endforeach
                   @ENDIF
-
-    </table>
+                  @ENDIF
+      </table>
     </div>
   </div>
   </div>

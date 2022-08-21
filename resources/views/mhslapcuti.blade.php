@@ -45,11 +45,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Cuti(BSS)</h1>
+            <h1 class="m-0 text-dark">History Layanan Berhenti Studi Sementara (BSS)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home / Pengajuan Layanan-Cuti(BSS)</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/mhs')}}">Home &nbsp</a>/ History Layanan Berhenti Studi Sementara (BSS)</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -73,6 +73,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($ctmaha->count()>0)
                     <tr>
                     @foreach($ctmaha as $c)
                     {{ csrf_field() }}
@@ -85,6 +86,7 @@
                     </tr>
                    
                     @endforeach
+                    @ENDIF
     </table>
     </div>
        

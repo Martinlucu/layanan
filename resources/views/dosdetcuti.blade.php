@@ -20,18 +20,10 @@
   <!-- Data table -->
   <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
-  <link rel="stylesheet"  href="{{asset('https://cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css')}}">
-  <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}">
-
-  <script type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
-  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>  
-  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
-  <script  type="text/javascript"  src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
-  <script  type="text/javascript"  src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
-  <script type="text/javascript"   src="{{asset('https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js')}}"></script>
-  <script  type="text/javascript"  src="{{asset('https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"></script>
+  
+  <script src="{{asset('https://code.jquery.com/jquery-3.5.1.js')}}"></script>
+  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
   
 
   <script>
@@ -201,11 +193,11 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Layanan Cuti</h1>
+            <h1 class="m-0">Layanan Berhenti Studi Sementara (BSS)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home / Layanan Cuti</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home &nbsp</a>/ Layanan Berhenti Studi Sementara (BSS)</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -228,6 +220,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($ctmaha->count()>0)
                     <tr>
                     @foreach($ctmaha as $c)
                     {{ csrf_field() }}
@@ -254,8 +247,8 @@
                       </div>
                   </td>
                     </tr>
-                   
-                    @endforeach
+                   @endforeach
+                   @ENDIF
         </table>
         </div>
     </div>
@@ -273,16 +266,8 @@
         <!-- /.content-header -->
     <div class="container">
       <div class="table-responsive" style="padding:20px;width: 98%;">
-    <table border="0" cellspacing="5" cellpadding="5">
-        <tbody>
-          <tr>
-            <td>Minimum date:</td>
-            <td><input type="text" name="min" id="min"></td>
-            
-            <td>Maximum date:</td>
-            <td><input type="text" name="max" id="max"></td>
-        </tr>
-    </tbody></table>
+        Minimum date: <input type="text" name="min" id="min">
+        Maximum date: <input type="text" name="max" id="max"><br><br>
       <table id="example" class="table table-striped table-bordered" data-order="[]">
       <thead>
         <tr>
@@ -296,6 +281,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @IF ($ctmaha->count()>0)
                     <tr>
                     @foreach($ctmahas as $cs)
                     {{ csrf_field() }}
@@ -305,7 +291,7 @@
                       <td>{{ $cs->jurusan }}</td>
                       <td>{{ $cs->alasan_pengajuan }}</td>
                       <td>{{ $cs->created_at }}</td>
-                      <td>Disetujui oleh dosen</td>
+                      <td>Disetujui oleh dosen wali</td>
                       <td>{{ $cs->updated_at }}</td>
 		              	@ELSEIF ($cs->status == 'setuju by kaprodi')
                       <input type="hidden" name="id" value="{{ $cs->id }}">
@@ -341,8 +327,8 @@
                       <td>{{ $cs->updated_at}}</td>
                     @ENDIF
                     </tr>
-                   
                     @endforeach
+                    @ENDIF
     </table>
     </div>
       </div>

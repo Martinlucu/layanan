@@ -11,45 +11,36 @@ class detailController extends Controller
 {
     public function detyudi()
     {
-       
-        $ydm = DB::table('dokumen')->wherein('status',['proses','update ke aak'])->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->wherein('status',['proses','update ke aak'])->orderBy('created_at', 'DESC')->get();
-        
-        return view('detyudi',compact('ydm', 'ydmaha'));
+        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status', 'proses')->orderBy('created_at', 'DESC')->get();
+        $ydmahaa = DB::table('dokumen')->where('jenis','Yudisium')->where('status', 'update ke aak')->orderBy('created_at', 'DESC')->get();
+
+        return view('detyudi',compact('ydmaha', 'ydmahaa'));
 }
 
     public function detcuti()
     { $from = date('2021-04-01');
         $to = date('2021-07-30');
-        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->count();
-        // $ctt = DB::table('dokumen')->where('jenis','Cuti')->where('status','update by mhs ke aak')->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->where('status','setuju by dosen')->orderBy('created_at', 'DESC')->get();
-        // $ctmahaa = DB::table('dokumen')->where('jenis','Cuti')->where('status','update by mhs ke aak')->get();
-        return view('detcuti',compact('ct','ctmaha'));
+        return view('detcuti',compact('ctmaha'));
 }
 
     public function detbst()
     {$from = date('2021-04-01');
         $to = date('2021-07-30');
-        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->count();
         $bsmaha = DB::table('dokumen')->where('jenis','BST')->where('status','setuju by kaprodi')->orderBy('created_at', 'DESC')->get();
-        // $bsmahaa = DB::table('dokumen')->where('jenis','BST')->where('status','update by mhs ke aak')->get();
-        return view('detbst',compact('bs','bsmaha'));
+        return view('detbst',compact('bsmaha'));
 }
 
     public function detdispen()
     {$from = date('2021-04-01');
         $to = date('2021-07-30');
-        $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->count();
-        $dpp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->count();
-        // $dppp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->count();
         $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by kaprodi')->orderBy('created_at', 'DESC')->get();
         $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs')->orderBy('created_at', 'DESC')->get();
-        // $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','update by mhs ke aak')->get();
         
-        return view('detdispen',compact('dpmaha', 'dpmahaa','dp', 'dpp'));
-}
-public function stjcuti($id)
+        return view('detdispen',compact('dpmaha', 'dpmahaa'));
+    }
+
+    public function stjcuti($id)
     {
         $date = date(Carbon::now());
         \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\cuti_aak_stj);

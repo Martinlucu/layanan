@@ -59,11 +59,9 @@ Route::group(['middleware' => 'auth:aak'], function () {
     
     Route::get('/detbst', 'detailController@detbst');
     Route::get('/detbst/stjbst/{id}', 'detailController@stjbst');
-    Route::post('/detbst/tlkbst/{id}', 'detailController@tlkbst');
     
     Route::get('/detcuti', 'detailController@detcuti');
     Route::get('/detcuti/stjcuti/{id}', 'detailController@stjcuti');
-    Route::post('/detcuti/tlkcuti/{id}', 'detailController@tlkcuti');
     
     Route::get('/setting', 'settingController@setting');
     Route::post('/updateset', 'settingController@updateset');

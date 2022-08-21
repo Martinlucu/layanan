@@ -23,53 +23,37 @@ class DosenController extends Controller
     	return view('doshome');
     }
 
-    public function dosdetyudi()
-    {
-        
-        $ydm = DB::table('dokumen')->where('status','proses')->where('kode_dosen', Auth::user()->kode_dosen)->count();
-        $ydmaha = DB::table('dokumen')->where('jenis','Yudisium')->where('status','Proses')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
-        $ydmahaa = DB::table('dokumen')->where('jenis','Yudisium')->where('status','setuju by dosen')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
-        $ydmahas = DB::table('dokumen')->where('jenis','Yudisium')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
-            
-        return view('dosdetyudi',compact('ydm','ydmaha', 'ydmahaa','ydmahas'));
-        
-}
-
     public function dosdetcuti()
     { 
-        
-        $ct = DB::table('dokumen')->where('jenis','Cuti')->where('status','proses')->where('kode_dosen', Auth::user()->kode_dosen)->count();
         $ctmaha = DB::table('dokumen')->where('jenis','Cuti')->wherein('status',['proses', 'update ke dosen'])->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
         $ctmahas = DB::table('dokumen')->where('jenis','Cuti')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
         
-        return view('dosdetcuti',compact('ct','ctmaha', 'ctmahas'));
-}
+        return view('dosdetcuti',compact('ctmaha', 'ctmahas'));
+    }
 
     public function dosdetbst()
     {
-        
-        $bs = DB::table('dokumen')->where('jenis','BST')->where('status','proses')->where('kode_dosen', Auth::user()->kode_dosen)->count();
         $bsmaha = DB::table('dokumen')->where('jenis','BST')->wherein('status',['Proses','update ke dosen'])->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
         $bsmahaa = DB::table('dokumen')->where('jenis','BST')->wherein('status',['setuju by dosen','update ke kaprodi'])->orderBy('created_at', 'DESC')->get();
+        
         $bsmahas = DB::table('dokumen')->where('jenis','BST')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
         $bsmahass = DB::table('dokumen')->where('jenis','BST')->where('jurusan', 'S1 Sistem informasi')->orderBy('created_at', 'DESC')->get();
             
-        return view('dosdetbst',compact('bs','bsmaha', 'bsmahaa','bsmahas', 'bsmahass'));
-        
-}
+        return view('dosdetbst',compact('bsmaha', 'bsmahaa','bsmahas', 'bsmahass'));
+    }
 
     public function dosdetdispen()
         {
+            $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['proses', 'update ke dosen',])->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
+            $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['setuju by dosen','update ke kaprodi'])->orderBy('created_at', 'DESC')->get();
             
-            $dp = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['proses', 'setuju by dosen','update ke dosen','update ke kaprodi'])->where('kode_dosen', Auth::user()->kode_dosen)->count();
-            $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['proses', 'update ke dosen',])->orderBy('created_at')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
-            $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->wherein('status',['setuju by dosen','update ke kaprodi'])->orderBy('created_at')->get();
-            $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->orderBy('created_at', 'DESC')->where('kode_dosen', Auth::user()->kode_dosen)->get();
-            $dpmahass = DB::table('dokumen')->where('jenis','Dispensasi')->orderBy('created_at', 'DESC')->where('jurusan', 'S1 Sistem Informasi')->get();
+            $dpmahas = DB::table('dokumen')->where('jenis','Dispensasi')->where('kode_dosen', Auth::user()->kode_dosen)->orderBy('created_at', 'DESC')->get();
+            $dpmahass = DB::table('dokumen')->where('jenis','Dispensasi')->where('jurusan', 'S1 Sistem Informasi')->orderBy('created_at', 'DESC')->get();
             
-            return view('dosdetdispen',compact('dpmaha', 'dpmahaa', 'dp','dpmahas', 'dpmahass'));
+            return view('dosdetdispen',compact('dpmaha', 'dpmahaa', 'dpmahas', 'dpmahass'));
         }
-        public function disrange(Request $request){
+    
+    public function disrange(Request $request){
             $awal = $request->get("tgllawal");
            
             $akhir=date('tglakhir');
@@ -79,6 +63,7 @@ class DosenController extends Controller
             $dp = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->count();
             $dpmaha = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','proses')->get();
             $dpmahaa = DB::table('dokumen')->where('jenis','Dispensasi')->where('status','setuju by dosen')->get();
+            
             return view('dosdetdispen',compact('dpmaha', 'dpmahaa','dp','dpmahas','awal'));;
         }
         

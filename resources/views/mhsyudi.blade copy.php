@@ -550,7 +550,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">No. Telfon</label>
-                      <input type="tel" max="12" class="form-control" name="no_telp">
+                      <input type="tel" max="12" class="form-control" name="no_telp" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">E-mail Dinamika</label>

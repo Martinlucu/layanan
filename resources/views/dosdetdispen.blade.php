@@ -42,7 +42,7 @@
         function( settings, data, dataIndex ) {
             var min = minDate.val();
             var max = maxDate.val();
-            var date = new Date( data[6] );
+            var date = new Date( data[5,7] );
     
             if (
                 ( min === null && max === null ) ||
@@ -201,7 +201,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home &nbsp</a>/ Layanan Dispensasi</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -224,7 +224,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @IF ($dpmaha->count()>0 || $dpmaha->count()>0)
+                    @IF ($dpmaha->count()>0 || $dpmahaa->count()>0)
                     <tr>
                     @IF(Auth::user()->jabatan == "dosen wali")
                       @foreach($dpmaha as $d)
@@ -317,7 +317,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                  @IF ($dpmahass->count()>0)
+                  
                     <tr>
                     @IF(Auth::user()->jabatan == "dosen wali")
                     @foreach($dpmahas as $ds)
@@ -472,7 +472,7 @@
                     </tr>
                    @endforeach
                   @ENDIF
-                  @ENDIF
+                  
       </table>
     </div>
   </div>

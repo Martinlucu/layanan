@@ -105,7 +105,7 @@ public function stjbst($id)
     $nama = DB::table('dokumen')->where('id',$id)->value('nama_mhs');
     $nim = DB::table('dokumen')->where('id',$id)->value('nim');
 
-    if(Auth::user()->jabatan == "Pengajar"){
+    if(Auth::user()->jabatan == "dosen wali"){
         $date = date("Y-m-d H:i:s");
         
         $email=[
@@ -162,7 +162,7 @@ public function stjdis(Request $request, $id)
         $nama = DB::table('dokumen')->where('id',$id)->value('nama_mhs');
         $nim = DB::table('dokumen')->where('id',$id)->value('nim');
         
-        if(Auth::user()->jabatan == "Pengajar"){
+        if(Auth::user()->jabatan == "dosen wali"){
             $date = date("Y-m-d H:i:s");
             
             $email=[
@@ -232,7 +232,7 @@ public function stjdis(Request $request, $id)
     public function tlkdis(Request $request, $id)
     {
         
-        if(Auth::user()->jabatan == "Pengajar"){
+        if(Auth::user()->jabatan == "dosen wali"){
             $date = date("Y-m-d H:i:s");
             \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\dispensasi_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([
@@ -255,7 +255,7 @@ public function stjdis(Request $request, $id)
    
     public function tlkbst(Request $request, $id)
     {
-        if(Auth::user()->jabatan == "Pengajar"){
+        if(Auth::user()->jabatan == "dosen wali"){
             $date = date("Y-m-d H:i:s");
             \Mail::to('17410100019@dinamika.ac.id')->send(new \App\Mail\BST_dosen_tlk);
             DB::table('dokumen')->where('id',$id)->update([

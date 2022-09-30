@@ -381,7 +381,7 @@
                                                    mengupload pengajuan yudisium. Mohon untuk melakukan proses persetujuan/penolakan.</p>
                                                <br><br><br>
                                                <p>
-                                                   Untuk melakukan proses persetujuan/penolakan, bisa klik <u><a href="http://localhost:8000/dosdetyudi">disini</a></u>.
+                                                   Untuk melakukan proses persetujuan/penolakan, bisa klik <u><a href="http://localhost:8000/detyudi">disini</a></u>.
                                                </p>
                                                <br><br>
                                                Terima kasih.

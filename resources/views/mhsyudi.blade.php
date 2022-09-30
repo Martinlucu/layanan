@@ -191,22 +191,22 @@
                     <input type="hidden" name="id" value="{{ $yd->id }}">
                       <td>{{ $yd->nim }} / {{ $yd->nama_mhs }}</td>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a> 
                       </td>
                       <td>{{ $yd->created_at }}</td>
                       <td>Proses ke Bag.AAK</td>
@@ -220,38 +220,38 @@
                       <td>{{ $yd->nim }}</td>
                       <td>{{ $yd->nama_mhs }}</td>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                       
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">{{ $yd->berkas_sskm }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                      
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                   
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                    
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                    
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                    
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a> 
                       </td>
                       <td>{{ $yd->created_at }}</td>
                       <td>Ditolak oleh AAK karena {{ $yd->alasan_penolakan }}</td>
                     
 		                @endforeach
                     <!-- Update by mhs -->
-                    <!-- @ELSEIF ($ydmahass->count()>0)
+                    @ELSEIF ($ydmahass->count()>0)
                     @foreach($ydmahass as $yd)
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{ $yd->id }}">
@@ -290,43 +290,43 @@
                     <tr>
                       <th>Berkas Akta</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}">{{ $yd->berkas_akta }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_akta }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     </tr>
                     <tr>
                       <th>Berkas SSKM</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}">{{ $yd->berkas_sskm }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_sskm }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     </tr>
                     <tr>
                       <th>Berkas TOEFL</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}">{{ $yd->berkas_toefl }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_toefl }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     </tr>
                     <tr>
                       <th>Berkas Ijazah</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}">{{ $yd->berkas_ijazah }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ijazah }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     </tr>  
                     <tr>
                       <th>Berkas KK</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}">{{ $yd->berkas_kk }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_kk }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     </tr>
                     <tr>
                       <th>Berkas KTP</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}">{{ $yd->berkas_ktp }}</a>
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktp }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a>
                       </td>
                     </tr>
                     <tr>
                       <th>Berkas KTM</th>
                       <td>
-                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}">{{ $yd->berkas_ktm }}</a> 
+                        <a href="storage/berkas_mhs/{{ $yd->nim }}_{{ $yd->jenis }}/{{ $yd->berkas_ktm }}"><img src="{{ asset('storage/icon/pdf.png') }}" width="40" height="50"></a> 
                       </td>
                     </tr>
 		                <tr>
@@ -337,7 +337,7 @@
                       <th>Status</th>
                       <td>Sedang diproses oleh Bag. AAK</td>
                     </tr>
-		              	@endforeach -->
+		              	@endforeach
                     @ENDIF
           </table>
     @IF ($ydmahas->count()>0)

@@ -43,7 +43,7 @@
         function( settings, data, dataIndex ) {
             var min = minDate.val();
             var max = maxDate.val();
-            var date = new Date( data[4,6] );
+            var date = new Date( data[3,5] );
     
             if (
                 ( min === null && max === null ) ||
@@ -229,7 +229,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @IF ($bsmaha->count()>0)
+                    @IF ($bsmaha->count()>0 || $bsmahaa->count()>0)
                     <tr>
                     @IF (Auth::user()->jabatan == "dosen wali")
                     @foreach($bsmaha as $b)
@@ -328,9 +328,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @IF ($bsmaha->count()>0)
+                    @IF ($bsmahas->count()>0 || $bsmahass->count()>0)
                     <tr>
-                    @IF(Auth::user()->jabatan == "Pengajar")
+                    @IF(Auth::user()->jabatan == "dosen wali")
                     @foreach($bsmahas as $bs)
                     {{ csrf_field() }}
                     @IF ($bs->status == 'setuju by dosen')

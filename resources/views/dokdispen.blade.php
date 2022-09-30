@@ -60,7 +60,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-      <a href="{{url('/dokdispen/export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT TABEL</a>
+      <a href="{{url('/dokdispen/export_excel')}}" class="btn btn-success my-3" target="_blank">EXPORT</a>
     <div class="table-responsive" style="padding:20px;width: 98%;">
     
       <table id="example" class="table table-striped table-bordered" id="hidden-table-info" data-order="[]">

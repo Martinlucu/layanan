@@ -50,7 +50,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home / Laporan Yudisium</a></li>
+              <li class="breadcrumb-item active"><a href="{{url('/aak')}}">Home &nbsp</a>/ Laporan Yudisium</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -60,7 +60,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container">
-      <a href="{{url('/dokyudi/export_yudi')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+      <a href="{{url('/dokyudi/export_yudi')}}" class="btn btn-success my-3" target="_blank">EXPORT</a>
     <div class="table-responsive" style="padding:20px;width: 98%;">
     
       <table id="example" class="table table-striped table-bordered" id="hidden-table-info">

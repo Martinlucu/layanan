@@ -228,7 +228,22 @@
                       </a>
                     </td>
 		              	<td>{{ $yd->created_at }}</td>
-		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Proses</a>
+		              	<td> <a class="btn btn-success" href="{{url('/detyudi/stjyudi/'.$yd->id)}}">Setuju</a>
+                    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                          Tolak
+                        </button>
+
+                        <div id="id01" class="modal">
+                            <form role="form" class="modal-content animate" action="/detyudi/tlkyudi/{{$yd->id}}" method="POST">
+                              @csrf
+                            <div class="container" style="padding:16px;">
+                                <label for="uname"><b>Alasan Penolakan :</b></label>
+                                <b><span style ="float:right;"><span id="totalChars">200</span> Karakter tersisa</span></b>
+                                <textarea name="alasan" id="alasan" maxlength="200" placeholder="Tuliskan alasan anda menolak pengajuan ini, Max. 200 karakter" cols="5" rows="5"></textarea>
+                                
+                                <button class ="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                  </td>
                   </td>
                     </tr>
                     @endforeach
